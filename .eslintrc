@@ -1,0 +1,25 @@
+{
+  "parser": "babel-eslint",
+  "ecmaFeatures": {
+    "classes": true,
+    "jsx": true
+  },
+  "extends": [
+    "airbnb",
+    "plugin:import/errors",
+    "plugin:import/warnings"
+  ],
+  "plugins": [
+    "react"
+  ],
+  "env": {
+    "es6": true,
+    "browser": true,
+    "node": true,
+    "jquery": true,
+    "mocha": true
+  },
+  "rules": {
+      "no-console": [0]
+    },
+}
