@@ -1,21 +1,26 @@
+// @flow
+
 import React from 'react';
-import { Lifetime } from './Lifecycle';
+import Nav from './nav/navbar';
+import { Col, Grid, Row } from 'react-bootstrap';
+import './styles/styles.scss';
 
 export class App extends React.Component {
   constructor() {
     super();
-    this.state = {
-      thing: 'thing?',
-    };
-  }
-  componentDidMount() {
-    setTimeout(() => {
-      this.setState({  })
-    }, 2000);
   }
   render() {
     return (
-      <Lifetime zip={this.state.thing} />
+      <div className="app">
+        <Nav />
+        <Grid fluid>
+          <Row>
+            <Col sm={6} md={10}>
+              app content!
+            </Col>
+          </Row>
+        </Grid>
+      </div>
     );
   }
 }

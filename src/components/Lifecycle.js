@@ -86,10 +86,5 @@ const ParentComponent = React.createClass({
   },
 });
 
-ReactDOM.render(
-  <ParentComponent />,
-  document.getElementById('container')
-);
 
-
-export { ChildComponent, ParentComponent };
+// export { ChildComponent, ParentComponent };

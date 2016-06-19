@@ -4,10 +4,12 @@
   "description": "A newsfeed application for Letters.",
   "main": "./src/components/app.js",
   "scripts": {
-    "test": "ava",
-    "api:dev": "json-server db/*.json -p 3500",
-    "build:prod": "babel . --babelrc=true --ignore='bower_components, node_modules, coverage, docs, dist' --compact='true' --minified --no-comments --out-dir dist",
-    "start": "./node_modules/.bin/pm2 start --interpreter babel-node run/${NODE_ENV}.json --no-daemon --merge-logs"
+    "api:dev": "./node_modules/.bin/json-server db/*.json -p 3500",
+    "build": "babel . --babelrc=true --ignore='build, node_modules, coverage, docs, dist, env' --compact='true' --minified --no-comments --out-dir dist",
+    "dev": "./node_modules/.bin/npm-run-all --parallel api:dev start:dev",
+    "start:dev": "./node_modules/.bin/babel-node run/dev.js",
+    "start": "./node_modules/.bin/pm2 start --interpreter babel-node run/${NODE_ENV}.json --no-daemon --merge-logs",
+    "test": "ava"
   },
   "repository": {
     "type": "git",
@@ -21,12 +23,15 @@
   "homepage": "https://github.com/markthethomas/react-in-action#readme",
   "dependencies": {
     "axios": "^0.12.0",
+    "bootstrap-sass": "^3.3.6",
     "es6-promise": "^3.2.1",
     "isomorphic-fetch": "^2.2.1",
     "react": "^15.1.0",
+    "react-bootstrap": "^0.29.5",
     "react-dom": "^15.1.0"
   },
   "devDependencies": {
+    "ava": "^0.15.2",
     "babel-cli": "^6.9.0",
     "babel-core": "^6.9.0",
     "babel-eslint": "^6.0.4",
@@ -48,6 +53,9 @@
     "eslint-plugin-import": "^1.8.0",
     "eslint-plugin-jsx-a11y": "^1.2.1",
     "eslint-plugin-react": "^5.1.1",
+    "node-sass": "^3.8.0",
+    "sass-loader": "^3.2.0",
+    "style-loader": "^0.13.1",
     "webpack": "^1.13.1",
     "webpack-dev-server": "^1.14.1",
     "webpack-hot-middleware": "^2.10.0"

@@ -18,18 +18,18 @@ browserSync({
         noInfo: false,
         publicPath: config.output.publicPath,
         stats: {
-          colors: true
+          colors: true,
         },
       }),
       // same bundler for both
       webpackHotMiddleware(bundler),
-      historyApiFallback()
-    ]
+      historyApiFallback(),
+    ],
   },
 
   // no need to watch '*.js' here, webpack will take care of it for us,
   // including full page reloads if HMR won't work
   files: [
-    'src/*.html'
-  ]
+    'src/*.html',
+  ],
 });
