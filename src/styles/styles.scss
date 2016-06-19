@@ -1,0 +1,18 @@
+// @flow
+@import 'variables';
+@import '../../node_modules/bootstrap-sass/assets/stylesheets/bootstrap-sprockets';
+@import '../../node_modules/bootstrap-sass/assets/stylesheets/bootstrap';
+
+body {
+  margin-top: $navbar-height;
+}
+
+.navbar-header {
+  float: left;
+  text-align: center;
+  width: 100%;
+}
+
+.navbar-brand {
+  float: none;
+}
