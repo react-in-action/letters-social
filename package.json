@@ -4,7 +4,7 @@
   "description": "A newsfeed application for Letters.",
   "main": "./src/components/app.js",
   "scripts": {
-    "api:dev": "./node_modules/.bin/json-server db/*.json -p 3500",
+    "api:dev": "./node_modules/.bin/json-server db/*.json -p 3500 -s db/backups",
     "build": "babel . --babelrc=true --ignore='build, node_modules, coverage, docs, dist, env' --compact='true' --minified --no-comments --out-dir dist",
     "dev": "./node_modules/.bin/npm-run-all --parallel api:dev start:dev",
     "start:dev": "./node_modules/.bin/babel-node run/dev.js",

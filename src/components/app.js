@@ -60,7 +60,7 @@ export class App extends React.Component {
                   </div>
                 )
                 :
-                  <div>loading!</div>
+                  <div>loading...</div>
               }
             </Col>
           </Row>
