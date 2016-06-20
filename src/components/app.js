@@ -4,6 +4,8 @@ import { Col, Grid, Row } from 'react-bootstrap';
 import fetch from 'isomorphic-fetch';
 import '../styles/styles.scss';
 
+const endpoint = 'http://localhost:3500';
+
 export class App extends React.Component {
   constructor() {
     super();
@@ -13,14 +15,12 @@ export class App extends React.Component {
     };
   }
   componentDidMount() {
-    fetch('http://localhost:3500/posts')
+    fetch(`${endpoint}/posts`)
     .then(res => res.json())
-    .then(posts => {
-      this.setState({
-        posts,
-        loaded: true,
-      });
-    });
+    .then(posts => this.setState({
+      posts,
+      loaded: true,
+    }));
   }
   render() {
     return (
@@ -33,11 +33,7 @@ export class App extends React.Component {
                 this.state.loaded ?
                 this.state.posts.map(post =>
                   <div
-                    style={{
-                      border: '1px solid grey',
-                      padding: 10, margin: 10,
-                      borderRadius: '5px 5px',
-                    }}
+                    className="post"
                     key={post.id}
                   >
                     <img
@@ -52,6 +48,15 @@ export class App extends React.Component {
                     <p>
                       content: {post.content}
                     </p>
+                    {
+                      post.comments.map(() => {
+                        return (
+                          <div className="comment" key={Math.random()}>
+                            a comment!
+                          </div>
+                        );
+                      })
+                    }
                   </div>
                 )
                 :

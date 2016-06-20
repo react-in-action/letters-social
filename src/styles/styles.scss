@@ -7,6 +7,23 @@ body {
   margin-top: $navbar-height;
 }
 
+.element-base {
+  border: 2px solid $gray-lighter;
+  border-radius: 5px;
+  margin: 10px;
+  padding: 10px;
+}
+.post {
+  @extend .element-base;
+  img {
+    padding: 10px;
+  }
+}
+
+.comment {
+  @extend .element-base;
+}
+
 .navbar-header {
   float: left;
   text-align: center;
