@@ -5,6 +5,7 @@ npm-debug.log*
 
 # Runtime data
 db/seed-compiled.js
+db/seed
 dist
 pids
 *.pid
