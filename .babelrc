@@ -2,7 +2,8 @@
   "presets": [
     "es2015",
     "react",
-    "stage-0"
+    "stage-0",
+    "es2015-native-modules"
   ],
   "plugins": ["transform-class-properties"],
   "env": {
