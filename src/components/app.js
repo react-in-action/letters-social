@@ -16,7 +16,7 @@ export class App extends React.Component {
     };
   }
   componentDidMount() {
-    fetch(`${endpoint}/posts`)
+    fetch(`${endpoint}/posts?_limit=10`)
     .then(res => res.json())
     .then(posts => this.setState({
       posts,
