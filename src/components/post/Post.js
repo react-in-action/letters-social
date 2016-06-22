@@ -1,52 +1,35 @@
 // @flow
 
 import React, { PropTypes } from 'react';
-import moment from 'moment';
-import Avatar from './Avatar';
+import Comments from '../comment/Comments';
 
-class Post extends React.Component {
-  static propTypes = {
-    post: PropTypes.object,
-  }
-  constructor() {
-    super();
-    this.state = {
-      showComments: false,
-    };
-  }
-  render() {
-    const { post } = this.props;
-    return (
-      <div
-        className="post"
-        key={post.id}
-      >
-        <img
-          src={post.image}
-          width={25}
-          height={25}
-          alt=""
-        />
-        <span>
-          user: {post.user}
-        </span>
-        <p>
-          content: {post.content}
-        </p>
-        {
-          post.comments.map(comment => {
-            return (
-              <div className="comment" key={Math.random()}>
-                <small>{moment(comment.date).fromNow()}</small>
-                <p>
-                  {comment.content}
-                </p>
-              </div>
-            );
-          })
-        }
-      </div>
-    );
-  }
-}
+const Post = (props: Object) => {
+  const { post } = props;
+  return (
+    <div
+      className="post"
+      key={post.id}
+    >
+      <img
+        src={post.image}
+        width={50}
+        height={50}
+        alt={post.content}
+      />
+      <span>
+        user: {post.user}
+      </span>
+      <p>
+        content: {post.content}
+      </p>
+      <Comments {...props} />
+      {/* <Controls {...props} />*/}
+    </div>
+  );
+};
+
+Post.propTypes = {
+  post: PropTypes.object,
+};
+
 export default Post;

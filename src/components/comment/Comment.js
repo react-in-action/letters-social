@@ -1,11 +1,16 @@
 import React, { PropTypes } from 'react';
+import moment from 'moment';
 
 const Comment = (props) => {
   const { comment } = props;
   return (
-    <div className="comment">
-      {comment.date}
-      {comment.content}
+    <div className="comment" key={comment.id}>
+      <small>
+        {moment(comment.date).fromNow()}
+      </small>
+      <p>
+        {comment.content}
+      </p>
     </div>
   );
 };
