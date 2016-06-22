@@ -11,6 +11,7 @@ const Logo = (props) => {
       <span style={{ color: '#417505' }}>e</span>
       <span style={{ color: '#D0021B' }}>r</span>
       <span style={{ color: '#F8E71C' }}>s</span>
+      <small className="social">.social</small>
     </div>
   );
 };
