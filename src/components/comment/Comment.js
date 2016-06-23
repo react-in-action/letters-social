@@ -3,6 +3,7 @@ import moment from 'moment';
 
 const Comment = (props) => {
   const { comment } = props;
+  console.log(comment);
   return (
     <div className="comment" key={comment.id}>
       <small>

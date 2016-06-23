@@ -10,7 +10,7 @@
     "babel": "inherit"
   },
   "scripts": {
-    "api:dev": "./node_modules/.bin/json-server db/seed/db.json -d 500 -r db/routes.json -p 3500 -s db/backups",
+    "api:dev": "./node_modules/.bin/json-server db/seed/db.json -r db/routes.json -p 3500 -s db/backups",
     "build": "./node_modules/.bin/babel-node build/build.js",
     "dev": "./node_modules/.bin/npm-run-all --parallel api:dev start:dev",
     "postinstall": "npm run welcome",
@@ -51,7 +51,10 @@
     "babel-eslint": "^6.0.4",
     "babel-loader": "^6.2.4",
     "babel-plugin-react-display-name": "^2.0.0",
+    "babel-plugin-transform-async-functions": "^6.8.0",
     "babel-plugin-transform-class-properties": "^6.10.2",
+    "babel-plugin-transform-regenerator": "^6.9.0",
+    "babel-plugin-transform-runtime": "^6.9.0",
     "babel-plugin-typecheck": "^3.9.0",
     "babel-preset-es2015": "^6.9.0",
     "babel-preset-es2015-native-modules": "^6.6.0",

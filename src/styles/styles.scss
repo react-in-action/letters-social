@@ -3,26 +3,18 @@
 @import '../../node_modules/bootstrap-sass/assets/stylesheets/bootstrap-sprockets';
 @import '../../node_modules/bootstrap-sass/assets/stylesheets/bootstrap';
 
+// Borders
+$border-base: 2px solid $gray-lighter;
+
 body {
   margin-top: $navbar-height;
 }
 
-.element-base {
-  border: 2px solid $gray-lighter;
+%element-base {
+  border: $border-base;
   border-radius: 5px;
   margin: 10px;
   padding: 10px;
-}
-
-.post {
-  @extend .element-base;
-  img {
-    padding: 10px;
-  }
-}
-
-.comment {
-  @extend .element-base;
 }
 
 .navbar-header {
@@ -31,6 +23,7 @@ body {
   width: 100%;
 }
 
+// Navbar
 .navbar-brand {
   float: none;
 }
@@ -38,4 +31,38 @@ body {
 
 .social {
   font-family: 'Space Mono', monospace;
+}
+
+
+// Posts
+.post {
+  @extend %element-base;
+  margin-bottom: $base-spacing * 1.5;
+
+  .user {
+    border-bottom: $border-base;
+  }
+
+  img {
+    padding: 10px;
+  }
+}
+
+.control {
+  margin: 3px 0;
+
+  &:hover {
+    background-color: transparent;
+    color: $blue;
+  }
+
+  .control-with-counter {
+    padding-right: 5px;
+  }
+}
+
+
+
+.comment {
+  @extend %element-base;
 }

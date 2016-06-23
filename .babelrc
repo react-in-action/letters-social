@@ -1,19 +1,19 @@
 {
-  "presets": [
-    "es2015",
-    "react",
-    "stage-0",
-    "es2015-native-modules"
-  ],
-  "plugins": ["transform-class-properties"],
-  "env": {
-    "development": {
-      "plugins": [
-         "typecheck",
-      ],
-      "presets": [
-        "react-hmre"
-      ]
+    "presets": [
+        "es2015",
+        "react",
+        "stage-0",
+        "es2015-native-modules",
+    ],
+    "plugins": ["transform-class-properties", "transform-runtime"],
+    "env": {
+        "development": {
+            "plugins": [
+                "typecheck",
+            ],
+            "presets": [
+                "react-hmre"
+            ]
+        }
     }
-  }
 }

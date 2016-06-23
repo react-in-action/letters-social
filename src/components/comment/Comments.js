@@ -29,15 +29,12 @@ export default class Comments extends React.Component {
           :
           null
         }
-        <span>
-          <i className="fa fa-comments-o"></i> {post.comments.length}
-        </span>
-        <br />
         {
           post.comments.length > 0 ?
             <a
               style={{ cursor: 'pointer' }}
               onClick={this.toggle}
+              className="pull-right"
             >
               {this.state.showComments ? 'Hide' : 'show'} comments
               &nbsp;

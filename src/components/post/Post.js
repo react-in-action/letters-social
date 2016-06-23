@@ -2,6 +2,7 @@
 
 import React, { PropTypes } from 'react';
 import Comments from '../comment/Comments';
+import Controls from './Controls';
 
 const Post = (props: Object) => {
   const { post } = props;
@@ -11,25 +12,24 @@ const Post = (props: Object) => {
       key={post.id}
     >
       <img
-        src={post.image}
+        src={post.user.profilePicture}
         width={50}
         height={50}
         alt={post.content}
       />
-      <span>
-        user: {post.user}
-      </span>
+      <a>{post.user.firstName} {post.user.lastName}</a>
       <p>
-        content: {post.content}
+        {post.content}
       </p>
       <Comments {...props} />
-      {/* <Controls {...props} />*/}
+      <Controls {...props} />
     </div>
   );
 };
 
 Post.propTypes = {
   post: PropTypes.object,
+  user: PropTypes.object,
 };
 
 export default Post;

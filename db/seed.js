@@ -17,10 +17,12 @@ class User {
   lastName: string;
   password: string;
   username: string;
+  profilePicture: string;
   constructor() {
     this.email = internet.email();
     this.firstName = name.firstName();
     this.id = uuid();
+    this.profilePicture = image.people();
     this.lastName = name.lastName();
     this.password = internet.password();
     this.username = internet.userName();
