@@ -3,13 +3,16 @@
 @import '../../node_modules/bootstrap-sass/assets/stylesheets/bootstrap-sprockets';
 @import '../../node_modules/bootstrap-sass/assets/stylesheets/bootstrap';
 
-// Borders
+// Borders ============================
 $border-base: 2px solid $gray-lighter;
 
+// Globals ============================
 body {
+  background-color: $bg-default;
   margin-top: $navbar-height;
 }
 
+// Defaults ============================
 %element-base {
   border: $border-base;
   border-radius: 5px;
@@ -23,21 +26,27 @@ body {
   width: 100%;
 }
 
-// Navbar
+// Navbar ============================
 .navbar-brand {
   float: none;
 }
-
 
 .social {
   font-family: 'Space Mono', monospace;
 }
 
 
-// Posts
+// Posts ============================
+.posts {
+  // background-color: $white;
+  margin: 5px 0;
+  padding: 5px;
+}
+
 .post {
   @extend %element-base;
   margin-bottom: $base-spacing * 1.5;
+  background-color: $white;
 
   .user {
     border-bottom: $border-base;
@@ -61,8 +70,18 @@ body {
   }
 }
 
-
-
 .comment {
-  @extend %element-base;
+  // @extend %element-base;
+  margin-top: 0;
+  border-top: 1px solid $gray-lighter;
+  padding: 0 10px;
+}
+
+
+// Fixes ============================
+input:focus,
+select:focus,
+textarea:focus,
+button:focus {
+    outline: none;
 }

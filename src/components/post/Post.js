@@ -20,6 +20,7 @@ const Post = (props: Object) => {
       <a>{post.user.firstName} {post.user.lastName}</a>
       <p>
         {post.content}
+        <img className="img-responsive" src={post.image} alt="" />
       </p>
       <Comments {...props} />
       <Controls {...props} />

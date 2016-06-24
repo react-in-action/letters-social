@@ -3,9 +3,15 @@ import moment from 'moment';
 
 const Comment = (props) => {
   const { comment } = props;
-  console.log(comment);
   return (
     <div className="comment" key={comment.id}>
+      <img
+        src={comment.user.profilePicture}
+        width={50}
+        height={50}
+        alt={comment.content}
+      />
+      <a>{comment.user.firstName} {comment.user.lastName}</a>
       <small>
         {moment(comment.date).fromNow()}
       </small>
@@ -19,7 +25,7 @@ const Comment = (props) => {
 Comment.propTypes = {
   comment: PropTypes.shape({
     content: PropTypes.string,
-    user: PropTypes.string,
+    user: PropTypes.object,
     date: PropTypes.string,
     likes: PropTypes.number,
   }),
