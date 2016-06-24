@@ -76,6 +76,7 @@
     "react-bootstrap": "^0.29.5",
     "react-dom": "^15.1.0",
     "react-fontawesome": "^1.1.0",
+    "ora": "^0.2.3",
     "response-time": "^2.3.1"
   },
   "devDependencies": {
@@ -108,9 +109,7 @@
     "eslint-plugin-import": "^1.8.0",
     "eslint-plugin-jsx-a11y": "^1.2.1",
     "eslint-plugin-react": "^5.1.1",
-    "faker": "^3.1.0",
     "node-sass": "^3.8.0",
-    "ora": "^0.2.3",
     "react-addons-test-utils": "^15.1.0",
     "react-dom": "^15.1.0",
     "sass-loader": "^3.2.0",
