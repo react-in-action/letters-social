@@ -3,6 +3,7 @@
 import { join } from 'path';
 import { name, internet, lorem, date, random } from 'faker';
 import { promisify } from 'bluebird';
+import { sync as createDir } from 'mkdirp';
 import { sample, sampleSize, random as rand } from 'lodash';
 import { v4 as uuid } from 'node-uuid';
 import { writeFile } from 'fs';
@@ -125,6 +126,7 @@ function generatePosts(n: number, users: Array<User>, comments: Array<Comment>) 
 
 export function seed(nUsers: number = 100, nPosts: number = 500, nComments: number = 500) {
   const spinner = ora('Generating sample data...').start();
+  createDir('seed');
   const users = generateUsers(nUsers);
   const comments = generateComments(nComments, users);
   const posts = generatePosts(nPosts, users, comments);
