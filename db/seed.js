@@ -131,7 +131,7 @@ export function seed(nUsers: number = 100, nPosts: number = 500, nComments: numb
   const comments = generateComments(nComments, users);
   const posts = generatePosts(nPosts, users, comments);
   Promise.all([
-    write(join(__dirname, 'seed', 'db.json'), JSON.stringify({
+    write(join('db', 'seed', 'db.json'), JSON.stringify({
       users,
       posts,
       comments,
@@ -141,7 +141,10 @@ export function seed(nUsers: number = 100, nPosts: number = 500, nComments: numb
     spinner.text = '🎉 🎉 🎉 🎉  Done writing sample data 🎉 🎉 🎉 🎉';
     setTimeout(() => spinner.stop(), 2000);
   })
-  .catch(err => console.error(err));
+  .catch(err => {
+    console.error(err);
+    setTimeout(() => spinner.stop());
+  });
 }
 
 seed();
