@@ -1,7 +1,7 @@
 // @flow
 
 import { join } from 'path';
-import { name, internet, lorem, date, random, image } from 'faker';
+import { name, internet, lorem, date, random } from 'faker';
 import { promisify } from 'bluebird';
 import { sample, sampleSize } from 'lodash';
 import { v4 as uuid } from 'node-uuid';
@@ -19,8 +19,19 @@ function generateProfilePicture() {
     return sample(pics);
   };
 }
-
 const createProfilePicture = generateProfilePicture();
+
+
+function generateShareablePicture() {
+  const pics = [];
+  for (let i = 0; i < 50; i++) {
+    pics.push(`https://newsfeed.learnreactjs.io/assets/post-images/${i + 1}.jpg`);
+  }
+  return function selectRandomPostImage() {
+    return sample(pics);
+  };
+}
+const createShareableImage = generateShareablePicture();
 
 class User {
   id: string;
@@ -53,7 +64,7 @@ class Post {
     this.id = uuid();
     this.comments = [];
     this.content = lorem.paragraph(sample([1, 2, 3]));
-    this.image = random.boolean() ? null : image.image();
+    this.image = Math.random() * 10 > 3 ? null : createShareableImage();
     this.likes = random.number(1, 100);
     this.link = random.boolean() ? null : internet.url();
     this.user = user.id;
