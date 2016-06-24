@@ -1,1 +1,1 @@
-web: mkdir -p dist/ && npm start
+web: npm start
