@@ -21,7 +21,7 @@
     "prestart": "npm run build:all",
     "db:seed": "./node_modules/.bin/babel db/seed.js --out-file ./db/seed-compiled.js --babelrc=true --compact='true' --minified --no-comments && node ./db/seed-compiled.js",
     "start:dev": "./node_modules/.bin/babel-node run/dev.js",
-    "start:server": "node dist/server/run.js",
+    "start:server": "node --optimize_for_size dist/server/run.js",
     "start": "./node_modules/.bin/npm-run-all --parallel api:prod start:server",
     "test": "ava",
     "welcome": "node run/welcome.js"
