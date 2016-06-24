@@ -3,11 +3,15 @@
 /* eslint-disable no-console */
 import webpack from 'webpack';
 import ora from 'ora';
+import { join } from 'path';
 import config from './webpack.config.prod';
+import mkdirp from 'mkdirp';
 
 process.env.NODE_ENV = 'production';
 
 const spinner = ora('Generating minified bundle for production. This will take a moment...').start();
+
+mkdirp.sync(join(__dirname, 'dist'));
 
 webpack(config).run((error, stats) => {
   if (error) { // so a fatal error occurred. Stop here.
