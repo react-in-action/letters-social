@@ -18,6 +18,7 @@
     "copy:html": "cp -r src/index.html dist",
     "dev": "run-p --parallel api:dev start:dev",
     "postinstall": "npm run welcome",
+    "prestart": "npm run build:all",
     "db:seed": "babel-node db/seed.js",
     "start:dev": "babel-node run/dev.js",
     "start:server": "node --optimize_for_size dist/server/run.js",
