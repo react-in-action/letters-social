@@ -50,6 +50,7 @@ console.log(`
   - [${green('√')}] display posts and comments from the Letters Social™ API
   - [${green('√')}] create new posts for the Letters Social™ API
   - [${green('√')}] each post should have display likes, comments, and crawled links if available
+  - [${green('√')}] filter posts by category
   - [${green('√')}] display metadata about a post; number of comments, likes, etc.
   - [${green('√')}] hide and show comments
   - [${green('√')}] update the like count for posts and comments
