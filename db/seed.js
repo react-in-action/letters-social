@@ -3,7 +3,7 @@
 import { join } from 'path';
 import { name, internet, lorem, date, random } from 'faker';
 import { promisify } from 'bluebird';
-import { sample, sampleSize } from 'lodash';
+import { sample, sampleSize, random as rand } from 'lodash';
 import { v4 as uuid } from 'node-uuid';
 import { writeFile } from 'fs';
 import ora from 'ora';
@@ -52,6 +52,13 @@ class User {
   }
 }
 
+// possible categories
+const categories = ['friends', 'family', 'food', 'politics', 'lifestyle', 'music',
+                    'recipes', 'movies', 'programming', 'javascript', 'books'];
+
+function returnCategories() {
+  return sampleSize(categories, rand(1, 11));
+}
 class Post {
   comments: Array<Comment>;
   content: string;
@@ -60,8 +67,10 @@ class Post {
   link: ?string;
   user: ?string;
   likes: number;
+  categories: Array<string>;
   constructor(user) {
     this.id = uuid();
+    this.categories = returnCategories();
     this.comments = [];
     this.content = lorem.paragraph(sample([1, 2, 3]));
     this.image = Math.random() * 10 > 3 ? null : createShareableImage();
