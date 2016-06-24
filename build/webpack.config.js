@@ -4,6 +4,7 @@ import { join } from 'path';
 const GLOBALS = {
   'process.env.NODE_ENV': JSON.stringify('development'),
   __DEV__: true,
+  endpoint: 'http://localhost:3500',
 };
 
 export default {
