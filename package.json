@@ -67,6 +67,7 @@
     "helmet": "^2.1.1",
     "hpp": "^0.2.1",
     "isomorphic-fetch": "^2.2.1",
+    "json-server": "^0.8.14",
     "mkdirp": "^0.5.1",
     "moment": "^2.13.0",
     "morgan": "^1.7.0",
