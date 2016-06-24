@@ -1,14 +1,26 @@
 // @flow
 
-import { writeFile } from 'fs';
 import { join } from 'path';
-import { sample, sampleSize } from 'lodash';
 import { name, internet, lorem, date, random, image } from 'faker';
-import { v4 as uuid } from 'node-uuid';
 import { promisify } from 'bluebird';
+import { sample, sampleSize } from 'lodash';
+import { v4 as uuid } from 'node-uuid';
+import { writeFile } from 'fs';
 import ora from 'ora';
 
 const write = promisify(writeFile);
+
+function generateProfilePicture() {
+  const pics = [];
+  for (let i = 0; i < 15; i++) {
+    pics.push(`https://newsfeed.learnreactjs.io/assets/profile-pictures/${i + 1}.png`);
+  }
+  return function selectRandomProfilePicture() {
+    return sample(pics);
+  };
+}
+
+const createProfilePicture = generateProfilePicture();
 
 class User {
   id: string;
@@ -22,7 +34,7 @@ class User {
     this.email = internet.email();
     this.firstName = name.firstName();
     this.id = uuid();
-    this.profilePicture = image.people();
+    this.profilePicture = createProfilePicture();
     this.lastName = name.lastName();
     this.password = internet.password();
     this.username = internet.userName();
