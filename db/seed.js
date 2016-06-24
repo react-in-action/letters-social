@@ -129,7 +129,7 @@ export function seed(nUsers: number = 100, nPosts: number = 500, nComments: numb
   const comments = generateComments(nComments, users);
   const posts = generatePosts(nPosts, users, comments);
   Promise.all([
-    write(join(__dirname, '..', 'db/seed/', 'db.json'), JSON.stringify({
+    write(join(__dirname, 'seed', 'db.json'), JSON.stringify({
       users,
       posts,
       comments,
