@@ -12,7 +12,7 @@ const Comment = (props) => {
         alt={comment.content}
       />
       <a>{comment.user.firstName} {comment.user.lastName}</a>
-      <small>
+      <small className="date">
         {moment(comment.date).fromNow()}
       </small>
       <p>

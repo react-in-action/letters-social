@@ -7,7 +7,7 @@ import fetch from 'isomorphic-fetch';
 
 import '../styles/styles.scss';
 
-const endpoint = 'http://localhost:3500';
+const endpoint = '${process.env.endpoint}';
 
 export class App extends React.Component {
   constructor() {
@@ -19,7 +19,7 @@ export class App extends React.Component {
   }
 
   async componentDidMount() {
-    const posts = await fetch(`${endpoint}/posts?_limit=10`)
+    const posts = await fetch(`${endpoint}/posts?_limit=25`)
                         .then(res => res.json());
 
     const joinedPosts = posts.map(async post => {
@@ -46,7 +46,7 @@ export class App extends React.Component {
         <Nav />
         <Grid fluid>
           <Row>
-            <Col sm={2}>
+            <Col xs={12} sm={2}>
               <Sidebar />
             </Col>
             <Col xs={12} sm={8}>

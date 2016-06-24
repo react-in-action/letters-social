@@ -20,15 +20,10 @@ body {
   padding: 10px;
 }
 
-.navbar-header {
-  float: left;
-  text-align: center;
-  width: 100%;
-}
-
 // Navbar ============================
 .navbar-brand {
   float: none;
+  padding: 5px;
 }
 
 .social {
@@ -45,8 +40,8 @@ body {
 
 .post {
   @extend %element-base;
-  margin-bottom: $base-spacing * 1.5;
   background-color: $white;
+  margin-bottom: $base-spacing * 1.5;
 
   .user {
     border-bottom: $border-base;
@@ -72,8 +67,8 @@ body {
 
 .comment {
   // @extend %element-base;
-  margin-top: 0;
   border-top: 1px solid $gray-lighter;
+  margin-top: 0;
   padding: 0 10px;
 }
 
@@ -83,5 +78,14 @@ input:focus,
 select:focus,
 textarea:focus,
 button:focus {
-    outline: none;
+  outline: none;
+}
+
+// Sidebar ============================
+.sidebar {
+  position: fixed;
+}
+
+.date {
+  padding-left: 3px;
 }

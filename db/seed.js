@@ -62,6 +62,7 @@ function returnCategories() {
 class Post {
   comments: Array<Comment>;
   content: string;
+  date: Date;
   id: string;
   image: ?string;
   link: ?string;
@@ -73,6 +74,7 @@ class Post {
     this.categories = returnCategories();
     this.comments = [];
     this.content = lorem.paragraph(sample([1, 2, 3]));
+    this.date = date.recent(sample([1, 2, 3, 4, 5, 10, 15]));
     this.image = Math.random() * 10 > 3 ? null : createShareableImage();
     this.likes = random.number(1, 100);
     this.link = random.boolean() ? null : internet.url();
