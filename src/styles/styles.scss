@@ -30,11 +30,9 @@ body {
   font-family: 'Space Mono', monospace;
 }
 
-
 // Posts ============================
 .posts {
-  // background-color: $white;
-  margin: 5px 0;
+  margin: $base-spacing 0;
   padding: 5px;
 }
 
@@ -66,7 +64,6 @@ body {
 }
 
 .comment {
-  // @extend %element-base;
   border-top: 1px solid $gray-lighter;
   margin-top: 0;
   padding: 0 10px;
@@ -83,7 +80,7 @@ button:focus {
 
 // Sidebar ============================
 .sidebar {
-  position: fixed;
+  margin: $base-spacing 0;
 }
 
 .date {

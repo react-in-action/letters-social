@@ -1,4 +1,5 @@
 import bodyParser from 'body-parser';
+import jsonAPI from 'json-server';
 import compression from 'compression';
 import cookieParser from 'cookie-parser';
 import { join } from 'path';
@@ -13,7 +14,7 @@ import { v4 as uuid } from 'node-uuid';
 // Le App
 const app = express();
 
-app.use(logger('combined'));
+app.use(logger('dev'));
 
 app.use(helmet.xssFilter({
   setOnOldIE: true,
@@ -53,6 +54,7 @@ app.options('*', cors());
 
 // ==== Serve the app ====
 app.use('/', express.static(join(__dirname, '..')));
+app.use('/api', jsonAPI.router(join(__dirname, '..', '..', 'db', 'seed', 'db.json')));
 
 // ====ERROR-HANDLING===
 app.use((req, res, next) => {
