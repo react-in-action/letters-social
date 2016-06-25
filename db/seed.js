@@ -7,6 +7,7 @@ import mkdirp from 'mkdirp';
 import { sample, sampleSize, random as rand } from 'lodash';
 import { v4 as uuid } from 'node-uuid';
 import { writeFile } from 'fs';
+import { categories } from './constants';
 import ora from 'ora';
 
 const write = promisify(writeFile);
@@ -54,8 +55,6 @@ class User {
 }
 
 // possible categories
-const categories = ['friends', 'family', 'food', 'politics', 'lifestyle', 'music',
-                    'recipes', 'movies', 'programming', 'javascript', 'books'];
 
 function returnCategories() {
   return sampleSize(categories, rand(1, 11));
