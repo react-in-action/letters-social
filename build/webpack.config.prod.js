@@ -41,6 +41,12 @@ export default {
       loaders: [
         'babel-loader',
       ],
+      query: {
+        presets: ['es2015',
+                'react',
+                'stage-0',
+                'es2015-native-modules',],
+      },
     },
     // TODO: fix any webpack 2 stuff below
     {
