@@ -36,9 +36,9 @@ export class App extends React.Component {
                         .then(res => res.json());
 
     const joinedPosts = posts.map(async post => {
-      post.user = await fetch(`http://localhost:3500/api/users/${post.user}`).then(user => user.json());
+      post.user = await fetch(`${process.env.ENDPOINT}/users/${post.user}`).then(user => user.json());
       post.comments.map(async comment => {
-        comment.user = await fetch(`http://localhost:3500/api/users/${comment.user}`).then(user => user.json());
+        comment.user = await fetch(`${process.env.ENDPOINT}/users/${comment.user}`).then(user => user.json());
         return comment;
       });
 

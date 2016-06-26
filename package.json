@@ -17,8 +17,7 @@
     "build:server": "babel server/*.js --babelrc=true --ignore='node_modules, coverage, docs, dist' --compact='true' --minified --no-comments --out-dir dist",
     "copy:html": "cp -r src/index.html dist",
     "dev": "npm-run-all --parallel api:dev start:dev",
-    "postinstall": "npm run welcome",
-    "prestart": "npm run build:all",
+    "postinstall": "npm run welcome && npm run build:all",
     "db:seed": "babel-node db/seed.js",
     "start:dev": "babel-node run/dev.js",
     "start": "node --optimize_for_size dist/server/run.js",
@@ -98,7 +97,7 @@
     "response-time": "^2.3.1",
     "sass-loader": "^3.2.0",
     "style-loader": "^0.13.1",
-    "webpack": "^2.1.0-beta.13",
+    "webpack": "^2.1.0-beta.14",
     "webpack-dev-server": "^2.1.0-beta.0",
     "webpack-hot-middleware": "^2.10.0"
   }
