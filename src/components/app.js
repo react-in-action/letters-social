@@ -5,7 +5,8 @@ import Nav from './nav/navbar';
 import Posts from './post/Posts';
 import React from 'react';
 import Sidebar from './sidebar/Sidebar';
-
+import storage from 'localforage';
+import Welcome from './welcome/Welcome';
 
 import '../styles/styles.scss';
 
@@ -16,6 +17,7 @@ export class App extends React.Component {
     this.selectPostCategory = this.selectPostCategory.bind(this);
     this.clearFilters = this.clearFilters.bind(this);
     this.filterByMediaType = this.filterByMediaType.bind(this);
+    this.hideBanner = this.hideBanner.bind(this);
   }
   // initialize state
   state = {
@@ -30,9 +32,21 @@ export class App extends React.Component {
       categories: [],
     },
     loaded: false,
+    showBanner: false,
   };
 
   async componentDidMount() {
+    // Logic for welcome banner
+    storage.getItem('react-in-action-visited').then(visited => {
+      console.log(visited);
+      if (!visited) {
+        this.setState({
+          showBanner: true,
+        });
+      }
+    });
+
+    // Fetch posts
     const posts = await fetch(`${process.env.ENDPOINT}/posts?_limit=25`)
                         .then(res => res.json());
 
@@ -53,6 +67,15 @@ export class App extends React.Component {
           filtered: hydratedPosts,
         },
         loaded: true,
+      });
+    });
+  }
+
+  hideBanner() {
+    storage.setItem('react-in-action-visited', true).then(() => {
+      console.log('finished setting');
+      this.setState({
+        showBanner: false,
       });
     });
   }
@@ -97,12 +120,6 @@ export class App extends React.Component {
     });
   }
 
-  removeFilter(filter: string): void {
-    // this.setState({
-    //   :
-    // });
-  }
-
   clearFilters(): void {
     this.setState({
       category: null,
@@ -132,6 +149,7 @@ export class App extends React.Component {
                 onFilterSelect={this.selectPostCategory}
               />
             </Col>
+
             {/* Main post area */}
             <Col xs={12} sm={8}>
               {
@@ -142,6 +160,8 @@ export class App extends React.Component {
                 :
                 null
               }
+
+              {/* Loader */}
                {
                 this.state.loaded ?
                   <Posts posts={this.state.posts.filtered} />
@@ -152,6 +172,13 @@ export class App extends React.Component {
               }
             </Col>
           </Row>
+
+
+          {/* Welcome banner */}
+          <Welcome
+            show={this.state.showBanner}
+            onClose={this.hideBanner}
+          />
         </Grid>
       </div>
     );

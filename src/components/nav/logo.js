@@ -1,9 +1,11 @@
-// @flow
-import React from 'react';
+import React, { PropTypes } from 'react';
 
 const Logo = (props) => {
   return (
-    <div className="logo" style={{ fontSize: `${props.size}em` }}>
+    <div
+      className="logo"
+      style={{ fontSize: `${props.size}em` }}
+    >
       <span style={{ color: '#4F93E0' }}>L</span>
       <span style={{ color: '#D0021B' }}>e</span>
       <span style={{ color: '#F8E71C' }}>t</span>
@@ -11,17 +13,25 @@ const Logo = (props) => {
       <span style={{ color: '#417505' }}>e</span>
       <span style={{ color: '#D0021B' }}>r</span>
       <span style={{ color: '#F8E71C' }}>s</span>
-      <small className="social">.social</small>
+      <span style={{ fontSize: `${props.size * 0.3}em` }}> &trade; </span>
+      {
+        props.logoOnly ?
+          null
+          :
+          <small className="social">.social</small>
+      }
     </div>
   );
 };
 
 Logo.propTypes = {
-  size: React.PropTypes.number,
+  size: PropTypes.number,
+  logoOnly: PropTypes.bool,
 };
 
 Logo.defaultProps = {
   size: 2.3,
+  logoOnly: true,
 };
 
 export default Logo;

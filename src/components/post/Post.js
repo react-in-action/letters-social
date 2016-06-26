@@ -4,6 +4,7 @@ import React, { PropTypes } from 'react';
 import Comments from '../comment/Comments';
 import moment from 'moment';
 import Controls from './Controls';
+import Link from './Link';
 
 const Post = (props: Object) => {
   const { post } = props;
@@ -21,8 +22,13 @@ const Post = (props: Object) => {
       <a>{post.user.firstName} {post.user.lastName}</a>
       <small className="date pull-right">{moment(post.date).fromNow()}</small>
       <p>
-        {post.link}
         {post.content}
+        {
+          post.link ?
+            <Link post />
+          :
+          null
+        }
         <br />
         <br />
         {

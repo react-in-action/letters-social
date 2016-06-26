@@ -7,7 +7,7 @@ const Nav = () => {
     <Navbar fluid fixedTop>
       <Navbar.Header>
         <Navbar.Brand>
-          <Logo center />
+          <Logo />
         </Navbar.Brand>
       </Navbar.Header>
     </Navbar>
