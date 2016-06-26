@@ -13,7 +13,7 @@
     "api:dev": "json-server db/seed/db.json -r db/routes.json -p 3500 -s db/backups",
     "api:prod": "json-server db/seed/db.json -r db/routes.json -p ${ENDPOINT_PORT} -s db/backups",
     "build:app": "babel-node build/build.js",
-    "build:all": "npm-run-all --parallel build:app build:server copy:html db:seed",
+    "build:all": "npm-run-all build:app build:server copy:html db:seed",
     "build:server": "babel server/*.js --babelrc=true --ignore='node_modules, coverage, docs, dist' --compact='true' --minified --no-comments --out-dir dist",
     "copy:html": "cp -r src/index.html dist",
     "dev": "npm-run-all --parallel api:dev start:dev",
