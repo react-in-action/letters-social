@@ -1,9 +1,10 @@
-import React from 'react';
-import Nav from './nav/navbar';
 import { Col, Grid, Row } from 'react-bootstrap';
-import Posts from './post/Posts';
-import Sidebar from './sidebar/Sidebar';
 import fetch from 'isomorphic-fetch';
+import Loader from 'react-loaders';
+import Nav from './nav/navbar';
+import Posts from './post/Posts';
+import React from 'react';
+import Sidebar from './sidebar/Sidebar';
 
 
 import '../styles/styles.scss';
@@ -141,11 +142,13 @@ export class App extends React.Component {
                 :
                 null
               }
-              {
+               {
                 this.state.loaded ?
                   <Posts posts={this.state.posts.filtered} />
                 :
-                  <div>loading...</div>
+                  <div className="loader">
+                    <Loader type="line-scale" active={this.state.loaded} />
+                  </div>
               }
             </Col>
           </Row>

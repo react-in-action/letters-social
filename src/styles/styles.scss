@@ -1,6 +1,6 @@
 // @flow
 @import 'variables';
-// @import './fa/font-awesome';
+@import '../../node_modules/loaders.css/src/loaders';
 @import '../../node_modules/bootstrap-sass/assets/stylesheets/bootstrap-sprockets';
 @import '../../node_modules/bootstrap-sass/assets/stylesheets/bootstrap';
 
@@ -99,4 +99,30 @@ button:focus {
     margin: 15px 0 10px;
     border-top: 1px solid $gray-light;
   }
+}
+
+
+// Loaders ======================================
+$primary-color: blue;
+
+.loader-hidden {
+  display: none;
+}
+
+.line-scale > div {
+  background: $brand-primary;
+  outline: blue;
+}
+
+.loader {
+  position: fixed;
+  z-index: 999;
+  height: 2em;
+  width: 3em;
+  margin: auto;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  display: block;
 }
