@@ -8,7 +8,6 @@ import config from './webpack.config.prod';
 import mkdirp from 'mkdirp';
 
 process.env.NODE_ENV = 'production';
-console.log('__DIAGNOSTIC__: build dir in build.js: ', __dirname);
 
 const spinner = ora('Generating minified bundle for production. This will take a moment...').start();
 
@@ -21,6 +20,8 @@ webpack(config).run((error, stats) => {
   }
 
   const jsonStats = stats.toJson();
+
+  console.log(stats);
 
   if (jsonStats.hasErrors) {
     return jsonStats.errors.map(error => console.log(error));

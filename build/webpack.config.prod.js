@@ -56,5 +56,3 @@ export default {
     }],
   },
 };
-
-console.log('__DIAGNOSTIC__: build dir in webpack config: ', __dirname);
