@@ -26,9 +26,10 @@ const Post = (props: Object) => {
         <br />
         <br />
         {
-          post.categories.map(category => <span>{category}, </span>)
+          post.image ?
+            <img className="img-responsive" src={post.image} alt="" />
+          : null
         }
-        <img className="img-responsive" src={post.image} alt="" />
       </p>
       <Comments {...props} />
       <Controls {...props} />
