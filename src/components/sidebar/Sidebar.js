@@ -5,43 +5,88 @@ import { AutoAffix } from 'react-overlays';
 
 class Sidebar extends React.Component {
   static propTypes = {
-    categories: PropTypes.array.isRequired,
+    category: PropTypes.string,
+    onClearFilter: PropTypes.func.isRequired,
     onFilterSelect: PropTypes.func.isRequired,
+    onMediaFilterSelect: PropTypes.func.isRequired,
   }
+
   constructor(props) {
     super(props);
-    this.filterBy = this.filterBy.bind(this);
+    this.selectFilter = this.selectFilter.bind(this);
+    this.showFilters = this.showFilters.bind(this);
   }
   state = {
     categories,
+    showFilters: false,
   }
-  filterBy(filterName) {
-    // this.props.onFilterSelect(filterName);
+
+  selectFilter(category, withImages, withLinks) {
+    this.props.onFilterSelect(category, withImages, withLinks);
+  }
+
+  showFilters() {
+    this.setState({
+      showFilters: !this.state.showFilters,
+    });
   }
 
   render() {
     return (
-      <div className="sidebar">
-        <AutoAffix
-          viewportOffsetTop={65}
-        >
-          <ButtonGroup vertical block>
-            {
-              categories.map(category => {
-                return (
-                  <Button
-                    key={category}
-                    onClick={this.filterBy(category)}
-                    className="filter"
-                  >
-                    {category}
-                  </Button>
-                );
-              })
-            }
-          </ButtonGroup>
-        </AutoAffix>
-      </div>
+      <AutoAffix
+        viewportOffsetTop={40}
+      >
+        <div className="sidebar">
+          <div className="filters">
+            <small className="filter-section-header">Categories</small>
+            <ButtonGroup vertical block>
+              {
+                categories.map(category => {
+                  return (
+                    <Button
+                      key={category}
+                      onClick={() => this.selectFilter(category)}
+                      className="filter-control"
+                    >
+                      {category}
+                    </Button>
+                  );
+                })
+              }
+            </ButtonGroup>
+
+            <small className="filter-section-header">Media</small>
+            <ButtonGroup vertical block>
+              <Button
+                onClick={() => this.props.onMediaFilterSelect('image')}
+                className="filter-control"
+              >
+                With images <i className="fa fa-picture"></i>
+              </Button>
+            </ButtonGroup>
+
+            <small className="filter-section-header">Links</small>
+            <ButtonGroup vertical block>
+              <Button
+                onClick={() => this.props.onMediaFilterSelect('link')}
+                className="filter-control"
+              >
+                With links <i className="fa fa-link"></i>
+              </Button>
+            </ButtonGroup>
+
+            <hr className="filter-section-divider" />
+
+            <Button
+              bsStyle="danger"
+              block
+              onClick={() => this.props.onClearFilter()}
+            >
+              Clear filters <i className="fa fa-close"></i>
+            </Button>
+          </div>
+        </div>
+      </AutoAffix>
     );
   }
 }

@@ -21,7 +21,13 @@ const Post = (props: Object) => {
       <a>{post.user.firstName} {post.user.lastName}</a>
       <small className="date pull-right">{moment(post.date).fromNow()}</small>
       <p>
+        {post.link}
         {post.content}
+        <br />
+        <br />
+        {
+          post.categories.map(category => <span>{category}, </span>)
+        }
         <img className="img-responsive" src={post.image} alt="" />
       </p>
       <Comments {...props} />

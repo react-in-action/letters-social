@@ -1,5 +1,6 @@
 // @flow
 @import 'variables';
+// @import './fa/font-awesome';
 @import '../../node_modules/bootstrap-sass/assets/stylesheets/bootstrap-sprockets';
 @import '../../node_modules/bootstrap-sass/assets/stylesheets/bootstrap';
 
@@ -70,12 +71,12 @@ body {
 }
 
 
-// Fixes ============================
+// Fixes/Overrides ============================
 input:focus,
 select:focus,
 textarea:focus,
 button:focus {
-  outline: none;
+  outline: none !important;
 }
 
 // Sidebar ============================
@@ -85,4 +86,17 @@ button:focus {
 
 .date {
   padding-left: 3px;
+}
+
+
+// Filter controls ============================
+.filters {
+  .filter-section-header {
+    border-bottom: 2px solid $gray-lighter;
+  }
+  .filter-control {}
+  hr.filter-section-divider {
+    margin: 15px 0 10px;
+    border-top: 1px solid $gray-light;
+  }
 }

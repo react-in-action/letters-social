@@ -1,5 +1,6 @@
 import React, { PropTypes } from 'react';
 import Comment from './Comment';
+import { Button } from 'react-bootstrap';
 
 export default class Comments extends React.Component {
   static propTypes = {
@@ -31,17 +32,14 @@ export default class Comments extends React.Component {
         }
         {
           post.comments.length > 0 ?
-            <a
-              style={{ cursor: 'pointer' }}
+            <Button
               onClick={this.toggle}
               className="pull-right"
             >
-              {this.state.showComments ? 'Hide' : 'show'} comments
-              &nbsp;
               <i
                 className={`fa ${this.state.showComments ? 'fa-angle-up' : 'fa-angle-down'}`}
               ></i>
-            </a>
+            </Button>
           :
             null
         }
