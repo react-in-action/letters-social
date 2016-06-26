@@ -4,7 +4,7 @@ import path from 'path';
 const GLOBALS = {
   'process.env.NODE_ENV': JSON.stringify('production'),
   __DEV__: false,
-  ENDPOINT: 'https://learn-react-newsfeed.herokuapp.com/api',
+  'process.env.ENDPOINT': JSON.stringify('https://learn-react-newsfeed.herokuapp.com/api'),
 };
 
 export default {
