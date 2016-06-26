@@ -9,7 +9,7 @@ const GLOBALS = {
 
 export default {
   debug: true,
-  devtool: 'source-map',
+  devtool: 'cheap-module-eval-source-map',
   noInfo: true,
   entry: './src/index',
   target: 'web',
@@ -21,7 +21,7 @@ export default {
   plugins: [
     new webpack.LoaderOptionsPlugin({
       minimize: true,
-      debug: false,
+      debug: true,
     }),
     new webpack.optimize.UglifyJsPlugin({
       compress: {
@@ -36,17 +36,9 @@ export default {
   ],
   module: {
     loaders: [{
+      loader: 'babel-loader',
       test: /\.(js)$/,
       exclude: /node_modules/,
-      loaders: [
-        'babel-loader',
-      ],
-      query: {
-        presets: ['es2015',
-                'react',
-                'stage-0',
-                'es2015-native-modules',],
-      },
     },
     // TODO: fix any webpack 2 stuff below
     {
