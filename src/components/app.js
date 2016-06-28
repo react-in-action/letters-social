@@ -18,27 +18,25 @@ export class App extends React.Component {
     this.clearFilters = this.clearFilters.bind(this);
     this.filterByMediaType = this.filterByMediaType.bind(this);
     this.hideBanner = this.hideBanner.bind(this);
+    this.state = {
+      posts: {
+        all: [],
+        filtered: [],
+      },
+      category: null,
+      filters: {
+        image: null,
+        link: null,
+        categories: [],
+      },
+      loaded: false,
+      showBanner: false,
+    };
   }
-  // initialize state
-  state = {
-    posts: {
-      all: [],
-      filtered: [],
-    },
-    category: null,
-    filters: {
-      image: null,
-      link: null,
-      categories: [],
-    },
-    loaded: false,
-    showBanner: false,
-  };
 
   async componentDidMount() {
     // Logic for welcome banner
     storage.getItem('react-in-action-visited').then(visited => {
-      console.log(visited);
       if (!visited) {
         this.setState({
           showBanner: true,
@@ -73,7 +71,6 @@ export class App extends React.Component {
 
   hideBanner() {
     storage.setItem('react-in-action-visited', true).then(() => {
-      console.log('finished setting');
       this.setState({
         showBanner: false,
       });
@@ -102,8 +99,6 @@ export class App extends React.Component {
       const filtered = previousState.posts.filtered.filter(post => {
         return !!post[mediaType];
       });
-
-      console.log(filtered.length);
 
       const nextState = {
         filters: {
@@ -170,9 +165,15 @@ export class App extends React.Component {
                     <Loader type="line-scale" active={this.state.loaded} />
                   </div>
               }
+              {/* No posts :( */}
+              {
+                this.state.loaded && this.state.posts.filtered.length === 0 ?
+                  <h2>No posts found matching your criteria ☹️</h2>
+                  :
+                  null
+              }
             </Col>
           </Row>
-
 
           {/* Welcome banner */}
           <Welcome

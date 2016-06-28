@@ -5,7 +5,6 @@ import Logo from './logo';
 
 test('<Logo/>', t => {
   const wrapper = shallow(<Logo />);
-  console.log(wrapper);
   t.pass();
 });
 

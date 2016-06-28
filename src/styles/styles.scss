@@ -35,6 +35,10 @@ body {
 .posts {
   margin: $base-spacing 0;
   padding: 5px;
+
+  .content {
+    margin-bottom: $base-spacing;
+  }
 }
 
 .post {
@@ -131,4 +135,26 @@ $primary-color: blue;
 // Welcome stuff=======================
 .letter li {
   list-style-type: none;
+}
+
+
+
+// Link =======================
+.link {
+  border-top: 1px solid $gray-lighter;
+  margin: $base-spacing 0;
+  padding-top: 5px;
+
+  .url {
+    color: $gray-light;
+    margin-bottom: 5px;
+  }
+
+  .title {
+    color: $gray-darker;
+  }
+
+  .description {
+    color: $gray-light;
+  }
 }

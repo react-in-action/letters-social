@@ -36,7 +36,7 @@ class Sidebar extends React.Component {
       <AutoAffix
         viewportOffsetTop={40}
       >
-        <div className="sidebar">
+        <div className="sidebar hidden-xs">
           <div className="filters">
             <small className="filter-section-header">Categories</small>
             <ButtonGroup vertical block>

@@ -15,19 +15,19 @@ mkdirp.sync(join(__dirname, 'dist'));
 
 webpack(config).run((error, stats) => {
   if (error) { // so a fatal error occurred. Stop here.
-    console.log(error);
+    console.error(error);
     return 1;
   }
 
   const jsonStats = stats.toJson();
 
   if (jsonStats.hasErrors) {
-    return jsonStats.errors.map(error => console.log(error));
+    return jsonStats.errors.map(err => console.error(err));
   }
 
   if (jsonStats.hasWarnings) {
     spinner.text = 'Webpack generated the following warnings:';
-    jsonStats.warnings.map(warning => console.log(warning));
+    jsonStats.warnings.map(warning => console.warn(warning));
   }
 
   spinner.text = 'Your app is compiled in production mode in /dist. It\'s ready to roll!';

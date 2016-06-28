@@ -65,7 +65,7 @@ class Post {
   date: Date;
   id: string;
   image: ?string;
-  link: ?string;
+  link: ?Object;
   user: ?string;
   likes: number;
   categories: Array<string>;
@@ -77,7 +77,11 @@ class Post {
     this.date = date.recent(sample([1, 2, 3, 4, 5, 10, 15]));
     this.image = Math.random() * 10 > 3 ? null : createShareableImage();
     this.likes = random.number(1, 100);
-    this.link = random.boolean() ? null : internet.url();
+    this.link = random.boolean() ? null : {
+      url: internet.url(),
+      title: lorem.words(rand(1, 5)),
+      description: lorem.sentences(rand(1, 2), '. '),
+    };
     this.user = user.id;
   }
 }
@@ -129,7 +133,6 @@ export function seed(nUsers: number = 100, nPosts: number = 500, nComments: numb
   const users = generateUsers(nUsers);
   const comments = generateComments(nComments, users);
   const posts = generatePosts(nPosts, users, comments);
-  console.log(__dirname);
   Promise.all([
     write(join(__dirname, 'seed', 'db.json'), JSON.stringify({
       users,
