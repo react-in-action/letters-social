@@ -7,7 +7,7 @@ const Nav = () => {
     <Navbar fluid fixedTop>
       <Navbar.Header>
         <Navbar.Brand>
-          <Logo />
+          <Logo logoOnly={false} />
         </Navbar.Brand>
       </Navbar.Header>
     </Navbar>
