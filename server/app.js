@@ -76,16 +76,4 @@ app.use((err, req, res) => {
   });
 });
 
-// Socket IO stuff
-const io = socket(app);
-
-io.on('connection', (sock) => {
-  console.log(sock);
-  console.log('connection received!');
-  sock.emit('news', { hello: 'world' });
-  sock.on('my other event', (data) => {
-    console.log(data);
-  });
-});
-
 export default app;
