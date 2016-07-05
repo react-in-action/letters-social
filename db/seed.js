@@ -57,7 +57,7 @@ class User {
 // possible categories
 
 function returnCategories() {
-  return sampleSize(categories, rand(1, 11));
+  return sampleSize(categories, rand(1, 15));
 }
 class Post {
   comments: Array<Comment>;
@@ -66,7 +66,7 @@ class Post {
   id: string;
   image: ?string;
   link: ?Object;
-  user: ?string;
+  user: ?Object;
   likes: number;
   categories: Array<string>;
   constructor(user) {
@@ -82,7 +82,7 @@ class Post {
       title: lorem.words(rand(1, 5)),
       description: lorem.sentences(rand(1, 2), '. '),
     };
-    this.user = user.id;
+    this.user = user;
   }
 }
 
@@ -91,13 +91,13 @@ class Comment {
   date: Date;
   id: string;
   likes: number;
-  user: ?string;
+  user: ?Object;
   constructor(user) {
     this.id = uuid();
     this.content = lorem.paragraph(sample([1, 2, 3]));
     this.date = date.recent(sample([1, 2, 3, 4, 5, 10, 15]));
     this.likes = random.number(1, 100);
-    this.user = user.id;
+    this.user = user;
   }
 }
 

@@ -8,6 +8,10 @@ import Sidebar from './sidebar/Sidebar';
 import storage from 'localforage';
 import Welcome from './welcome/Welcome';
 
+// Network services
+import firebase from 'firebase';
+import { socket } from '../shared/socket';
+
 import '../styles/styles.scss';
 
 export class App extends React.Component {
@@ -30,35 +34,23 @@ export class App extends React.Component {
         categories: [],
       },
       loaded: false,
+      connected: false,
       showBanner: false,
     };
   }
 
-  async componentDidMount() {
-    // Logic for welcome banner
-    storage.getItem('react-in-action-visited').then(visited => {
-      if (!visited) {
-        this.setState({
-          showBanner: true,
-        });
-      }
-    });
+  componentDidMount() {
+    this.initializeStorage();
+    this.fetchPosts();
+    this.initializeBackend();
+  }
 
+  async fetchPosts() {
     // Fetch posts
     const posts = await fetch(`${process.env.ENDPOINT}/posts?_limit=25`)
                         .then(res => res.json());
-
-    const joinedPosts = posts.map(async post => {
-      post.user = await fetch(`${process.env.ENDPOINT}/users/${post.user}`).then(user => user.json());
-      post.comments.map(async comment => {
-        comment.user = await fetch(`${process.env.ENDPOINT}/users/${comment.user}`).then(user => user.json());
-        return comment;
-      });
-
-      return post;
-    });
-
-    Promise.all(joinedPosts).then(hydratedPosts => {
+    console.log(posts[0]);
+    Promise.all(posts).then(hydratedPosts => {
       this.setState({
         posts: {
           all: hydratedPosts,
@@ -67,6 +59,34 @@ export class App extends React.Component {
         loaded: true,
       });
     });
+  }
+
+  initializeBackend() {
+    if (process.env.NODE_ENV === 'production') {
+      const config = {
+        apiKey: 'AIzaSyCqH0aoGQ_HgP_UbK3utPp3EdqKCZaccPE',
+        authDomain: 'react-newsletter.firebaseapp.com',
+        databaseURL: 'https://react-newsletter.firebaseio.com',
+        storageBucket: 'react-newsletter.appspot.com',
+      };
+
+      firebase.initializeApp(config);
+    }
+  }
+
+  initializeStorage() {
+    // Logic for welcome banner
+    storage.getItem('react-in-action-visited').then(visited => {
+      if (!visited) {
+        this.setState({
+          showBanner: true,
+        });
+      }
+    });
+  }
+
+  intializeSockets() {
+    socket.on('connect', () => console.log('Connected to server'));
   }
 
   hideBanner() {

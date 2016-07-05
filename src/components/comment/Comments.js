@@ -1,5 +1,6 @@
 import React, { PropTypes } from 'react';
 import Comment from './Comment';
+import fetch from 'isomorphic-fetch';
 import { Button } from 'react-bootstrap';
 
 export default class Comments extends React.Component {
@@ -10,14 +11,18 @@ export default class Comments extends React.Component {
     super(props);
     this.toggle = this.toggle.bind(this);
     this.state = {
+      comments: [],
       showComments: false,
+      commentsLoaded: false,
     };
   }
+
   toggle() {
     this.setState({
       showComments: !this.state.showComments,
     });
   }
+
   render() {
     const { post } = this.props;
     return (

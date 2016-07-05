@@ -8,6 +8,7 @@ import express from 'express';
 import helmet from 'helmet';
 import hpp from 'hpp';
 import logger from 'morgan';
+import socket from 'socket.io';
 import responseTime from 'response-time';
 import { v4 as uuid } from 'node-uuid';
 
@@ -53,8 +54,8 @@ app.use(cors());
 app.options('*', cors());
 
 // ==== Serve the app ====
-app.use('/', express.static(join(__dirname, '..')));
 app.use('/api', jsonAPI.router(join(__dirname, '..', '..', 'db', 'seed', 'db.json')));
+app.use('/', express.static(join(__dirname, '..')));
 
 // ====ERROR-HANDLING===
 app.use((req, res, next) => {
@@ -72,6 +73,18 @@ app.use((err, req, res) => {
       stack: err.stack,
       status: err.status,
     },
+  });
+});
+
+// Socket IO stuff
+const io = socket(app);
+
+io.on('connection', (sock) => {
+  console.log(sock);
+  console.log('connection received!');
+  sock.emit('news', { hello: 'world' });
+  sock.on('my other event', (data) => {
+    console.log(data);
   });
 });
 
