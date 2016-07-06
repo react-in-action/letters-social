@@ -10,7 +10,6 @@ import Welcome from './welcome/Welcome';
 
 // Network services
 import firebase from 'firebase';
-import { socket } from '../shared/socket';
 
 import '../styles/styles.scss';
 
