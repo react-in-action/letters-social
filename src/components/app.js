@@ -86,7 +86,7 @@ export class App extends React.Component {
   }
 
   intializeSockets() {
-    socket.on('connect', () => console.log('Connected to server'));
+    // socket.on('connect', () => console.log('Connected to server'));
   }
 
   hideBanner() {
