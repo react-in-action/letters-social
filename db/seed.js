@@ -15,7 +15,7 @@ const write = promisify(writeFile);
 function generateProfilePicture() {
   const pics = [];
   for (let i = 0; i < 15; i++) {
-    pics.push(`https://newsfeed.learnreactjs.io/assets/profile-pictures/${i + 1}.png`);
+    pics.push(`https://cdn.learnreactjs.io/assets/profile-pictures/${i + 1}.png`);
   }
   return function selectRandomProfilePicture() {
     return sample(pics);
@@ -27,7 +27,7 @@ const createProfilePicture = generateProfilePicture();
 function generateShareablePicture() {
   const pics = [];
   for (let i = 0; i < 50; i++) {
-    pics.push(`https://newsfeed.learnreactjs.io/assets/post-images/${i + 1}.jpg`);
+    pics.push(`https://cdn.learnreactjs.io/assets/post-images/${i + 1}.jpg`);
   }
   return function selectRandomPostImage() {
     return sample(pics);
