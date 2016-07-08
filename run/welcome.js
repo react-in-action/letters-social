@@ -43,7 +43,7 @@ console.log(`
   For this project, you'll be using React. React, you might remember, is a hot new
   technology for building user interfaces. You've been learning about it and at
   this point you can take advantage of what you know about data in React, parent
-  and child components, JSX, and now lifecyle methods.
+  and child components, JSX, and now lifecycle methods.
 
   When you're done, your project should satisfy the following requirements:
 

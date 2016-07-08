@@ -7,7 +7,7 @@ const Letter = (props) => {
   return (
     props.show ?
       <div className="letter">
-        <TypeWriter typing={3.5}>
+        <TypeWriter typing={4}>
           <Logo />
           <span>---------------</span>
           <p>
@@ -37,7 +37,7 @@ const Letter = (props) => {
             For this project, you'll be using React. React, you might remember, is a hot new
             technology for building user interfaces. You've been learning about it and at
             this point you can take advantage of what you know about data in React, parent
-            and child components, JSX, and now lifecyle methods. You can find the source code for this app at <a href="https://github.com/react-in-action/letters-social">github.com/react-in-action/letters-social</a>
+            and child components, JSX, and now lifecycle methods. You can find the source code for this app at <a href="https://github.com/react-in-action/letters-social">github.com/react-in-action/letters-social</a>
           </p>
 
           <p>
