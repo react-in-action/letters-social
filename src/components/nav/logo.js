@@ -13,7 +13,6 @@ const Logo = (props) => {
       <span style={{ color: '#417505' }}>e</span>
       <span style={{ color: '#D0021B' }}>r</span>
       <span style={{ color: '#F8E71C' }}>s</span>
-      <span style={{ fontSize: `${props.size * 0.3}em` }}> &trade; </span>
       {
         props.logoOnly ?
           null
