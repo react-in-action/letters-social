@@ -17,6 +17,7 @@ console.log(`
 
 
   ${green('How to get started:')}
+  - clone or download the project from https://github.com/react-in-action/letters-social
   - install project using npm install
   - read welcome letter from Letters (see below)
   - read along in React in Action
