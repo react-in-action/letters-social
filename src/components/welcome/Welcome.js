@@ -50,7 +50,10 @@ class Welcome extends React.Component {
             How to get started:
             <ul>
               <li>
-                install project using <code>npm install</code>
+                clone or download the project <a href="https://github.com/react-in-action/letters-social">here</a>
+              </li>
+              <li>
+                install project dependencies using <code>npm install</code>
               </li>
               <li>
                 read welcome letter from Letters (see below)
