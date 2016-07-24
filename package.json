@@ -20,6 +20,7 @@
     "postinstall": "npm run welcome && npm run build:all",
     "db:seed": "babel-node db/seed.js",
     "start:dev": "babel-node run/dev.js",
+    "rundep": "react-scripts start",
     "start": "node --optimize_for_size dist/server/run.js",
     "test": "ava",
     "welcome": "node run/welcome.js"
@@ -108,5 +109,8 @@
     "webpack": "^2.1.0-beta.14",
     "webpack-dev-server": "^2.1.0-beta.0",
     "webpack-hot-middleware": "^2.10.0"
+  },
+  "devDependencies": {
+    "react-scripts": "^0.1.0"
   }
 }
