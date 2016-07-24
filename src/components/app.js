@@ -15,8 +15,8 @@ import '../styles/styles.scss';
 
 export class App extends React.Component {
   // Operations usually carried out in componentWillMount go here
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.selectPostCategory = this.selectPostCategory.bind(this);
     this.clearFilters = this.clearFilters.bind(this);
     this.filterByMediaType = this.filterByMediaType.bind(this);
