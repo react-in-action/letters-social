@@ -1,5 +1,6 @@
 import React, { PropTypes } from 'react';
 import Comment from './Comment';
+import CreateComment from './Create';
 import fetch from 'isomorphic-fetch';
 import { Button } from 'react-bootstrap';
 
@@ -9,7 +10,12 @@ export default class Comments extends React.Component {
   }
   constructor(props) {
     super(props);
+
+    // Bind methods
     this.toggle = this.toggle.bind(this);
+    this.handleCommentSubmit = this.handleCommentSubmit.bind(this);
+
+    // initialize state
     this.state = {
       comments: [],
       showComments: false,
@@ -23,6 +29,10 @@ export default class Comments extends React.Component {
     });
   }
 
+  handleCommentSubmit(id) {
+    console.log('Thread id: ', id);
+  }
+
   render() {
     const { post } = this.props;
     return (
@@ -34,6 +44,12 @@ export default class Comments extends React.Component {
           )
           :
           null
+        }
+        {
+          this.state.showComments ?
+            <CreateComment handleSubmit={this.handleCommentSubmit} threadID={post.id} />
+            :
+            null
         }
         {
           post.comments.length > 0 ?

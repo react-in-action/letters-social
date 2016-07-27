@@ -7,7 +7,7 @@ const Letter = (props) => {
   return (
     props.show ?
       <div className="letter">
-        <TypeWriter typing={4}>
+        <TypeWriter typing={5}>
           <Logo />
           <span>---------------</span>
           <p>

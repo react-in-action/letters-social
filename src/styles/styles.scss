@@ -36,7 +36,7 @@ body {
   padding: 5px;
 
   .content {
-    margin-bottom: $base-spacing;
+    margin: $base-spacing 0;
   }
 }
 
@@ -163,4 +163,20 @@ $primary-color: blue;
     resize: none;
     width: 100%;
   }
+}
+
+.create-comment {
+  background-color: transparent;
+  border: 0;
+  box-sizing: border-box;
+  display: block;
+  font-family: helvetica, arial, sans-serif;
+  font-size: 14px;
+  height: 100%;
+  line-height: 18px;
+  min-height: 25px;
+  outline: 0;
+  padding: 23px 12px 14px;
+  resize: none;
+  width: 100%;
 }

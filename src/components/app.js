@@ -52,7 +52,7 @@ export class App extends React.Component {
 
   fetchPosts() {
     // Fetch posts
-    return fetch(`${process.env.ENDPOINT}/posts?_limit=25`)
+    return fetch(`${process.env.ENDPOINT}/posts?_limit=25&_sort=date&_order=DESC`)
         .then(res => res.json())
         .then(hydratedPosts => {
           this.setState({
