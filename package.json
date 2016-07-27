@@ -1,6 +1,6 @@
 {
-  "name": "newsfeed",
-  "version": "0.1.0",
+  "name": "letters-social",
+  "version": "0.2.0",
   "description": "A newsfeed application for Letters.",
   "main": "./src/components/app.js",
   "ava": {
@@ -27,26 +27,25 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@github.com/markthethomas/react-in-action.git"
+    "url": "git+ssh://git@github.com/react-in-action/letters-social.git"
   },
   "author": "Mark Thomas <mark@ifelse.io>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/markthethomas/react-in-action/issues"
+    "url": "https://github.com/react-in-action/letters-social/issues"
   },
   "engines": {
     "node": "6.2.2"
   },
-  "homepage": "https://github.com/markthethomas/react-in-action#readme",
+  "homepage": "https://github.com/react-in-action/letters-social#readme",
   "dependencies": {
     "ava": "^0.15.2",
-    "axios": "^0.12.0",
+    "axios": "^0.13.1",
     "babel-cli": "^6.9.0",
     "babel-core": "^6.9.0",
     "babel-eslint": "^6.0.4",
     "babel-loader": "^6.2.4",
     "babel-plugin-react-display-name": "^2.0.0",
-    "babel-plugin-transform-async-functions": "^6.8.0",
     "babel-plugin-transform-class-properties": "^6.10.2",
     "babel-plugin-transform-regenerator": "^6.9.0",
     "babel-plugin-transform-runtime": "^6.9.0",
@@ -72,10 +71,10 @@
     "css-loader": "^0.23.1",
     "enzyme": "^2.3.0",
     "es6-promise": "^3.2.1",
-    "eslint": "^2.10.2",
+    "eslint": "^3.1.1",
     "eslint-config-airbnb": "^9.0.1",
-    "eslint-plugin-import": "^1.8.0",
-    "eslint-plugin-jsx-a11y": "^1.2.1",
+    "eslint-plugin-import": "^1.12.0",
+    "eslint-plugin-jsx-a11y": "^2.0.1",
     "eslint-plugin-react": "^5.1.1",
     "express": "^4.14.0",
     "faker": "^3.1.0",
@@ -83,7 +82,7 @@
     "helmet": "^2.1.1",
     "hpp": "^0.2.1",
     "isomorphic-fetch": "^2.2.1",
-    "json-server": "^0.8.14",
+    "json-server": "^0.8.17",
     "loaders.css": "^0.1.2",
     "localforage": "^1.4.2",
     "mkdirp": "^0.5.1",
@@ -93,9 +92,9 @@
     "node-uuid": "^1.4.7",
     "npm-run-all": "^2.2.2",
     "ora": "^0.2.3",
-    "react": "^15.1.0",
+    "react": "^15.2.1",
     "react-addons-test-utils": "^15.1.0",
-    "react-bootstrap": "^0.29.5",
+    "react-bootstrap": "^0.30.0",
     "react-dom": "^15.1.0",
     "react-fontawesome": "^1.1.0",
     "react-loaders": "^2.1.1",
@@ -106,9 +105,9 @@
     "socket.io": "^1.4.8",
     "socket.io-client": "^1.4.8",
     "style-loader": "^0.13.1",
-    "webpack": "^2.1.0-beta.14",
+    "webpack": "^2.1.0-beta.20",
     "webpack-dev-server": "^2.1.0-beta.0",
-    "webpack-hot-middleware": "^2.10.0"
+    "webpack-hot-middleware": "^2.12.2"
   },
   "devDependencies": {
     "react-scripts": "^0.1.0"
