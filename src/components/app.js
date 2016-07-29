@@ -1,4 +1,5 @@
 import { Col, Grid, Row } from 'react-bootstrap';
+import CreatePost from './post/Create';
 import fetch from 'isomorphic-fetch';
 import Loader from 'react-loaders';
 import Nav from './nav/navbar';
@@ -39,48 +40,41 @@ export class App extends React.Component {
   }
 
   componentDidMount() {
-    this.initializeStorage();
-    this.fetchPosts();
-    this.initializeBackend();
-  }
-
-  async fetchPosts() {
-    // Fetch posts
-    const posts = await fetch(`${process.env.ENDPOINT}/posts?_limit=25`)
-                        .then(res => res.json());
-    console.log(posts[0]);
-    Promise.all(posts).then(hydratedPosts => {
+    Promise.all([
+      this.initializeStorage(),
+      this.fetchPosts(),
+    ]).then(() => {
       this.setState({
-        posts: {
-          all: hydratedPosts,
-          filtered: hydratedPosts,
-        },
         loaded: true,
       });
     });
   }
 
-  initializeBackend() {
-    if (process.env.NODE_ENV === 'production') {
-      const config = {
-        apiKey: 'AIzaSyCqH0aoGQ_HgP_UbK3utPp3EdqKCZaccPE',
-        authDomain: 'react-newsletter.firebaseapp.com',
-        databaseURL: 'https://react-newsletter.firebaseio.com',
-        storageBucket: 'react-newsletter.appspot.com',
-      };
-
-      firebase.initializeApp(config);
-    }
+  fetchPosts() {
+    // Fetch posts
+    return fetch(`${process.env.ENDPOINT}/posts?_limit=25&_sort=date&_order=DESC`)
+        .then(res => res.json())
+        .then(hydratedPosts => {
+          this.setState({
+            posts: {
+              all: hydratedPosts,
+              filtered: hydratedPosts,
+            },
+          });
+        });
   }
 
   initializeStorage() {
-    // Logic for welcome banner
-    storage.getItem('react-in-action-visited').then(visited => {
-      if (!visited) {
-        this.setState({
-          showBanner: true,
-        });
-      }
+    return new Promise(resolve => {
+      // Logic for welcome banner
+      storage.getItem('react-in-action-visited').then(visited => {
+        if (!visited) {
+          this.setState({
+            showBanner: true,
+          });
+        }
+      });
+      resolve(true);
     });
   }
 
@@ -166,6 +160,7 @@ export class App extends React.Component {
 
             {/* Main post area */}
             <Col xs={12} sm={8}>
+              <CreatePost />
               {
                 this.state.category || this.state.filters.links || this.state.filters.images ?
                 <h4>

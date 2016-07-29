@@ -1,3 +1,4 @@
+// TODO: Pull all this out into its own thing, use only css for react-scripts
 // @flow
 @import 'variables';
 @import '../../node_modules/loaders.css/src/loaders';
@@ -12,7 +13,6 @@ body {
   background-color: $bg-default;
   margin-top: $navbar-height;
 }
-
 // Defaults ============================
 %element-base {
   border: $border-base;
@@ -30,14 +30,13 @@ body {
 .social {
   font-family: 'Space Mono', monospace;
 }
-
 // Posts ============================
 .posts {
   margin: $base-spacing 0;
   padding: 5px;
 
   .content {
-    margin-bottom: $base-spacing;
+    margin: $base-spacing 0;
   }
 }
 
@@ -57,32 +56,26 @@ body {
 
 .control {
   margin: 3px 0;
-
   &:hover {
     background-color: transparent;
     color: $blue;
   }
-
   .control-with-counter {
     padding-right: 5px;
   }
 }
-
 .comment {
   border-top: 1px solid $gray-lighter;
   margin-top: 0;
   padding: 0 10px;
 }
-
-
 // Fixes/Overrides ============================
+button:focus,
 input:focus,
 select:focus,
-textarea:focus,
-button:focus {
+textarea:focus {
   outline: none !important;
 }
-
 // Sidebar ============================
 .sidebar {
   margin: $base-spacing 0;
@@ -91,33 +84,26 @@ button:focus {
 .date {
   padding-left: 3px;
 }
-
-
 // Filter controls ============================
 .filters {
   .filter-section-header {
     border-bottom: 2px solid $gray-lighter;
   }
-  .filter-control {}
+
   hr.filter-section-divider {
-    margin: 15px 0 10px;
     border-top: 1px solid $gray-light;
+    margin: 15px 0 10px;
   }
 }
-
-
 // Loaders ======================================
 $primary-color: blue;
-
 .loader-hidden {
   display: none;
 }
-
 .line-scale > div {
   background: $brand-primary;
   outline: blue;
 }
-
 .loader {
   position: fixed;
   z-index: 999;
@@ -130,42 +116,67 @@ $primary-color: blue;
   right: 0;
   display: block;
 }
-
-
 // Welcome stuff=======================
 .letter li {
   list-style-type: none;
 }
-
-
-
 // Link =======================
 .link {
   border-top: 1px solid $gray-lighter;
   margin: $base-spacing 0;
   padding-top: 5px;
-
   .url {
-    color: $gray-light;
-    margin-bottom: 5px;
+      color: $gray-light;
+      margin-bottom: 5px;
   }
-
   .title {
-    color: $gray-darker;
+      color: $gray-darker;
   }
-
   .description {
-    color: $gray-light;
+      color: $gray-light;
   }
 }
-
-
 // Logo =======================
 .logo {
   text-align: center;
-
   a {
-    color: $gray;
-    text-decoration: none;
+      color: $gray;
+      text-decoration: none;
   }
+}
+// Create posts
+.create-post {
+  @extend %element-base;
+  background-color: #fff;
+  textarea {
+    background-color: transparent;
+    border: 0;
+    box-sizing: border-box;
+    display: block;
+    font-family: helvetica, arial, sans-serif;
+    font-size: 14px;
+    height: 100%;
+    line-height: 18px;
+    min-height: 69px;
+    outline: 0;
+    padding: 23px 12px 14px;
+    resize: none;
+    width: 100%;
+  }
+}
+
+.create-comment {
+  background-color: transparent;
+  border: 0;
+  box-sizing: border-box;
+  display: block;
+  font-family: helvetica, arial, sans-serif;
+  font-size: 14px;
+  height: 100%;
+  line-height: 18px;
+  min-height: 25px;
+  outline: 0;
+  padding: 23px 12px 14px;
+  resize: none;
+  width: 100%;
 }
