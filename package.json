@@ -95,7 +95,7 @@
     "react": "^15.2.1",
     "react-addons-test-utils": "^15.1.0",
     "react-bootstrap": "^0.30.0",
-    "react-dom": "^15.1.0",
+    "react-dom": "^15.3.0",
     "react-fontawesome": "^1.1.0",
     "react-loaders": "^2.1.1",
     "react-overlays": "^0.6.3",
