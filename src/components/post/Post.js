@@ -9,17 +9,19 @@ import User from './User';
 const Post = (props: Object) => {
   const { post } = props;
   return (
-    <div
-      className="post"
-      key={post.id}
-    >
-      <User {...props} />
-      <Content {...props} />
-      <Image {...props} />
-      <Link {...props} />
-      <Comments {...props} />
-      <Controls {...props} />
-    </div>
+    post ?
+      <div
+        className="post"
+      >
+        <User {...props} />
+        <Content {...props} />
+        <Image {...props} />
+        <Link {...props} />
+        { post.comments ? <Comments {...props} /> : null }
+        <Controls {...props} />
+      </div>
+    :
+      null
   );
 };
 

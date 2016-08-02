@@ -10,15 +10,6 @@ const Nav = () => {
           <Logo logoOnly={false} />
         </Navbar.Brand>
       </Navbar.Header>
-      <Navbar.Collapse>
-        <Navbar.Form pullLeft>
-          <FormGroup>
-            <FormControl type="text" placeholder="Search" />
-          </FormGroup>
-          {' '}
-          <Button type="submit">Submit</Button>
-        </Navbar.Form>
-      </Navbar.Collapse>
     </Navbar>
   );
 };

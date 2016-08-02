@@ -1,8 +1,7 @@
 import React, { PropTypes } from 'react';
+import { Button } from 'react-bootstrap';
 import Comment from './Comment';
 import CreateComment from './Create';
-import fetch from 'isomorphic-fetch';
-import { Button } from 'react-bootstrap';
 
 export default class Comments extends React.Component {
   static propTypes = {
@@ -59,7 +58,7 @@ export default class Comments extends React.Component {
             >
               <i
                 className={`fa ${this.state.showComments ? 'fa-angle-up' : 'fa-angle-down'}`}
-              ></i>
+              />
             </Button>
           :
             null

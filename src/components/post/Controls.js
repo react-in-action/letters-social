@@ -7,26 +7,27 @@ const Controls = (props) => {
   function showLikeCounter() {
     return post.likes > 0;
   }
+
   function showCommentCounter() {
-    return post.comments.length > 0;
+    return post.comments && post.comments.length > 0;
   }
 
-  function applyCounterClass(count) {
+  function applyCounterClassIf(count) {
     return count ? 'control-with-counter' : null;
   }
 
   return (
     <ButtonGroup>
       <Button className="control">
-        <i className={`fa fa-thumbs-o-up ${applyCounterClass(showLikeCounter())}`}></i>
+        <i className={`fa fa-thumbs-o-up ${applyCounterClassIf(showLikeCounter())}`} />
         {showLikeCounter() ? post.likes : null}
       </Button>
       <Button className="control">
-        <i className={`fa fa-comment ${applyCounterClass(showCommentCounter())}`} />
+        <i className={`fa fa-comment ${applyCounterClassIf(showCommentCounter())}`} />
         {showCommentCounter() ? post.comments.length : null}
       </Button>
       <Button className="control">
-        <i className="fa fa-share"></i>
+        <i className="fa fa-share" />
       </Button>
     </ButtonGroup>
   );

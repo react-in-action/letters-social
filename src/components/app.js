@@ -1,20 +1,18 @@
-import { Col, Grid, Row } from 'react-bootstrap';
-import CreatePost from './post/Create';
 import fetch from 'isomorphic-fetch';
 import Loader from 'react-loaders';
+import React from 'react';
+import storage from 'localforage';
+import { Col, Grid, Row } from 'react-bootstrap';
+
+import CreatePost from './post/Create';
 import Nav from './nav/navbar';
 import Posts from './post/Posts';
-import React from 'react';
 import Sidebar from './sidebar/Sidebar';
-import storage from 'localforage';
 import Welcome from './welcome/Welcome';
-
-// Network services
-import firebase from 'firebase';
 
 import '../styles/styles.scss';
 
-export class App extends React.Component {
+export default class App extends React.Component {
   // Operations usually carried out in componentWillMount go here
   constructor(props) {
     super(props);
@@ -22,6 +20,7 @@ export class App extends React.Component {
     this.clearFilters = this.clearFilters.bind(this);
     this.filterByMediaType = this.filterByMediaType.bind(this);
     this.hideBanner = this.hideBanner.bind(this);
+    this.handlePostSubmit = this.handlePostSubmit.bind(this);
     this.state = {
       posts: {
         all: [],
@@ -48,6 +47,43 @@ export class App extends React.Component {
         loaded: true,
       });
     });
+  }
+
+  handlePostSubmit(payload) {
+    // Disable empty posts
+    if (!payload.content) {
+      return;
+    }
+
+    const filledPost = Object.assign({}, {
+      date: Date.now(),
+      // Assign a temporary key to the post; the API will create a real one for us
+      id: Date.now(),
+      content: payload.content,
+    });
+
+    // Update the local posts state optimistically
+    const oldPosts = this.state.posts.all;
+    oldPosts.unshift(filledPost);
+
+    this.setState({
+      posts: {
+        all: oldPosts,
+        filtered: this.state.posts.filtered,
+      },
+    });
+
+    fetch(`${process.env.ENDPOINT}/posts`, {
+      method: 'POST',
+      body: JSON.stringify(payload),
+      headers: {
+        'Content-Type': 'application/json',
+      } })
+      .then(res => {
+        if (res.ok === true) {
+          this.fetchPosts();
+        }
+      });
   }
 
   fetchPosts() {
@@ -78,10 +114,6 @@ export class App extends React.Component {
     });
   }
 
-  intializeSockets() {
-    // socket.on('connect', () => console.log('Connected to server'));
-  }
-
   hideBanner() {
     storage.setItem('react-in-action-visited', true).then(() => {
       this.setState({
@@ -93,7 +125,9 @@ export class App extends React.Component {
   selectPostCategory(category: ?string) {
     this.setState((previousState) => {
       const { posts: { all } } = previousState;
-      const filtered = previousState.posts.all.filter(post => {
+      const filtered = previousState.posts.all
+      .filter(post => post.comments && post.comments.length)
+      .filter(post => {
         return category ? post.categories.includes(category) : post;
       });
       return {
@@ -160,12 +194,12 @@ export class App extends React.Component {
 
             {/* Main post area */}
             <Col xs={12} sm={8}>
-              <CreatePost />
+              <CreatePost onSubmit={this.handlePostSubmit} />
               {
                 this.state.category || this.state.filters.links || this.state.filters.images ?
-                <h4>
-                  Posts {this.state.category ? `about ${this.state.category}` : null} {this.state.filters.image ? 'with images' : null} {this.state.filters.link ? 'and links' : null}
-                </h4>
+                  <h4>
+                    Posts {this.state.category ? `about ${this.state.category}` : null} {this.state.filters.image ? 'with images' : null} {this.state.filters.link ? 'and links' : null}
+                  </h4>
                 :
                 null
               }

@@ -1,5 +1,4 @@
 import React, { PropTypes } from 'react';
-import fetch from 'isomorphic-fetch';
 
 class CreatePost extends React.Component {
   constructor(props) {
@@ -7,7 +6,7 @@ class CreatePost extends React.Component {
 
     // Set up state
     this.state = {
-      text: '',
+      content: '',
     };
 
     // Set up event handlers
@@ -16,22 +15,33 @@ class CreatePost extends React.Component {
   }
 
   handlePostChange(event) {
-    this.setState({
-      text: event.target.value.trim(),
-    });
+    const content = event.target.value;
+    if (!content) {
+      return;
+    }
+    this.setState({ content });
   }
 
   handleSubmit(event) {
     event.preventDefault();
-    console.log('Submitting');
-    console.log(event.target);
+    if (this.state.content.length <= 0) {
+      return;
+    }
+    if (this.props.onSubmit) {
+      const newPost = {
+        content: this.state.content,
+      };
+      this.props.onSubmit(newPost);
+      this.setState({
+        content: '',
+      });
+    }
   }
 
   render() {
     return (
       <form className="create-post" onSubmit={this.handleSubmit}>
-        {this.state.text}
-        <textarea onChange={this.update} placeholder="What's on your mind?" />
+        <textarea value={this.state.content} onChange={this.handlePostChange} placeholder="What's on your mind?" />
         <button className="btn btn-default">Post</button>
       </form>
     );
@@ -39,7 +49,7 @@ class CreatePost extends React.Component {
 }
 
 CreatePost.propTypes = {
-  onCreatePost: PropTypes.func,
+  onSubmit: PropTypes.func,
 };
 
 export default CreatePost;

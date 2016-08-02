@@ -7,8 +7,9 @@ import mkdirp from 'mkdirp';
 import { sample, sampleSize, random as rand } from 'lodash';
 import { v4 as uuid } from 'node-uuid';
 import { writeFile } from 'fs';
-import { categories } from './constants';
 import ora from 'ora';
+
+import { categories } from './constants';
 
 const write = promisify(writeFile);
 
