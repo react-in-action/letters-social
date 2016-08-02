@@ -16,9 +16,6 @@ class CreatePost extends React.Component {
 
   handlePostChange(event) {
     const content = event.target.value;
-    if (!content) {
-      return;
-    }
     this.setState({ content });
   }
 
