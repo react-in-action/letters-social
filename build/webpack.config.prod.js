@@ -40,7 +40,7 @@ export default {
       test: /\.(js)$/,
       exclude: /node_modules/,
     },
-    // TODO: fix any webpack 2 stuff below
+            // TODO: fix any webpack 2 stuff below
     {
       test: /(\.css|\.scss)$/,
       loaders: ['style', 'css?sourceMap', 'sass?sourceMap'],
@@ -48,11 +48,15 @@ export default {
       test: /\.(jpe?g|png|gif)$/i,
       loaders: ['file'],
     }, {
+      test: /\.json$/,
+      loader: 'json',
+    }, {
       test: /\.ico$/,
       loader: 'file-loader?name=[name].[ext]',
     }, {
       test: /(\.css|\.scss)$/,
       include: path.join(__dirname, 'src'),
-    }],
+    },
+        ],
   },
 };
