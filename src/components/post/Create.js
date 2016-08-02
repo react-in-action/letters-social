@@ -1,4 +1,7 @@
 import React, { PropTypes } from 'react';
+import Filter from 'bad-words';
+
+const filter = new Filter();
 
 class CreatePost extends React.Component {
   constructor(props) {
@@ -15,7 +18,7 @@ class CreatePost extends React.Component {
   }
 
   handlePostChange(event) {
-    const content = event.target.value;
+    const content = filter.clean(event.target.value);
     this.setState({ content });
   }
 

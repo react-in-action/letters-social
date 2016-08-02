@@ -31,6 +31,7 @@ export default {
       { test: /\.js$/, include: join(__dirname, '../', 'src'), loader: 'babel' },
       { test: /\.(jpe?g|png|gif)$/i, loaders: ['file'] },
       { test: /\.ico$/, loader: 'file-loader?name=[name].[ext]' },
+      { test: /\.json$/, loader: 'json' },
       { test: /(\.css|\.scss)$/, loaders: ['style', 'css?sourceMap', 'sass?sourceMap'] },
     ],
   },
