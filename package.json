@@ -39,7 +39,7 @@
   },
   "homepage": "https://github.com/react-in-action/letters-social#readme",
   "dependencies": {
-    "ava": "^0.15.2",
+    "ava": "^0.16.0",
     "axios": "^0.13.1",
     "babel-cli": "^6.9.0",
     "babel-core": "^6.13.0",
