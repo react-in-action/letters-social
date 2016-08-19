@@ -95,7 +95,7 @@
     "node-uuid": "^1.4.7",
     "npm-run-all": "^3.0.0",
     "ora": "^0.3.0",
-    "react": "^15.3.0",
+    "react": "^15.3.1",
     "react-addons-test-utils": "^15.2.1",
     "react-bootstrap": "^0.30.2",
     "react-dom": "^15.3.0",
