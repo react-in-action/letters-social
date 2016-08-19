@@ -84,7 +84,7 @@
     "hpp": "^0.2.1",
     "isomorphic-fetch": "^2.2.1",
     "json-loader": "^0.5.4",
-    "json-server": "^0.8.17",
+    "json-server": "^0.8.18",
     "loaders.css": "^0.1.2",
     "localforage": "^1.4.2",
     "lodash": "^4.14.1",
