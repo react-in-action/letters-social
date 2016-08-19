@@ -3,8 +3,6 @@
         "es2015",
         "react",
         "stage-0",
-        "es2015-native-modules",
-        "es2015-webpack"
     ],
     "plugins": ["transform-class-properties", "transform-runtime"],
     "env": {
@@ -17,9 +15,9 @@
             ]
         },
         "testing": {
-          "plugins": [
-              "typecheck",
-          ],
+            "plugins": [
+                "typecheck",
+            ],
         }
     }
 }
