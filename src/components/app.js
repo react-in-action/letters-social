@@ -55,16 +55,9 @@ export default class App extends React.Component {
       return;
     }
 
-    const filledPost = {
-      date: Date.now(),
-      // Assign a temporary key to the post; the API will create a real one for us
-      id: Date.now(),
-      content: payload.content,
-    };
-
     // Update the local posts state optimistically
     const oldPosts = this.state.posts.all;
-    oldPosts.unshift(filledPost);
+    oldPosts.unshift(payload);
 
     this.setState({
       posts: {

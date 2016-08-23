@@ -33,8 +33,12 @@ class CreatePost extends React.Component {
     }
     if (this.props.onSubmit) {
       const newPost = {
+        date: Date.now(),
+        // Assign a temporary key to the post; the API will create a real one for us
+        id: Date.now(),
         content: this.state.content,
       };
+
       this.props.onSubmit(newPost);
       this.setState({
         content: '',
