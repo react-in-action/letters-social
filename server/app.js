@@ -8,7 +8,6 @@ import express from 'express';
 import helmet from 'helmet';
 import hpp from 'hpp';
 import logger from 'morgan';
-import socket from 'socket.io';
 import responseTime from 'response-time';
 import { v4 as uuid } from 'node-uuid';
 

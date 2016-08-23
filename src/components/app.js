@@ -55,12 +55,12 @@ export default class App extends React.Component {
       return;
     }
 
-    const filledPost = Object.assign({}, {
+    const filledPost = {
       date: Date.now(),
       // Assign a temporary key to the post; the API will create a real one for us
       id: Date.now(),
       content: payload.content,
-    });
+    };
 
     // Update the local posts state optimistically
     const oldPosts = this.state.posts.all;
@@ -73,12 +73,17 @@ export default class App extends React.Component {
       },
     });
 
-    fetch(`${process.env.ENDPOINT}/posts`, {
+    // Create options for the request
+    const requestOptions = {
       method: 'POST',
       body: JSON.stringify(payload),
       headers: {
         'Content-Type': 'application/json',
-      } })
+      },
+    };
+
+    // Send the new post to the API
+    fetch(`${process.env.ENDPOINT}/posts`, requestOptions)
       .then(res => {
         if (res.ok === true) {
           this.fetchPosts();

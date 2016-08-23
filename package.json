@@ -74,7 +74,7 @@
     "es6-promise": "^3.2.1",
     "eslint": "^3.3.1",
     "eslint-config-airbnb": "^10.0.1",
-    "eslint-plugin-import": "^1.13.0",
+    "eslint-plugin-import": "^1.14.0",
     "eslint-plugin-jsx-a11y": "^2.1.0",
     "eslint-plugin-react": "^6.1.2",
     "express": "^4.14.0",
@@ -95,10 +95,10 @@
     "node-uuid": "^1.4.7",
     "npm-run-all": "^3.0.0",
     "ora": "^0.3.0",
-    "react": "^15.3.0",
-    "react-addons-test-utils": "^15.2.1",
-    "react-bootstrap": "^0.30.2",
-    "react-dom": "^15.3.0",
+    "react": "^15.3.1",
+    "react-addons-test-utils": "^15.3.1",
+    "react-bootstrap": "^0.30.3",
+    "react-dom": "^15.3.1",
     "react-fontawesome": "^1.1.0",
     "react-loaders": "^2.1.1",
     "react-overlays": "^0.6.6",
@@ -113,6 +113,6 @@
     "webpack-hot-middleware": "^2.12.2"
   },
   "devDependencies": {
-    "react-scripts": "^0.2.1"
+    "react-scripts": "^0.2.2"
   }
 }

@@ -10,6 +10,7 @@ class CreatePost extends React.Component {
     // Set up state
     this.state = {
       content: '',
+      valid: null,
     };
 
     // Set up event handlers
@@ -19,12 +20,15 @@ class CreatePost extends React.Component {
 
   handlePostChange(event) {
     const content = filter.clean(event.target.value);
-    this.setState({ content });
+    this.setState({
+      content,
+      valid: content.length <= 300,
+    });
   }
 
   handleSubmit(event) {
     event.preventDefault();
-    if (this.state.content.length <= 0) {
+    if (!this.state.valid) {
       return;
     }
     if (this.props.onSubmit) {
@@ -34,6 +38,7 @@ class CreatePost extends React.Component {
       this.props.onSubmit(newPost);
       this.setState({
         content: '',
+        valid: null,
       });
     }
   }
