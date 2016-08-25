@@ -113,6 +113,6 @@
     "webpack-hot-middleware": "^2.12.2"
   },
   "devDependencies": {
-    "react-scripts": "^0.2.2"
+    "react-scripts": "^0.2.3"
   }
 }
