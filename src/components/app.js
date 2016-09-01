@@ -7,7 +7,6 @@ import { Col, Grid, Row } from 'react-bootstrap';
 import CreatePost from './post/Create';
 import Nav from './nav/navbar';
 import Posts from './post/Posts';
-import Sidebar from './sidebar/Sidebar';
 import Welcome from './welcome/Welcome';
 
 import '../styles/styles.scss';
@@ -16,24 +15,11 @@ export default class App extends React.Component {
   // Operations usually carried out in componentWillMount go here
   constructor(props) {
     super(props);
-    this.selectPostCategory = this.selectPostCategory.bind(this);
-    this.clearFilters = this.clearFilters.bind(this);
-    this.filterByMediaType = this.filterByMediaType.bind(this);
     this.hideBanner = this.hideBanner.bind(this);
     this.handlePostSubmit = this.handlePostSubmit.bind(this);
     this.state = {
-      posts: {
-        all: [],
-        filtered: [],
-      },
-      category: null,
-      filters: {
-        image: null,
-        link: null,
-        categories: [],
-      },
+      posts: [],
       loaded: false,
-      connected: false,
       showBanner: false,
     };
   }
@@ -56,14 +42,11 @@ export default class App extends React.Component {
     }
 
     // Update the local posts state optimistically
-    const oldPosts = this.state.posts.all;
+    const oldPosts = this.state.posts;
     oldPosts.unshift(payload);
 
     this.setState({
-      posts: {
-        all: oldPosts,
-        filtered: this.state.posts.filtered,
-      },
+      posts: oldPosts,
     });
 
     // Create options for the request
@@ -88,12 +71,9 @@ export default class App extends React.Component {
     // Fetch posts
     return fetch(`${process.env.ENDPOINT}/posts?_limit=25&_sort=date&_order=DESC`)
         .then(res => res.json())
-        .then(hydratedPosts => {
+        .then(posts => {
           this.setState({
-            posts: {
-              all: hydratedPosts,
-              filtered: hydratedPosts,
-            },
+            posts,
           });
         });
   }
@@ -120,103 +100,24 @@ export default class App extends React.Component {
     });
   }
 
-  selectPostCategory(category: ?string) {
-    this.setState((previousState) => {
-      const { posts: { all } } = previousState;
-      const filtered = previousState.posts.all
-      .filter(post => post.comments && post.comments.length)
-      .filter(post => {
-        return category ? post.categories.includes(category) : post;
-      });
-      return {
-        category,
-        posts: {
-          all,
-          filtered,
-        },
-      };
-    });
-  }
-
-  filterByMediaType(mediaType: string) {
-    this.setState(previousState => {
-      const { posts: { all }, filters: { image, link } } = previousState;
-      const filtered = previousState.posts.filtered.filter(post => {
-        return !!post[mediaType];
-      });
-
-      const nextState = {
-        filters: {
-          image,
-          link,
-        },
-        posts: {
-          all,
-          filtered,
-        },
-      };
-      nextState.filters[mediaType] = true;
-      return nextState;
-    });
-  }
-
-  clearFilters(): void {
-    this.setState({
-      category: null,
-      posts: {
-        all: this.state.posts.all,
-        filtered: this.state.posts.all,
-      },
-      filters: {
-        images: null,
-        links: null,
-      },
-    });
-  }
-
   render() {
     return (
       <div className="app">
         <Nav />
         <Grid fluid>
           <Row>
-            {/* Sidebar area */}
-            <Col xs={12} sm={2}>
-              <Sidebar
-                onMediaFilterSelect={this.filterByMediaType}
-                category={this.state.category}
-                onClearFilter={this.clearFilters}
-                onFilterSelect={this.selectPostCategory}
-              />
-            </Col>
 
             {/* Main post area */}
-            <Col xs={12} sm={8}>
+            <Col xs={12} smOffset={2} sm={8}>
               <CreatePost onSubmit={this.handlePostSubmit} />
-              {
-                this.state.category || this.state.filters.links || this.state.filters.images ?
-                  <h4>
-                    Posts {this.state.category ? `about ${this.state.category}` : null} {this.state.filters.image ? 'with images' : null} {this.state.filters.link ? 'and links' : null}
-                  </h4>
-                :
-                null
-              }
-
               {/* Loader */}
                {
                 this.state.loaded ?
-                  <Posts posts={this.state.posts.filtered} />
+                  <Posts posts={this.state.posts} />
                 :
                   <div className="loader">
                     <Loader type="line-scale" active={this.state.loaded} />
                   </div>
-              }
-              {/* No posts :( */}
-              {
-                this.state.loaded && this.state.posts.filtered.length === 0 ?
-                  <h2>No posts found matching your criteria ☹️</h2>
-                  :
-                  null
               }
             </Col>
           </Row>
