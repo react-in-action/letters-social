@@ -93,7 +93,7 @@
     "morgan": "^1.7.0",
     "node-sass": "^3.8.0",
     "node-uuid": "^1.4.7",
-    "npm-run-all": "^3.0.0",
+    "npm-run-all": "^3.1.0",
     "ora": "^0.3.0",
     "react": "^15.3.1",
     "react-addons-test-utils": "^15.3.1",
