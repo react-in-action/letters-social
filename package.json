@@ -91,7 +91,7 @@
     "mkdirp": "^0.5.1",
     "moment": "^2.13.0",
     "morgan": "^1.7.0",
-    "node-sass": "^3.8.0",
+    "node-sass": "^3.9.3",
     "node-uuid": "^1.4.7",
     "npm-run-all": "^3.1.0",
     "ora": "^0.3.0",
