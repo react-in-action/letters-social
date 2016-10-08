@@ -8,9 +8,7 @@ const GLOBALS = {
 };
 
 export default {
-  debug: true,
   devtool: 'cheap-module-eval-source-map',
-  noInfo: true,
   entry: './src/index',
   target: 'web',
   output: {

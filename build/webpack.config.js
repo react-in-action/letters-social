@@ -8,9 +8,7 @@ const GLOBALS = {
 };
 
 export default {
-  debug: true,
   devtool: 'cheap-module-eval-source-map',
-  noInfo: false,
   entry: [
     'webpack-hot-middleware/client?reload=true',
     './src/index',
