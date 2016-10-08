@@ -101,7 +101,7 @@
     "react-dom": "^15.3.1",
     "react-fontawesome": "^1.1.0",
     "react-loaders": "^2.1.1",
-    "react-overlays": "^0.6.6",
+    "react-overlays": "^0.6.7",
     "react-typewriter": "^0.4.1",
     "response-time": "^2.3.1",
     "sass-loader": "^4.0.2",
