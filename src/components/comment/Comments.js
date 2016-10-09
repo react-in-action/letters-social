@@ -1,5 +1,4 @@
 import React, { PropTypes } from 'react';
-import { Button } from 'react-bootstrap';
 import Comment from './Comment';
 import CreateComment from './Create';
 
@@ -9,7 +8,6 @@ export default class Comments extends React.Component {
   }
   constructor(props) {
     super(props);
-
     // Bind methods
     this.toggle = this.toggle.bind(this);
     this.handleCommentSubmit = this.handleCommentSubmit.bind(this);
@@ -47,19 +45,19 @@ export default class Comments extends React.Component {
         {
           this.state.showComments ?
             <CreateComment handleSubmit={this.handleCommentSubmit} threadID={post.id} />
-            :
-            null
+          :
+          null
         }
         {
           post.comments.length > 0 ?
-            <Button
+            <button
               onClick={this.toggle}
-              className="pull-right"
+              className="btn btn-default pull-right"
             >
               <i
                 className={`fa ${this.state.showComments ? 'fa-angle-up' : 'fa-angle-down'}`}
               />
-            </Button>
+            </button>
           :
             null
         }

@@ -2,10 +2,7 @@ import React, { PropTypes } from 'react';
 
 const Logo = (props) => {
   return (
-    <div
-      className="logo"
-      style={{ fontSize: `${props.size}em` }}
-    >
+    <div className="logo" style={{ fontSize: `${props.size}em` }}>
       <a href="/">
         <span style={{ color: '#4F93E0' }}>L</span>
         <span style={{ color: '#D0021B' }}>e</span>
@@ -16,8 +13,8 @@ const Logo = (props) => {
         <span style={{ color: '#F8E71C' }}>s</span>
         {
           props.logoOnly ?
-            null
-            :
+          null
+          :
             <small className="social">.social</small>
         }
       </a>

@@ -2,7 +2,6 @@ import fetch from 'isomorphic-fetch';
 import Loader from 'react-loaders';
 import React from 'react';
 import storage from 'localforage';
-import { Col, Grid, Row } from 'react-bootstrap';
 
 import CreatePost from './post/Create';
 import Nav from './nav/navbar';
@@ -60,7 +59,7 @@ export default class App extends React.Component {
 
     // Send the new post to the API
     fetch(`${process.env.ENDPOINT}/posts`, requestOptions)
-      .then(res => {
+      .then((res) => {
         if (res.ok === true) {
           this.fetchPosts();
         }
@@ -71,7 +70,7 @@ export default class App extends React.Component {
     // Fetch posts
     return fetch(`${process.env.ENDPOINT}/posts?_limit=25&_sort=date&_order=DESC`)
         .then(res => res.json())
-        .then(posts => {
+        .then((posts) => {
           this.setState({
             posts,
           });
@@ -79,9 +78,9 @@ export default class App extends React.Component {
   }
 
   initializeStorage() {
-    return new Promise(resolve => {
+    return new Promise((resolve) => {
       // Logic for welcome banner
-      storage.getItem('react-in-action-visited').then(visited => {
+      storage.getItem('react-in-action-visited').then((visited) => {
         if (!visited) {
           this.setState({
             showBanner: true,
@@ -104,30 +103,29 @@ export default class App extends React.Component {
     return (
       <div className="app">
         <Nav />
-        <Grid fluid>
-          <Row>
-
+        <div className="container-fluid">
+          <div className="row">
             {/* Main post area */}
-            <Col xs={12} smOffset={2} sm={8}>
+            <div className="col-xs-12 col-sm-offset-2 col-sm-8">
               <CreatePost onSubmit={this.handlePostSubmit} />
               {/* Loader */}
-               {
+              {
                 this.state.loaded ?
                   <Posts posts={this.state.posts} />
                 :
-                  <div className="loader">
-                    <Loader type="line-scale" active={this.state.loaded} />
-                  </div>
+                <div className="loader">
+                  <Loader type="line-scale" active={this.state.loaded} />
+                </div>
               }
-            </Col>
-          </Row>
+            </div>
+          </div>
 
           {/* Welcome banner */}
           <Welcome
             show={this.state.showBanner}
             onClose={this.hideBanner}
           />
-        </Grid>
+        </div>
       </div>
     );
   }
