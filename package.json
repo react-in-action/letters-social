@@ -103,7 +103,7 @@
     "react-loaders": "^2.1.1",
     "react-overlays": "^0.6.10",
     "react-typewriter": "^0.4.1",
-    "response-time": "^2.3.2",
+    "response-time": "^2.3.1",
     "sass-loader": "^4.0.2",
     "socket.io": "^1.5.0",
     "socket.io-client": "^1.5.0",
