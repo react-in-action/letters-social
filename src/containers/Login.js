@@ -1,6 +1,6 @@
-import React, { PropTypes } from 'react';
+import React, { PropTypes, Component } from 'react';
 
-class Login extends React.Component {
+export class Login extends Component {
   render() {
     return (
       <div className="login">
@@ -18,5 +18,3 @@ class Login extends React.Component {
     );
   }
 }
-
-export default Login;
