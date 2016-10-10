@@ -7,6 +7,7 @@ import Welcome from './welcome/Welcome';
 import '../styles/styles.scss';
 
 export class App extends React.Component {
+
   static propTypes = {
     children: PropTypes.node,
   }
