@@ -1,0 +1,45 @@
+// Posts ============================
+.posts {
+  margin: $base-spacing 0;
+  padding: 5px;
+
+  .content {
+    margin: $base-spacing 0;
+  }
+}
+
+.post {
+  @extend %element-base;
+  background-color: $white;
+  margin-bottom: $base-spacing * 1.5;
+
+  .user {
+    border-bottom: $border-base;
+  }
+
+  &:hover {
+    background-color: darken($white, 2.4%);
+    cursor: pointer;
+    transition: all .3s;
+  }
+
+  img {
+    padding: 10px;
+  }
+}
+
+.control {
+  margin: 3px 0;
+  &:hover {
+    background-color: transparent;
+    color: $blue;
+  }
+  .control-with-counter {
+    padding-right: 5px;
+  }
+}
+.comment {
+  border-top: 1px solid $gray-lighter;
+  margin-top: 0;
+  padding: 0 10px;
+}

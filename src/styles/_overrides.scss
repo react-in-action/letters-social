@@ -1,0 +1,7 @@
+// Fixes/Overrides ============================
+button:focus,
+input:focus,
+select:focus,
+textarea:focus {
+  outline: none !important;
+}
