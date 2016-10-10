@@ -1,14 +1,18 @@
 import webpack from 'webpack';
 import path from 'path';
+import ExtractTextPlugin from 'extract-text-webpack-plugin';
+import WebpackMd5Hash from 'webpack-md5-hash';
 
 const GLOBALS = {
-  'process.env.NODE_ENV': JSON.stringify('production'),
+  'process.env': {
+    NODE_ENV: JSON.stringify('production'),
+    ENDPOINT: JSON.stringify('https://learn-react-newsfeed.herokuapp.com/api'),
+  },
   __DEV__: false,
-  'process.env.ENDPOINT': JSON.stringify('https://learn-react-newsfeed.herokuapp.com/api'),
 };
 
 export default {
-  devtool: 'cheap-module-eval-source-map',
+  devtool: 'source-map',
   entry: './src/index',
   target: 'web',
   output: {
@@ -17,44 +21,49 @@ export default {
     filename: 'bundle.js',
   },
   plugins: [
-    new webpack.LoaderOptionsPlugin({
-      minimize: true,
-      debug: true,
-    }),
+    new webpack.DefinePlugin(GLOBALS),
+    new WebpackMd5Hash(),
+    new webpack.optimize.OccurrenceOrderPlugin(),
+    new webpack.optimize.DedupePlugin(),
     new webpack.optimize.UglifyJsPlugin({
-      compress: {
+      compressor: {
         warnings: false,
       },
-      output: {
-        comments: false,
-      },
-      sourceMap: false,
     }),
-    new webpack.DefinePlugin(GLOBALS),
+    new ExtractTextPlugin('styles.css'),
   ],
   module: {
-    loaders: [{
-      loader: 'babel-loader',
-      test: /\.(js)$/,
-      exclude: /node_modules/,
-    },
-            // TODO: fix any webpack 2 stuff below
-    {
-      test: /(\.css|\.scss)$/,
-      loaders: ['style', 'css?sourceMap', 'sass?sourceMap'],
-    }, {
-      test: /\.(jpe?g|png|gif)$/i,
-      loaders: ['file'],
-    }, {
-      test: /\.json$/,
-      loader: 'json',
-    }, {
-      test: /\.ico$/,
-      loader: 'file-loader?name=[name].[ext]',
-    }, {
-      test: /(\.css|\.scss)$/,
-      include: path.join(__dirname, 'src'),
-    },
-        ],
+    loaders: [
+      {
+        test: /\.jsx?$/,
+        exclude: /node_modules/,
+        loader: 'babel',
+      }, {
+        test: /\.eot(\?v=\d+.\d+.\d+)?$/,
+        loader: 'url?name=[name].[ext]',
+      }, {
+        test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+        loader: 'url?limit=10000&mimetype=application/font-woff&name=[name].[ext]',
+      }, {
+        test: /\.ttf(\?v=\d+.\d+.\d+)?$/,
+        loader: 'url?limit=10000&mimetype=application/octet-stream&name=[name].[ext]',
+      }, {
+        test: /\.svg(\?v=\d+.\d+.\d+)?$/,
+        loader: 'url?limit=10000&mimetype=image/svg+xml&name=[name].[ext]',
+      }, {
+        test: /\.(jpe?g|png|gif)$/i,
+        loader: 'file?name=[name].[ext]',
+      }, {
+        test: /\.json$/,
+        loader: 'json',
+      }, {
+        test: /\.ico$/,
+        loader: 'file?name=[name].[ext]',
+      },
+      {
+        test: /(\.css|\.scss)$/,
+        loader: ExtractTextPlugin.extract('css?sourceMap!postcss!sass?sourceMap'),
+      },
+    ],
   },
 };

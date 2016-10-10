@@ -16,7 +16,7 @@ const Letter = (props) => {
         </p>
 
         <p>
-          {moment().format('dddd, MMMM Do YYYY, h:mm a')}
+          {moment(new Date()).format('dddd, MMMM Do YYYY, h:mm a')}
         </p>
 
         <p>

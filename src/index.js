@@ -6,12 +6,13 @@ import { Home, SinglePost } from './containers';
 import { Router, Route } from './components/router';
 import { history } from './history';
 
+import './styles/styles.scss';
+
 const appContainer = document.getElementById('app');
 
 const initialState = {
   location: window.location.pathname,
 };
-
 
 // Function that wraps ReactDOM.render and renders the app w/ current location
 const renderApp = (state) => {
