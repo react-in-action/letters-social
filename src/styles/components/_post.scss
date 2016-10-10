@@ -2,10 +2,10 @@
 .posts {
   margin: $base-spacing 0;
   padding: 5px;
+}
 
-  .content {
-    margin: $base-spacing 0;
-  }
+.content {
+  margin: $base-spacing * 2 0;
 }
 
 .post {
