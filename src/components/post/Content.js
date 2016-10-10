@@ -12,4 +12,4 @@ const Content = (props) => {
 Content.propTypes = {
   post: PropTypes.object,
 };
-export default Content;
+export { Content };

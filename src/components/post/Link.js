@@ -20,4 +20,4 @@ Link.propTypes = {
   post: PropTypes.object.isRequired,
 };
 
-export default Link;
+export { Link };

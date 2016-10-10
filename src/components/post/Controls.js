@@ -37,4 +37,4 @@ Controls.propTypes = {
   post: PropTypes.object.isRequired,
 };
 
-export default Controls;
+export { Controls };

@@ -61,4 +61,4 @@ CreatePost.propTypes = {
   onSubmit: PropTypes.func,
 };
 
-export default CreatePost;
+export { CreatePost };

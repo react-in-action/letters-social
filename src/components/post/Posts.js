@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react';
-import Post from './Post';
+import { Post } from './';
 
 function Posts(props) {
   return (
@@ -13,4 +13,4 @@ Posts.propTypes = {
   posts: PropTypes.array,
 };
 
-export default Posts ;
+export { Posts } ;

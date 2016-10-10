@@ -1,33 +1,36 @@
-import React, { PropTypes } from 'react';
+import React, { Component, PropTypes } from 'react';
 import Comments from '../comment/Comments';
-import Content from './Content';
-import Controls from './Controls';
-import Image from './Image';
-import Link from './Link';
-import User from './User';
 
-const Post = (props: Object) => {
-  const { post } = props;
-  return (
-    post ?
-      <div
-        className="post"
-      >
-        <User {...props} />
-        <Content {...props} />
-        <Image {...props} />
-        <Link {...props} />
-        { post.comments ? <Comments {...props} /> : null }
-        <Controls {...props} />
-      </div>
-    :
-      null
-  );
-};
+import { Content, Image, Link, Controls, User } from './';
+
+import { Link as RouterLink } from '../router';
+
+class Post extends Component {
+  render() {
+    const { post } = this.props;
+    return (
+      post ?
+        <RouterLink to={`/posts/${post.id}`}>
+          <div className="post" >
+            <User post={post} />
+            <Content post={post} />
+            <Image post={post} />
+            <Link post={post} />
+
+            { post.comments ? <Comments post={post} /> : null }
+
+            <Controls post={post} />
+          </div>
+        </RouterLink>
+      :
+        null
+    );
+  }
+}
 
 Post.propTypes = {
   post: PropTypes.object,
   user: PropTypes.object,
 };
 
-export default Post;
+export { Post };

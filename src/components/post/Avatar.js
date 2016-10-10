@@ -7,4 +7,4 @@ const Avatar = () => {
     </div>
   );
 };
-export default Avatar;
+export { Avatar };

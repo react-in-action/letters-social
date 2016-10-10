@@ -34,4 +34,4 @@ User.propTypes = {
   post: PropTypes.object.isRequired,
 };
 
-export default User;
+export { User };

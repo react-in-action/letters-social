@@ -1,16 +1,11 @@
 import React, { PropTypes } from 'react';
 
-const Image = (props) => {
-  const { post } = props;
-  return (
-    post.image ?
-      <img className="img-responsive" src={post.image} alt="" />
-    : null
-  );
-};
+const Image = props => props.post.image && <img className="img-responsive" src={props.post.image} alt="" />;
 
 Image.propTypes = {
-  post: PropTypes.object,
+  post: PropTypes.shape({
+    image: PropTypes.string,
+  }),
 };
 
-export default Image;
+export { Image };
