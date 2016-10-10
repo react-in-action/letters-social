@@ -1,12 +1,15 @@
-import React, { Component } from 'react';
+import React, { PropTypes, Component } from 'react';
 import fetch from 'isomorphic-fetch';
 
 import { Post } from '../components/post';
-
 import { Link } from '../components/router';
 
-
 export class SinglePost extends Component {
+  static propTypes = {
+    params: PropTypes.shape({
+      post: PropTypes.string,
+    }),
+  }
   constructor(props) {
     super(props);
     this.state = {
@@ -15,8 +18,7 @@ export class SinglePost extends Component {
   }
 
   componentDidMount() {
-    const { params } = this.props;
-    fetch(`${process.env.ENDPOINT}/posts/${params.post}`)
+    fetch(`${process.env.ENDPOINT}/posts/${this.props.params.post}`)
         .then(res => res.json())
         .then(post => this.setState({ post }));
   }
@@ -24,18 +26,21 @@ export class SinglePost extends Component {
   render() {
     return (
       this.state.post &&
-      <div className="row">
-        <div className="col-xs-2">
-          <Link to="/home">
-            <div>
-              Back
+        <div className="container-fluid">
+          <div className="row">
+            <div className="col-sm-2">
+              <Link to="/">
+                <div className="pull-right">
+                  <br />
+                  <i className="fa fa-arrow-left" /> Back
+                </div>
+              </Link>
             </div>
-          </Link>
+            <div className="col-xs-12 col-sm-8">
+              <Post forceOpen post={this.state.post} />
+            </div>
+          </div>
         </div>
-        <div className="col-xs-10 col-sm-8">
-          <Post post={this.state.post} />
-        </div>
-      </div>
     );
   }
 }

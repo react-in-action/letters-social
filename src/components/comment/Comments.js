@@ -5,7 +5,9 @@ import CreateComment from './Create';
 export default class Comments extends React.Component {
   static propTypes = {
     post: PropTypes.object,
+    forceOpen: PropTypes.bool,
   }
+
   constructor(props) {
     super(props);
     // Bind methods
@@ -18,6 +20,12 @@ export default class Comments extends React.Component {
       showComments: false,
       commentsLoaded: false,
     };
+  }
+
+  componentDidMount() {
+    if (this.props.forceOpen) {
+      this.toggle();
+    }
   }
 
   toggle() {
@@ -36,9 +44,7 @@ export default class Comments extends React.Component {
       <div className="comments">
         {
           this.state.showComments && post.comments.length > 0 ?
-          post.comments.map(comment =>
-            <Comment key={comment.id} comment={comment} />
-          )
+            post.comments.map(comment => <Comment key={comment.id} comment={comment} />)
           :
           null
         }
@@ -50,13 +56,8 @@ export default class Comments extends React.Component {
         }
         {
           post.comments.length > 0 ?
-            <button
-              onClick={this.toggle}
-              className="btn btn-default pull-right"
-            >
-              <i
-                className={`fa ${this.state.showComments ? 'fa-angle-up' : 'fa-angle-down'}`}
-              />
+            <button onClick={this.toggle} className="btn btn-default pull-right" >
+              <i className={`fa ${this.state.showComments ? 'fa-angle-up' : 'fa-angle-down'}`} />
             </button>
           :
             null

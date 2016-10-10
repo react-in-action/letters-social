@@ -1,9 +1,10 @@
 import React, { PropTypes } from 'react';
+import { Link as RouterLink } from '../router';
 
 const Logo = (props) => {
   return (
-    <div className="logo" style={{ fontSize: `${props.size}em` }}>
-      <a href="/">
+    <RouterLink to="/">
+      <div className="logo" style={{ fontSize: `${props.size}em` }}>
         <span style={{ color: '#4F93E0' }}>L</span>
         <span style={{ color: '#D0021B' }}>e</span>
         <span style={{ color: '#F8E71C' }}>t</span>
@@ -17,8 +18,8 @@ const Logo = (props) => {
           :
             <small className="social">.social</small>
         }
-      </a>
-    </div>
+      </div>
+    </RouterLink>
   );
 };
 

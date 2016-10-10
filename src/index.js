@@ -17,8 +17,8 @@ const initialState = {
 const renderApp = (state) => {
   render(
     <Router {...state}>
-      <Route path="/" component={App}>
-        <Route path="home" component={Home} />
+      <Route path="" component={App}>
+        <Route path="/" component={Home} />
         <Route path="/posts/:post" component={SinglePost} />
       </Route>
     </Router>,
