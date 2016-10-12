@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import firebase from 'firebase';
 
-import { logout } from '../../backend';
+import { logout, firebase } from '../../backend';
 import { history } from '../../history';
 
 import { Link } from '../router';
@@ -31,10 +30,10 @@ class Navigation extends Component {
       <nav className="navbar navbar-default navbar-fixed-top">
         <div className="container">
           <div className="row middle-xs center-xs around-xs">
-            <div className="col-sm-4 col-sm-offset-4 col-xs-12">
+            <div className="col-sm-4 col-sm-offset-4 col-xs-8">
               <Logo logoOnly={false} />
             </div>
-            <div className="col-sm-4 col-xs-12">
+            <div className="col-sm-4 col-xs-4">
               { this.state.user ?
                 <div>
                   <div className="btn-group" role="group">
