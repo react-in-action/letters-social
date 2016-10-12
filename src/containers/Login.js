@@ -174,7 +174,7 @@ export class Login extends Component {
                   </button>
                 </div>
                 <div className="col-xs-12 col-md-4">
-                  <button style={{ backgroundColor: '#3c5A96', color: '#fff' }} onClick={this.handleGithubLogin} className="btn btn-default">
+                  <button style={{ backgroundColor: '#3c5A96', color: '#fff' }} onClick={this.handleFacebookLogin} className="btn btn-default">
                     <i className="fa fa-facebook" /> log in with Facebook
                   </button>
                 </div>
