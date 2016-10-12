@@ -2885,6 +2885,12 @@ entities@1.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/entities/-/entities-1.0.0.tgz#b2987aa3821347fcde642b24fdfc9e4fb712bf26"
 
+environs:
+  version "0.4.1"
+  resolved "https://registry.yarnpkg.com/environs/-/environs-0.4.1.tgz#9d2b1bddb2a80d379fb1ce92553b03af823c49e8"
+  dependencies:
+    root-require "^0.3.1"
+
 enzyme@^2.3.0:
   version "2.4.1"
   resolved "https://registry.yarnpkg.com/enzyme/-/enzyme-2.4.1.tgz#90fa9861d982d0ceb92a9fd57e38426a2f74d3b1"
@@ -6083,6 +6089,10 @@ package-json@^2.0.0:
     registry-url "^3.0.3"
     semver "^5.1.0"
 
+packpath@~0.1.0:
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/packpath/-/packpath-0.1.0.tgz#a521534222dfeaa9c612ef0c640ec399149ecdd8"
+
 pako@~0.2.0:
   version "0.2.9"
   resolved "https://registry.yarnpkg.com/pako/-/pako-0.2.9.tgz#f3f7522f4ef782348da8161bad9ecfd51bf83a75"
@@ -7265,6 +7275,12 @@ ripemd160@^1.0.0:
 ripemd160@0.2.0:
   version "0.2.0"
   resolved "https://registry.yarnpkg.com/ripemd160/-/ripemd160-0.2.0.tgz#2bf198bde167cacfa51c0a928e84b68bbe171fce"
+
+root-require@^0.3.1:
+  version "0.3.1"
+  resolved "https://registry.yarnpkg.com/root-require/-/root-require-0.3.1.tgz#95e1554d63cc869a2abde3e3bfc9bbaaa1edacd3"
+  dependencies:
+    packpath "~0.1.0"
 
 rsvp@3.2.1:
   version "3.2.1"
