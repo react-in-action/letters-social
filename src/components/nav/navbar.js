@@ -1,17 +1,60 @@
-import React from 'react';
-import { Navbar } from 'react-bootstrap';
+import React, { Component } from 'react';
+import firebase from 'firebase';
+
+import { logout } from '../../backend';
+import { history } from '../../history';
+
+import { Link } from '../router';
 import Logo from './logo';
 
-const Nav = () => {
-  return (
-    <Navbar fluid fixedTop>
-      <Navbar.Header>
-        <Navbar.Brand>
-          <Logo logoOnly={false} />
-        </Navbar.Brand>
-      </Navbar.Header>
-    </Navbar>
-  );
-};
+class Navigation extends Component {
+  constructor(props) {
+    super(props);
+    this.handleLogout = this.handleLogout.bind(this);
+    this.state = {
+      user: null,
+    };
+  }
+  componentDidMount() {
+    firebase.auth().onAuthStateChanged(user => this.setState({ user }));
+  }
 
-export default Nav;
+  handleLogout() {
+    logout().then(() => {
+      this.setState({ user: null });
+      history.push('/login');
+    });
+  }
+
+  render() {
+    return (
+      <nav className="navbar navbar-default navbar-fixed-top">
+        <div className="container">
+          <div className="row middle-xs center-xs around-xs">
+            <div className="col-sm-4 col-sm-offset-4 col-xs-12">
+              <Logo logoOnly={false} />
+            </div>
+            <div className="col-sm-4 col-xs-12">
+              { this.state.user ?
+                <div>
+                  <div className="btn-group" role="group">
+                    <button onClick={this.handleLogout} className="btn btn-default"><i className="fa fa-user" /></button>
+                    <button onClick={this.handleLogout} className="btn btn-default"><i className="fa fa-sign-out" /></button>
+                  </div>
+                </div>
+                :
+                  <div>
+                    <Link to="/login">
+                      <button type="button" className="btn btn-default">Log in or sign up</button>
+                    </Link>
+                  </div>
+              }
+            </div>
+          </div>
+        </div>
+      </nav>
+    );
+  }
+}
+
+export default Navigation;
