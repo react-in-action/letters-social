@@ -16,7 +16,7 @@ const write = promisify(writeFile);
 function generateProfilePicture() {
   const pics = [];
   for (let i = 0; i < 15; i++) {
-    pics.push(`https://cdn.learnreactjs.io/assets/profile-pictures/${i + 1}.png`);
+    pics.push(`https://drtzvj8zd0k9x.cloudfront.net/assets/profile-pictures/${i + 1}.png`);
   }
   return function selectRandomProfilePicture() {
     return sample(pics);
@@ -28,7 +28,7 @@ const createProfilePicture = generateProfilePicture();
 function generateShareablePicture() {
   const pics = [];
   for (let i = 0; i < 50; i++) {
-    pics.push(`https://cdn.learnreactjs.io/assets/post-images/${i + 1}.jpg`);
+    pics.push(`https://drtzvj8zd0k9x.cloudfront.net/assets/post-images/${i + 1}.jpg`);
   }
   return function selectRandomPostImage() {
     return sample(pics);
@@ -128,7 +128,7 @@ function generatePosts(n: number, users: Array<User>, comments: Array<Comment>) 
   return posts;
 }
 
-export function seed(nUsers: number = 100, nPosts: number = 500, nComments: number = 500) {
+export function seed(nUsers: number = 500, nPosts: number = 2000, nComments: number = 750) {
   const spinner = ora('Generating sample data...').start();
   mkdirp.sync(join(__dirname, 'seed'));
   const users = generateUsers(nUsers);
@@ -145,7 +145,7 @@ export function seed(nUsers: number = 100, nPosts: number = 500, nComments: numb
     spinner.text = '🎉 🎉 🎉 🎉  Done writing sample data 🎉 🎉 🎉 🎉';
     setTimeout(() => spinner.stop(), 2000);
   })
-  .catch(err => {
+  .catch((err) => {
     console.error(err);
     setTimeout(() => spinner.stop());
   });
