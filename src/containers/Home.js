@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import fetch from 'isomorphic-fetch';
 
 import Loader from 'react-loaders';
+import { AutoAffix } from 'react-overlays';
 
 import { Ad } from '../components/ad/Ad';
 import { CreatePost, Posts } from '../components/post';
@@ -75,7 +76,7 @@ class Home extends Component {
     return (
       <div className="home">
         <div className="row">
-          <div className="col-sm-3 hidden-xs">
+          <div className="col-xs-3 hidden-xs">
             <Welcome />
           </div>
           <div className="col-xs-12 col-sm-6">
@@ -90,15 +91,18 @@ class Home extends Component {
             </button>
           </div>
           <div className="col-sm-2 col-xs-12 last-xs">
-            <Ad
-              offset={50}
-              url="https://www.manning.com/books/react-in-action" imageUrl="https://drtzvj8zd0k9x.cloudfront.net/assets/ads/react+in+action+meap+ad.png"
-            />
+            <AutoAffix viewportOffsetTop={50} container={this}>
+              <div className="ads">
+                <Ad
+                  url="https://www.manning.com/books/react-in-action" imageUrl="https://drtzvj8zd0k9x.cloudfront.net/assets/ads/react+in+action+meap+ad.png"
+                />
 
-            <Ad
-              offset={350}
-              url="https://www.manning.com/books/react-in-action" imageUrl="https://drtzvj8zd0k9x.cloudfront.net/assets/ads/qPmLthz.png"
-            />
+                <Ad
+                  url="https://www.manning.com/books/react-in-action"
+                  imageUrl="https://drtzvj8zd0k9x.cloudfront.net/assets/ads/Yl48tQw.jpg"
+                />
+              </div>
+            </AutoAffix>
           </div>
         </div>
       </div>

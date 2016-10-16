@@ -20,6 +20,14 @@ body {
   @extend %element-base;
 }
 
+.welcome {
+  background-color: $white;
+  border: $border-base;
+  border-radius: 5px;
+  padding: 10px;
+  margin-top: 10px;
+}
+
 
 // Link =======================
 .link {

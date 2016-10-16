@@ -1,6 +1,8 @@
 import React, { PropTypes, Component } from 'react';
 import fetch from 'isomorphic-fetch';
+import { AutoAffix } from 'react-overlays';
 
+import { Ad } from '../components/ad/Ad';
 import { Post } from '../components/post';
 import { Link } from '../components/router';
 
@@ -28,7 +30,7 @@ export class SinglePost extends Component {
       this.state.post &&
         <div className="container-fluid">
           <div className="row">
-            <div className="col-sm-2">
+            <div className="col-sm-3">
               <Link to="/">
                 <div className="pull-right">
                   <br />
@@ -36,8 +38,15 @@ export class SinglePost extends Component {
                 </div>
               </Link>
             </div>
-            <div className="col-xs-12 col-sm-8">
+            <div className="col-xs-12 col-sm-6">
               <Post forceOpen post={this.state.post} />
+            </div>
+            <div className="col-sm-2 col-xs-12 last-xs">
+              <AutoAffix viewportOffsetTop={50} container={this}>
+                <Ad
+                  url="https://www.manning.com/books/react-in-action" imageUrl="https://drtzvj8zd0k9x.cloudfront.net/assets/ads/react+in+action+meap+ad.png"
+                />
+              </AutoAffix>
             </div>
           </div>
         </div>

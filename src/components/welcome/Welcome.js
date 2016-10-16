@@ -4,15 +4,28 @@ import { AutoAffix } from 'react-overlays';
 export const Welcome = () => {
   return (
     <AutoAffix viewportOffsetTop={50} container={this}>
-      <div className="panel element-base">
+      <div className="welcome">
         <h3>Welcome!</h3>
         <p>
-          If you're here, you're probably reading or heard about <a href="https://www.manning.com/books/react-in-action" target="_blank" rel="noopener noreferrer">React in Action</a> by, well,
-          me (@markthethomas everywhere). This app, Letters Social, is built with <a rel="noopener noreferrer" href="https://facebook.github.io/react/">React</a> what you'll be building in the book. It explores compoennts, React fundamentals, and If you have any questions
-          or thoughts, feel free to reach out to me <a href="https://twitter.com/markthethomas" target="_blank" rel="noopener noreferrer">@markthethomas</a> pretty much anywhere.
+          If you're here, you're probably reading or heard about <a href="https://www.manning.com/books/react-in-action" target="_blank" rel="noopener noreferrer">React in Action</a>. This app, Letters Social, is built with <a rel="noopener noreferrer" href="https://facebook.github.io/react/">React</a> and is what you'll be building <a href="https://www.manning.com/books/react-in-action" rel="noopener noreferrer">in the book (React in Action)</a>.
+        </p>
+        <p>
+          <a href="https://www.manning.com/books/react-in-action" rel="noopener noreferrer">React in Action</a> explores
+          <ul>
+            <li>Building a simple social app</li>
+            <li>Learning about the fundamentals of React</li>
+            <li>Building modern JavaScript (ES6 and beyond)</li>
+            <li>Implementing a routing system from scratch</li>
+            <li>Utilizing server-side rendering</li>
+            <li>Testing React applications</li>
+            <li>Implementing application architecture</li>
+          </ul>
+        </p>
+        <p>
+          If you have any questions or thoughts, feel free to reach out to me <a href="https://twitter.com/markthethomas" target="_blank" rel="noopener noreferrer">@markthethomas</a> on the Manning Author's forum (you get access w/ the MEAP!) or on <a href="https://twitter.com/markthethomas" rel="noreferrer noopener" >Twitter</a> .
           <br />
           <br />
-          - Mark
+          - <a href="https://ifelse.io" rel="noreferrer noopener">Mark</a>
         </p>
       </div>
     </AutoAffix>
