@@ -90,7 +90,7 @@ class Home extends Component {
               Load more posts
             </button>
           </div>
-          <div className="col-sm-2 col-xs-12 last-xs">
+          <div className="col-sm-2 col-xs-12 hidden-xs last-xs">
             <AutoAffix viewportOffsetTop={50} container={this}>
               <div className="ads">
                 <Ad
