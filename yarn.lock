@@ -6778,6 +6778,10 @@ react-addons-test-utils@^15.3.1:
   version "15.3.2"
   resolved "https://registry.yarnpkg.com/react-addons-test-utils/-/react-addons-test-utils-15.3.2.tgz#c09a44f583425a4a9c1b38444d7a6c3e6f0f41f6"
 
+react-adsense:
+  version "0.0.1"
+  resolved "https://registry.yarnpkg.com/react-adsense/-/react-adsense-0.0.1.tgz#becfef31b583ffc9f806b6a0568ac530df99cfe7"
+
 react-bootstrap@^0.30.3:
   version "0.30.5"
   resolved "https://registry.yarnpkg.com/react-bootstrap/-/react-bootstrap-0.30.5.tgz#22d9bdab13b9eec04918206602709e1c8a0d76e2"
@@ -6819,7 +6823,7 @@ react-loaders@^2.1.1:
     classnames "^2.2.3"
     react "^15.0.1"
 
-react-overlays@^0.6.10:
+react-overlays, react-overlays@^0.6.10:
   version "0.6.10"
   resolved "https://registry.yarnpkg.com/react-overlays/-/react-overlays-0.6.10.tgz#e7e52dad47f00a0fc784eb044428c3a9e874bfa3"
   dependencies:
