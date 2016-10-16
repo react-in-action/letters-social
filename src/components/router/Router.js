@@ -10,7 +10,7 @@ export class Router extends Component {
   constructor(props) {
     super(props);
 
-    // We';; store the routes on the Router component
+    // We'll store the routes on the Router component
     this.routes = {};
 
     // Add all the children components to the routes

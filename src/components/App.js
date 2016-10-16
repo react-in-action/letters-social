@@ -26,16 +26,12 @@ export class App extends React.Component {
   }
 
   initializeStorage() {
-    return new Promise((resolve) => {
-      // Logic for welcome banner
-      storage.getItem('react-in-action-visited').then((visited) => {
-        if (!visited) {
-          this.setState({
-            showBanner: true,
-          });
-        }
-      });
-      resolve(true);
+    return storage.getItem('react-in-action-visited').then((visited) => {
+      if (!visited) {
+        this.setState({
+          showBanner: true,
+        });
+      }
     });
   }
 
@@ -52,13 +48,7 @@ export class App extends React.Component {
       <div className="app">
         <Nav />
         <div className="container-fluid">
-
           {this.props.children}
-
-          <Welcome
-            show={this.state.showBanner}
-            onClose={this.hideBanner}
-          />
         </div>
       </div>
     );

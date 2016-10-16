@@ -3,6 +3,7 @@ body {
   background-color: $bg-default;
   margin-top: $navbar-height;
 }
+
 // Defaults ============================
 %element-base {
   border: $border-base;
@@ -11,13 +12,21 @@ body {
   padding: 10px;
 }
 
+.element-base {
+  @extend %element-base;
+}
+
+.load-more {
+  @extend %element-base;
+}
+
 
 // Link =======================
 .link {
   border-top: 1px solid $gray-lighter;
+  cursor: pointer;
   margin: $base-spacing 0;
   padding-top: 5px;
-  cursor: pointer;
   .url {
       color: $gray-light;
       margin-bottom: 5px;

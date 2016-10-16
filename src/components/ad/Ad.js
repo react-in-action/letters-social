@@ -1,32 +1,23 @@
 import React, { PropTypes } from 'react';
+import { AutoAffix } from 'react-overlays';
 
 const Ad = (props) => {
-  const { url, urlTitle, title, image } = props;
   return (
-    <div {...props} className="ad">
-      <div className="title">{title}</div>
-        {
-          image ?
-            <img src={image} alt="" />
-            :
-            null
-        }
-      <div className="ad-url">
-        <a href={url}>{urlTitle}</a>
+    <AutoAffix viewportOffsetTop={props.offset} container={this}>
+      <div className="ad">
+        <a target="_blank" rel="noreferrer noopener" href={props.url}>
+          <img className="img-responsive" src={props.imageUrl} alt="React in Action by Mark Thomas | Manning Publications" />
+        </a>
+        <small>ads by Letters</small>
       </div>
-    </div>
+    </AutoAffix>
   );
 };
 
 Ad.propTypes = {
+  imageUrl: PropTypes.string,
   url: PropTypes.string,
-  title: PropTypes.string,
-  urlTitle: PropTypes.string,
-  image: PropTypes.string,
+  offset: PropTypes.number,
 };
 
-Ad.defaultProps = {
-  url: 'http://learnreactjs.io',
-};
-
-export default Ad;
+export { Ad };

@@ -3,13 +3,17 @@ import fetch from 'isomorphic-fetch';
 
 import Loader from 'react-loaders';
 
+import { Ad } from '../components/ad/Ad';
 import { CreatePost, Posts } from '../components/post';
+import { Welcome } from '../components/welcome';
 
 class Home extends Component {
   constructor(props) {
     super(props);
     this.handlePostSubmit = this.handlePostSubmit.bind(this);
+    this.fetchPosts = this.fetchPosts.bind(this);
     this.state = {
+      nPosts: 5,
       posts: [],
       loaded: false,
       showBanner: false,
@@ -55,32 +59,47 @@ class Home extends Component {
   }
 
   fetchPosts() {
+    const limit = 5;
+    this.setState((state) => {
+      return {
+        nPosts: state.nPosts + limit,
+      };
+    });
     // Fetch posts
-    return fetch(`${process.env.ENDPOINT}/posts?_limit=25&_sort=date&_order=DESC`)
+    return fetch(`${process.env.ENDPOINT}/posts?_limit=${this.state.nPosts}&_sort=date&_order=DESC`)
         .then(res => res.json())
-        .then((posts) => {
-          this.setState({
-            posts,
-          });
-        });
+        .then(posts => this.setState({ posts }));
   }
 
   render() {
     return (
-      <div className="row">
+      <div className="home">
+        <div className="row">
+          <div className="col-sm-3 hidden-xs">
+            <Welcome />
+          </div>
+          <div className="col-xs-12 col-sm-6">
+            <CreatePost onSubmit={this.handlePostSubmit} />
+            {
+              this.state.loaded ?
+                <Posts posts={this.state.posts} />
+              : <div className="loader"><Loader type="line-scale" active={this.state.loaded} /> </div>
+            }
+            <button className="load-more text-center btn-lg btn btn-default btn-block" onClick={this.fetchPosts}>
+              Load more posts
+            </button>
+          </div>
+          <div className="col-sm-2 col-xs-12 last-xs">
+            <Ad
+              offset={50}
+              url="https://www.manning.com/books/react-in-action" imageUrl="https://drtzvj8zd0k9x.cloudfront.net/assets/ads/react+in+action+meap+ad.png"
+            />
 
-        {/* Main post area */}
-        <div className="col-xs-12 col-sm-offset-2 col-sm-8">
-
-          <CreatePost onSubmit={this.handlePostSubmit} />
-
-          {/* Loader */}
-          { this.state.loaded ?
-            <Posts posts={this.state.posts} />
-            :
-            <div className="loader"> <Loader type="line-scale" active={this.state.loaded} /></div>
-          }
-
+            <Ad
+              offset={350}
+              url="https://www.manning.com/books/react-in-action" imageUrl="https://drtzvj8zd0k9x.cloudfront.net/assets/ads/qPmLthz.png"
+            />
+          </div>
         </div>
       </div>
     );
