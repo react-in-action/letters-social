@@ -7,10 +7,10 @@ export const Welcome = () => {
       <div className="welcome">
         <h3>Welcome!</h3>
         <p>
-          If you're here, you're probably reading or heard about <a href="https://www.manning.com/books/react-in-action" target="_blank" rel="noopener noreferrer">React in Action</a>. This app, Letters Social, is built with <a rel="noopener noreferrer" href="https://facebook.github.io/react/">React</a> and is what you'll be building <a href="https://www.manning.com/books/react-in-action" rel="noopener noreferrer">in the book (React in Action)</a>.
+          If you're here, you're probably reading or heard about <a href="https://ifelse.io/book" target="_blank" rel="noopener noreferrer">React in Action</a>. This app, Letters Social, is built with <a rel="noopener noreferrer" href="https://facebook.github.io/react/">React</a> and is what you'll be building <a href="https://ifelse.io/book" rel="noopener noreferrer">in the book (React in Action)</a>.
         </p>
         <p>
-          <a href="https://www.manning.com/books/react-in-action" rel="noopener noreferrer">React in Action</a> explores
+          <a href="https://ifelse.io/book" rel="noopener noreferrer">React in Action</a> explores
           <ul>
             <li>Building a simple social app</li>
             <li>Learning about the fundamentals of React</li>

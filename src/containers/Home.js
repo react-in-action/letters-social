@@ -94,11 +94,11 @@ class Home extends Component {
             <AutoAffix viewportOffsetTop={50} container={this}>
               <div className="ads">
                 <Ad
-                  url="https://www.manning.com/books/react-in-action" imageUrl="https://drtzvj8zd0k9x.cloudfront.net/assets/ads/react+in+action+meap+ad.png"
+                  url="https://ifelse.io/book" imageUrl="https://drtzvj8zd0k9x.cloudfront.net/assets/ads/react+in+action+meap+ad.png"
                 />
 
                 <Ad
-                  url="https://www.manning.com/books/react-in-action"
+                  url="https://ifelse.io/book"
                   imageUrl="https://drtzvj8zd0k9x.cloudfront.net/assets/ads/Yl48tQw.jpg"
                 />
               </div>

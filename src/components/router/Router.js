@@ -4,7 +4,7 @@ import invariant from 'invariant';
 
 export class Router extends Component {
   static propTypes = {
-    children: PropTypes.node,
+    children: PropTypes.element.isRequired,
   }
 
   constructor(props) {
