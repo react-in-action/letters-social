@@ -103,7 +103,7 @@
     "node-uuid": "^1.4.7",
     "npm-run-all": "^3.1.0",
     "ora": "^0.3.0",
-    "postcss-loader": "^0.13.0",
+    "postcss-loader": "^1.0.0",
     "react": "^15.3.2",
     "react-addons-test-utils": "^15.3.1",
     "react-bootstrap": "^0.30.3",
@@ -121,6 +121,6 @@
     "webpack-md5-hash": "0.0.5"
   },
   "devDependencies": {
-    "react-scripts": "^0.6.1"
+    "react-scripts": "^0.7.0"
   }
 }
