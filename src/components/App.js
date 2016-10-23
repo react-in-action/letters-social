@@ -3,6 +3,7 @@ import storage from 'localforage';
 
 import Nav from './nav/navbar';
 import Welcome from './welcome/Welcome';
+import { Home } from '../containers/Home';
 
 import '../styles/styles.scss';
 
@@ -44,11 +45,12 @@ export class App extends React.Component {
   }
 
   render() {
+    const { children } = this.props;
     return (
       <div className="app">
         <Nav />
         <div className="container-fluid">
-          {this.props.children}
+          {children}
         </div>
       </div>
     );
