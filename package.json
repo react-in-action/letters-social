@@ -97,7 +97,7 @@
     "localforage": "^1.4.2",
     "lodash": "^4.16.4",
     "mkdirp": "^0.5.1",
-    "moment": "^2.13.0",
+    "moment": "^2.15.2",
     "morgan": "^1.7.0",
     "node-sass": "^3.9.3",
     "node-uuid": "^1.4.7",
