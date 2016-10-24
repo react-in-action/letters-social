@@ -16,9 +16,10 @@ const renderApp = (state) => {
       <Route path="/" index={Home} component={App}>
         <Route path="posts/:post" component={SinglePost} />
         <Route path="login" component={Login} />
+        <Route path="*" component={NotFound} />
       </Route>
-      <Route path="*" component={NotFound} />
-    </Router>, document.getElementById('app'),
+    </Router>,
+    document.getElementById('app'),
   );
 };
 
