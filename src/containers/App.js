@@ -1,9 +1,7 @@
 import React, { PropTypes } from 'react';
 import storage from 'localforage';
 
-import Nav from './nav/navbar';
-import Welcome from './welcome/Welcome';
-import { Home } from '../containers/Home';
+import Nav from '../components/nav/navbar';
 
 import '../styles/styles.scss';
 

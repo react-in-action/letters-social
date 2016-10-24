@@ -30,7 +30,7 @@ export class Router extends Component {
   }
 
   addRoute(element, parent) {
-    // Get the component, path, index, and children props from a given child
+  // Get the component, path, index, and children props from a given child
     const { component, path, children, index } = element.props;
 
     console.debug(`Adding path: ${path}`);

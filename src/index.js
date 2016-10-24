@@ -1,7 +1,7 @@
 import React from 'react';
 import { render } from 'react-dom';
 
-import { App } from './components/App';
+import { App } from './containers/App';
 import { Home, SinglePost, Login, NotFound } from './containers';
 import { Router, Route } from './components/router';
 import { history } from './history';
@@ -21,6 +21,10 @@ const renderApp = (state) => {
     </Router>,
     document.getElementById('app'),
   );
+};
+
+const initialState = {
+  location: window.location.pathname,
 };
 
 // When there's a history change, re-render the app
@@ -53,9 +57,6 @@ function activateAuthListener() {
   });
 }
 
-const initialState = {
-  location: window.location.pathname,
-};
 
 // Render the app initially
 renderApp(initialState);

@@ -1,5 +1,5 @@
 import { PropTypes, Children, Component, cloneElement } from 'react';
-import { navigate } from '../../history';
+import { navigate } from '../../history/';
 
 class Link extends Component {
   static propTypes = {
