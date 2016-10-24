@@ -23,6 +23,7 @@ const renderApp = (state) => {
   );
 };
 
+// Create an intial state object to use
 const initialState = {
   location: window.location.pathname,
 };
@@ -41,20 +42,14 @@ function activateHistoryListener() {
   });
 }
 
+// Set up the auth listener
 function activateAuthListener() {
-  firebase.auth().onAuthStateChanged((user) => {
-    const currentLocation = window.location.pathname;
-    if (currentLocation === '/') {
-      history.push(user
-                ? window.location.pathname
-                : '/login');
+  firebase.auth().onAuthStateChanged(((user) => {
+    if (user && window.location.pathname === '/login') {
+      return history.push('/');
     }
-
-        // Ensure user gets redirected after they log in
-    if (user && currentLocation === '/login') {
-      history.push('/');
-    }
-  });
+    return history.push(user ? window.location.pathname : '/login');
+  }));
 }
 
 
