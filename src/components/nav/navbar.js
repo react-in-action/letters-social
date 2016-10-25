@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 
 import { logout, firebase } from '../../backend';
-import { history } from '../../history';
-
 import { Link } from '../router';
 import Logo from './logo';
 
@@ -19,10 +17,7 @@ class Navigation extends Component {
   }
 
   handleLogout() {
-    logout().then(() => {
-      this.setState({ user: null });
-      history.push('/login');
-    });
+    logout().then(() => this.setState({ user: null }));
   }
 
   render() {
