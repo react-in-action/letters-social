@@ -12,7 +12,6 @@ class Home extends Component {
   constructor(props) {
     super(props);
     this.handlePostSubmit = this.handlePostSubmit.bind(this);
-    this.fetchPosts = this.fetchPosts.bind(this);
     this.state = {
       nPosts: 5,
       posts: [],
@@ -59,15 +58,12 @@ class Home extends Component {
       });
   }
 
-  fetchPosts(increment = true) {
+  fetchPosts(increment = false) {
     const limit = 5;
-    this.setState((state) => {
-      return {
-        nPosts: increment ? state.nPosts + limit : state.nPosts,
-      };
-    });
+    const nPosts = increment ? this.state.nPosts + limit : this.state.nPosts;
+    this.setState({ nPosts });
 
-    return fetch(`${process.env.ENDPOINT}/posts?_limit=${this.state.nPosts}&_sort=date&_order=DESC`)
+    return fetch(`${process.env.ENDPOINT}/posts?_limit=${nPosts}&_sort=date&_order=DESC`)
         .then(res => res.json())
         .then(posts => this.setState({ posts }));
   }
