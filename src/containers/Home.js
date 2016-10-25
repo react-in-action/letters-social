@@ -59,14 +59,14 @@ class Home extends Component {
       });
   }
 
-  fetchPosts() {
+  fetchPosts(increment = true) {
     const limit = 5;
     this.setState((state) => {
       return {
-        nPosts: state.nPosts + limit,
+        nPosts: increment ? state.nPosts + limit : state.nPosts,
       };
     });
-    // Fetch posts
+
     return fetch(`${process.env.ENDPOINT}/posts?_limit=${this.state.nPosts}&_sort=date&_order=DESC`)
         .then(res => res.json())
         .then(posts => this.setState({ posts }));
@@ -86,7 +86,7 @@ class Home extends Component {
                 <Posts posts={this.state.posts} />
               : <div className="loader"><Loader type="line-scale" active={this.state.loaded} /> </div>
             }
-            <button className="load-more text-center btn-lg btn btn-default btn-block" onClick={this.fetchPosts}>
+            <button className="load-more text-center btn-lg btn btn-default btn-block" onClick={() => this.fetchPosts(true)}>
               Load more posts
             </button>
           </div>

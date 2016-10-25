@@ -3428,9 +3428,9 @@ find-versions@^1.0.0:
     meow "^3.5.0"
     semver-regex "^1.0.0"
 
-firebase@^3.3.0:
-  version "3.5.1"
-  resolved "https://registry.yarnpkg.com/firebase/-/firebase-3.5.1.tgz#1e689252f1b74985b4e18d052662eb4a01b5cfd2"
+firebase@^3.5.1:
+  version "3.5.2"
+  resolved "https://registry.yarnpkg.com/firebase/-/firebase-3.5.2.tgz#c7ab9ab0ad30bc4d4b8499c1778180a451b54653"
   dependencies:
     dom-storage "2.0.2"
     faye-websocket "0.9.3"
@@ -3927,7 +3927,7 @@ html-minifier@^3.1.0:
     relateurl "0.2.x"
     uglify-js "2.7.x"
 
-html-webpack-plugin@^2.22.0, html-webpack-plugin@2.24.0:
+html-webpack-plugin@^2.24.0, html-webpack-plugin@2.24.0:
   version "2.24.0"
   resolved "https://registry.yarnpkg.com/html-webpack-plugin/-/html-webpack-plugin-2.24.0.tgz#53697cea79a9f3cd1f8c239ac71f949d5673cacb"
   dependencies:
