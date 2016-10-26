@@ -1,0 +1,5 @@
+exports[`test Profile should render correctly 1`] = `
+<div>
+  profile will go here!
+</div>
+`;

@@ -1,0 +1,150 @@
+exports[`test Login should render correctly 1`] = `
+<div
+  className="container">
+  <div
+    className="row middle-xs text-center">
+    <div
+      className="col-xs-12 col-sm-6 col-sm-offset-3">
+      <h1>
+        Welcome to Letters Social!
+        <br />
+      </h1>
+      <br />
+      <p>
+        This is a sample app built with 
+        <a
+          href="https://facebook.github.io/react/"
+          rel="noopener noreferrer"
+          target="_blank">
+          React
+        </a>
+         for 
+        <em>
+          React in Action
+        </em>
+         by me (Mark Thomas). Feel free to sign in with one of the tools below or use an email and password. The app will never post, email, or do anything without your permission, it is just for learning purposes
+      </p>
+      <br />
+    </div>
+  </div>
+  <div
+    className="row">
+    <div
+      className="col-xs-12 col-sm-6 col-sm-offset-3">
+      <form>
+        <div
+          className="form-group text-left">
+          <label
+            htmlFor="email">
+            Email address
+          </label>
+          <input
+            className="form-control"
+            name="email"
+            onChange={[Function]}
+            type="text"
+            value="" />
+        </div>
+        <div
+          className="form-group text-left">
+          <label
+            htmlFor="password">
+            Password
+          </label>
+          <input
+            className="form-control"
+            name="password"
+            onChange={[Function]}
+            type="password"
+            value={undefined} />
+        </div>
+        <div
+          className="row center-xs">
+          <div
+            className="col-xs-12 col-sm-6">
+            <button
+              className="btn btn-success btn-block"
+              onClick={[Function]}>
+              Login
+            </button>
+          </div>
+          <div
+            className="col-xs-12 col-sm-6">
+            <button
+              className="btn btn-default btn-block"
+              onClick={[Function]}>
+              signup
+            </button>
+          </div>
+        </div>
+        <br />
+        <div
+          className="row center-xs">
+          <div
+            className="col-xs-12">
+            <button
+              className="btn btn-default btn-block"
+              onClick={[Function]}>
+              <i
+                className="fa fa-github" />
+               log in with Github
+            </button>
+          </div>
+        </div>
+        <br />
+        <div
+          className="row center-xs">
+          <div
+            className="col-xs-12 col-md-4">
+            <button
+              className="btn btn-default"
+              onClick={[Function]}
+              style={
+                Object {
+                  "backgroundColor": "#CE0B24",
+                  "color": "#fff",
+                }
+              }>
+              <i
+                className="fa fa-google" />
+               log in with Google
+            </button>
+          </div>
+          <div
+            className="col-xs-12 col-md-4">
+            <button
+              className="btn btn-default"
+              onClick={[Function]}
+              style={
+                Object {
+                  "backgroundColor": "#2AA3EF",
+                  "color": "#fff",
+                }
+              }>
+              <i
+                className="fa fa-twitter" />
+               log in with Twitter
+            </button>
+          </div>
+          <div
+            className="col-xs-12 col-md-4">
+            <button
+              className="btn btn-default"
+              onClick={[Function]}
+              style={
+                Object {
+                  "backgroundColor": "#3c5A96",
+                  "color": "#fff",
+                }
+              }>
+              <i
+                className="fa fa-facebook" />
+               log in with Facebook
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+`;

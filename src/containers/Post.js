@@ -3,8 +3,8 @@ import fetch from 'isomorphic-fetch';
 import { AutoAffix } from 'react-overlays';
 
 import { Ad } from '../components/ad/Ad';
-import { Post } from '../components/post';
-import { Link } from '../components/router';
+import { Post } from '../components/post/Post';
+import { Link } from '../components/router/Link';
 
 export class SinglePost extends Component {
   static propTypes = {
