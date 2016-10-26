@@ -46,7 +46,7 @@
     "babel-core": "^6.14.0",
     "babel-eslint": "^7.0.0",
     "babel-jest": "^16.0.0",
-    "babel-loader": "^6.2.5",
+    "babel-loader": "^6.2.6",
     "babel-plugin-react-display-name": "^2.0.0",
     "babel-plugin-transform-class-properties": "^6.10.2",
     "babel-plugin-transform-regenerator": "^6.14.0",
