@@ -2,6 +2,7 @@
 logs
 *.log
 npm-debug.log*
+.sass-cache
 
 # Runtime data
 db/seed-compiled.js
@@ -35,3 +36,6 @@ node_modules
 # Optional REPL history
 .node_repl_history
 .DS_Store
+
+public/styles.*
+public/styles

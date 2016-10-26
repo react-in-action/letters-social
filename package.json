@@ -2,27 +2,24 @@
   "name": "letters-social",
   "version": "0.2.0",
   "description": "A newsfeed application for Letters.",
-  "main": "./src/components/app.js",
-  "ava": {
-    "require": [
-      "babel-register"
-    ],
-    "babel": "inherit"
-  },
+  "main": "./src/index.js",
   "scripts": {
     "api:dev": "json-server db/seed/db.json -r db/routes.json -p 3500 -s db/backups",
     "api:prod": "json-server db/seed/db.json -r db/routes.json -p ${ENDPOINT_PORT} -s db/backups",
     "build:app": "babel-node build/build.js",
+    "build:client": "react-scripts build",
+    "client:dev": "react-scripts start",
+    "client:test": "react-scripts test --env=jsdom",
     "build:all": "npm-run-all build:app build:server copy:html db:seed",
     "build:server": "babel server/*.js --babelrc=true --ignore='node_modules, coverage, docs, dist' --compact='true' --minified --no-comments --out-dir dist",
     "copy:html": "cp -r src/index.html dist",
-    "dev": "npm-run-all --parallel api:dev start:dev",
+    "dev": "npm-run-all --parallel api:dev client:dev",
     "postinstall": "npm run welcome && npm run build:all",
     "db:seed": "babel-node db/seed.js",
+    "dev:client": "react-scripts start",
     "start:dev": "babel-node run/dev.js",
     "rundep": "react-scripts start",
     "start": "node --optimize_for_size dist/server/run.js",
-    "test": "ava",
     "welcome": "node run/welcome.js"
   },
   "repository": {
@@ -112,6 +109,7 @@
     "react-dom": "^15.3.2",
     "react-loaders": "^2.1.1",
     "react-overlays": "^0.6.10",
+    "react-scripts": "^0.7.0",
     "react-test-renderer": "^15.3.2",
     "response-time": "^2.3.1",
     "sass-loader": "^4.0.2",

@@ -7,8 +7,6 @@ import { Router, Route } from './components/router';
 import { history } from './history';
 import { firebase } from './backend';
 
-import './styles/styles.scss';
-
 // Function that wraps ReactDOM.render and renders the app w/ current location
 const renderApp = (state) => {
   render(

@@ -3,8 +3,6 @@ import storage from 'localforage';
 
 import Nav from '../components/nav/navbar';
 
-import '../styles/styles.scss';
-
 export class App extends React.Component {
 
   static propTypes = {
