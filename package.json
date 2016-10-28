@@ -105,7 +105,7 @@
     "node-uuid": "^1.4.7",
     "npm-run-all": "^3.1.0",
     "ora": "^0.3.0",
-    "postcss-loader": "^1.0.0",
+    "postcss-loader": "^1.1.0",
     "react": "^15.3.2",
     "react-addons-test-utils": "^15.3.1",
     "react-bootstrap": "^0.30.3",
