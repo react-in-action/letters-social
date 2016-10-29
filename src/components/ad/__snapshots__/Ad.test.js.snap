@@ -1,0 +1,35 @@
+exports[`<Ad/> should render correctly 1`] = `
+<div
+  className="ad">
+  <a
+    href={undefined}
+    rel="noreferrer noopener"
+    target="_blank">
+    <img
+      alt="React in Action by Mark Thomas | Manning Publications"
+      className="img-responsive"
+      src={undefined} />
+  </a>
+  <small>
+    ads by Letters
+  </small>
+</div>
+`;
+
+exports[`<Ad/> should show a login option with user state 1`] = `
+<div
+  className="ad">
+  <a
+    href={undefined}
+    rel="noreferrer noopener"
+    target="_blank">
+    <img
+      alt="React in Action by Mark Thomas | Manning Publications"
+      className="img-responsive"
+      src={undefined} />
+  </a>
+  <small>
+    ads by Letters
+  </small>
+</div>
+`;

@@ -3,8 +3,16 @@ import renderer from 'react-test-renderer';
 
 import { App } from './App';
 
-test('App should render correctly', () => {
-  const component = renderer.create(<App />);
-  const tree = component.toJSON();
-  expect(tree).toMatchSnapshot();
+describe('<App/>', () => {
+  it('should render correctly', () => {
+    const component = renderer.create(<App />);
+    const tree = component.toJSON();
+    expect(tree).toMatchSnapshot();
+  });
+  it('should have at at least navbar and router output children', () => {
+    const component = renderer.create(<App />);
+    const tree = component.toJSON();
+    expect(tree.children.length).toBeGreaterThanOrEqual(2);
+    expect(tree).toMatchSnapshot();
+  });
 });
