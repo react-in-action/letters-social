@@ -43,7 +43,7 @@
   },
   "homepage": "https://github.com/react-in-action/letters-social#readme",
   "dependencies": {
-    "autoprefixer": "^6.5.0",
+    "autoprefixer": "^6.5.3",
     "axios": "^0.15.0",
     "babel-cli": "^6.14.0",
     "babel-core": "^6.14.0",
