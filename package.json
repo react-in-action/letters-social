@@ -67,7 +67,7 @@
     "css-loader": "^0.25.0",
     "enroute": "^1.0.1",
     "environs": "^0.4.1",
-    "enzyme": "^2.3.0",
+    "enzyme": "^2.6.0",
     "express": "^4.14.0",
     "extract-text-webpack-plugin": "^2.0.0-beta.4",
     "faker": "^3.1.0",
