@@ -105,7 +105,7 @@
     "babel-preset-jest": "^16.0.0",
     "babel-preset-react": "^6.16.0",
     "enzyme": "^2.6.0",
-    "eslint": "^3.10.0",
+    "eslint": "^3.10.1",
     "eslint-config-airbnb": "^13.0.0",
     "eslint-plugin-import": "^2.2.0",
     "eslint-plugin-jsx-a11y": "^3.0.1",
