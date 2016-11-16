@@ -88,7 +88,7 @@
     "react": "^15.3.2",
     "react-addons-test-utils": "^15.3.1",
     "react-bootstrap": "^0.30.6",
-    "react-dom": "^15.3.2",
+    "react-dom": "^15.4.0",
     "react-loaders": "^2.1.1",
     "react-overlays": "^0.6.10",
     "react-scripts": "^0.7.0",
