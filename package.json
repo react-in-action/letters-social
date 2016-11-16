@@ -86,7 +86,7 @@
     "node-uuid": "^1.4.7",
     "ora": "^0.3.0",
     "react": "^15.3.2",
-    "react-addons-test-utils": "^15.3.1",
+    "react-addons-test-utils": "^15.4.0",
     "react-bootstrap": "^0.30.6",
     "react-dom": "^15.3.2",
     "react-loaders": "^2.1.1",
