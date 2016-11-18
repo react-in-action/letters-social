@@ -1,4 +1,4 @@
-exports[`test Login should render correctly 1`] = `
+exports[`<Login/> Login should render correctly 1`] = `
 <div
   className="container">
   <div
@@ -33,52 +33,6 @@ exports[`test Login should render correctly 1`] = `
       className="col-xs-12 col-sm-6 col-sm-offset-3">
       <form>
         <div
-          className="form-group text-left">
-          <label
-            htmlFor="email">
-            Email address
-          </label>
-          <input
-            className="form-control"
-            name="email"
-            onChange={[Function]}
-            type="text"
-            value="" />
-        </div>
-        <div
-          className="form-group text-left">
-          <label
-            htmlFor="password">
-            Password
-          </label>
-          <input
-            className="form-control"
-            name="password"
-            onChange={[Function]}
-            type="password"
-            value={undefined} />
-        </div>
-        <div
-          className="row center-xs">
-          <div
-            className="col-xs-12 col-sm-6">
-            <button
-              className="btn btn-success btn-block"
-              onClick={[Function]}>
-              Login
-            </button>
-          </div>
-          <div
-            className="col-xs-12 col-sm-6">
-            <button
-              className="btn btn-default btn-block"
-              onClick={[Function]}>
-              signup
-            </button>
-          </div>
-        </div>
-        <br />
-        <div
           className="row center-xs">
           <div
             className="col-xs-12">
@@ -88,58 +42,6 @@ exports[`test Login should render correctly 1`] = `
               <i
                 className="fa fa-github" />
                log in with Github
-            </button>
-          </div>
-        </div>
-        <br />
-        <div
-          className="row center-xs">
-          <div
-            className="col-xs-12 col-md-4">
-            <button
-              className="btn btn-default"
-              onClick={[Function]}
-              style={
-                Object {
-                  "backgroundColor": "#CE0B24",
-                  "color": "#fff",
-                }
-              }>
-              <i
-                className="fa fa-google" />
-               log in with Google
-            </button>
-          </div>
-          <div
-            className="col-xs-12 col-md-4">
-            <button
-              className="btn btn-default"
-              onClick={[Function]}
-              style={
-                Object {
-                  "backgroundColor": "#2AA3EF",
-                  "color": "#fff",
-                }
-              }>
-              <i
-                className="fa fa-twitter" />
-               log in with Twitter
-            </button>
-          </div>
-          <div
-            className="col-xs-12 col-md-4">
-            <button
-              className="btn btn-default"
-              onClick={[Function]}
-              style={
-                Object {
-                  "backgroundColor": "#3c5A96",
-                  "color": "#fff",
-                }
-              }>
-              <i
-                className="fa fa-facebook" />
-               log in with Facebook
             </button>
           </div>
         </div>

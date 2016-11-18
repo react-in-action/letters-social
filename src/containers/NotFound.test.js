@@ -3,7 +3,7 @@ import renderer from 'react-test-renderer';
 
 import { NotFound } from './NotFound';
 
-test('App should render correctly', () => {
+test('NotFound should render correctly', () => {
   const component = renderer.create(
     <NotFound />
   );

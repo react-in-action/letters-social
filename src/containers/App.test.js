@@ -9,6 +9,12 @@ describe('<App/>', () => {
     const tree = component.toJSON();
     expect(tree).toMatchSnapshot();
   });
+  it('should have the right classname and element type', () => {
+    const component = renderer.create(<App/>);
+    const tree = component.toJSON();
+    expect(tree.props.className).toBe('app');
+    expect(tree.type).toBe('div');
+  });
   it('should have at at least navbar and router output children', () => {
     const component = renderer.create(<App />);
     const tree = component.toJSON();

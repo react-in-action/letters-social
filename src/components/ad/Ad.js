@@ -15,7 +15,6 @@ const Ad = (props) => {
 Ad.propTypes = {
   imageUrl: PropTypes.string,
   url: PropTypes.string,
-  offset: PropTypes.number,
 };
 
 export { Ad };

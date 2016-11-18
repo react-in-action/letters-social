@@ -1,17 +1,10 @@
-import { join } from 'path';
 import { name, internet, lorem, date, random } from 'faker';
-import { promisify } from 'bluebird';
-import mkdirp from 'mkdirp';
 import { sample, sampleSize, random as rand } from 'lodash';
 import { v4 as uuid } from 'node-uuid';
-import { writeFile } from 'fs';
-import ora from 'ora';
 
 import { categories } from './constants';
 
-const write = promisify(writeFile);
-
-function generateProfilePicture() {
+export function generateProfilePicture() {
   const pics = [];
   for (let i = 0; i < 15; i++) {
     pics.push(`https://drtzvj8zd0k9x.cloudfront.net/assets/profile-pictures/${i + 1}.png`);
@@ -23,7 +16,7 @@ function generateProfilePicture() {
 const createProfilePicture = generateProfilePicture();
 
 
-function generateShareablePicture() {
+export function generateShareablePicture() {
   const pics = [];
   for (let i = 0; i < 50; i++) {
     pics.push(`https://drtzvj8zd0k9x.cloudfront.net/assets/post-images/${i + 1}.jpg`);
@@ -32,7 +25,14 @@ function generateShareablePicture() {
     return sample(pics);
   };
 }
+
 const createShareableImage = generateShareablePicture();
+
+// possible categories
+
+export function returnCategories() {
+  return sampleSize(categories, rand(1, 15));
+}
 
 export class User {
   constructor() {
@@ -46,11 +46,6 @@ export class User {
   }
 }
 
-// possible categories
-
-function returnCategories() {
-  return sampleSize(categories, rand(1, 15));
-}
 export class Post {
   constructor(user) {
     this.id = uuid();
@@ -78,54 +73,3 @@ export class Comment {
     this.user = user;
   }
 }
-
-function generateUsers(n) {
-  const users = [];
-  for (let i = 0; i < n; i++) {
-    users.push(new User());
-  }
-  return users;
-}
-
-function generateComments(n: number, users: Array<any>) {
-  const comments = [];
-  for (let i = 0; i < n; i++) {
-    comments.push(new Comment(sample(users)));
-  }
-  return comments;
-}
-
-function generatePosts(n: number, users: Array<User>, comments: Array<Comment>) {
-  const posts = [];
-  for (let i = 0; i < n; i++) {
-    const newPost = new Post(sample(users));
-    newPost.comments = sampleSize(comments, random.number(7));
-    posts.push(newPost);
-  }
-  return posts;
-}
-
-export function seed(nUsers: number = 500, nPosts: number = 2000, nComments: number = 750) {
-  const spinner = ora('Generating sample data...').start();
-  mkdirp.sync(join(__dirname, 'seed'));
-  const users = generateUsers(nUsers);
-  const comments = generateComments(nComments, users);
-  const posts = generatePosts(nPosts, users, comments);
-  Promise.all([
-    write(join(__dirname, 'seed', 'db.json'), JSON.stringify({
-      users,
-      posts,
-      comments,
-    })),
-  ])
-  .then(() => {
-    spinner.text = '🎉 🎉 🎉 🎉  Done writing sample data 🎉 🎉 🎉 🎉';
-    setTimeout(() => spinner.stop(), 2000);
-  })
-  .catch((err) => {
-    console.error(err);
-    setTimeout(() => spinner.stop());
-  });
-}
-
-seed();

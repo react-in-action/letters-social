@@ -9,7 +9,7 @@ const GLOBALS = {
 };
 
 export default {
-  devtool: 'cheap-module-eval-source-map',
+  devtool: 'source-map',
   entry: [
     'webpack-hot-middleware/client?reload=true',
     './src/index',

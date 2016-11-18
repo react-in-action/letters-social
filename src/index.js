@@ -10,7 +10,7 @@ import { firebase } from './backend';
 import './styles/styles.scss';
 
 // Function that wraps ReactDOM.render and renders the app w/ current location
-const renderApp = (state) => {
+export const renderApp = (state) => {
   render(
     <Router {...state}>
       <Route path="/" index={Home} component={App}>
@@ -29,7 +29,7 @@ const initialState = {
 };
 
 // When there's a history change, re-render the app
-function activateHistoryListener() {
+export function activateHistoryListener() {
   history.listen((location) => {
     const user = firebase.auth().currentUser;
     const newState = Object.assign(initialState, {
@@ -43,7 +43,7 @@ function activateHistoryListener() {
 }
 
 // Set up the auth listener
-function activateAuthListener() {
+export function activateAuthListener() {
   firebase.auth().onAuthStateChanged(((user) => {
     if (user && window.location.pathname === '/login') {
       return history.push('/');

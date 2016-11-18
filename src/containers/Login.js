@@ -4,84 +4,16 @@ import { signup, login, loginWithGithub, loginWithGoogle, loginWithTwitter, logi
 export class Login extends Component {
   constructor(props) {
     super(props);
-
-    this.handleEmailChange = this.handleEmailChange.bind(this);
-    this.handlePasswordChange = this.handlePasswordChange.bind(this);
-
-    this.handleSignup = this.handleSignup.bind(this);
-    this.handleLogin = this.handleLogin.bind(this);
-
-    this.handleGoogleLogin = this.handleGoogleLogin.bind(this);
-    this.handleTwitterLogin = this.handleTwitterLogin.bind(this);
-    this.handleFacebookLogin = this.handleFacebookLogin.bind(this);
     this.handleGithubLogin = this.handleGithubLogin.bind(this);
-
     this.state = {
-      email: '',
-      username: '',
       hasErrors: false,
       error: null,
     };
-  }
-  handleEmailChange(e) {
-    this.setState({
-      email: e.target.value.trim(),
-    });
-  }
-
-  handlePasswordChange(e) {
-    this.setState({
-      password: e.target.value.trim(),
-    });
-  }
-
-  handleLogin(event) {
-    event.preventDefault();
-    const { email, password } = this.state;
-    if (email && password) {
-      login(email, password)
-      .then(() => console.log('logged in!'))
-      .catch((error) => {
-        this.setState({
-          hasErrors: true,
-          error,
-        });
-      });
-    }
-  }
-
-  handleSignup(event) {
-    event.preventDefault();
-    const { email, password } = this.state;
-    if (email && password) {
-      signup(email, password)
-      .then(() => console.log('logged in!'))
-      .catch(error => this.handleAuthError(error));
-    }
-  }
-
-  loginWithProvider(provider) {
-    provider().catch(err => this.handleAuthError(err));
-  }
-
-  handleFacebookLogin(e) {
-    e.preventDefault();
-    loginWithFacebook().catch(err => this.handleAuthError(err));
-  }
-
-  handleGoogleLogin(e) {
-    e.preventDefault();
-    loginWithGoogle().catch(err => this.handleAuthError(err));
   }
 
   handleGithubLogin(e) {
     e.preventDefault();
     loginWithGithub().catch(err => this.handleAuthError(err));
-  }
-
-  handleTwitterLogin(e) {
-    e.preventDefault();
-    loginWithTwitter().catch(err => this.handleAuthError(err));
   }
 
   handleAuthError(error) {
@@ -109,73 +41,10 @@ export class Login extends Component {
         <div className="row">
           <div className="col-xs-12 col-sm-6 col-sm-offset-3">
             <form>
-              <div className="form-group text-left">
-                <label htmlFor="email">Email address</label>
-                <input
-                  className="form-control"
-                  value={this.state.email}
-                  name="email"
-                  onChange={this.handleEmailChange}
-                  type="text"
-                />
-              </div>
-              <div className="form-group text-left">
-                <label htmlFor="password">Password</label>
-                <input
-                  className="form-control"
-                  value={this.state.password}
-                  onChange={this.handlePasswordChange}
-                  type="password"
-                  name="password"
-                />
-              </div>
-
-              {
-                this.state.hasErrors &&
-                  <div role="alert" className="alert alert-danger">
-                    <i className="fa fa-times" /> {this.state.error.message}
-                  </div>
-              }
-
-              <div className="row center-xs">
-                <div className="col-xs-12 col-sm-6">
-                  <button onClick={this.handleLogin} className="btn btn-success btn-block">
-                    Login
-                  </button>
-                </div>
-                <div className="col-xs-12 col-sm-6">
-                  <button onClick={this.handleSignup} className="btn btn-default btn-block">
-                    signup
-                  </button>
-                </div>
-              </div>
-
-              <br />
-
               <div className="row center-xs">
                 <div className="col-xs-12">
                   <button onClick={this.handleGithubLogin} className="btn btn-default btn-block">
                     <i className="fa fa-github" /> log in with Github
-                  </button>
-                </div>
-              </div>
-
-              <br />
-
-              <div className="row center-xs">
-                <div className="col-xs-12 col-md-4">
-                  <button style={{ backgroundColor: '#CE0B24', color: '#fff' }} onClick={this.handleGoogleLogin} className="btn btn-default">
-                    <i className="fa fa-google" /> log in with Google
-                  </button>
-                </div>
-                <div className="col-xs-12 col-md-4">
-                  <button style={{ backgroundColor: '#2AA3EF', color: '#fff' }} onClick={this.handleTwitterLogin} className="btn btn-default">
-                    <i className="fa fa-twitter" /> log in with Twitter
-                  </button>
-                </div>
-                <div className="col-xs-12 col-md-4">
-                  <button style={{ backgroundColor: '#3c5A96', color: '#fff' }} onClick={this.handleFacebookLogin} className="btn btn-default">
-                    <i className="fa fa-facebook" /> log in with Facebook
                   </button>
                 </div>
               </div>
