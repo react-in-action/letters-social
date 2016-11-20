@@ -1,6 +1,7 @@
 import React, { PropTypes, Component } from 'react';
-import fetch from 'isomorphic-fetch';
 import { AutoAffix } from 'react-overlays';
+
+import { fetchpost } from '../shared/http';
 
 import { Ad } from '../components/ad/Ad';
 import { Post } from '../components/post/Post';
@@ -20,9 +21,7 @@ export class SinglePost extends Component {
   }
 
   componentDidMount() {
-    fetch(`${process.env.ENDPOINT}/posts/${this.props.params.post}`)
-        .then(res => res.json())
-        .then(post => this.setState({ post }));
+    fetchpost(this.props.params.post).then(post => this.setState({ post }));
   }
 
   render() {

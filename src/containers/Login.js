@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { signup, login, loginWithGithub, loginWithGoogle, loginWithTwitter, loginWithFacebook } from '../backend';
+import { loginWithGithub } from '../backend';
 
 export class Login extends Component {
   constructor(props) {

@@ -10,6 +10,14 @@ export function fetchPosts(n = 5) {
   return new Promise(resolve => resolve(parsedReturnPayload));
 }
 
+export function fetchPost(id) {
+  if (!id) {
+    throw new Error('Cannot fetch post without ID');
+  }
+  return new Promise(resolve => resolve(
+    JSON.parse(JSON.stringify(new Post())))
+  );
+}
 
 export function createPost(payload) {
   if (!payload) {

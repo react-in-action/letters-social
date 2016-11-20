@@ -37,32 +37,32 @@ export default {
       {
         test: /\.jsx?$/,
         exclude: /node_modules/,
-        loader: 'babel',
+        loader: 'babel-loader',
       }, {
         test: /\.eot(\?v=\d+.\d+.\d+)?$/,
-        loader: 'url?name=[name].[ext]',
+        loader: 'url-loader?name=[name].[ext]',
       }, {
         test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
-        loader: 'url?limit=10000&mimetype=application/font-woff&name=[name].[ext]',
+        loader: 'url-loader?limit=10000&mimetype=application/font-woff&name=[name].[ext]',
       }, {
         test: /\.ttf(\?v=\d+.\d+.\d+)?$/,
-        loader: 'url?limit=10000&mimetype=application/octet-stream&name=[name].[ext]',
+        loader: 'url-loader?limit=10000&mimetype=application/octet-stream&name=[name].[ext]',
       }, {
         test: /\.svg(\?v=\d+.\d+.\d+)?$/,
-        loader: 'url?limit=10000&mimetype=image/svg+xml&name=[name].[ext]',
+        loader: 'url-loader?limit=10000&mimetype=image/svg+xml&name=[name].[ext]',
       }, {
         test: /\.(jpe?g|png|gif)$/i,
-        loader: 'file?name=[name].[ext]',
+        loader: 'file-loader?name=[name].[ext]',
       }, {
         test: /\.json$/,
-        loader: 'json',
+        loader: 'json-loader',
       }, {
         test: /\.ico$/,
-        loader: 'file?name=[name].[ext]',
+        loader: 'file-loader?name=[name].[ext]',
       },
       {
         test: /(\.css|\.scss)$/,
-        loader: ExtractTextPlugin.extract('css?sourceMap!postcss!sass?sourceMap'),
+        loader: ExtractTextPlugin.extract('css-loader?sourceMap!postcss-loader!sass-loader?sourceMap'),
       },
     ],
   },

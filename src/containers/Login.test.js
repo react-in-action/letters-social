@@ -9,7 +9,4 @@ describe('<Login/>', () => {
     const tree = component.toJSON();
     expect(tree).toMatchSnapshot();
   });
-  it('should ', function () {
-
-  });
 });

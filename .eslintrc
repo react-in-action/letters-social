@@ -25,7 +25,8 @@
     "mocha": true
   },
   "rules": {
-    "object-curly-spacing": [1, 'always'],
+    "object-curly-spacing": [1, "always"],
+    "prefer-arrow-callback": [1, "always"],
     "quotes": 0,
     "no-console": 1,
     "no-debugger": 1,

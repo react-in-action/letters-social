@@ -17,4 +17,10 @@ export function createPost(payload) {
   return fetch(`${process.env.ENDPOINT}/posts`, requestOptions).then(res => res.json());
 }
 
-export const fetchPosts = (n) => fetch(`${process.env.ENDPOINT}/posts?_limit=${n}&_sort=date&_order=DESC`).then(res => res.json());
+export function fetchPosts(n) {
+ return fetch(`${process.env.ENDPOINT}/posts?_limit=${n}&_sort=date&_order=DESC`).then(res => res.json());
+}
+
+export function fetchPost(id) {
+  return fetch(`${process.env.ENDPOINT}/posts/${n}`).then(res => res.json());
+}

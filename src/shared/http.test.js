@@ -1,11 +1,10 @@
 jest.mock('./http');
-import { fetchPosts, createPost } from './http';
+import { fetchPosts, createPost, fetchPost } from './http';
 
 describe('fetchPosts', () => {
   it('should sould fetch posts',  async () => {
     const posts = await fetchPosts(3);
-    const morePosts = await fetchPosts(10);
-    expect(posts.length).toBe(3);
+    expect(fetchPosts(10).length).toBe(3);
     expect(morePosts.length).toBe(10);
     expect(posts[0]).toBeInstanceOf(Object);
   });
@@ -24,5 +23,15 @@ describe('createPost', () => {
     const newPost = await createPost({ content: 'A post!' });
     expect(newPost).not.toBe(null);
     expect(newPost.id).toBeDefined();
+  });
+});
+
+describe('fetchPost', () => {
+  it('should fetch a post for you', async () => {
+    const newPost = await fetchPost('12345');
+    expect(newPost.id).toBeDefined();
+  });
+  it('should throw an error without an ID', async () => {
+    expect(() => fetchPost()).toThrow();
   });
 });
