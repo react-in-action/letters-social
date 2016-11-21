@@ -3,8 +3,9 @@ machine:
     - mkdir ~/.yarn-cache
   node:
     version: stable
-artifacts:
-    - ./coverage
+general:
+  artifacts:
+      - ./coverage
 dependencies:
   pre:
     - curl -o- -L https://yarnpkg.com/install.sh | bash
