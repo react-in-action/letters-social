@@ -21,6 +21,7 @@
     "stlyes": "node-sass src/styles/styles.scss -o public/",
     "start:dev": "babel-node run/dev.js",
     "rundep": "react-scripts start",
+    "test": "npm run client:test",
     "start": "node --optimize_for_size dist/server/run.js",
     "welcome": "node run/welcome.js"
   },
@@ -120,6 +121,7 @@
   "devDependencies": {
     "jest-enzyme": "^2.0.0",
     "nock": "^9.0.2",
+    "nyc": "^9.0.1",
     "sinon": "^1.17.6"
   }
 }

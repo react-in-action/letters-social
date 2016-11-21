@@ -21,7 +21,7 @@ class Post extends Component {
               <User post={post} />
               <Content post={post} />
               <Image post={post} />
-              <Link post={post} />
+              <Link link={post.link} />
             </div>
           </RouterLink>
 

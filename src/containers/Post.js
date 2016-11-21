@@ -1,7 +1,7 @@
 import React, { PropTypes, Component } from 'react';
 import { AutoAffix } from 'react-overlays';
 
-import { fetchpost } from '../shared/http';
+import { fetchPost } from '../shared/http';
 
 import { Ad } from '../components/ad/Ad';
 import { Post } from '../components/post/Post';
@@ -21,7 +21,7 @@ export class SinglePost extends Component {
   }
 
   componentDidMount() {
-    fetchpost(this.props.params.post).then(post => this.setState({ post }));
+    fetchPost(this.props.params.post).then(post => this.setState({ post }));
   }
 
   render() {

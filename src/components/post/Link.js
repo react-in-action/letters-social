@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
 
 const Link = (props) => {
-  const { post: { link } } = props;
+  const { link } = props;
   return (
     link ?
       <div className="link">
@@ -17,7 +17,11 @@ const Link = (props) => {
 };
 
 Link.propTypes = {
-  post: PropTypes.object.isRequired,
+  link: PropTypes.shape({
+    url: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
+    description: PropTypes.string.isRequired,
+  }),
 };
 
 export { Link };

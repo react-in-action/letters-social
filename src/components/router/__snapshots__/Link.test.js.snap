@@ -1,0 +1,5 @@
+exports[`<Link/> render methods should render correctly 1`] = `
+<div>
+  inner child
+</div>
+`;

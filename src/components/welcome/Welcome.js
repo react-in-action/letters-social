@@ -11,16 +11,16 @@ export const Welcome = () => {
         </p>
         <p>
           <a href="https://ifelse.io/book" rel="noopener noreferrer">React in Action</a> explores
-          <ul>
-            <li>Building a simple social app</li>
-            <li>Learning about the fundamentals of React</li>
-            <li>Building modern JavaScript (ES6 and beyond)</li>
-            <li>Implementing a routing system from scratch</li>
-            <li>Utilizing server-side rendering</li>
-            <li>Testing React applications</li>
-            <li>Implementing application architecture</li>
-          </ul>
         </p>
+        <ul>
+          <li>Building a simple social app</li>
+          <li>Learning about the fundamentals of React</li>
+          <li>Building modern JavaScript (ES6 and beyond)</li>
+          <li>Implementing a routing system from scratch</li>
+          <li>Utilizing server-side rendering</li>
+          <li>Testing React applications</li>
+          <li>Implementing application architecture</li>
+        </ul>
         <p>
           If you have any questions or thoughts, feel free to reach out to me <a href="https://twitter.com/markthethomas" target="_blank" rel="noopener noreferrer">@markthethomas</a> on the Manning Author's forum (you get access w/ the MEAP!) or on <a href="https://twitter.com/markthethomas" rel="noreferrer noopener" >Twitter</a> .
           <br />

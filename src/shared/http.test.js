@@ -4,9 +4,8 @@ import { fetchPosts, createPost, fetchPost } from './http';
 describe('fetchPosts', () => {
   it('should sould fetch posts',  async () => {
     const posts = await fetchPosts(3);
-    expect(fetchPosts(10).length).toBe(3);
-    expect(morePosts.length).toBe(10);
-    expect(posts[0]).toBeInstanceOf(Object);
+    expect(posts.length).toBe(3);
+    posts.forEach(post => expect(post.id).toBeDefined());
   });
   it('should return a default number of posts', async () => {
     const posts = await fetchPosts();
