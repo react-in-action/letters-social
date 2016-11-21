@@ -15,7 +15,7 @@
     "build:server": "babel server/*.js --babelrc=true --ignore='node_modules, coverage, docs, dist' --compact='true' --minified --no-comments --out-dir dist",
     "copy:html": "cp -r public/index.html dist",
     "dev": "npm-run-all --parallel api:dev client:dev client:test:watch styles:w",
-    "postinstall": "npm run welcome && npm run build:all",
+    "postinstall": "npm run build:all",
     "db:seed": "babel-node db/seed.js",
     "styles:w": "node-sass src/styles/styles.scss -o public/ -w src/styles",
     "stlyes": "node-sass src/styles/styles.scss -o public/",

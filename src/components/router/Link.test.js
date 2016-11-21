@@ -1,9 +1,7 @@
 import React from 'react';
-import { spy } from 'sinon';
 import { shallow } from 'enzyme';
 import renderer from 'react-test-renderer';
 
-import { history } from '../../history';
 import { Link } from './Link';
 jest.mock('../../history');
 
