@@ -9,7 +9,7 @@ dependencies:
   cache_directories:
     - ~/.yarn-cache
   override:
-    - yarn install
+    - yarn install --no-emoji
 test:
   override:
     - yarn test
