@@ -10,9 +10,10 @@ dependencies:
     - ~/.yarn-cache
   override:
     - yarn install --no-emoji
+    - yarn global add nyc
 test:
   override:
-    - yarn test
+    - nyc yarn test
 deployment:
   production:
     branch: master
