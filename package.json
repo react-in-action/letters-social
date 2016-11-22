@@ -122,7 +122,7 @@
   "devDependencies": {
     "jest-enzyme": "^2.0.0",
     "nock": "^9.0.2",
-    "nyc": "^9.0.1",
+    "nyc": "^10.0.0",
     "sinon": "^1.17.6"
   }
 }
