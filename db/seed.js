@@ -61,7 +61,7 @@ export class Post {
     this.image = Math.random() * 10 > 3 ? null : createShareableImage();
     this.likes = random.number(1, 100);
     this.link = random.boolean() ? null : {
-      url: internet.url(),
+      url: 'https://ifelse.io/book',
       title: lorem.words(rand(1, 5)),
       description: lorem.sentences(rand(1, 2), '. '),
     };
