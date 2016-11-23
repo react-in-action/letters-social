@@ -22,5 +22,5 @@ export function fetchPosts(n) {
 }
 
 export function fetchPost(id) {
-  return fetch(`${process.env.ENDPOINT}/posts/${n}`).then(res => res.json());
+  return fetch(`${process.env.ENDPOINT}/posts/${id}`).then(res => res.json());
 }
