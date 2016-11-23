@@ -8,6 +8,7 @@
     "api:prod": "json-server db/seed/db.json -r db/routes.json -p ${ENDPOINT_PORT} -s db/backups",
     "build:app": "babel-node build/build.js",
     "build:client": "react-scripts build",
+    "coverage": "nyc npm run test | coveralls",
     "client:dev": "babel-node run/dev.js",
     "client:test": "ENDPOINT='http://localhost:3500' jest --coverage",
     "client:test:watch": "ENDPOINT='http://localhost:3500' jest --watch",
@@ -21,7 +22,7 @@
     "stlyes": "node-sass src/styles/styles.scss -o public/",
     "start:dev": "babel-node run/dev.js",
     "rundep": "react-scripts start",
-    "test": "npm run client:test",
+    "test": "npm run client:test && npm run coverage",
     "start": "node --optimize_for_size dist/server/run.js",
     "welcome": "node run/welcome.js"
   },
@@ -120,6 +121,7 @@
     "webpack-md5-hash": "^0.0.5"
   },
   "devDependencies": {
+    "coveralls": "^2.11.15",
     "jest-enzyme": "^2.0.0",
     "nock": "^9.0.2",
     "nyc": "^9.0.1",
