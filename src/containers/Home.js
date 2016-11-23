@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 
-import Loader from 'react-loaders';
 import { AutoAffix } from 'react-overlays';
 
 import { fetchPosts, createPost } from '../shared/http';
@@ -63,9 +62,8 @@ class Home extends Component {
             <CreatePost onSubmit={this.handlePostSubmit}/>
             {
               this.state.loaded
-              ? <Posts posts={this.state.posts}/>
-              : <div className="loader"><Loader type="line-scale" active={this.state.loaded}/>
-              </div>
+              && <Posts posts={this.state.posts}/>
+
             }
             <button className="load-more text-center btn-lg btn btn-default btn-block" onClick={this.loadMorePosts}>
               Load more posts

@@ -18,13 +18,13 @@ describe('<Link/>', () => {
             expect(wrapper.props().onClick).toBeDefined();
         });
         it('should render correctly', () => {
-          const component = renderer.create(
-            <Link to="/">
-                <ChildStub/>
-            </Link>
-          );
-          const tree = component.toJSON();
-          expect(tree).toMatchSnapshot();
+            const component = renderer.create(
+                <Link to="/">
+                    <ChildStub/>
+                </Link>
+            );
+            const tree = component.toJSON();
+            expect(tree).toMatchSnapshot();
         });
     });
 });

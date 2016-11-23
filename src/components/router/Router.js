@@ -7,7 +7,7 @@ import invariant from 'invariant';
 
 export class Router extends Component {
   static propTypes = {
-    children: PropTypes.element.isRequired,
+    children: PropTypes.arrayOf(PropTypes.element),
     location: PropTypes.string.isRequired,
   }
 
@@ -33,8 +33,8 @@ export class Router extends Component {
   // Get the component, path, index, and children props from a given child
     const { component, path, children, index } = element.props;
 
-    console.debug(`Adding path: ${path}`);
-    console.debug({ path, component: component.name });
+    console.info(`Adding path: ${path}`);
+    console.info({ path, component: component.name });
 
     // Ensure that it has the right input, since PropTypes can't really help here
     invariant(component, `Route ${path} is missing the "path" property`);
@@ -42,8 +42,8 @@ export class Router extends Component {
 
     // Set up Ccmponent to be rendered
     const render = (params, renderProps) => {
-      console.debug('Current route params are: ');
-      console.debug(params);
+      console.info('Current route params are: ');
+      console.info(params);
       const finalProps = Object.assign({ params }, this.props, renderProps);
 
       // Or, using the object spread operator (currently a candidate proposal for future versions of JavaScript)
@@ -99,6 +99,7 @@ export class Router extends Component {
 
   render() {
     const { location } = this.props;
+    console.log(location);
     invariant(location, '<Router/> needs a location to work');
     return this.router(location);
   }
