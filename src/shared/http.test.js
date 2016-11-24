@@ -13,7 +13,7 @@ describe('fetchPosts', () => {
   });
   it('should return posts with an ID', async () => {
     const posts = await fetchPosts();
-    expect(posts[0]).toBeDefined();
+    expect(posts[0].id).toBeDefined();
   });
 });
 
