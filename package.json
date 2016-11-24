@@ -10,7 +10,7 @@
     "build:client": "react-scripts build",
     "coverage": "cat ./coverage/lcov.info | coveralls",
     "client:dev": "babel-node run/dev.js",
-    "client:test": "ENDPOINT='http://localhost:3500' jest --coverage",
+    "client:test": "ENDPOINT='http://localhost:3500' jest --coverage --silent",
     "client:test:watch": "ENDPOINT='http://localhost:3500' jest --watch",
     "build:all": "npm-run-all build:app build:server copy:html db:seed",
     "build:server": "babel server/*.js --babelrc=true --ignore='node_modules, coverage, docs, dist' --compact='true' --minified --no-comments --out-dir dist",
