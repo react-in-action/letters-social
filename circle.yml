@@ -13,7 +13,7 @@ dependencies:
     - ~/.yarn-cache
   override:
     - yarn install --no-emoji
-    - yarn global add nyc
+    - yarn global add nyc jest
 test:
   override:
     - ENDPOINT='http://localhost:3500' jest --coverage:
