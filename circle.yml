@@ -16,7 +16,7 @@ dependencies:
     - yarn global add nyc
 test:
   override:
-    - nyc yarn test:
+    - ENDPOINT='http://localhost:3500' jest --coverage:
         parallel: true
         files:
           - src/shared/**/*.js
