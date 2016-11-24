@@ -8,6 +8,7 @@
     "api:prod": "json-server db/seed/db.json -r db/routes.json -p ${ENDPOINT_PORT} -s db/backups",
     "build:app": "babel-node build/build.js",
     "build:client": "react-scripts build",
+    "coverage": "nyc report --reporter=text-lcov | coveralls",
     "client:dev": "babel-node run/dev.js",
     "client:test": "ENDPOINT='http://localhost:3500' jest --coverage",
     "client:test:watch": "ENDPOINT='http://localhost:3500' jest --watch",
@@ -21,7 +22,7 @@
     "stlyes": "node-sass src/styles/styles.scss -o public/",
     "start:dev": "babel-node run/dev.js",
     "rundep": "react-scripts start",
-    "test": "npm run client:test && coveralls",
+    "test": "npm run client:test && npm run coverage",
     "start": "node --optimize_for_size dist/server/run.js",
     "welcome": "node run/welcome.js"
   },
