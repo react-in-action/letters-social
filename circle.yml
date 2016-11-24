@@ -17,14 +17,14 @@ dependencies:
 test:
   override:
     - nyc yarn test:
-      parallel: true
-      files:
-        - src/shared/**/*.js
-        - src/history/**/*.js
-        - src/backend/**/*.js
-        - src/containers/**/*.js
-        - src/components/**/*.js
-        - src/*.js
+        parallel: true
+        files:
+          - src/shared/**/*.js
+          - src/history/**/*.js
+          - src/backend/**/*.js
+          - src/containers/**/*.js
+          - src/components/**/*.js
+          - src/*.js
 
 deployment:
   production:
