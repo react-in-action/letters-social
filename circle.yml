@@ -16,7 +16,16 @@ dependencies:
     - yarn global add nyc
 test:
   override:
-    - nyc yarn test
+    - nyc yarn test:
+      parallel: true
+      files:
+        - src/shared/**/*.js
+        - src/history/**/*.js
+        - src/backend/**/*.js
+        - src/containers/**/*.js
+        - src/components/**/*.js
+        - src/*.js
+
 deployment:
   production:
     branch: master
