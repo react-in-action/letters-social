@@ -48,12 +48,14 @@ describe('<Create/>', () => {
   describe('render methods', () =>  {
     it('should render correctly', () =>  {
       const onSubmitStub = sandbox.stub();
-      const component = renderer.create(
+      const wrapper = shallow(
         <CreatePost
           onSubmit={onSubmitStub}
         />
       );
-      expect(component.toJSON()).toMatchSnapshot();
+      expect(wrapper.find('form').length).toBe(1);
+      expect(wrapper.find('textarea').length).toBe(1);
+      expect(wrapper.find('button').length).toBe(1);
     });
   });
 });
