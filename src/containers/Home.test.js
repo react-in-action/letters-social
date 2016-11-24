@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow, mount } from 'enzyme';
-import sinon from 'sinon';
+const sinon = require('sinon');
 
 import { fetchPosts } from '../shared/http';
 
@@ -8,24 +8,20 @@ jest.mock('../shared/http');
 import { Posts } from '../components/post';
 import { Home } from './Home';
 
-
 describe('<Home/>', () => {
   describe('lifecycle methods', () => {
-    sinon.spy(Home.prototype, 'componentDidMount');
+    const componentDidMountStub = sinon.stub(Home.prototype, 'componentDidMount');
     mount(<Home />);
-    expect(Home.prototype.componentDidMount.calledOnce).toBe(true);
+    expect(componentDidMountStub.calledOnce).toBe(true);
   });
 
   describe('event methods', () => {
     it('should let you load more posts', () =>  {
-      sinon.spy(Home.prototype, 'loadMorePosts');
+      const loadMorePostsStub = sinon.stub(Home.prototype, 'loadMorePosts');
       const wrapper = shallow(<Home/>);
       wrapper.find('.load-more').simulate('click');
-      expect(Home.prototype.loadMorePosts.calledOnce).toBe(true);
+      expect(loadMorePostsStub.calledOnce).toBe(true);
     });
-  });
-  describe('custom methods', () => {
-
   });
 
   describe('render methods', () => {
@@ -39,15 +35,5 @@ describe('<Home/>', () => {
       const wrapper = shallow(<Home/>);
       expect(wrapper.find('.home').length).toBe(1);
     });
-    it('should render posts', () => {
-      const wrapper = shallow(<Home/>);
-      expect(wrapper.find('.home').length).toBe(1);
-    });
-  });
-  it('calls componentDidMount', () => {
-    // sinon.spy(Home.prototype, 'componentDidMount');
-    // const wrapper = mount(<Home />);
-    // console.log(Home.prototype.componentDidMount);
-    // expect(Home.prototype.componentDidMount.calledOnce).toBe(true);
   });
 });
