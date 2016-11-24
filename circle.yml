@@ -19,12 +19,7 @@ test:
     - ENDPOINT='http://localhost:3500' jest --coverage:
         parallel: true
         files:
-          - src/shared/**/*.js
-          - src/history/**/*.js
-          - src/backend/**/*.js
-          - src/containers/**/*.js
-          - src/components/**/*.js
-          - src/*.js
+          - src/**/*.js
 
 deployment:
   production:
