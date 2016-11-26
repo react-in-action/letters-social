@@ -2,7 +2,7 @@ import React from 'react';
 import { render } from 'react-dom';
 
 import { App } from './containers/App';
-import { Home, SinglePost, Login, NotFound } from './containers';
+import { Home, SinglePost, Login, NotFound, Profile } from './containers';
 import { Router, Route } from './components/router';
 import { history } from './history';
 import { firebase } from './backend';
@@ -13,9 +13,21 @@ import './styles/styles.scss';
 export const renderApp = (state) => {
   render(
     <Router {...state}>
-      <Route path="/" index={Home} component={App}>
-        <Route path="posts/:post" component={SinglePost} />
-        <Route path="login" component={Login} />
+      <Route
+        path="/"
+        index={Home}
+        component={App}>
+        <Route
+          path="posts/:post"
+          component={SinglePost} />
+        <Route
+          path="login" 
+          component={Login}
+        />
+        <Route
+          component={Profile}
+          path="profile"
+        />
         <Route path="*" component={NotFound} />
       </Route>
     </Router>,
