@@ -14,16 +14,23 @@ browserSync({
     baseDir: 'src',
 
     middleware: [
+      historyApiFallback(),
       webpackDevMiddleware(bundler, {
-        noInfo: true,
+        hot: true,
+        historyApiFallback: true,
         publicPath: config.output.publicPath,
         stats: {
+          assets: false,
           colors: true,
+          version: false,
+          hash: false,
+          timings: false,
+          chunks: false,
+          chunkModules: false
         },
       }),
       // same bundler for both
       webpackHotMiddleware(bundler),
-      historyApiFallback(),
     ],
   },
 

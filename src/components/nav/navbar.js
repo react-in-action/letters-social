@@ -32,7 +32,9 @@ class Navigation extends Component {
               { this.state.user ?
                 <div>
                   <div className="btn-group" role="group">
-                    <button onClick={this.handleLogout} className="btn btn-default"><i className="fa fa-user" /></button>
+                    <Link to="/profile">
+                      <button className="btn btn-default"><i className="fa fa-user" /></button>
+                    </Link>
                     <button onClick={this.handleLogout} className="btn btn-default"><i className="fa fa-sign-out" /></button>
                   </div>
                 </div>
