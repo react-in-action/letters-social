@@ -58,7 +58,7 @@ class CreatePost extends React.Component {
 }
 
 CreatePost.propTypes = {
-  onSubmit: PropTypes.func,
+  onSubmit: PropTypes.func.isRequired,
 };
 
 export { CreatePost };
