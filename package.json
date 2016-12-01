@@ -24,7 +24,9 @@
     "rundep": "react-scripts start",
     "test": "npm run client:test && npm run coverage",
     "start": "node --optimize_for_size dist/server/run.js",
-    "welcome": "node run/welcome.js"
+    "welcome": "node run/welcome.js",
+    "snyk-protect": "snyk protect",
+    "prepublish": "npm run snyk-protect"
   },
   "jest": {
     "testEnvironment": "jsdom"
@@ -116,7 +118,8 @@
     "webpack": "^2.1.0-beta.26",
     "webpack-dev-server": "^2.1.0-beta.10",
     "webpack-hot-middleware": "^2.13.2",
-    "webpack-md5-hash": "^0.0.5"
+    "webpack-md5-hash": "^0.0.5",
+    "snyk": "^1.20.0"
   },
   "devDependencies": {
     "coveralls": "^2.11.15",
@@ -124,5 +127,6 @@
     "nock": "^9.0.2",
     "nyc": "^10.0.0",
     "sinon": "^1.17.6"
-  }
+  },
+  "snyk": true
 }
