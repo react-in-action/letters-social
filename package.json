@@ -115,7 +115,7 @@
     "style-loader": "^0.13.1",
     "webpack": "^2.1.0-beta.26",
     "webpack-dev-server": "^2.1.0-beta.10",
-    "webpack-hot-middleware": "^2.13.2",
+    "webpack-hot-middleware": "^2.14.0",
     "webpack-md5-hash": "^0.0.5"
   },
   "devDependencies": {
