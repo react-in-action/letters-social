@@ -98,7 +98,7 @@
     "node-sass": "^3.13.0",
     "node-uuid": "^1.4.7",
     "npm-run-all": "^3.1.0",
-    "ora": "^0.3.0",
+    "ora": "^0.4.1",
     "postcss-loader": "^1.1.1",
     "react": "^15.4.0",
     "react-addons-test-utils": "^15.4.0",
