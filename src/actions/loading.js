@@ -2,12 +2,12 @@ import * as types from '../constants/types';
 
 export function loading() {
   return {
-    type: types.working.LOADING
+    type: types.app.LOADING
   };
 }
 
 export function loaded() {
   return {
-    type: types.working.LOADED
+    type: types.app.LOADED
   };
 }
