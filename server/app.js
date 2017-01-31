@@ -1,14 +1,14 @@
-import bodyParser from 'body-parser';
-import jsonAPI from 'json-server';
-import compression from 'compression';
-import { __PRODUCTION__ } from 'environs';
-import { join, resolve } from 'path';
-import cors from 'cors';
-import express from 'express';
-import helmet from 'helmet';
-import hpp from 'hpp';
-import logger from 'morgan';
-import responseTime from 'response-time';
+const bodyParser = require('body-parser');
+const jsonAPI = require('json-server');
+const compression = require('compression');
+const { __PRODUCTION__ } = require('environs');
+const { join, resolve } = require('path');
+const cors = require('cors');
+const express = require('express');
+const helmet = require('helmet');
+const hpp = require('hpp');
+const logger = require('morgan');
+const responseTime = require('response-time');
 
 // Le App
 const app = express();
