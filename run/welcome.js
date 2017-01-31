@@ -62,11 +62,6 @@ console.log(`
   - [${green('√')}] display user profile info
   - [${green('√')}] allow users to edit their profile
 
-  Search box typeahead:
-  - [${green('√')}] allow users to search posts and comments
-  - [${green('√')}] display search results in-line
-  - [${green('√')}] display search results in a separate page
-
   User signup, login, and account management:
   - [${green('√')}] allow users to sign up
   - [${green('√')}] allow users to log in

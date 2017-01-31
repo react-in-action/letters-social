@@ -9,14 +9,17 @@ export const auth = {
 };
 
 export const posts = {
-    LOAD_MORE: 'letters-social/post/load_more',
     CREATE: 'letters-social/post/create',
+    DELETE: 'letters-social/post/delete',
+    UPDATE: 'letters-social/post/update',
+    LOAD_MORE: 'letters-social/post/load_more',
     LIKE: 'letters-social/post/like',
 };
 
 export const comments = {
     CREATE: 'letters-social/comment/create',
     DELETE: 'letters-social/comment/delete',
+    UPDATE: 'letters-social/comment/update',
 };
 
 export const user = {
