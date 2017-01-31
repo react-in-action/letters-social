@@ -22,7 +22,7 @@
     "start:dev": "babel-node run/dev.js",
     "rundep": "react-scripts start",
     "test": "npm run client:test && npm run coverage",
-    "start": "node --optimize_for_size ./server/run.js",
+    "start": "node --optimize_for_size ./dist/server/run.js",
     "welcome": "node run/welcome.js"
   },
   "jest": {
