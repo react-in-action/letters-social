@@ -7,7 +7,7 @@ export class Profile extends Component {
         <div className="row">
           <div className="col-xs-offset-2 col-xs-8">
             <h2>
-              Profile settigs!
+              Profile settings!
             </h2>
           </div>
         </div>
