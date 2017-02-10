@@ -105,7 +105,7 @@
     "react-dom": "^15.4.0",
     "react-overlays": "^0.6.10",
     "react-redux": "^5.0.2",
-    "react-router-redux": "^4.0.7",
+    "react-router-redux": "^4.0.8",
     "react-scripts": "^0.8.5",
     "react-test-renderer": "^15.4.2",
     "redux": "^3.6.0",
