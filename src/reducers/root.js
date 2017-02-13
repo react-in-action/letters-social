@@ -1,8 +1,11 @@
 import { combineReducers } from 'redux';
 import { loading } from './loading';
+import { posts, postIds } from './posts';
 
 const rootReducer = combineReducers({
-    loading
+    loading,
+    posts,
+    postIds
  });
 
  export default rootReducer;

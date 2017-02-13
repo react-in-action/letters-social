@@ -21,7 +21,7 @@ describe('<Comment/>', () => {
         profilePicture: 'profilePicture',
         lastName: 'thomas'
       },
-      date: new Date(),
+      date: new Date().toISOString(),
       likes: 10,
     };
     const component = renderer.create(
