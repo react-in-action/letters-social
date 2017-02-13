@@ -121,7 +121,7 @@
   "devDependencies": {
     "coveralls": "^2.11.15",
     "jest-enzyme": "^2.1.0",
-    "nock": "^9.0.2",
+    "nock": "^9.0.6",
     "nyc": "^10.1.2",
     "sinon": "^1.17.7"
   }
