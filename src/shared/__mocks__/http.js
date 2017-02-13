@@ -7,15 +7,15 @@ export function fetchPosts(n = 5) {
   }
   // imitate `.JSON()`
   const parsedReturnPayload = JSON.parse(JSON.stringify(returnPayload));
-  return new Promise(resolve => resolve(parsedReturnPayload));
+  return Promise.resolve(parsedReturnPayload);
 }
 
 export function fetchPost(id) {
   if (!id) {
     throw new Error('Cannot fetch post without ID');
   }
-  return new Promise(resolve => resolve(
-    JSON.parse(JSON.stringify(new Post())))
+  return Promise.resolve(
+      JSON.parse(JSON.stringify(new Post()))
   );
 }
 

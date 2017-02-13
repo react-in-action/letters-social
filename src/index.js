@@ -10,8 +10,6 @@ import { firebase } from './backend';
 import configureStore from './store/configureStore';
 import initialReduxState from './constants/initialState';
 
-import './store/exampleUse';
-
 import './styles/styles.scss';
 
 // Configure the Redux store
@@ -75,7 +73,6 @@ export function activateAuthListener() {
     return history.push(user ? window.location.pathname : '/login');
   }));
 }
-
 
 // Render the app initially
 renderApp(initialState);
