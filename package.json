@@ -45,7 +45,7 @@
     "autoprefixer": "^6.5.3",
     "axios": "^0.15.3",
     "babel-cli": "^6.22.2",
-    "babel-core": "^6.18.2",
+    "babel-core": "^6.23.1",
     "babel-eslint": "^7.1.1",
     "babel-loader": "^6.2.8",
     "babel-polyfill": "^6.22.0",
