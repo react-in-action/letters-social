@@ -103,7 +103,7 @@
     "react-addons-test-utils": "^15.4.2",
     "react-bootstrap": "^0.30.6",
     "react-dom": "^15.4.0",
-    "react-overlays": "^0.6.10",
+    "react-overlays": "^0.6.11",
     "react-redux": "^5.0.2",
     "react-router-redux": "^4.0.7",
     "react-scripts": "^0.8.5",
