@@ -1,14 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
 exports[`<Ad/> should render correctly 1`] = `
 <div
-  className="ad">
+  className="ad"
+>
   <a
     href={undefined}
     rel="noreferrer noopener"
-    target="_blank">
+    target="_blank"
+  >
     <img
       alt="React in Action by Mark Thomas | Manning Publications"
       className="img-responsive"
-      src={undefined} />
+      src={undefined}
+    />
   </a>
   <small>
     ads by Letters

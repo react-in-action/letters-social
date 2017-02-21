@@ -1,14 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
 exports[`<App/> should have at at least navbar and router output children 1`] = `
 <div
-  className="app">
+  className="app"
+>
   <nav
-    className="navbar navbar-default navbar-fixed-top">
+    className="navbar navbar-default navbar-fixed-top"
+  >
     <div
-      className="container">
+      className="container"
+    >
       <div
-        className="row middle-xs center-xs around-xs">
+        className="row middle-xs center-xs around-xs"
+      >
         <div
-          className="col-sm-4 col-sm-offset-4 col-xs-8">
+          className="col-sm-4 col-sm-offset-4 col-xs-8"
+        >
           <div
             className="logo"
             onClick={[Function]}
@@ -16,13 +23,15 @@ exports[`<App/> should have at at least navbar and router output children 1`] = 
               Object {
                 "fontSize": "2.3em",
               }
-            }>
+            }
+          >
             <span
               style={
                 Object {
                   "color": "#4F93E0",
                 }
-              }>
+              }
+            >
               L
             </span>
             <span
@@ -30,7 +39,8 @@ exports[`<App/> should have at at least navbar and router output children 1`] = 
                 Object {
                   "color": "#D0021B",
                 }
-              }>
+              }
+            >
               e
             </span>
             <span
@@ -38,7 +48,8 @@ exports[`<App/> should have at at least navbar and router output children 1`] = 
                 Object {
                   "color": "#F8E71C",
                 }
-              }>
+              }
+            >
               t
             </span>
             <span
@@ -46,7 +57,8 @@ exports[`<App/> should have at at least navbar and router output children 1`] = 
                 Object {
                   "color": "#4F93E0",
                 }
-              }>
+              }
+            >
               t
             </span>
             <span
@@ -54,7 +66,8 @@ exports[`<App/> should have at at least navbar and router output children 1`] = 
                 Object {
                   "color": "#417505",
                 }
-              }>
+              }
+            >
               e
             </span>
             <span
@@ -62,7 +75,8 @@ exports[`<App/> should have at at least navbar and router output children 1`] = 
                 Object {
                   "color": "#D0021B",
                 }
-              }>
+              }
+            >
               r
             </span>
             <span
@@ -70,22 +84,26 @@ exports[`<App/> should have at at least navbar and router output children 1`] = 
                 Object {
                   "color": "#F8E71C",
                 }
-              }>
+              }
+            >
               s
             </span>
             <small
-              className="social">
+              className="social"
+            >
               .social
             </small>
           </div>
         </div>
         <div
-          className="col-sm-4 col-xs-4">
+          className="col-sm-4 col-xs-4"
+        >
           <div>
             <button
               className="btn btn-default"
               onClick={[Function]}
-              type="button">
+              type="button"
+            >
               Log in or sign up
             </button>
           </div>
@@ -94,21 +112,27 @@ exports[`<App/> should have at at least navbar and router output children 1`] = 
     </div>
   </nav>
   <div
-    className="container-fluid" />
+    className="container-fluid"
+  />
 </div>
 `;
 
 exports[`<App/> should render correctly 1`] = `
 <div
-  className="app">
+  className="app"
+>
   <nav
-    className="navbar navbar-default navbar-fixed-top">
+    className="navbar navbar-default navbar-fixed-top"
+  >
     <div
-      className="container">
+      className="container"
+    >
       <div
-        className="row middle-xs center-xs around-xs">
+        className="row middle-xs center-xs around-xs"
+      >
         <div
-          className="col-sm-4 col-sm-offset-4 col-xs-8">
+          className="col-sm-4 col-sm-offset-4 col-xs-8"
+        >
           <div
             className="logo"
             onClick={[Function]}
@@ -116,13 +140,15 @@ exports[`<App/> should render correctly 1`] = `
               Object {
                 "fontSize": "2.3em",
               }
-            }>
+            }
+          >
             <span
               style={
                 Object {
                   "color": "#4F93E0",
                 }
-              }>
+              }
+            >
               L
             </span>
             <span
@@ -130,7 +156,8 @@ exports[`<App/> should render correctly 1`] = `
                 Object {
                   "color": "#D0021B",
                 }
-              }>
+              }
+            >
               e
             </span>
             <span
@@ -138,7 +165,8 @@ exports[`<App/> should render correctly 1`] = `
                 Object {
                   "color": "#F8E71C",
                 }
-              }>
+              }
+            >
               t
             </span>
             <span
@@ -146,7 +174,8 @@ exports[`<App/> should render correctly 1`] = `
                 Object {
                   "color": "#4F93E0",
                 }
-              }>
+              }
+            >
               t
             </span>
             <span
@@ -154,7 +183,8 @@ exports[`<App/> should render correctly 1`] = `
                 Object {
                   "color": "#417505",
                 }
-              }>
+              }
+            >
               e
             </span>
             <span
@@ -162,7 +192,8 @@ exports[`<App/> should render correctly 1`] = `
                 Object {
                   "color": "#D0021B",
                 }
-              }>
+              }
+            >
               r
             </span>
             <span
@@ -170,22 +201,26 @@ exports[`<App/> should render correctly 1`] = `
                 Object {
                   "color": "#F8E71C",
                 }
-              }>
+              }
+            >
               s
             </span>
             <small
-              className="social">
+              className="social"
+            >
               .social
             </small>
           </div>
         </div>
         <div
-          className="col-sm-4 col-xs-4">
+          className="col-sm-4 col-xs-4"
+        >
           <div>
             <button
               className="btn btn-default"
               onClick={[Function]}
-              type="button">
+              type="button"
+            >
               Log in or sign up
             </button>
           </div>
@@ -194,6 +229,7 @@ exports[`<App/> should render correctly 1`] = `
     </div>
   </nav>
   <div
-    className="container-fluid" />
+    className="container-fluid"
+  />
 </div>
 `;
