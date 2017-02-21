@@ -1,24 +1,31 @@
-exports[`test NotFound should render correctly 1`] = `
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`NotFound should render correctly 1`] = `
 <div
-  className="container">
+  className="container"
+>
   <div
-    className="row middle-xs center-xs">
+    className="row middle-xs center-xs"
+  >
     <div
       className="col-xs-12"
       style={
         Object {
           "padding": "10% 0",
         }
-      }>
+      }
+    >
       <img
         alt=""
-        src="https://s3.amazonaws.com/learn-react/assets/not-found/404.gif" />
+        src="https://s3.amazonaws.com/learn-react/assets/not-found/404.gif"
+      />
       <h2>
         Not found :(
       </h2>
       <button
         className="btn btn-default"
-        onClick={[Function]}>
+        onClick={[Function]}
+      >
         go back home
       </button>
     </div>

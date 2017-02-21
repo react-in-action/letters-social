@@ -1,3 +1,5 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
 exports[`<Link/> render methods should render correctly 1`] = `
 <div>
   inner child

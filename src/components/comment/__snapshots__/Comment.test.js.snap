@@ -1,18 +1,23 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
 exports[`<Comment/> should render correctly 1`] = `
 <div
-  className="comment">
+  className="comment"
+>
   <img
     alt="content"
     height={50}
     src="profilePicture"
-    width={50} />
+    width={50}
+  />
   <a>
     mark
      
     thomas
   </a>
   <small
-    className="date">
+    className="date"
+  >
      
     a few seconds ago
      

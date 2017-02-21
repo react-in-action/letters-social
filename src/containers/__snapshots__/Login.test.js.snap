@@ -1,10 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
 exports[`<Login/> Login should render correctly 1`] = `
 <div
-  className="container">
+  className="container"
+>
   <div
-    className="row middle-xs text-center">
+    className="row middle-xs text-center"
+  >
     <div
-      className="col-xs-12 col-sm-6 col-sm-offset-3">
+      className="col-xs-12 col-sm-6 col-sm-offset-3"
+    >
       <h1>
         Welcome to Letters Social!
         <br />
@@ -15,7 +20,8 @@ exports[`<Login/> Login should render correctly 1`] = `
         <a
           href="https://facebook.github.io/react/"
           rel="noopener noreferrer"
-          target="_blank">
+          target="_blank"
+        >
           React
         </a>
          for 
@@ -28,19 +34,25 @@ exports[`<Login/> Login should render correctly 1`] = `
     </div>
   </div>
   <div
-    className="row">
+    className="row"
+  >
     <div
-      className="col-xs-12 col-sm-6 col-sm-offset-3">
+      className="col-xs-12 col-sm-6 col-sm-offset-3"
+    >
       <form>
         <div
-          className="row center-xs">
+          className="row center-xs"
+        >
           <div
-            className="col-xs-12">
+            className="col-xs-12"
+          >
             <button
               className="btn btn-default btn-block"
-              onClick={[Function]}>
+              onClick={[Function]}
+            >
               <i
-                className="fa fa-github" />
+                className="fa fa-github"
+              />
                log in with Github
             </button>
           </div>

@@ -11,7 +11,7 @@
     "coverage": "cat ./coverage/lcov.info | coveralls",
     "client:dev": "babel-node run/dev.js",
     "client:test": "jest --coverage --silent",
-    "client:test:watch": "jest --watch --coverage",
+    "client:test:watch": "jest --watch",
     "build": "npm-run-all build:app build:server copy:html db:seed",
     "build:server": "babel server/*.js --babelrc=true --ignore='node_modules, coverage, docs, dist' --compact='true' --minified --no-comments --out-dir dist",
     "copy:html": "cp -r public/index.html dist",
