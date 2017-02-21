@@ -13,9 +13,8 @@ export function updatePosts(posts) {
 export function createNewPost(payload) {
     return dispatch => {
         dispatch(loading());
-        return createPost(payload).then(updatedPosts => {
-            dispatch(updatePosts(updatedPosts));
-            dispatch(loaded());
+        return createPost(payload).then(() => {
+            dispatch(getPosts());
         });
     };
 }
