@@ -11,7 +11,7 @@ export default (initialState) => {
     applyMiddleware(
       thunk,
     ),
-    window.devToolsExtension()
+    (typeof window !== undefined && window.devToolsExtension) ? window.devToolsExtension() : f => f
     )
   );
   store = createdStore;

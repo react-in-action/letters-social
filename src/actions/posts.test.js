@@ -27,14 +27,15 @@ describe('async post actions', () => {
                     type: types.app.LOADED,
                 });
                 expect(updateAction.type).toEqual(types.posts.UPDATE);
-                expect(updateAction.posts.length).toEqual(5);
             });
         });
     });
 
     describe('createNewPost', () => {
         it(' should create the right actions', () => {
-            const store = mockStore();
+            const store = mockStore({
+                postIds: []
+            });
             const newPost = {
                 id: 'id',
                 content: 'a post!'
@@ -43,12 +44,12 @@ describe('async post actions', () => {
             .then(() => {
                 const [
                     loadingAction,
-                    updateAction,
-                    loadedAction,
+                    secondLoadingAction,
+                    updatePostsAction,
                 ] = store.getActions();
                 expect(loadingAction).toEqual({ type: types.app.LOADING });
-                expect(loadedAction).toEqual({ type: types.app.LOADED });
-                expect(updateAction.type).toEqual(types.posts.UPDATE);
+                expect(secondLoadingAction).toEqual({ type: types.app.LOADING });
+                expect(updatePostsAction.type).toEqual(types.posts.UPDATE);
             });
         });
     });
