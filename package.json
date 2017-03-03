@@ -68,7 +68,7 @@
     "enroute": "^1.0.1",
     "environs": "^0.4.1",
     "enzyme": "^2.7.1",
-    "eslint": "^3.16.0",
+    "eslint": "^3.17.0",
     "eslint-config-airbnb": "^14.1.0",
     "eslint-plugin-import": "^2.2.0",
     "eslint-plugin-jsx-a11y": "^4.0.0",
