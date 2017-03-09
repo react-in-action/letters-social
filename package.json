@@ -79,7 +79,7 @@
     "firebase": "^3.6.9",
     "flexboxgrid": "^6.3.1",
     "flow-bin": "^0.39.0",
-    "helmet": "^3.4.0",
+    "helmet": "^3.5.0",
     "history": "^4.5.1",
     "hpp": "^0.2.1",
     "html-webpack-plugin": "^2.28.0",
