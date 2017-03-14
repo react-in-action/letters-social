@@ -76,7 +76,7 @@
     "express": "^4.14.1",
     "extract-text-webpack-plugin": "^2.0.0-beta.4",
     "faker": "^4.1.0",
-    "firebase": "^3.6.9",
+    "firebase": "^3.7.2",
     "flexboxgrid": "^6.3.1",
     "flow-bin": "^0.39.0",
     "helmet": "^3.4.0",
