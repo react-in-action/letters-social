@@ -72,7 +72,7 @@
     "eslint-config-airbnb": "^14.1.0",
     "eslint-plugin-import": "^2.2.0",
     "eslint-plugin-jsx-a11y": "^4.0.0",
-    "eslint-plugin-react": "^6.10.0",
+    "eslint-plugin-react": "^6.10.1",
     "express": "^4.14.1",
     "extract-text-webpack-plugin": "^2.0.0-beta.4",
     "faker": "^4.1.0",
