@@ -123,7 +123,7 @@
     "coveralls": "^2.11.16",
     "jest-enzyme": "^2.1.2",
     "nock": "^9.0.6",
-    "nyc": "^10.1.2",
+    "nyc": "^10.2.0",
     "redux-mock-store": "^1.2.2",
     "sinon": "^1.17.7"
   }
