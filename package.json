@@ -120,7 +120,7 @@
     "webpack-md5-hash": "^0.0.5"
   },
   "devDependencies": {
-    "coveralls": "^2.11.16",
+    "coveralls": "^2.13.0",
     "jest-enzyme": "^2.1.2",
     "nock": "^9.0.6",
     "nyc": "^10.1.2",
