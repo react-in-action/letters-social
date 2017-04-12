@@ -67,7 +67,7 @@
     "css-loader": "^0.26.1",
     "enroute": "^1.0.1",
     "environs": "^0.4.1",
-    "enzyme": "^2.7.1",
+    "enzyme": "^2.8.1",
     "eslint": "^3.16.0",
     "eslint-config-airbnb": "^14.1.0",
     "eslint-plugin-import": "^2.2.0",
