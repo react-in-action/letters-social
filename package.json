@@ -78,7 +78,7 @@
     "faker": "^4.1.0",
     "firebase": "^3.6.9",
     "flexboxgrid": "^6.3.1",
-    "flow-bin": "^0.39.0",
+    "flow-bin": "^0.44.0",
     "helmet": "^3.4.0",
     "history": "^4.5.1",
     "hpp": "^0.2.1",
