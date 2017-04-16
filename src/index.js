@@ -3,7 +3,12 @@ import { render } from 'react-dom';
 import { Provider } from 'react-redux';
 
 import { App } from './containers/App';
-import { Home, SinglePost, Login, NotFound, Profile } from './containers';
+import { Home } from '../pages/Home';
+import { SinglePost } from '../pages/Post';
+import { Login } from '../pages/Login';
+import { NotFound } from '../pages/NotFound';
+import { Profile } from '../pages/Profile';
+
 import { Router, Route } from './components/router';
 import { history } from './history';
 import { firebase } from './backend';
@@ -16,62 +21,49 @@ import './styles/styles.scss';
 const store = configureStore(initialReduxState);
 
 // Function that wraps ReactDOM.render and renders the app w/ current location
-export const renderApp = (state) => {
+export const renderApp = state => {
     render(
         <Provider store={store}>
             <Router {...state}>
-                <Route
-                    path="/"
-                    index={Home}
-                    component={App}>
-                    <Route
-                        path="posts/:post"
-                        component={SinglePost} />
-                        <Route
-                            path="login"
-                            component={Login}
-                        />
-                        <Route
-                            component={Profile}
-                            path="profile"
-                        />
-                        <Route path="*" component={NotFound} />
-                    </Route>
+                <Route path="/" index={Home} component={App}>
+                    <Route path="posts/:post" component={SinglePost} />
+                    <Route path="login" component={Login} />
+                    <Route component={Profile} path="profile" />
+                    <Route path="*" component={NotFound} />
+                </Route>
             </Router>
         </Provider>,
-    document.getElementById('app'),
-  );
+        document.getElementById('app')
+    );
 };
 
 // Create an intial state object to use
 const initialState = {
-  location: window.location.pathname,
+    location: window.location.pathname
 };
 
 // When there's a history change, re-render the app
 export function activateHistoryListener() {
-    history.listen((location) => {
+    history.listen(location => {
         // scroll to the top of the page when changing routes
-        window.scrollTo( 0, 0);
+        window.scrollTo(0, 0);
         const user = firebase.auth().currentUser;
         const newState = Object.assign(initialState, {
-            location: user
-                    ? location.pathname
-                    : '/login',
-                });
+            location: user ? location.pathname : '/login'
+        });
 
-                renderApp(newState);
-  });
+        renderApp(newState);
+    });
 }
 
 // Set up the auth listener
 export function activateAuthListener() {
-  firebase.auth().onAuthStateChanged(((user) => {
-    if (user && window.location.pathname === '/login') {
-      return history.push('/');
-    }
-    return history.push(user ? window.location.pathname : '/login');
-  }));
+    firebase.auth().onAuthStateChanged(user => {
+        if (user && window.location.pathname === '/login') {
+            return history.push('/');
+        }
+        return history.push(user ? window.location.pathname : '/login');
+    });
 }
 
 // Render the app initially

@@ -6,6 +6,6 @@ const rootReducer = combineReducers({
     loading,
     posts,
     postIds
- });
+});
 
- export default rootReducer;
+export default rootReducer;

@@ -6,33 +6,32 @@ import { Content, Image, Link, Controls, User } from './';
 import { Link as RouterLink } from '../router';
 
 class Post extends Component {
-  static propTypes = {
-    post: PropTypes.object,
-    forceOpen: PropTypes.bool,
-  }
+    static propTypes = {
+        post: PropTypes.object,
+        forceOpen: PropTypes.bool
+    };
 
-  render() {
-    const { post, forceOpen } = this.props;
-    return (
-      post ?
-        <div className="post">
-          <RouterLink to={`/posts/${post.id}`}>
-            <div>
-              <User post={post} />
-              <Content post={post} />
-              <Image post={post} />
-              <Link link={post.link} />
-            </div>
-          </RouterLink>
+    render() {
+        const { post, forceOpen } = this.props;
+        return post
+            ? <div className="post">
+                  <RouterLink to={`/posts/${post.id}`}>
+                      <div>
+                          <User post={post} />
+                          <Content post={post} />
+                          <Image post={post} />
+                          <Link link={post.link} />
+                      </div>
+                  </RouterLink>
 
-          { post.comments ? <Comments forceOpen={forceOpen} post={post} /> : null }
+                  {post.comments
+                      ? <Comments forceOpen={forceOpen} post={post} />
+                      : null}
 
-          <Controls post={post} />
-        </div>
-      :
-        null
-    );
-  }
+                  <Controls post={post} />
+              </div>
+            : null;
+    }
 }
 
 export { Post };

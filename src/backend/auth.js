@@ -13,16 +13,19 @@ github.addScope('user:email');
 const twitter = new firebase.auth.TwitterAuthProvider();
 
 export function logout() {
-  return new Promise((resolve, reject) => {
-    firebase.auth().signOut().then(() => {
-      history.push('/login');
-      resolve();
-    }, error => reject(error));
-  });
+    return new Promise((resolve, reject) => {
+        firebase.auth().signOut().then(
+            () => {
+                history.push('/login');
+                resolve();
+            },
+            error => reject(error)
+        );
+    });
 }
 
 function loginWithProvider(provider) {
-  return firebase.auth().signInWithRedirect(provider);
+    return firebase.auth().signInWithRedirect(provider);
 }
 
 export const loginWithGoogle = loginWithProvider.bind(null, google);

@@ -15,7 +15,7 @@ describe('<Create/>', () => {
     describe('constructor', () => {
         it('should be constructed properly', () => {
             const onSubmitStub = sandbox.stub();
-            const component = shallow(<CreatePost onSubmit={onSubmitStub}/>);
+            const component = shallow(<CreatePost onSubmit={onSubmitStub} />);
             expect(component.instance().handleSubmit).toBeDefined();
             expect(component.instance().handlePostChange).toBeDefined();
         });
@@ -24,7 +24,7 @@ describe('<Create/>', () => {
         it('should handle a post submission', () => {
             const onSubmitStub = sandbox.stub();
             const preventDefaultStub = sandbox.stub();
-            const wrapper = shallow(<CreatePost onSubmit={onSubmitStub}/>);
+            const wrapper = shallow(<CreatePost onSubmit={onSubmitStub} />);
             const mockNewValue = 'new value';
             wrapper.find('textarea').simulate('change', {
                 target: {
@@ -32,7 +32,7 @@ describe('<Create/>', () => {
                 }
             });
             wrapper.find('form').simulate('submit', {
-              preventDefault: preventDefaultStub
+                preventDefault: preventDefaultStub
             });
 
             expect(onSubmitStub.calledOnce).toBe(true);
@@ -46,7 +46,7 @@ describe('<Create/>', () => {
     describe('render methods', () => {
         it('should render correctly', () => {
             const onSubmitStub = sandbox.stub();
-            const wrapper = shallow(<CreatePost onSubmit={onSubmitStub}/>);
+            const wrapper = shallow(<CreatePost onSubmit={onSubmitStub} />);
             expect(wrapper.find('form').length).toBe(1);
             expect(wrapper.find('textarea').length).toBe(1);
             expect(wrapper.find('button').length).toBe(1);

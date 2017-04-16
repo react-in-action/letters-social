@@ -1,9 +1,16 @@
 const { blue, red, green, yellow } = require('chalk');
 const moment = require('moment');
-const letters = blue('L') + red('e') + yellow('t') + blue('t')
-                + green('e') + red('r') + yellow('s');
+const letters =
+    blue('L') +
+    red('e') +
+    yellow('t') +
+    blue('t') +
+    green('e') +
+    red('r') +
+    yellow('s');
 const today = new Date();
-console.log(`
+console.log(
+    `
   ${blue('=========================== Welcome! =============================')}
 
   If you're here, you're probably reading React in Action by, well,
@@ -73,4 +80,5 @@ console.log(`
 
 
   ==================================================================
-  `);
+  `
+);
