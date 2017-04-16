@@ -1,6 +1,6 @@
 export const app = {
     LOADING: 'letters-social/app/loading',
-    LOADED: 'letters-social/app/loaded',
+    LOADED: 'letters-social/app/loaded'
 };
 
 export const auth = {
@@ -13,15 +13,17 @@ export const posts = {
     DELETE: 'letters-social/post/delete',
     UPDATE: 'letters-social/post/update',
     LOAD_MORE: 'letters-social/post/load_more',
-    LIKE: 'letters-social/post/like',
+    LIKE: 'letters-social/post/like'
 };
 
 export const comments = {
     CREATE: 'letters-social/comment/create',
     DELETE: 'letters-social/comment/delete',
-    UPDATE: 'letters-social/comment/update',
+    UPDATE: 'letters-social/comment/update'
 };
 
-export const user = {
-    UPDATE_SETTINGS: 'letters-social/user/update_settings'
+export const profile = {
+    UPDATE_EMAIL_PREFERENCES: 'letters-social/profile/update_email_preferences',
+    UPDATE_EMAIL: 'letters-social/profile/update_email',
+    UPDATE_PROFILE_PICTURE: 'letters-social/profile/update_profile_picture'
 };

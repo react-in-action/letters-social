@@ -16,7 +16,9 @@ export function posts(state = initialState.posts, action) {
 export function postIds(state = initialState.postIds, action) {
     switch (action.type) {
         case types.posts.UPDATE: {
-            const nextPostIds = action.posts.map(post => post.id).concat(state.postIds);
+            const nextPostIds = action.posts
+                .map(post => post.id)
+                .concat(state.postIds);
             return nextPostIds;
         }
         default:

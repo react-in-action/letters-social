@@ -11,7 +11,7 @@ describe('<Link/>', () => {
         it('should return an element with an onClick method attached', () => {
             const wrapper = shallow(
                 <Link to="/">
-                    <ChildStub/>
+                    <ChildStub />
                 </Link>
             );
             expect(wrapper.find(ChildStub).length).toBe(1);
@@ -20,7 +20,7 @@ describe('<Link/>', () => {
         it('should render correctly', () => {
             const component = renderer.create(
                 <Link to="/">
-                    <ChildStub/>
+                    <ChildStub />
                 </Link>
             );
             const tree = component.toJSON();

@@ -1,3 +1,3 @@
-const env = {
-  NODE_ENV = 'development',  
-}
+export const env = {
+    NODE_ENV: 'development'
+};

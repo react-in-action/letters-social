@@ -2,11 +2,11 @@ import * as types from '../constants/types';
 import { createPost, fetchPosts, fetchPost } from '../shared/http';
 import { loading, loaded } from './loading';
 
-export function updatePosts(posts) {
+export function updateEmailPreferences(preferences) {
     return {
-        type: types.posts.UPDATE,
+        type: types.profile.UPDATE_EMAIL_PREFERENCES,
         error: false,
-        posts
+        preferences
     };
 }
 

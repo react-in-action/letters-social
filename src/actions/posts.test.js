@@ -4,7 +4,7 @@ import thunk from 'redux-thunk';
 import * as types from '../constants/types';
 import { createNewPost, getPosts, getPost, updatePosts } from './posts';
 
-const middlewares = [ thunk ];
+const middlewares = [thunk];
 const mockStore = configureMockStore(middlewares);
 
 describe('async post actions', () => {
@@ -13,18 +13,17 @@ describe('async post actions', () => {
             const store = mockStore({
                 postIds: []
             });
-            return store.dispatch(getPosts())
-            .then(() => {
+            return store.dispatch(getPosts()).then(() => {
                 const [
                     loadingAction,
                     updateAction,
-                    loadedAction,
+                    loadedAction
                 ] = store.getActions();
                 expect(loadingAction).toEqual({
                     type: types.app.LOADING
                 });
                 expect(loadedAction).toEqual({
-                    type: types.app.LOADED,
+                    type: types.app.LOADED
                 });
                 expect(updateAction.type).toEqual(types.posts.UPDATE);
             });
@@ -40,15 +39,16 @@ describe('async post actions', () => {
                 id: 'id',
                 content: 'a post!'
             };
-            return store.dispatch(createNewPost(newPost))
-            .then(() => {
+            return store.dispatch(createNewPost(newPost)).then(() => {
                 const [
                     loadingAction,
                     secondLoadingAction,
-                    updatePostsAction,
+                    updatePostsAction
                 ] = store.getActions();
                 expect(loadingAction).toEqual({ type: types.app.LOADING });
-                expect(secondLoadingAction).toEqual({ type: types.app.LOADING });
+                expect(secondLoadingAction).toEqual({
+                    type: types.app.LOADING
+                });
                 expect(updatePostsAction.type).toEqual(types.posts.UPDATE);
             });
         });
@@ -57,12 +57,11 @@ describe('async post actions', () => {
     describe('getPost', () => {
         it(' should create the right actions', () => {
             const store = mockStore();
-            return store.dispatch(getPost('id'))
-            .then(() => {
+            return store.dispatch(getPost('id')).then(() => {
                 const [
                     loadingAction,
                     updateAction,
-                    loadedAction,
+                    loadedAction
                 ] = store.getActions();
                 expect(loadingAction).toEqual({ type: types.app.LOADING });
                 expect(loadedAction).toEqual({ type: types.app.LOADED });

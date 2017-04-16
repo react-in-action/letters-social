@@ -30,23 +30,28 @@ app.use(cors());
 app.options(__PRODUCTION__ ? 'http://social.learnreactjs.io' : '*', cors());
 
 // ==== Serve the app ====
-app.use('/api', jsonAPI.router(join(__dirname, '..', '..', 'db', 'seed', 'db.json')));
+app.use(
+    '/api',
+    jsonAPI.router(join(__dirname, '..', '..', 'db', 'seed', 'db.json'))
+);
 app.use('/', express.static(resolve(__dirname, '..')));
 
-app.use('*', (req, res) => res.sendFile(resolve(__dirname, '..', 'index.html')));
+app.use('*', (req, res) =>
+    res.sendFile(resolve(__dirname, '..', 'index.html'))
+);
 
 // ====ERROR-HANDLING===
 app.use((req, res, next) => {
-  const err = new Error('Not Found');
-  err.status = 404;
-  next(err);
+    const err = new Error('Not Found');
+    err.status = 404;
+    next(err);
 });
 
 app.use((err, req, res) => {
-  console.error(err);
-  return res.status(err.status || 500).json({
-    message: err.message,
-  });
+    console.error(err);
+    return res.status(err.status || 500).json({
+        message: err.message
+    });
 });
 
 module.exports = app;

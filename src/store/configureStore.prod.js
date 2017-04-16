@@ -6,11 +6,13 @@ import crashReporting from '../middleware/crash';
 
 let store;
 export default function configureStore(initialState) {
-  if (store) {
+    if (store) {
+        return store;
+    }
+    store = createStore(
+        rootReducer,
+        initialState,
+        compose(applyMiddleware(thunk, crashReporting))
+    );
     return store;
-  }
-  store = createStore(rootReducer, initialState, compose(
-    applyMiddleware(thunk, crashReporting)
-  ));
-  return store;
 }
