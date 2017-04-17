@@ -40,3 +40,6 @@ node_modules
 
 public/styles.*
 public/styles
+
+dist
+.next
