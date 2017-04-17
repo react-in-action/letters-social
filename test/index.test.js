@@ -8,7 +8,7 @@ const store = configureStore();
 
 jest.mock('../shared/http');
 import { Post } from '../src/components/post';
-import { Home } from './Home';
+import Home from '../pages/index';
 
 describe('<Home/>', () => {
     describe('lifecycle methods', () => {
