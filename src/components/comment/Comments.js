@@ -1,4 +1,5 @@
-import React, { PropTypes } from 'react';
+import PropTypes from 'prop-types';
+import React from 'react';
 import Comment from './Comment';
 import CreateComment from './Create';
 
@@ -28,14 +29,14 @@ export default class Comments extends React.Component {
         }
     }
 
+    handleCommentSubmit(id) {
+        console.log('Thread id: ', id);
+    }
+
     toggle() {
         this.setState({
             showComments: !this.state.showComments
         });
-    }
-
-    handleCommentSubmit(id) {
-        console.log('Thread id: ', id);
     }
 
     render() {

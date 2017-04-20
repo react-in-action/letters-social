@@ -16,7 +16,8 @@ exports[`<Login/> Login should render correctly 1`] = `
       </h1>
       <br />
       <p>
-        This is a sample app built with 
+        This is a sample app built with
+         
         <a
           href="https://facebook.github.io/react/"
           rel="noopener noreferrer"
@@ -24,11 +25,14 @@ exports[`<Login/> Login should render correctly 1`] = `
         >
           React
         </a>
-         for 
+         
+        for
+         
         <em>
           React in Action
         </em>
-         by me (Mark Thomas). Feel free to sign in with one of the tools below or use an email and password. The app will never post, email, or do anything without your permission, it is just for learning purposes
+         
+        by me (Mark Thomas). Feel free to sign in with one of the tools below or use an email and password. The app will never post, email, or do anything without your permission, it is just for learning purposes
       </p>
       <br />
     </div>
@@ -53,7 +57,8 @@ exports[`<Login/> Login should render correctly 1`] = `
               <i
                 className="fa fa-github"
               />
-               log in with Github
+               
+              log in with Github
             </button>
           </div>
         </div>

@@ -1,37 +1,40 @@
-import React, { Component, PropTypes } from 'react';
+import PropTypes from 'prop-types';
+import React from 'react';
 import Comments from '../comment/Comments';
 
-import { Content, Image, Link, Controls, User } from './';
+import Content from './Content';
+import Image from './Image';
+import Link from './Link';
+import Controls from './Controls';
+import User from './User';
 
-import { Link as RouterLink } from '../router';
+import RouterLink from '../router/Link';
 
-class Post extends Component {
-    static propTypes = {
-        post: PropTypes.object,
-        forceOpen: PropTypes.bool
-    };
+function Post(props) {
+    const { post, forceOpen } = props;
+    return post
+        ? <div className="post">
+              <RouterLink to={`/posts/${post.id}`}>
+                  <div>
+                      <User post={post} />
+                      <Content post={post} />
+                      <Image post={post} />
+                      <Link link={post.link} />
+                  </div>
+              </RouterLink>
 
-    render() {
-        const { post, forceOpen } = this.props;
-        return post
-            ? <div className="post">
-                  <RouterLink to={`/posts/${post.id}`}>
-                      <div>
-                          <User post={post} />
-                          <Content post={post} />
-                          <Image post={post} />
-                          <Link link={post.link} />
-                      </div>
-                  </RouterLink>
+              {post.comments
+                  ? <Comments forceOpen={forceOpen} post={post} />
+                  : null}
 
-                  {post.comments
-                      ? <Comments forceOpen={forceOpen} post={post} />
-                      : null}
-
-                  <Controls post={post} />
-              </div>
-            : null;
-    }
+              <Controls post={post} />
+          </div>
+        : null;
 }
 
-export { Post };
+Post.propTypes = {
+    post: PropTypes.object,
+    forceOpen: PropTypes.bool
+};
+
+export default Post;

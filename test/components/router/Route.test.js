@@ -1,7 +1,7 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 
-import { Route } from './Route';
+import Route from '../../../src/components/router/Route';
 
 describe('<Route/>', () => {
     describe('render methods', () => {

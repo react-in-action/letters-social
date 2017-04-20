@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import { loginWithGithub } from '../src/backend';
+import { loginWithGithub } from '../backend';
 
-export class Login extends Component {
+export default class Login extends Component {
     constructor(props) {
         super(props);
         this.handleGithubLogin = this.handleGithubLogin.bind(this);
@@ -11,16 +11,16 @@ export class Login extends Component {
         };
     }
 
-    handleGithubLogin(e) {
-        e.preventDefault();
-        loginWithGithub().catch(err => this.handleAuthError(err));
-    }
-
     handleAuthError(error) {
         this.setState({
             hasErrors: true,
             error
         });
+    }
+
+    handleGithubLogin(e) {
+        e.preventDefault();
+        loginWithGithub().catch(err => this.handleAuthError(err));
     }
 
     render() {

@@ -1,90 +1,102 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 
-const ChildComponent = React.createClass({
-  propTypes: {
-    name: React.PropTypes.string,
-  },
-  getInitialState: function() {
-    return {
-      name: 'Mark',
+class ChildComponent extends React.Component {
+    static propTypes = {
+        name: PropTypes.string
     };
-  },
-  getDefaultProps: function() {
-    console.log('ChildComponent : getDefaultProps');
-  },
-  componentWillMount: function() {
-    console.log('ChildComponent : componentWillMount');
-  },
-  componentDidMount: function() {
-    console.log('ChildComponent : componentDidMount');
-  },
-  componentWillReceiveProps: function(nextProps) {
-    console.log('ChildComponent : componentWillReceiveProps()');
-    console.log('nextProps: ', nextProps);
-  },
-  shouldComponentUpdate: function(nextProps, nextState) {
-    console.log('<ChildComponent/> - shouldComponentUpdate()');
-    console.log('nextProps: ', nextProps);
-    console.log('nextnextState: ', nextState);
-    return true;
-  },
-  componentWillUpdate: function(nextProps, nextState) {
-    console.log('<ChildComponent/> - componentWillUpdate');
-    console.log('nextProps: ', nextProps);
-    console.log('nextState: ', nextState);
-  },
-  componentDidUpdate: function(previousProps, previousState) {
-    console.log('ChildComponent: componentDidUpdate');
-    console.log('previousProps:', previousProps);
-    console.log('previousState:', previousState);
-  },
-  componentWillUnmount: function() {
-    console.log('ChildComponent: componentWillUnmount');
-  },
-  render: function() {
-    console.log('ChildComponent: render');
-    return (
-      <div>
-        Props: {this.props.name}
-      </div>
-    );
-  },
-});
 
-const ParentComponent = React.createClass({
-  getDefaultProps: function() {
-    console.log('ParentComponent: getDefaultProps');
-  },
-  getInitialState: function() {
-    console.log('ParentComponent: getInitialState');
-    return { text: '' };
-  },
-  componentWillMount: function() {
-    console.log('ParentComponent: componentWillMount');
-  },
-  componentDidMount: function() {
-    console.log('ParentComponent: componentDidMount');
-  },
-  componentWillUnmount: function() {
-    console.log('ParentComponent: componentWillUnmount');
-  },
-  onInputChange: function(e) {
-    this.setState({ text: e.target.value });
-  },
-  render: function() {
-    console.log('ParentComponent: render');
-    return (
-      <div className="container">
-        <h2>Learn about rendering and lifecycle methods!</h2>
-        <input
-          value={this.state.text}
-          onChange={this.onInputChange}
-        />
-        <ChildComponent text={this.state.text} />
-      </div>
-    );
-  },
-});
+    static defaultProps = function() {
+        console.log('ChildComponent : getDefaultProps');
+    }();
 
+    state = {
+        name: 'Mark'
+    };
+
+    componentWillMount() {
+        console.log('ChildComponent : componentWillMount');
+    }
+
+    componentDidMount() {
+        console.log('ChildComponent : componentDidMount');
+    }
+
+    componentWillReceiveProps(nextProps) {
+        console.log('ChildComponent : componentWillReceiveProps()');
+        console.log('nextProps: ', nextProps);
+    }
+
+    shouldComponentUpdate(nextProps, nextState) {
+        console.log('<ChildComponent/> - shouldComponentUpdate()');
+        console.log('nextProps: ', nextProps);
+        console.log('nextnextState: ', nextState);
+        return true;
+    }
+
+    componentWillUpdate(nextProps, nextState) {
+        console.log('<ChildComponent/> - componentWillUpdate');
+        console.log('nextProps: ', nextProps);
+        console.log('nextState: ', nextState);
+    }
+
+    componentDidUpdate(previousProps, previousState) {
+        console.log('ChildComponent: componentDidUpdate');
+        console.log('previousProps:', previousProps);
+        console.log('previousState:', previousState);
+    }
+
+    componentWillUnmount() {
+        console.log('ChildComponent: componentWillUnmount');
+    }
+
+    render() {
+        console.log('ChildComponent: render');
+        return (
+            <div>
+                Props: {this.props.name}
+            </div>
+        );
+    }
+}
+
+class ParentComponent extends React.Component {
+    static defaultProps = function() {
+        console.log('ParentComponent: getDefaultProps');
+    }();
+
+    constructor(props) {
+        super(props);
+        console.log('ParentComponent: getInitialState');
+        this.state = { text: '' };
+    }
+
+    componentWillMount() {
+        console.log('ParentComponent: componentWillMount');
+    }
+
+    componentDidMount() {
+        console.log('ParentComponent: componentDidMount');
+    }
+
+    componentWillUnmount() {
+        console.log('ParentComponent: componentWillUnmount');
+    }
+
+    onInputChange = (e) => {
+        this.setState({ text: e.target.value });
+    };
+
+    render() {
+        console.log('ParentComponent: render');
+        return (
+            <div className="container">
+                <h2>Learn about rendering and lifecycle methods!</h2>
+                <input value={this.state.text} onChange={this.onInputChange} />
+                <ChildComponent text={this.state.text} />
+            </div>
+        );
+    }
+}
 
 // export { ChildComponent, ParentComponent };

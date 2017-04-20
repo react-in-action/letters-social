@@ -2,7 +2,7 @@ import React from 'react';
 import sinon from 'sinon';
 import { shallow } from 'enzyme';
 
-import { CreatePost } from './Create';
+import CreatePost from '../../../src/components/post/Create';
 
 describe('<Create/>', () => {
     let sandbox;

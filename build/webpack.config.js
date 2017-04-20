@@ -1,6 +1,6 @@
-import { join } from 'path';
-import webpack from 'webpack';
-import HtmlWebpackPlugin from 'html-webpack-plugin';
+const { join } = require('path');
+const webpack = require('webpack');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const GLOBALS = {
     __DEV__: true,
@@ -8,7 +8,7 @@ const GLOBALS = {
     'process.env.ENDPOINT': JSON.stringify('http://localhost:3500')
 };
 
-export default {
+module.exports = {
     devtool: 'source-map',
     entry: ['webpack-hot-middleware/client?reload=true', './src/index'],
     cache: true,
@@ -21,7 +21,7 @@ export default {
     plugins: [
         new webpack.DefinePlugin(GLOBALS),
         new webpack.HotModuleReplacementPlugin(),
-        new webpack.NoErrorsPlugin(),
+        new webpack.NoEmitOnErrorsPlugin(),
         new HtmlWebpackPlugin({
             // Create HTML file that includes references to bundled CSS and JS.
             template: 'src/index.ejs',

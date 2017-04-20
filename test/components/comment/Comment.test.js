@@ -2,7 +2,7 @@ import React from 'react';
 import renderer from 'react-test-renderer';
 import sinon from 'sinon';
 
-import Comment from './Comment';
+import Comment from '../../../src/components/comment/Comment';
 
 describe('<Comment/>', () => {
     let sandbox;

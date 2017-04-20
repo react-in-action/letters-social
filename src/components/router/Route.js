@@ -1,4 +1,4 @@
-import { PropTypes } from 'react';
+import PropTypes from 'prop-types';
 import invariant from 'invariant';
 
 const Route = () =>
@@ -13,4 +13,4 @@ Route.propTypes = {
     index: PropTypes.oneOfType([PropTypes.element, PropTypes.func])
 };
 
-export { Route };
+export default Route;

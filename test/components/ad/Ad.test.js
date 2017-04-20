@@ -1,9 +1,9 @@
 import React from 'react';
-import { Ad } from './Ad';
+import Ad from '../../../src/components/ad/Ad';
 import renderer from 'react-test-renderer';
 import { shallow } from 'enzyme';
 
-jest.dontMock('./Ad');
+jest.dontMock('../../../src/components/ad/Ad');
 describe('<Ad/>', () => {
     it('should render correctly', () => {
         const component = renderer.create(<Ad />);

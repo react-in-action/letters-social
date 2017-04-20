@@ -3,13 +3,14 @@ import { render } from 'react-dom';
 import { Provider } from 'react-redux';
 
 import { App } from './containers/App';
-import { Home } from '../pages/Home';
-import { SinglePost } from '../pages/Post';
-import { Login } from '../pages/Login';
-import { NotFound } from '../pages/NotFound';
-import { Profile } from '../pages/Profile';
+import Home from './pages/index';
+import SinglePost from './pages/post';
+import Login from './pages/login';
+import Profile from './pages/profile';
 
-import { Router, Route } from './components/router';
+import Router from './components/router/Router';
+import Route from './components/router/Route';
+
 import { history } from './history';
 import { firebase } from './backend';
 import configureStore from './store/configureStore';
@@ -29,7 +30,7 @@ export const renderApp = state => {
                     <Route path="posts/:post" component={SinglePost} />
                     <Route path="login" component={Login} />
                     <Route component={Profile} path="profile" />
-                    <Route path="*" component={NotFound} />
+                    {/* <Route path="*" component={NotFound} /> */}
                 </Route>
             </Router>
         </Provider>,

@@ -2,13 +2,13 @@ import React from 'react';
 import { mount } from 'enzyme';
 import { Provider } from 'react-redux';
 const sinon = require('sinon');
-import configureStore from '../src/store/configureStore';
+import configureStore from '../../src/store/configureStore';
 
 const store = configureStore();
 
-jest.mock('../shared/http');
-import { Post } from '../src/components/post';
-import Home from '../pages/index';
+jest.mock('../../src/shared/http');
+import Post from '../../src/components/post/Post';
+import Home from '../../src/pages/index';
 
 describe('<Home/>', () => {
     describe('lifecycle methods', () => {

@@ -2,8 +2,8 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import renderer from 'react-test-renderer';
 
-import { Link } from './Link';
-jest.mock('../../history');
+import Link from '../../../src/components/router/Link';
+jest.mock('../../../src/history');
 
 describe('<Link/>', () => {
     const ChildStub = () => <div>inner child</div>;

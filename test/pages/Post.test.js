@@ -2,13 +2,13 @@ import React from 'react';
 import renderer from 'react-test-renderer';
 import { shallow } from 'enzyme';
 
-import { Post as postModel } from '../db/models';
-import { SinglePost } from './Post';
-import { Link } from '../src/components/router/Link';
-import { Post } from '../src/components/post/Post';
+import { Post as postModel } from '../../db/models';
+import SinglePost from '../../src/pages/post';
+import Link from '../../src/components/router/Link';
+import Post from '../../src/components/post/Post';
 
 jest.dontMock('react-overlays');
-jest.mock('../shared/http');
+jest.mock('../../src/shared/http');
 describe('<SinglePost/>', () => {
     let postModelStub;
     beforeEach(() => {

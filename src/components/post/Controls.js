@@ -1,4 +1,5 @@
-import React, { PropTypes } from 'react';
+import PropTypes from 'prop-types';
+import React from 'react';
 import { ButtonGroup, Button } from 'react-bootstrap';
 
 const Controls = props => {
@@ -41,4 +42,4 @@ Controls.propTypes = {
     post: PropTypes.object.isRequired
 };
 
-export { Controls };
+export default Controls;

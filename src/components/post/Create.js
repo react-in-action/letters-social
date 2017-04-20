@@ -1,9 +1,14 @@
-import React, { PropTypes } from 'react';
+import PropTypes from 'prop-types';
+import React from 'react';
 import Filter from 'bad-words';
 
 const filter = new Filter();
 
 class CreatePost extends React.Component {
+    static propTypes = {
+        onSubmit: PropTypes.func.isRequired
+    };
+
     constructor(props) {
         super(props);
 
@@ -61,8 +66,4 @@ class CreatePost extends React.Component {
     }
 }
 
-CreatePost.propTypes = {
-    onSubmit: PropTypes.func.isRequired
-};
-
-export { CreatePost };
+export default CreatePost;

@@ -1,8 +1,13 @@
-jest.mock('../shared/http');
+jest.mock('../../src/shared/http');
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
-import * as types from '../constants/types';
-import { createNewPost, getPosts, getPost, updatePosts } from './posts';
+import * as types from '../../src/constants/types';
+import {
+    createNewPost,
+    getPosts,
+    getPost,
+    updatePosts
+} from '../../src/actions/posts';
 
 const middlewares = [thunk];
 const mockStore = configureMockStore(middlewares);

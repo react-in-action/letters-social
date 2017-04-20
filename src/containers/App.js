@@ -1,6 +1,7 @@
-import React, { PropTypes } from 'react';
+import PropTypes from 'prop-types';
+import React from 'react';
 
-import Nav from '../components/nav/navbar';
+import Nav from '../components/nav/Navbar';
 
 export const App = props => {
     return (
