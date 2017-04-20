@@ -1,4 +1,5 @@
-import React, { PropTypes } from 'react';
+import PropTypes from 'prop-types';
+import React from 'react';
 
 const Image = props => {
     if (props.post && props.post.image) {
@@ -11,4 +12,4 @@ Image.propTypes = {
     post: PropTypes.shape({ image: PropTypes.string })
 };
 
-export { Image };
+export default Image;

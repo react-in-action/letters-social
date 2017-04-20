@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from '../src/components/router';
+import Link from '../components/router/Link';
 
 export const NotFound = () => {
     return (

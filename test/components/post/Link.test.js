@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 
-import { Link } from './Link';
+import Link from '../../../src/components/post/Link';
 
 describe('<Link/>', () => {
     const baseProps = {

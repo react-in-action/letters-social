@@ -12,7 +12,7 @@ export default initialState => {
         initialState,
         compose(
             applyMiddleware(thunk),
-            typeof window !== undefined && window.devToolsExtension
+            typeof window !== 'undefined' && window.devToolsExtension
                 ? window.devToolsExtension()
                 : f => f
         )

@@ -1,5 +1,5 @@
-import { loading } from './loading';
-import * as types from '../constants/types';
+import { loading } from '../../src/reducers/loading';
+import * as types from '../../src/constants/types';
 
 describe('Loading reducer', () => {
     const initialState = false;

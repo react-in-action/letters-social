@@ -1,6 +1,7 @@
-import React, { PropTypes } from 'react';
+import PropTypes from 'prop-types';
+import React from 'react';
 import { connect } from 'react-redux';
-import { Post } from './';
+import Post from './Post';
 
 function Posts(props) {
     return (
@@ -20,4 +21,4 @@ const PostContainer = connect(state => {
     };
 })(Posts);
 
-export { PostContainer as Posts };
+export default PostContainer;

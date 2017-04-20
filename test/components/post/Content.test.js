@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 
-import { Content } from './Content';
+import Content from '../../../src/components/post/Content';
 
 describe('<Content/>', () => {
     describe('render methods', () => {

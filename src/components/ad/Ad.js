@@ -1,4 +1,5 @@
-import React, { PropTypes } from 'react';
+import PropTypes from 'prop-types';
+import React from 'react';
 
 const Ad = props => {
     return (
@@ -20,4 +21,4 @@ Ad.propTypes = {
     url: PropTypes.string
 };
 
-export { Ad };
+export default Ad;

@@ -1,5 +1,5 @@
-jest.mock('./http');
-import { fetchPosts, createPost, fetchPost } from './http';
+jest.mock('../../src/shared/http');
+import { fetchPosts, createPost, fetchPost } from '../../src/shared/http';
 
 describe('fetchPosts', () => {
     it('should sould fetch posts', async () => {

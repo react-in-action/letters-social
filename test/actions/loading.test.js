@@ -1,5 +1,5 @@
-import * as types from '../constants/types';
-import { loading, loaded } from './loading';
+import * as types from '../../src/constants/types';
+import { loading, loaded } from '../../src/actions/loading';
 
 describe('loading actions', () => {
     it('should create a loading action', () => {

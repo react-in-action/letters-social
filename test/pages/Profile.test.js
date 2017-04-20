@@ -1,7 +1,7 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 
-import { Profile } from './Profile';
+import Profile from '../../src/pages/profile';
 
 test('Profile should render correctly', () => {
     const component = renderer.create(<Profile />);

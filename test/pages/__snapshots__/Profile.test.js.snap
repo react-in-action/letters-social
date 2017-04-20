@@ -13,6 +13,10 @@ exports[`Profile should render correctly 1`] = `
       <h2>
         Profile settings!
       </h2>
+      <input
+        onChange={[Function]}
+        type="text"
+      />
     </div>
   </div>
 </div>

@@ -1,6 +1,6 @@
-import { posts, postIds } from './posts';
-import initialState from '../constants/initialState';
-import * as types from '../constants/types';
+import { posts, postIds } from '../../src/reducers/posts';
+import initialState from '../../src/constants/initialState';
+import * as types from '../../src/constants/types';
 
 describe('postIds', () => {
     it('should return the initial state', () => {

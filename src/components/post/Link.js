@@ -1,4 +1,5 @@
-import React, { PropTypes } from 'react';
+import PropTypes from 'prop-types';
+import React from 'react';
 
 const Link = props => {
     const { link } = props;
@@ -21,4 +22,4 @@ Link.propTypes = {
     })
 };
 
-export { Link };
+export default Link;

@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import { Route } from './Route';
-import { Router } from './Router';
+import Route from '../../../src/components/router/Route';
+import Router from '../../../src/components/router/Router';
 
 const RootComponentStub = ({ children }) => <div>{children}</div>;
 const FoundComponentStub = () => <div className="found">found</div>;

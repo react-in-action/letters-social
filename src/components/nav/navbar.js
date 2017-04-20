@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 
 import { logout, firebase } from '../../backend';
-import { Link } from '../router';
-import Logo from './logo';
+import Link from '../router/Link';
+import Logo from './Logo';
 
 class Navigation extends Component {
     constructor(props) {

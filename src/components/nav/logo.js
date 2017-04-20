@@ -1,9 +1,10 @@
-import React, { PropTypes } from 'react';
-import { Link as RouterLink } from '../router';
+import PropTypes from 'prop-types';
+import React from 'react';
+import Link from '../../components/router/Link';
 
 const Logo = props => {
     return (
-        <RouterLink to="/">
+        <Link to="/">
             <div className="logo" style={{ fontSize: `${props.size}em` }}>
                 <span style={{ color: '#4F93E0' }}>L</span>
                 <span style={{ color: '#D0021B' }}>e</span>
@@ -16,7 +17,7 @@ const Logo = props => {
                     ? null
                     : <small className="social">.social</small>}
             </div>
-        </RouterLink>
+        </Link>
     );
 };
 

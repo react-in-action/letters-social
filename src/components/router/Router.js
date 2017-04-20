@@ -1,11 +1,12 @@
+import PropTypes from 'prop-types';
 // Major thanks to TJ Holowaychuk's work on https://github.com/tj/react-enroute
 // This code draws on the simple router created there; thanks (again) TJ!
 
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
 import enroute from 'enroute';
 import invariant from 'invariant';
 
-export class Router extends Component {
+export default class Router extends Component {
     static propTypes = {
         children: PropTypes.arrayOf(PropTypes.element),
         location: PropTypes.string.isRequired
@@ -32,6 +33,8 @@ export class Router extends Component {
     addRoute(element, parent) {
         // Get the component, path, index, and children props from a given child
         const { component, path, children, index } = element.props;
+
+        console.log(component);
 
         console.info(`Adding path: ${path}`);
         console.info({ path, component: component.name });
@@ -86,6 +89,10 @@ export class Router extends Component {
         React.Children.forEach(routes, route => this.addRoute(route, parent));
     }
 
+    cleanPath(path) {
+        return path.replace(/\/\//g, '/');
+    }
+
     normalizeRoute(path, parent) {
         // If there's just a /, it's an absolute route
         if (path[0] === '/') {
@@ -97,10 +104,6 @@ export class Router extends Component {
         }
         // Join the child to the parent route
         return `${parent.route}/${path}`;
-    }
-
-    cleanPath(path) {
-        return path.replace(/\/\//g, '/');
     }
 
     render() {

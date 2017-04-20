@@ -1,4 +1,5 @@
-import React, { PropTypes } from 'react';
+import PropTypes from 'prop-types';
+import React from 'react';
 
 const Content = props => {
     const { post } = props;
@@ -12,4 +13,5 @@ const Content = props => {
 Content.propTypes = {
     post: PropTypes.object
 };
-export { Content };
+
+export default Content;

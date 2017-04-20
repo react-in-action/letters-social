@@ -4,7 +4,7 @@ import {
     loginWithTwitter,
     loginWithFacebook,
     logout
-} from './auth';
+} from '../../src/backend/auth';
 
 describe('auth', () => {
     it('should have the right provider methods exposed', () => {

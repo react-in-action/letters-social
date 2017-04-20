@@ -1,7 +1,7 @@
 import React from 'react';
 import { AutoAffix } from 'react-overlays';
 
-export const Welcome = () => {
+const Welcome = () => {
     return (
         <AutoAffix viewportOffsetTop={50} container={this}>
             <div className="welcome">
@@ -81,3 +81,5 @@ export const Welcome = () => {
         </AutoAffix>
     );
 };
+
+export default Welcome;

@@ -1,4 +1,5 @@
-import React, { PropTypes } from 'react';
+import PropTypes from 'prop-types';
+import React from 'react';
 import moment from 'moment';
 
 const User = props => {
@@ -31,4 +32,4 @@ User.propTypes = {
     post: PropTypes.object.isRequired
 };
 
-export { User };
+export default User;

@@ -1,4 +1,5 @@
-import React, { PropTypes } from 'react';
+import PropTypes from 'prop-types';
+import React from 'react';
 import { categories } from '../../../db/constants';
 import { Button, ButtonGroup } from 'react-bootstrap';
 import { AutoAffix } from 'react-overlays';

@@ -1,9 +1,9 @@
-import webpack from 'webpack';
-import webpackHotMiddleware from 'webpack-hot-middleware';
-import webpackDevMiddleware from 'webpack-dev-middleware';
-import historyApiFallback from 'connect-history-api-fallback';
-import browserSync from 'browser-sync';
-import config from '../build/webpack.config.js';
+const webpack = require('webpack');
+const webpackHotMiddleware = require('webpack-hot-middleware');
+const webpackDevMiddleware = require('webpack-dev-middleware');
+const historyApiFallback = require('connect-history-api-fallback');
+const browserSync = require('browser-sync');
+const config = require('../build/webpack.config.js');
 
 const bundler = webpack(config);
 

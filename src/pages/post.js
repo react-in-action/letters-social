@@ -1,13 +1,14 @@
-import React, { PropTypes, Component } from 'react';
+import PropTypes from 'prop-types';
+import React, { Component } from 'react';
 import { AutoAffix } from 'react-overlays';
 
-import { fetchPost } from '../src/shared/http';
+import { fetchPost } from '../shared/http';
 
-import { Ad } from '../src/components/ad/Ad';
-import { Post } from '../src/components/post/Post';
-import { Link } from '../src/components/router/Link';
+import Ad from '../components/ad/Ad';
+import Post from '../components/post/Post';
+import Link from '../components/router/Link';
 
-export class SinglePost extends Component {
+export default class SinglePost extends Component {
     static propTypes = {
         params: PropTypes.shape({
             post: PropTypes.string
