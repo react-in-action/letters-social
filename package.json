@@ -82,7 +82,7 @@
         "react": "15.5.4",
         "react-bootstrap": "0.30.9",
         "react-dom": "15.5.4",
-        "react-overlays": "0.6.12",
+        "react-overlays": "0.7.0",
         "react-redux": "5.0.4",
         "react-router-redux": "4.0.8",
         "redux": "3.6.0",
