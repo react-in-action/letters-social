@@ -58,7 +58,7 @@
         "cookie-parser": "1.4.3",
         "cors": "2.8.3",
         "enroute": "1.0.1",
-        "environs": "0.4.1",
+        "environs": "0.4.3",
         "enzyme": "2.8.2",
         "eslint": "3.19.0",
         "eslint-plugin-jsx-a11y": "4.0.0",
