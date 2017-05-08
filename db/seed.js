@@ -1,22 +1,20 @@
-import { join } from 'path';
-import { name, internet, lorem, date, random } from 'faker';
-import { promisify } from 'bluebird';
-import mkdirp from 'mkdirp';
-import { sample, sampleSize, random as rand } from 'lodash';
-import { v4 as uuid } from 'node-uuid';
-import { writeFile } from 'fs';
-import ora from 'ora';
+const { join } = require('path');
+const { name, internet, lorem, date, random } = require('faker');
+const { promisify } = require('bluebird');
+const mkdirp = require('mkdirp');
+const { sample, sampleSize, random: rand } = require('lodash');
+const { v4: uuid } = require('node-uuid');
+const { writeFile } = require('fs');
+const ora = require('ora');
 
-import { categories } from './constants';
+const { categories } = require('./constants');
 
 const write = promisify(writeFile);
 
 function generateProfilePicture() {
     const pics = [];
     for (let i = 0; i < 15; i++) {
-        pics.push(
-            `https://drtzvj8zd0k9x.cloudfront.net/assets/profile-pictures/${i + 1}.png`
-        );
+        pics.push(`https://drtzvj8zd0k9x.cloudfront.net/assets/profile-pictures/${i + 1}.png`);
     }
     return function selectRandomProfilePicture() {
         return sample(pics);
@@ -27,9 +25,7 @@ const createProfilePicture = generateProfilePicture();
 function generateShareablePicture() {
     const pics = [];
     for (let i = 0; i < 50; i++) {
-        pics.push(
-            `https://drtzvj8zd0k9x.cloudfront.net/assets/post-images/${i + 1}.jpg`
-        );
+        pics.push(`https://drtzvj8zd0k9x.cloudfront.net/assets/post-images/${i + 1}.jpg`);
     }
     return function selectRandomPostImage() {
         return sample(pics);
@@ -37,7 +33,7 @@ function generateShareablePicture() {
 }
 const createShareableImage = generateShareablePicture();
 
-export class User {
+module.exports.User = class User {
     constructor() {
         this.email = internet.email();
         this.firstName = name.firstName();
@@ -47,14 +43,14 @@ export class User {
         this.password = internet.password();
         this.username = internet.userName();
     }
-}
+};
 
 // possible categories
 
 function returnCategories() {
     return sampleSize(categories, rand(1, 15));
 }
-export class Post {
+module.exports.Post = class Post {
     constructor(user) {
         this.id = uuid();
         this.categories = returnCategories();
@@ -72,9 +68,9 @@ export class Post {
               };
         this.user = user;
     }
-}
+};
 
-export class Comment {
+module.exports.Comment = class Comment {
     constructor(user) {
         this.id = uuid();
         this.content = lorem.paragraph(sample([1, 2, 3]));
@@ -82,42 +78,38 @@ export class Comment {
         this.likes = random.number(1, 100);
         this.user = user;
     }
-}
+};
 
 function generateUsers(n) {
     const users = [];
     for (let i = 0; i < n; i++) {
-        users.push(new User());
+        users.push(new module.exports.User());
     }
     return users;
 }
 
-function generateComments(n: number, users: Array<any>) {
+function generateComments(n, users) {
     const comments = [];
     for (let i = 0; i < n; i++) {
-        comments.push(new Comment(sample(users)));
+        comments.push(new module.exports.Comment(sample(users)));
     }
     return comments;
 }
 
-function generatePosts(
-    n: number,
-    users: Array<User>,
-    comments: Array<Comment>
-) {
+function generatePosts(n, users, comments) {
     const posts = [];
     for (let i = 0; i < n; i++) {
-        const newPost = new Post(sample(users));
+        const newPost = new module.exports.Post(sample(users));
         newPost.comments = sampleSize(comments, random.number(7));
         posts.push(newPost);
     }
     return posts;
 }
 
-export function seed(
-    nUsers: number = 500,
-    nPosts: number = 2000,
-    nComments: number = 750
+module.exports.seed = function seed(
+    nUsers = 500,
+    nPosts = 2000,
+    nComments = 750
 ) {
     const spinner = ora('Generating sample data...').start();
     mkdirp.sync(join(__dirname, 'seed'));
@@ -142,6 +134,6 @@ export function seed(
             console.error(err);
             setTimeout(() => spinner.stop());
         });
-}
+};
 
-seed();
+module.exports.seed();

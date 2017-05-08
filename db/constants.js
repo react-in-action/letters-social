@@ -1,4 +1,4 @@
-export const categories = [
+module.exports.categories = [
     'friends',
     'family',
     'food',
