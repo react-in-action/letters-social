@@ -1,11 +1,11 @@
 // More info on Webpack's Node API here: https://webpack.github.io/docs/node.js-api.html
 // Allowing console calls below since this is a build file.
 /* eslint-disable no-console */
-import webpack from 'webpack';
-import ora from 'ora';
-import { join } from 'path';
-import config from './webpack.config.prod';
-import mkdirp from 'mkdirp';
+const webpack = require('webpack');
+const ora = require('ora');
+const { join } = require('path');
+const config = require('./webpack.config.prod');
+const mkdirp = require('mkdirp');
 
 process.env.NODE_ENV = 'production';
 

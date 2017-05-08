@@ -1,7 +1,7 @@
-import webpack from 'webpack';
-import path from 'path';
-import ExtractTextPlugin from 'extract-text-webpack-plugin';
-import WebpackMd5Hash from 'webpack-md5-hash';
+const webpack = require('webpack');
+const path = require('path');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const WebpackMd5Hash = require('webpack-md5-hash');
 
 const GLOBALS = {
     'process.env': {
@@ -13,7 +13,7 @@ const GLOBALS = {
     __DEV__: false
 };
 
-export default {
+module.exports = {
     devtool: 'source-map',
     entry: './src/index',
     target: 'web',
