@@ -62,7 +62,7 @@
         "enzyme": "2.8.2",
         "eslint": "3.19.0",
         "eslint-plugin-jsx-a11y": "4.0.0",
-        "express": "4.15.2",
+        "express": "4.15.3",
         "faker": "4.1.0",
         "firebase": "3.8.0",
         "flexboxgrid": "6.3.1",
