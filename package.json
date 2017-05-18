@@ -47,7 +47,7 @@
         "babel-register": "^6.24.1",
         "bad-words": "1.5.1",
         "bluebird": "3.5.0",
-        "body-parser": "1.17.1",
+        "body-parser": "1.17.2",
         "bootstrap-sass": "3.3.7",
         "browser-sync": "2.18.8",
         "chalk": "1.1.3",
