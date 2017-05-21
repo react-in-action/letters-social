@@ -36,7 +36,7 @@ export function getPost(id) {
     return dispatch => {
         dispatch(loading());
         return fetchPost(id).then(post => {
-            dispatch(updatePosts(post));
+            dispatch(updatePosts([post]));
             dispatch(loaded());
         });
     };

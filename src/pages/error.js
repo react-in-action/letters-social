@@ -1,7 +1,7 @@
 import React from 'react';
 import Link from '../components/router/Link';
 
-export const NotFound = () => {
+const NotFound = () => {
     return (
         <div className="container">
             <div className="row middle-xs center-xs">
@@ -23,3 +23,5 @@ export const NotFound = () => {
         </div>
     );
 };
+
+export default NotFound;

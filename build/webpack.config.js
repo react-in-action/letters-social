@@ -10,7 +10,10 @@ const GLOBALS = {
 
 module.exports = {
     devtool: 'source-map',
-    entry: ['webpack-hot-middleware/client?reload=true', './src/index'],
+    entry: [
+        'webpack-hot-middleware/client?reload=true&path=http://localhost:3000/__webpack_hmr',
+        './src/index'
+    ],
     cache: true,
     target: 'web',
     output: {

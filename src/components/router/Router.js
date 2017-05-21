@@ -24,8 +24,6 @@ export default class Router extends Component {
         // Add all the children components to the routes
         this.addRoutes(props.children);
 
-        console.info('Routes are:', this.routes);
-
         // Set up the router for matching & routing
         this.router = enroute(this.routes);
     }
@@ -34,21 +32,14 @@ export default class Router extends Component {
         // Get the component, path, index, and children props from a given child
         const { component, path, children, index } = element.props;
 
-        console.log(component);
-
-        console.info(`Adding path: ${path}`);
-        console.info({ path, component: component.name });
-
         // Ensure that it has the right input, since PropTypes can't really help here
         invariant(component, `Route ${path} is missing the "path" property`);
         invariant(typeof path === 'string', `Route ${path} is not a string`);
 
         // Set up Ccmponent to be rendered
         const render = (params, renderProps) => {
-            console.info('Current route params are: ');
-            console.info(params);
             const finalProps = Object.assign(
-                { params },
+                { router: { params } },
                 this.props,
                 renderProps
             );
@@ -108,7 +99,6 @@ export default class Router extends Component {
 
     render() {
         const { location } = this.props;
-        console.log(location);
         invariant(location, '<Router/> needs a location to work');
         return this.router(location);
     }

@@ -1,33 +1,31 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import { AutoAffix } from 'react-overlays';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 
-import { fetchPost } from '../shared/http';
+import { getPost, getPosts } from '../actions/posts';
 
 import Ad from '../components/ad/Ad';
 import Post from '../components/post/Post';
 import Link from '../components/router/Link';
 
-export default class SinglePost extends Component {
+class SinglePost extends Component {
     static propTypes = {
         params: PropTypes.shape({
             post: PropTypes.string
         })
     };
-    constructor(props) {
-        super(props);
-        this.state = {
-            post: null
-        };
-    }
 
     componentDidMount() {
-        fetchPost(this.props.params.post).then(post => this.setState({ post }));
+        // If there's no posts already loaded, load them
+        if (!this.props.post) {
+            this.props.actions.getPost(this.props.router.params.post);
+        }
     }
 
     render() {
         return (
-            this.state.post &&
             <div className="container-fluid">
                 <div className="row">
                     <div className="col-sm-3">
@@ -39,7 +37,7 @@ export default class SinglePost extends Component {
                         </Link>
                     </div>
                     <div className="col-xs-12 col-sm-6">
-                        <Post forceOpen post={this.state.post} />
+                        <Post forceOpen post={this.props.post} />
                     </div>
                     <div className="col-sm-2 col-xs-12 last-xs">
                         <AutoAffix viewportOffsetTop={50} container={this}>
@@ -54,3 +52,19 @@ export default class SinglePost extends Component {
         );
     }
 }
+
+export default connect(
+    // mapStateToProps
+    (state, ownProps) => {
+        return {
+            // try to directly read the post from our store and only fetch all posts in
+            // componentDidMount if we have to
+            post: state.posts[ownProps.router.params.post]
+        };
+    },
+    dispatch => {
+        return {
+            actions: bindActionCreators({ getPost, getPosts }, dispatch)
+        };
+    }
+)(SinglePost);
