@@ -3,7 +3,7 @@ import React from 'react';
 
 import Nav from '../components/nav/Navbar';
 
-export const App = props => {
+const App = props => {
     return (
         <div className="app">
             <Nav />
@@ -17,3 +17,6 @@ export const App = props => {
 App.propTypes = {
     children: PropTypes.node
 };
+
+
+export default App;

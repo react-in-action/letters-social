@@ -1,5 +1,5 @@
 export default {
-    error: null,
+    // error: null,
     loading: false,
     postIds: [],
     posts: {},

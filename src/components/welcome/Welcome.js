@@ -42,11 +42,13 @@ const Welcome = () => {
                 <ul>
                     <li>Building a simple social app</li>
                     <li>Learning about the fundamentals of React</li>
-                    <li>Building modern JavaScript (ES6 and beyond)</li>
+                    <li>
+                        Building React apps with modern JavaScript (ES6 and beyond)
+                    </li>
                     <li>Implementing a routing system from scratch</li>
                     <li>Utilizing server-side rendering</li>
                     <li>Testing React applications</li>
-                    <li>Implementing application architecture</li>
+                    <li>Implementing Redux application architecture</li>
                 </ul>
                 <p>
                     If you have any questions or thoughts, feel free to reach out to me

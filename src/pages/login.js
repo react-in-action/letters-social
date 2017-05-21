@@ -1,55 +1,33 @@
 import React, { Component } from 'react';
-import { loginWithGithub } from '../backend';
+
+import Welcome from '../components/welcome/Welcome';
+import { history } from '../history';
+import { firebase, loginWithGithub } from '../backend';
 
 export default class Login extends Component {
     constructor(props) {
         super(props);
         this.handleGithubLogin = this.handleGithubLogin.bind(this);
-        this.state = {
-            hasErrors: false,
-            error: null
-        };
     }
-
-    handleAuthError(error) {
-        this.setState({
-            hasErrors: true,
-            error
+    componentDidMount() {
+        firebase.auth().onAuthStateChanged(user => {
+            // if a user is logged in or just finished loggin in,
+            // we can navigate to the main page
+            if (user) {
+                history.push('/');
+            }
         });
     }
-
-    handleGithubLogin(e) {
-        e.preventDefault();
-        loginWithGithub().catch(err => this.handleAuthError(err));
+    handleGithubLogin(evt) {
+        evt.preventDefault();
+        loginWithGithub();
     }
-
     render() {
         return (
             <div className="container">
-                <div className="row middle-xs text-center">
+                <div className="row middle-xs">
                     <div className="col-xs-12 col-sm-6 col-sm-offset-3">
-                        <h1>
-                            Welcome to Letters Social!
-                            <br />
-                        </h1>
-                        <br />
-                        <p>
-                            This is a sample app built with
-                            {' '}
-                            <a
-                                href="https://facebook.github.io/react/"
-                                rel="noopener noreferrer"
-                                target="_blank"
-                            >
-                                React
-                            </a>
-                            {' '}
-                            for
-                            {' '}
-                            <em>React in Action</em>
-                            {' '}
-                            by me (Mark Thomas). Feel free to sign in with one of the tools below or use an email and password. The app will never post, email, or do anything without your permission, it is just for learning purposes
-                        </p>
+                        <Welcome />
                         <br />
                     </div>
                 </div>

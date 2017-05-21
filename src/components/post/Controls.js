@@ -1,6 +1,5 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import { ButtonGroup, Button } from 'react-bootstrap';
 
 const Controls = props => {
     const { post } = props;
@@ -18,23 +17,23 @@ const Controls = props => {
     }
 
     return (
-        <ButtonGroup>
-            <Button className="control">
+        <div className="btn-group">
+            <button className="btn btn-default control">
                 <i
                     className={`fa fa-thumbs-o-up ${applyCounterClassIf(showLikeCounter())}`}
                 />
                 {showLikeCounter() ? post.likes : null}
-            </Button>
-            <Button className="control">
+            </button>
+            <button className="btn btn-default control">
                 <i
                     className={`fa fa-comment ${applyCounterClassIf(showCommentCounter())}`}
                 />
                 {showCommentCounter() ? post.comments.length : null}
-            </Button>
-            <Button className="control">
+            </button>
+            <button className="btn btn-default control">
                 <i className="fa fa-share" />
-            </Button>
-        </ButtonGroup>
+            </button>
+        </div>
     );
 };
 

@@ -15,6 +15,7 @@ function Post(props) {
     return post
         ? <div className="post">
               <RouterLink to={`/posts/${post.id}`}>
+                  {/* we're wrapping this because RouterLink expectes a single child */}
                   <div>
                       <User post={post} />
                       <Content post={post} />

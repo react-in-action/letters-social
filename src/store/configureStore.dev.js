@@ -9,7 +9,7 @@ export default initialState => {
     }
     const createdStore = createStore(
         rootReducer,
-        initialState,
+        typeof window !== 'undefined' ? window.__INTIIAL_STATE__ : initialState,
         compose(
             applyMiddleware(thunk),
             typeof window !== 'undefined' && window.devToolsExtension
