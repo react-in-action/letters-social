@@ -56,7 +56,7 @@
         "cookie-parser": "1.4.3",
         "cookies": "^0.7.0",
         "cors": "2.8.3",
-        "debug": "^2.6.3",
+        "debug": "^2.6.7",
         "enroute": "1.0.1",
         "environs": "0.4.1",
         "enzyme": "2.8.2",
