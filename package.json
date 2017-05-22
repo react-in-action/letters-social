@@ -68,7 +68,7 @@
         "firebase": "3.8.0",
         "firebase-admin": "^5.0.0",
         "flexboxgrid": "6.3.1",
-        "helmet": "3.5.0",
+        "helmet": "3.6.0",
         "history": "4.6.1",
         "hpp": "0.2.2",
         "invariant": "2.2.2",
