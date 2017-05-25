@@ -101,7 +101,7 @@
         "babel-preset-es2015": "6.24.1",
         "babel-preset-react": "6.24.1",
         "coveralls": "2.13.0",
-        "css-loader": "^0.28.0",
+        "css-loader": "^0.28.3",
         "eslint-config-airbnb": "14.1.0",
         "eslint-plugin-import": "2.2.0",
         "eslint-plugin-react": "6.10.3",
