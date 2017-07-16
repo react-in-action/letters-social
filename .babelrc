@@ -1,4 +1,3 @@
 {
-  "presets": ["es2015", "react", "babel-preset-expo"],
-  "plugins": ["transform-class-properties"]
+  "presets": ["es2015", "react"]
 }
