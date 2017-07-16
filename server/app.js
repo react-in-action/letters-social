@@ -79,7 +79,7 @@ app.use('*', (req, res) => {
                 <script id="intialState">window.__INTIIAL_STATE__ = ${JSON.stringify(
                     store.getState()
                 )}</script>
-                <script src="/bundle.js" type='text/javascript'></script>
+                <script src="/static/bundle.js" type='text/javascript'></script>
                 </body>
             </html>
         `.trim();

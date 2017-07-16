@@ -5,35 +5,114 @@ exports[`<Login/> Login should render correctly 1`] = `
   className="container"
 >
   <div
-    className="row middle-xs text-center"
+    className="row middle-xs"
   >
     <div
       className="col-xs-12 col-sm-6 col-sm-offset-3"
     >
-      <h1>
-        Welcome to Letters Social!
-        <br />
-      </h1>
-      <br />
-      <p>
-        This is a sample app built with
-         
-        <a
-          href="https://facebook.github.io/react/"
-          rel="noopener noreferrer"
-          target="_blank"
+      <div>
+        <div
+          className="welcome"
         >
-          React
-        </a>
-         
-        for
-         
-        <em>
-          React in Action
-        </em>
-         
-        by me (Mark Thomas). Feel free to sign in with one of the tools below or use an email and password. The app will never post, email, or do anything without your permission, it is just for learning purposes
-      </p>
+          <h3>
+            Welcome!
+          </h3>
+          <p>
+            If you're here, you're probably reading or heard about
+             
+            <a
+              href="https://ifelse.io/book"
+              rel="noopener noreferrer"
+              target="_blank"
+            >
+              React in Action
+            </a>
+            . This app, Letters Social, is built with
+             
+            <a
+              href="https://facebook.github.io/react/"
+              rel="noopener noreferrer"
+            >
+              React
+            </a>
+             
+            and is what you'll be building
+             
+            <a
+              href="https://ifelse.io/book"
+              rel="noopener noreferrer"
+            >
+              in the book (React in Action)
+            </a>
+            .
+          </p>
+          <p>
+            <a
+              href="https://ifelse.io/book"
+              rel="noopener noreferrer"
+            >
+              React in Action
+            </a>
+             
+            explores
+          </p>
+          <ul>
+            <li>
+              Building a simple social app
+            </li>
+            <li>
+              Learning about the fundamentals of React
+            </li>
+            <li>
+              Building React apps with modern JavaScript (ES6 and beyond)
+            </li>
+            <li>
+              Implementing a routing system from scratch
+            </li>
+            <li>
+              Utilizing server-side rendering
+            </li>
+            <li>
+              Testing React applications
+            </li>
+            <li>
+              Implementing Redux application architecture
+            </li>
+          </ul>
+          <p>
+            If you have any questions or thoughts, feel free to reach out to me
+             
+            <a
+              href="https://twitter.com/markthethomas"
+              rel="noopener noreferrer"
+              target="_blank"
+            >
+              @markthethomas
+            </a>
+             
+            on the Manning Author's forum (you get access w/ the MEAP!) or on
+             
+            <a
+              href="https://twitter.com/markthethomas"
+              rel="noreferrer noopener"
+            >
+              Twitter
+            </a>
+             
+            .
+            <br />
+            <br />
+            -
+             
+            <a
+              href="https://ifelse.io"
+              rel="noreferrer noopener"
+            >
+              Mark
+            </a>
+          </p>
+        </div>
+      </div>
       <br />
     </div>
   </div>

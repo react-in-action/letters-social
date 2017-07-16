@@ -34,7 +34,7 @@ webpack(config).run((error, stats) => {
     }
 
     spinner.text =
-        "Your app is compiled in production mode in /dist. It's ready to roll!";
+        "Your app is compiled in production mode in /static. It's ready to roll!";
     console.log('\nApp successfully compiled!');
     setTimeout(() => spinner.stop(), 1000);
     return 0;

@@ -18,7 +18,7 @@ module.exports = {
     entry: './src/index',
     target: 'web',
     output: {
-        path: path.join(__dirname, '..', 'dist'),
+        path: path.join(__dirname, '..', 'static'),
         publicPath: '/',
         filename: 'bundle.js'
     },
@@ -47,15 +47,18 @@ module.exports = {
             },
             {
                 test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
-                loader: 'url-loader?limit=10000&mimetype=application/font-woff&name=[name].[ext]'
+                loader:
+                    'url-loader?limit=10000&mimetype=application/font-woff&name=[name].[ext]'
             },
             {
                 test: /\.ttf(\?v=\d+.\d+.\d+)?$/,
-                loader: 'url-loader?limit=10000&mimetype=application/octet-stream&name=[name].[ext]'
+                loader:
+                    'url-loader?limit=10000&mimetype=application/octet-stream&name=[name].[ext]'
             },
             {
                 test: /\.svg(\?v=\d+.\d+.\d+)?$/,
-                loader: 'url-loader?limit=10000&mimetype=image/svg+xml&name=[name].[ext]'
+                loader:
+                    'url-loader?limit=10000&mimetype=image/svg+xml&name=[name].[ext]'
             },
             {
                 test: /\.(jpe?g|png|gif)$/i,
