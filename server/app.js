@@ -1,3 +1,5 @@
+// Normally we wouldn't use this babel-register hook in a production situation;
+// a build step or something else would replace it
 require('babel-register');
 const bodyParser = require('body-parser');
 const jsonAPI = require('json-server');
@@ -63,7 +65,7 @@ app.use('*', (req, res) => {
             <!doctype html public="storage">
             <html>
                 <head>
-                    <link rel="stylesheet" href="http://localhost:3100/static/styles.css" />
+                    <link rel="stylesheet" href="/static/styles.css" />
                     <script src="https://use.fontawesome.com/0fcbe85f9e.js"></script>
                     <meta charset=utf-8/>
                     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -74,8 +76,10 @@ app.use('*', (req, res) => {
                     <div id="app">
                         ${appHtml}
                     </div>
-                <script id="intialState">window.__INTIIAL_STATE__ = ${JSON.stringify(store.getState())}</script>
-                <script src="http://localhost:3000/bundle.js" type='text/javascript'></script>
+                <script id="intialState">window.__INTIIAL_STATE__ = ${JSON.stringify(
+                    store.getState()
+                )}</script>
+                <script src="/bundle.js" type='text/javascript'></script>
                 </body>
             </html>
         `.trim();

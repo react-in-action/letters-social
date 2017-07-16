@@ -6,7 +6,6 @@ import App from './pages/app';
 import Home from './pages/index';
 import SinglePost from './pages/post';
 import Login from './pages/login';
-import Profile from './pages/profile';
 import NotFound from './pages/error';
 import { firebase } from './backend';
 import { isServer } from './utils/environment';
@@ -36,7 +35,6 @@ export const routes = (
             path="/posts/:post"
             component={SinglePost}
         />
-        <Route onEnter={requireUser} path="/profile" component={Profile} />
         <Route path="/login" component={Login} />
         <Route path="*" component={NotFound} />
     </Route>
