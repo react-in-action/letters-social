@@ -43,3 +43,4 @@ public/styles
 
 dist
 .next
+.expo/
