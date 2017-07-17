@@ -1,6 +1,6 @@
 {
     "name": "letters-social",
-    "version": "0.2.0",
+    "version": "0.3.0",
     "description": "A newsfeed application for Letters.",
     "main": "./src/index.js",
     "scripts": {
@@ -65,8 +65,6 @@
         "enroute": "1.0.1",
         "environs": "0.4.1",
         "enzyme": "2.9.1",
-        "eslint": "4.2.0",
-        "eslint-plugin-jsx-a11y": "6.0.2",
         "express": "4.15.3",
         "express-session": "1.15.2",
         "faker": "4.1.0",
@@ -100,13 +98,17 @@
         "npm-run-all": "4.0.2"
     },
     "devDependencies": {
-        "babel-eslint": "7.2.3",
+        "babel-eslint": "^7.2.3",
         "babel-jest": "20.0.3",
         "coveralls": "2.13.1",
         "css-loader": "0.28.0",
+        "eslint": "^3.19.0",
         "eslint-config-airbnb": "15.0.2",
-        "eslint-plugin-import": "2.7.0",
-        "eslint-plugin-react": "7.1.0",
+        "eslint-config-react-app": "^1.0.5",
+        "eslint-plugin-flowtype": "^2.33.0",
+        "eslint-plugin-import": "^2.2.0",
+        "eslint-plugin-jsx-a11y": "^5.0.1",
+        "eslint-plugin-react": "^7.0.1",
         "extract-text-webpack-plugin": "3.0.0",
         "html-webpack-plugin": "2.29.0",
         "jest": "20.0.4",
