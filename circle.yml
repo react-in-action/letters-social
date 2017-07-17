@@ -1,22 +1,15 @@
 machine:
-  pre:
-    - mkdir ~/.yarn-cache
   node:
     version: stable
 general:
   artifacts:
       - ./coverage
 dependencies:
-  pre:
-    - curl -o- -L https://yarnpkg.com/install.sh | bash
-  cache_directories:
-    - ~/.yarn-cache
   override:
-    - yarn install --no-emoji
-    - yarn global add nyc
+    - npm i -g nyc
 test:
   override:
-    - nyc yarn test
+    - nyc npm test
 deployment:
   production:
     branch: master

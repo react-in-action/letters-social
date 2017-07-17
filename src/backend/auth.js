@@ -13,15 +13,11 @@ github.addScope('user:email');
 const twitter = new firebase.auth.TwitterAuthProvider();
 
 export function logout() {
-    return new Promise((resolve, reject) => {
-        firebase.auth().signOut().then(
-            () => {
-                history.push('/login');
-                resolve();
-            },
-            error => reject(error)
-        );
-    });
+    firebase
+        .auth()
+        .signOut()
+        .then(() => history.push('/login'))
+        .catch(err => console.error(err));
 }
 
 function loginWithProvider(provider) {

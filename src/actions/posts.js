@@ -13,17 +13,18 @@ export function updatePosts(posts) {
 export function createNewPost(payload) {
     return dispatch => {
         dispatch(loading());
-        return createPost(payload).then(() => {
+        return createPost(payload).then(res => {
+            console.log(res);
             dispatch(getPosts());
         });
     };
 }
 
-export function getPosts() {
+export function getPosts(fetchNMore = 5) {
     return (dispatch, getState) => {
         const state = getState();
         const { postIds } = state;
-        const nPostsToFetch = postIds.length + 5;
+        const nPostsToFetch = postIds.length + fetchNMore;
         dispatch(loading());
         return fetchPosts(nPostsToFetch).then(posts => {
             dispatch(updatePosts(posts));

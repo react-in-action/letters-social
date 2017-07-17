@@ -9,7 +9,7 @@ import { routes } from './routes';
 
 import './styles/styles.scss';
 
-// Configure the Redux store
+// Create the Redux store
 const store = configureStore(initialReduxState);
 render(
     <Provider store={store}>
