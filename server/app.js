@@ -31,6 +31,7 @@ const app = express();
 
 // Add some boilerplate middlware
 app.use(logger('dev'));
+
 app.use(helmet.xssFilter({ setOnOldIE: true }));
 app.use(responseTime());
 app.use(helmet.frameguard());

@@ -5,10 +5,10 @@ const NotFound = () => {
     return (
         <div className="container">
             <div className="row middle-xs center-xs">
-                <div className="col-xs-12">
+                <div style={{ padding: '10% 0' }} className="col-xs-12">
                     <img
                         src="https://s3.amazonaws.com/learn-react/assets/not-found/404.gif"
-                        alt="not found"
+                        alt=""
                     />
                     <h2>Not found :(</h2>
                     <Link to="/">

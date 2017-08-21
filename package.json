@@ -76,7 +76,7 @@
         "hpp": "0.2.2",
         "invariant": "2.2.2",
         "isomorphic-fetch": "2.2.1",
-        "json-server": "0.9.6",
+        "json-server": "0.11.2",
         "loaders.css": "0.1.2",
         "localforage": "1.5.0",
         "lodash": "4.17.4",
