@@ -17,9 +17,8 @@ describe('<Comment/>', () => {
             id: 'id',
             content: 'content',
             user: {
-                firstName: 'mark',
-                profilePicture: 'profilePicture',
-                lastName: 'thomas'
+                name: 'mark',
+                profilePicture: 'profilePicture'
             },
             date: new Date().toISOString(),
             likes: 10

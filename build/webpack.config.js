@@ -1,6 +1,7 @@
 const { join } = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const DashboardPlugin = require('webpack-dashboard/plugin');
 
 const GLOBALS = {
     __DEV__: true,
@@ -9,11 +10,17 @@ const GLOBALS = {
 };
 
 module.exports = {
+    devServer: {
+        hot: true,
+        inline: true,
+        historyApiFallback: true,
+        compress: true,
+        port: 3000,
+        open: true,
+        overlay: true
+    },
     devtool: 'source-map',
-    entry: [
-        'webpack-hot-middleware/client?reload=true&path=http://localhost:3000/__webpack_hmr',
-        './src/index'
-    ],
+    entry: ['./src/index'],
     cache: true,
     target: 'web',
     output: {
@@ -22,6 +29,8 @@ module.exports = {
         filename: 'bundle.js'
     },
     plugins: [
+        new DashboardPlugin(),
+        new webpack.NamedModulesPlugin(),
         new webpack.DefinePlugin(GLOBALS),
         new webpack.HotModuleReplacementPlugin(),
         new webpack.NoEmitOnErrorsPlugin(),
@@ -47,11 +56,7 @@ module.exports = {
             { test: /\.json$/, loader: 'json-loader' },
             {
                 test: /(\.css|\.scss)$/,
-                loaders: [
-                    'style-loader',
-                    'css-loader?sourceMap',
-                    'sass-loader?sourceMap'
-                ]
+                loaders: ['style-loader', 'css-loader?sourceMap', 'sass-loader?sourceMap']
             }
         ]
     }

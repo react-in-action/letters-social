@@ -1,4 +1,23 @@
 {
-  "presets": ["es2015", "react"],
-  "plugins": ["transform-class-properties"]
+    "env": {
+        "development": {
+            "presets": ["react", "env"],
+            "plugins": ["transform-class-properties"]
+        },
+        "production": {
+            "presets": [
+                "react",
+                [
+                    "env",
+                    {
+                        "targets": {
+                            "browsers": ["last 3 versions", "safari >= 7"],
+                            "node": "current"
+                        }
+                    }
+                ]
+            ],
+            "plugins": ["transform-class-properties"]
+        }
+    }
 }

@@ -1,9 +1,9 @@
-const webpack = require('webpack');
-const webpackHotMiddleware = require('webpack-hot-middleware');
-const webpackDevMiddleware = require('webpack-dev-middleware');
-const historyApiFallback = require('connect-history-api-fallback');
-const browserSync = require('browser-sync');
-const config = require('../build/webpack.config.js');
+let webpack;_df1‍.w('webpack',[["default",function(v){webpack=v}]]);let webpackHotMiddleware;_df1‍.w('webpack-hot-middleware',[["default",function(v){webpackHotMiddleware=v}]]);let webpackDevMiddleware;_df1‍.w('webpack-dev-middleware',[["default",function(v){webpackDevMiddleware=v}]]);let historyApiFallback;_df1‍.w('connect-history-api-fallback',[["default",function(v){historyApiFallback=v}]]);let browserSync;_df1‍.w('browser-sync',[["default",function(v){browserSync=v}]]);let config;_df1‍.w('../build/webpack.config.js',[["default",function(v){config=v}]]);
+
+
+
+
+
 
 const bundler = webpack(config);
 

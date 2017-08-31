@@ -8,7 +8,7 @@ const NotFound = () => {
                 <div style={{ padding: '10% 0' }} className="col-xs-12">
                     <img
                         src="https://s3.amazonaws.com/learn-react/assets/not-found/404.gif"
-                        alt=""
+                        alt="Not Found | React in Action"
                     />
                     <h2>Not found :(</h2>
                     <Link to="/">

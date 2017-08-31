@@ -1,20 +1,19 @@
 export default {
-    // error: null,
+    error: null,
     loading: false,
-    postIds: [],
-    posts: {},
+    postIds: new Set(),
+    posts: new Map(),
+    pagination: {
+        first: `${process.env.ENDPOINT}/posts?_page=1&_sort=date&_order=DESC&_embed=comments`,
+        next: null,
+        prev: null,
+        last: null
+    },
     user: {
         authenticated: false,
         email: null,
-        provider: null,
-        id: null
-    },
-    settings: {
-        email: null,
-        profilePictureURL: '',
-        newsletters: {
-            updates: false,
-            alerts: false
-        }
+        avatar: null,
+        id: null,
+        name: null
     }
 };

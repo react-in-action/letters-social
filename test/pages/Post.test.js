@@ -7,8 +7,8 @@ import SinglePost from '../../src/pages/post';
 import Link from '../../src/components/router/Link';
 import Post from '../../src/components/post/Post';
 
-jest.dontMock('react-overlays');
 jest.mock('../../src/shared/http');
+
 describe('<SinglePost/>', () => {
     let postModelStub;
     beforeEach(() => {

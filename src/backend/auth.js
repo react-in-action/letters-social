@@ -1,4 +1,3 @@
-import { history } from '../history';
 import { firebase } from './core';
 
 const google = new firebase.auth.GoogleAuthProvider();
@@ -12,19 +11,22 @@ github.addScope('user:email');
 
 const twitter = new firebase.auth.TwitterAuthProvider();
 
-export function logout() {
-    firebase
+export function logUserOut() {
+    return firebase
         .auth()
         .signOut()
-        .then(() => history.push('/login'))
         .catch(err => console.error(err));
 }
 
 function loginWithProvider(provider) {
-    return firebase.auth().signInWithRedirect(provider);
+    return firebase.auth().signInWithPopup(provider);
 }
 
-export const loginWithGoogle = loginWithProvider.bind(null, google);
-export const loginWithTwitter = loginWithProvider.bind(null, twitter);
-export const loginWithGithub = loginWithProvider.bind(null, github);
-export const loginWithFacebook = loginWithProvider.bind(null, facebook);
+// If you want to set up a different provider, you can use one of these
+
+export const providerLogins = {
+    Google: loginWithProvider.bind(null, google),
+    Twitter: loginWithProvider.bind(null, twitter),
+    Github: loginWithProvider.bind(null, github),
+    Facebook: loginWithProvider.bind(null, facebook)
+};

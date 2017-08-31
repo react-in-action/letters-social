@@ -1,11 +1,14 @@
 // More info on Webpack's Node API here: https://webpack.github.io/docs/node.js-api.html
 // Allowing console calls below since this is a build file.
 /* eslint-disable no-console */
-const webpack = require('webpack');
-const ora = require('ora');
-const { join } = require('path');
-const config = require('./webpack.config.prod');
-const mkdirp = require('mkdirp');
+require('@std/esm');
+
+import webpack from 'webpack';
+import ora from 'ora';
+import { join } from 'path';
+import mkdirp from 'mkdirp';
+
+import config from './webpack.config.prod';
 
 process.env.NODE_ENV = 'production';
 
@@ -33,8 +36,7 @@ webpack(config).run((error, stats) => {
         jsonStats.warnings.map(warning => console.warn(warning));
     }
 
-    spinner.text =
-        "Your app is compiled in production mode in /static. It's ready to roll!";
+    spinner.text = "Your app is compiled in production mode in /static. It's ready to roll!";
     console.log('\nApp successfully compiled!');
     setTimeout(() => spinner.stop(), 1000);
     return 0;

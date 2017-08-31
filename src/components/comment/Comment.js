@@ -6,13 +6,8 @@ const Comment = props => {
     const { comment } = props;
     return (
         <div className="comment" key={comment.id}>
-            <img
-                src={comment.user.profilePicture}
-                width={50}
-                height={50}
-                alt={comment.content}
-            />
-            <a>{comment.user.firstName} {comment.user.lastName}</a>
+            <img src={comment.user.profilePicture} width={50} height={50} alt={comment.content} />
+            <a>{comment.user.name}</a>
             <small className="date"> {moment(comment.date).fromNow()} </small>
             <p> {comment.content} </p>
         </div>

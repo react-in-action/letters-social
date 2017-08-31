@@ -1,13 +1,15 @@
 module.exports.categories = [
-    'friends',
-    'family',
-    'food',
-    'politics',
-    'lifestyle',
-    'music',
-    'recipes',
-    'movies',
-    'programming',
-    'javascript',
-    'books'
+    'jedi',
+    'star ships',
+    'lightsabers',
+    'Kylo Ren',
+    'wookies',
+    'droids',
+    'hyperdrives',
+    'bounty hunters',
+    'shields',
+    'ewoks',
+    'blasters'
 ];
+
+module.exports.swapiURL = 'https://swapi.co/api';

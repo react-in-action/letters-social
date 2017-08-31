@@ -7,6 +7,7 @@ import configureStore from './store/configureStore';
 import initialReduxState from './constants/initialState';
 import { routes } from './routes';
 
+// NOTE: this isn't ES*-compliant/possible, but works because we use Webpack as a build tool
 import './styles/styles.scss';
 
 // Create the Redux store

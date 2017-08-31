@@ -1,7 +1,8 @@
 {
-    "verbose": true,
+    "verbose": false,
     "env": {
         "PORT": 3100,
         "ENDPOINT": "http://localhost:3500"
-    }
+    },
+    "ignore": ["db/**/*.json"]
 }

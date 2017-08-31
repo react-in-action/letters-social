@@ -1,0 +1,9 @@
+.single-post {
+    display: grid;
+    grid-template-columns: [left] 20vw [center] 50vw [right] 20vw;
+    justify-content: center;
+    & > span {
+        text-align: right;
+        padding: 10px;
+    }
+}

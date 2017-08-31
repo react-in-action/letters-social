@@ -1,30 +1,26 @@
-// Normally we wouldn't use this babel-register hook in a production situation;
-// a build step or something else could replace it
-require('babel-register');
-
 // All this is express boilerplate
-const bodyParser = require('body-parser');
-const jsonAPI = require('json-server');
-const compression = require('compression');
-const { __PRODUCTION__ } = require('environs');
-const { resolve } = require('path');
-const cors = require('cors');
-const express = require('express');
-const helmet = require('helmet');
-const hpp = require('hpp');
-const logger = require('morgan');
-const responseTime = require('response-time');
+import bodyParser from 'body-parser';
+import jsonAPI from 'json-server';
+import { __PRODUCTION__ } from 'environs';
+import { resolve } from 'path';
+import cors from 'cors';
+import express from 'express';
+import helmet from 'helmet';
+import hpp from 'hpp';
+import logger from 'morgan';
+import responseTime from 'response-time';
+import compression from 'compression';
 
 // Modules explicitly related to React & SSR
-const { renderToString } = require('react-dom/server');
-const React = require('react');
-const { match, RouterContext } = require('react-router');
-const { Provider } = require('react-redux');
+import { renderToString } from 'react-dom/server';
+import React from 'react';
+import { match, RouterContext } from 'react-router';
+import { Provider } from 'react-redux';
 
 // Our modules
-const { routes } = require('../src/routes');
-const configureStore = require('../src/store/configureStore').default;
-const initialReduxState = require('../src/constants/initialState');
+import configureStore from '../src/store/configureStore';
+import initialReduxState from '../src/constants/initialState';
+import { routes } from '../src/routes';
 
 // Create the express app
 const app = express();
@@ -45,34 +41,28 @@ app.use(cors());
 
 // Route handlers
 app.options(__PRODUCTION__ ? 'http://social.learnreactjs.io' : '*', cors());
-app.use(
-    '/api',
-    jsonAPI.router(resolve(__dirname, '..', 'db', 'seed', 'db.json'))
-);
+app.use('/api', jsonAPI.router(resolve(__dirname, '..', 'db', 'seed', 'db.json')));
 app.use('/static', express.static(resolve(__dirname, '..', 'static')));
-// SSR-related functionality
+
 app.use('*', (req, res) => {
     // Use React Router to match
-    match(
-        { routes: routes, location: req.originalUrl },
-        (err, redirect, props) => {
-            // Configure the Redux store so we can use it during SSR
-            const store = configureStore(initialReduxState);
-            // HTML to send down to the browser
-            const appHtml = renderToString(
-                React.createElement(
-                    Provider,
-                    { store },
-                    React.createElement(RouterContext, props, props.children)
-                )
-            );
-            // Use am ES2015+ string literal to interpolate our app HTML into the page
-            const html = `
+    match({ routes: routes, location: req.originalUrl }, (err, redirect, props) => {
+        // Configure the Redux store so we can use it during SSR
+        const store = configureStore(initialReduxState);
+        // HTML to send down to the browser
+        const appHtml = renderToString(
+            React.createElement(
+                Provider,
+                { store },
+                React.createElement(RouterContext, props, props.children)
+            )
+        );
+        // Use am ES2015+ string literal to interpolate our app HTML into the page
+        const html = `
             <!doctype html public="storage">
             <html>
                 <head>
                     <link rel="stylesheet" href="/static/styles.css" />
-                    <script src="https://use.fontawesome.com/0fcbe85f9e.js"></script>
                     <meta charset=utf-8/>
                     <meta http-equiv="X-UA-Compatible" content="IE=edge">
                     <title>Letters Social | React In Action by Mark Thomas</title>
@@ -86,13 +76,13 @@ app.use('*', (req, res) => {
                     store.getState()
                 )}</script>
                 <script async defer src="/static/bundle.js" type='text/javascript'></script>
+                <script async defer src="https://use.fontawesome.com/0fcbe85f9e.js"></script>
                 </body>
             </html>
         `.trim();
-            res.setHeader('Content-type', 'text/html');
-            res.send(html).end();
-        }
-    );
+        res.setHeader('Content-type', 'text/html');
+        res.send(html).end();
+    });
 });
 
 // Error handling routes
@@ -112,4 +102,4 @@ process.on('unhandledRejection', e => {
     console.error(e);
 });
 
-module.exports = app;
+export default app;

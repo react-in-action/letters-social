@@ -2,81 +2,80 @@ const webpack = require('webpack');
 const path = require('path');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const WebpackMd5Hash = require('webpack-md5-hash');
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 const GLOBALS = {
     'process.env': {
         NODE_ENV: JSON.stringify('production'),
-        ENDPOINT: JSON.stringify(
-            'https://learn-react-newsfeed.herokuapp.com/api'
-        )
+        ENDPOINT: JSON.stringify('https://learn-react-newsfeed.herokuapp.com/api')
     },
     __DEV__: false
 };
 
 module.exports = {
-    devtool: 'source-map',
     entry: './src/index',
-    target: 'web',
     output: {
         path: path.join(__dirname, '..', 'static'),
         publicPath: '/',
         filename: 'bundle.js'
     },
     plugins: [
+        new BundleAnalyzerPlugin(),
         new webpack.DefinePlugin(GLOBALS),
         new WebpackMd5Hash(),
         new webpack.optimize.OccurrenceOrderPlugin(),
-        new webpack.optimize.DedupePlugin(),
-        new webpack.optimize.UglifyJsPlugin({
-            compressor: {
-                warnings: false
-            }
-        }),
+        new webpack.optimize.UglifyJsPlugin(),
         new ExtractTextPlugin('styles.css')
     ],
     module: {
-        loaders: [
+        rules: [
+            {
+                test: /\.scss$/,
+                use: [
+                    {
+                        loader: 'style-loader'
+                    },
+                    { loader: 'css-loader', options: { importLoaders: 1, sourceMap: false } },
+                    {
+                        loader: 'sass-loader'
+                    },
+                    {
+                        loader: 'postcss-loader'
+                    }
+                ]
+            },
             {
                 test: /\.jsx?$/,
                 exclude: /node_modules/,
-                loader: 'babel-loader'
+                use: ['babel-loader']
             },
             {
                 test: /\.eot(\?v=\d+.\d+.\d+)?$/,
-                loader: 'url-loader?name=[name].[ext]'
+                use: 'url-loader?name=[name].[ext]'
             },
             {
                 test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
-                loader:
-                    'url-loader?limit=10000&mimetype=application/font-woff&name=[name].[ext]'
+                use: 'url-loader?limit=10000&mimetype=application/font-woff&name=[name].[ext]'
             },
             {
                 test: /\.ttf(\?v=\d+.\d+.\d+)?$/,
-                loader:
-                    'url-loader?limit=10000&mimetype=application/octet-stream&name=[name].[ext]'
+                use: 'url-loader?limit=10000&mimetype=application/octet-stream&name=[name].[ext]'
             },
             {
                 test: /\.svg(\?v=\d+.\d+.\d+)?$/,
-                loader:
-                    'url-loader?limit=10000&mimetype=image/svg+xml&name=[name].[ext]'
+                use: 'url-loader?limit=10000&mimetype=image/svg+xml&name=[name].[ext]'
             },
             {
                 test: /\.(jpe?g|png|gif)$/i,
-                loader: 'file-loader?name=[name].[ext]'
+                use: 'file-loader?name=[name].[ext]'
             },
             {
                 test: /\.json$/,
-                loader: 'json-loader'
+                use: 'json-loader'
             },
             {
                 test: /\.ico$/,
-                loader: 'file-loader?name=[name].[ext]'
-            },
-            {
-                test: /(\.css|\.scss)$/,
-                loader: ExtractTextPlugin.extract(
-                    'css-loader?sourceMap!postcss-loader!sass-loader?sourceMap'
-                )
+                use: 'file-loader?name=[name].[ext]'
             }
         ]
     }

@@ -4,21 +4,21 @@ import thunk from 'redux-thunk';
 import * as types from '../../src/constants/types';
 import {
     createNewPost,
-    getPosts,
-    getPost,
-    updatePosts
+    getPostsForPage,
+    getPostByID,
+    updateAvailablePosts
 } from '../../src/actions/posts';
 
 const middlewares = [thunk];
 const mockStore = configureMockStore(middlewares);
 
 describe('async post actions', () => {
-    describe('getPosts', () => {
+    describe('getPostsForPage', () => {
         it('should create the right actions', () => {
             const store = mockStore({
                 postIds: []
             });
-            return store.dispatch(getPosts()).then(() => {
+            return store.dispatch(getPostsForPage()).then(() => {
                 const [
                     loadingAction,
                     updateAction,
@@ -59,10 +59,10 @@ describe('async post actions', () => {
         });
     });
 
-    describe('getPost', () => {
+    describe('getPostByID', () => {
         it(' should create the right actions', () => {
             const store = mockStore();
-            return store.dispatch(getPost('id')).then(() => {
+            return store.dispatch(getPostByID('id')).then(() => {
                 const [
                     loadingAction,
                     updateAction,
@@ -75,7 +75,7 @@ describe('async post actions', () => {
         });
     });
 
-    describe('updatePosts', () => {
+    describe('updateAvailablePosts', () => {
         it(' should create the right actions', () => {
             const samplePost = {
                 id: 1,
@@ -89,7 +89,7 @@ describe('async post actions', () => {
                 }
             ];
             const store = mockStore();
-            store.dispatch(updatePosts([samplePost]));
+            store.dispatch(updateAvailablePosts([samplePost]));
             expect(store.getActions()).toEqual(expectedActions);
         });
     });

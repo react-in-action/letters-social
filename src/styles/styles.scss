@@ -4,8 +4,11 @@
 @import '../../node_modules/flexboxgrid/dist/flexboxgrid.css';
 
 @import 'variables';
-
 @import 'global';
+
+@import 'pages/home';
+@import 'pages/post';
+@import 'pages/login';
 
 @import 'components/logo';
 @import 'components/loader';

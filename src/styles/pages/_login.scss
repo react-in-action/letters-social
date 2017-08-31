@@ -1,0 +1,9 @@
+.login {
+    .providers {
+        display: grid;
+        grid-column-gap: 15px;
+        grid-template-columns: repeat(4, auto [col-start]);
+        justify-content: center;
+        padding: 10px 0;
+    }
+}

@@ -1,8 +1,8 @@
 #!/usr/bin/env node
-const app = require('./app');
-const http = require('http');
+import http from 'http';
+import app from './app';
 
-const port = normalizePort(process.env.PORT || '3000');
+const port = normalizePort(process.env.PORT || 3000);
 
 // Set port for app
 app.set('port', port);
@@ -13,7 +13,6 @@ const server = http.createServer(app);
 // Listen...and we're off!
 server.listen(port);
 server.on('error', onError);
-server.on('listening', onListening);
 
 function normalizePort(val) {
     var port = parseInt(val, 10);
@@ -51,13 +50,4 @@ function onError(error) {
         default:
             throw error;
     }
-}
-
-function onListening() {
-    const addr = server.address();
-    const bind = typeof addr === 'string'
-        ? 'pipe ' + addr
-        : 'port ' + addr.port;
-
-    console.info(`==> 🌎  Newsfeed is running on port ${addr.port} ✅`);
 }

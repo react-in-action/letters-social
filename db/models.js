@@ -7,9 +7,7 @@ import { categories } from './constants';
 export function generateProfilePicture() {
     const pics = [];
     for (let i = 0; i < 15; i++) {
-        pics.push(
-            `https://drtzvj8zd0k9x.cloudfront.net/assets/profile-pictures/${i + 1}.png`
-        );
+        pics.push(`https://drtzvj8zd0k9x.cloudfront.net/assets/profile-pictures/${i + 1}.png`);
     }
     return function selectRandomProfilePicture() {
         return sample(pics);
@@ -20,9 +18,7 @@ const createProfilePicture = generateProfilePicture();
 export function generateShareablePicture() {
     const pics = [];
     for (let i = 0; i < 50; i++) {
-        pics.push(
-            `https://drtzvj8zd0k9x.cloudfront.net/assets/post-images/${i + 1}.jpg`
-        );
+        pics.push(`https://drtzvj8zd0k9x.cloudfront.net/assets/post-images/${i + 1}.jpg`);
     }
     return function selectRandomPostImage() {
         return sample(pics);
@@ -39,18 +35,15 @@ export function returnCategories() {
 
 export class User {
     constructor() {
-        this.email = internet.email();
-        this.firstName = name.firstName();
         this.id = uuid();
+        this.email = internet.email();
+        this.name = name.findName();
         this.profilePicture = createProfilePicture();
-        this.lastName = name.lastName();
-        this.password = internet.password();
-        this.username = internet.userName();
     }
 }
 
 export class Post {
-    constructor(user) {
+    constructor(userId) {
         this.id = uuid();
         this.categories = returnCategories();
         this.comments = [];
@@ -65,16 +58,17 @@ export class Post {
                   title: lorem.words(rand(1, 5)),
                   description: lorem.sentences(rand(1, 2), '. ')
               };
-        this.user = user;
+        this.userId = userId;
     }
 }
 
 export class Comment {
-    constructor(user) {
+    constructor(userId, postId) {
         this.id = uuid();
         this.content = lorem.paragraph(sample([1, 2, 3]));
         this.date = date.recent(sample([1, 2, 3, 4, 5, 10, 15]));
         this.likes = random.number(1, 100);
-        this.user = user;
+        this.userId = userId;
+        this.postId = postId;
     }
 }

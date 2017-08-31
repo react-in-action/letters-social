@@ -1,9 +1,20 @@
 // Navbar ============================
 .navbar-brand {
-  float: none;
-  padding: 5px;
+    float: none;
+    padding: 5px;
 }
 
 .social {
-  font-family: 'Space Mono', monospace;
+    font-family: 'Space Mono', monospace;
+}
+
+.user-nav-widget {
+    & span,
+    img,
+    i {
+        padding: 0 5px;
+    }
+    & i {
+        cursor: pointer;
+    }
 }

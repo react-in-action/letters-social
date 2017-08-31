@@ -1,8 +1,11 @@
+import uuid from 'uuid/v4';
+import parseLinkHeader from 'parse-link-header';
+
 import * as types from '../constants/types';
 import { createPost, fetchPosts, fetchPost } from '../shared/http';
 import { loading, loaded } from './loading';
 
-export function updatePosts(posts) {
+export function updateAvailablePosts(posts) {
     return {
         type: types.posts.UPDATE,
         error: false,
@@ -10,33 +13,45 @@ export function updatePosts(posts) {
     };
 }
 
-export function createNewPost(payload) {
-    return dispatch => {
-        dispatch(loading());
-        return createPost(payload).then(() => {
-            dispatch(getPosts());
-        });
+export function updateLinks(links) {
+    return {
+        type: types.posts.UPDATE_LINKS,
+        error: false,
+        links
     };
 }
 
-export function getPosts() {
+export function createNewPost(payload) {
+    payload.id = uuid();
+    return dispatch => {
+        dispatch(loading());
+        return createPost(payload)
+            .then(() => dispatch(getPostsForPage()))
+            .catch(err => console.error(err));
+    };
+}
+
+export function getPostsForPage(page = 'first') {
     return (dispatch, getState) => {
         const state = getState();
-        const { postIds } = state;
-        const nPostsToFetch = postIds.length + 5;
+        console.log(state);
+        const endpoint = state.pagination[page];
         dispatch(loading());
-        return fetchPosts(nPostsToFetch).then(posts => {
-            dispatch(updatePosts(posts));
+        return fetchPosts(endpoint).then(res => {
+            const links = parseLinkHeader(res.headers.get('Link'));
+            const posts = res.json();
+            dispatch(updateLinks(links));
+            dispatch(updateAvailablePosts(posts));
             dispatch(loaded());
         });
     };
 }
 
-export function getPost(id) {
+export function getPostByID(id) {
     return dispatch => {
         dispatch(loading());
-        return fetchPost(id).then(post => {
-            dispatch(updatePosts([post]));
+        return fetchPost(id).then(res => {
+            const post = dispatch(updateAvailablePosts());
             dispatch(loaded());
         });
     };
