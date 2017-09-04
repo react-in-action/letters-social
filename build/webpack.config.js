@@ -4,9 +4,16 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const DashboardPlugin = require('webpack-dashboard/plugin');
 
 const GLOBALS = {
-    __DEV__: true,
-    'process.env.NODE_ENV': JSON.stringify('development'),
-    'process.env.ENDPOINT': JSON.stringify('http://localhost:3500')
+    'process.env': {
+        NODE_ENV: JSON.stringify('development'),
+        ENDPOINT: JSON.stringify('http://localhost:3500'),
+        RIA_SENTRY_APP: JSON.stringify('https://23f0e00b78a24ac88450c8261b59ed7c@sentry.io/212515'),
+        FIREBASE_API_KEY: JSON.stringify(process.env.FIREBASE_API_KEY),
+        FIREBASE_AUTH_DOMAIN: JSON.stringify(process.env.FIREBASE_AUTH_DOMAIN),
+        FIREBASE_DATABASE_URL: JSON.stringify(process.env.FIREBASE_DATABASE_URL),
+        FIREBASE_STORAGE_BUCKET: JSON.stringify(process.env.FIREBASE_STORAGE_BUCKET),
+        FIREABSE_MESSAGING_ID: JSON.stringify(process.env.FIREABSE_MESSAGING_ID)
+    }
 };
 
 module.exports = {
