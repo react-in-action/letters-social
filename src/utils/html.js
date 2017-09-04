@@ -11,7 +11,7 @@ export const HTMLPageWrapperWithState = ({ children, reduxState }) => {
     // we are returning an array here, introduced in React 16
     // with the advent of the Fiber reconciler
     return [
-        <doctype html public="storage" />,
+        <doctype html />,
         <html lang="en-us">
             <head>
                 <meta charSet="utf-8" />
@@ -30,6 +30,15 @@ export const HTMLPageWrapperWithState = ({ children, reduxState }) => {
                 <meta name="twitter:card" content="summary" />
                 <meta name="twitter:title" content={ogProps.title} />
                 <meta name="twitter:description" content={ogProps.description} />
+                <meta property="book:author" content="MarkOfThomas" />
+                <meta property="book:tag" content="react" />
+                <meta property="book:tag" content="reactjs" />
+                <meta property="book:tag" content="React in Action" />
+                <meta property="book:tag" content="javascript" />
+                <meta property="book:tag" content="single page application" />
+                <meta property="book:tag" content="Manning publications" />
+                <meta property="book:tag" content="Mark Thomas" />
+
                 <meta name="HandheldFriendly" content="True" />
                 <meta name="MobileOptimized" content="320" />
             </head>
