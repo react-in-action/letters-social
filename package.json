@@ -12,6 +12,7 @@
         "alias": "social.react.sh"
     },
     "scripts": {
+        "deploy": "node -r @std/esm ./build/deploy",
         "api": "node -r @std/esm ./db/db.js",
         "build:app": "webpack -p --progress --config ./build/webpack.config.prod.js",
         "server:dev": "nodemon --config nodemon.json index.js",
@@ -25,7 +26,7 @@
         "db:seed": "node -r @std/esm db/seed.js",
         "styles:w":
             "npm run styles && node-sass src/styles/styles.scss -o static/ -w src/styles --watch --recursive",
-        "styles": "node-sass --quiet src/styles/styles.scss -o static/",
+        "styles": "node-sass -q src/styles/styles.scss -o static/",
         "start:dev": "node -r @std/esm run/dev.js",
         "rundep": "react-scripts start",
         "test": "npm run client:test && npm run coverage",

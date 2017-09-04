@@ -26,7 +26,7 @@ export const HTMLPageWrapperWithState = ({ children, reduxState }) => {
                 <meta property="og:type" content={ogProps.type} />
                 <meta property="og:url" content={ogProps.url} />
                 <meta property="og:updated_time" content={ogProps.updated_time} />
-                <meta itemprop="description" content={ogProps.description} />
+                <meta itemProp="description" content={ogProps.description} />
                 <meta name="twitter:card" content="summary" />
                 <meta name="twitter:title" content={ogProps.title} />
                 <meta name="twitter:description" content={ogProps.description} />

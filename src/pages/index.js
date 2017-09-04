@@ -24,10 +24,7 @@ class Home extends Component {
                 <div>
                     <CreatePost onSubmit={this.props.actions.createNewPost} />
                     {this.props.posts && <div className="posts">{posts}</div>}
-                    <button
-                        className="load-more text-center btn btn-default btn-block"
-                        onClick={this.props.actions.getNextPageOfPosts}
-                    >
+                    <button className="block" onClick={this.props.actions.getNextPageOfPosts}>
                         Load more posts
                     </button>
                 </div>

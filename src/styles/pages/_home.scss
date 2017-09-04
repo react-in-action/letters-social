@@ -3,4 +3,7 @@
     grid-gap: 10px;
     grid-template-columns: [left] 20vw [center] 50vw [right] 20vw;
     justify-content: center;
+    & > div {
+        margin-top: 10px;
+    }
 }

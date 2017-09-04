@@ -6,9 +6,9 @@ class ChildComponent extends React.Component {
         name: PropTypes.string
     };
 
-    static defaultProps = function() {
+    static defaultProps = (function() {
         console.log('ChildComponent : getDefaultProps');
-    }();
+    })();
 
     state = {
         name: 'Mark'
@@ -52,18 +52,14 @@ class ChildComponent extends React.Component {
 
     render() {
         console.log('ChildComponent: render');
-        return (
-            <div>
-                Props: {this.props.name}
-            </div>
-        );
+        return <div>Props: {this.props.name}</div>;
     }
 }
 
 class ParentComponent extends React.Component {
-    static defaultProps = function() {
+    static defaultProps = (function() {
         console.log('ParentComponent: getDefaultProps');
-    }();
+    })();
 
     constructor(props) {
         super(props);
@@ -83,20 +79,18 @@ class ParentComponent extends React.Component {
         console.log('ParentComponent: componentWillUnmount');
     }
 
-    onInputChange = (e) => {
+    onInputChange = e => {
         this.setState({ text: e.target.value });
     };
 
     render() {
         console.log('ParentComponent: render');
-        return (
-            <div className="container">
-                <h2>Learn about rendering and lifecycle methods!</h2>
-                <input value={this.state.text} onChange={this.onInputChange} />
-                <ChildComponent text={this.state.text} />
-            </div>
-        );
+        return [
+            <h2>Learn about rendering and lifecycle methods!</h2>,
+            <input value={this.state.text} onChange={this.onInputChange} />,
+            <ChildComponent text={this.state.text} />
+        ];
     }
 }
 
-// export { ChildComponent, ParentComponent };
+export { ChildComponent, ParentComponent };

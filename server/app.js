@@ -10,7 +10,6 @@ import hpp from 'hpp';
 import jsonAPI from 'json-server';
 import logger from 'morgan';
 import responseTime from 'response-time';
-import Raven from 'raven';
 
 // Modules explicitly related to React & SSR
 import { renderToStream } from 'react-dom/server';
@@ -23,8 +22,6 @@ import configureStore from '../src/store/configureStore';
 import initialReduxState from '../src/constants/initialState';
 import { HTMLPageWrapperWithState } from '../src/utils/html';
 import { routes } from '../src/routes';
-
-Raven.config('https://23f0e00b78a24ac88450c8261b59ed7c@sentry.io/212515').install();
 
 // Create the express app
 const app = express();
@@ -72,7 +69,6 @@ app.use((req, res, next) => {
     next(err);
 });
 app.use((err, req, res) => {
-    Raven.captureException(err);
     console.error(err);
     return res.status(err.status || 500).json({
         message: err.message

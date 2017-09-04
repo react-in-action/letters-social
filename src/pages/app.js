@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { connect } from 'react-redux';
 
+import ErrorMessage from '../components/error/Error';
 import Nav from '../components/nav/navbar';
 
 /**
@@ -13,7 +14,7 @@ const App = props => {
     return (
         <div className="app">
             <Nav />
-            {props.error || props.children}
+            {props.error ? <ErrorMessage error={props.error} /> : props.children}
         </div>
     );
 };
@@ -24,6 +25,7 @@ App.propTypes = {
 
 export default connect(state => {
     return {
-        error: state.error
+        error: state.error,
+        loading: state.loading
     };
 })(App);

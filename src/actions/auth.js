@@ -26,12 +26,9 @@ function loginSuccess(user) {
 }
 
 export function login(provider) {
-    console.log(provider);
     return dispatch => {
         dispatch(loginRequest());
-        return providerLogins[provider]().catch(err =>
-            dispatch(loginFailure(err))
-        );
+        return providerLogins[provider]().catch(err => dispatch(loginFailure(err)));
     };
 }
 
@@ -64,6 +61,8 @@ export function logout() {
             .then(() => {
                 history.push('/login');
                 dispatch(logoutSuccess());
+                // Wipes the user context from our error-reporting
+                window.Raven.setUserContext();
             })
             .catch(err => dispatch(logoutFailure(err)));
     };
@@ -71,8 +70,7 @@ export function logout() {
 
 firebase.auth().onAuthStateChanged(user => {
     const store = configureStore();
-    // if a user is logged in or just finished logging in,
-    // we can navigate to the main page
+    // if a user is logged in or just finished logging in, we can navigate to the main page
     if (user) {
         history.push('/');
         store.dispatch(loginSuccess(user));
