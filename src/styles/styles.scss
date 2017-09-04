@@ -1,8 +1,3 @@
-@import '../../node_modules/loaders.css/src/loaders';
-@import '../../node_modules/bootstrap-sass/assets/stylesheets/bootstrap-sprockets';
-@import '../../node_modules/bootstrap-sass/assets/stylesheets/bootstrap';
-@import '../../node_modules/flexboxgrid/dist/flexboxgrid.css';
-
 @import 'variables';
 @import 'global';
 
@@ -11,8 +6,11 @@
 @import 'pages/login';
 
 @import 'components/logo';
+@import 'components/error';
+@import 'components/button';
 @import 'components/loader';
 @import 'components/nav';
+@import 'components/link';
 @import 'components/comment';
 @import 'components/createPost';
 @import 'components/welcome';

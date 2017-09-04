@@ -38,9 +38,12 @@ export const HTMLPageWrapperWithState = ({ children, reduxState }) => {
                 <meta property="book:tag" content="single page application" />
                 <meta property="book:tag" content="Manning publications" />
                 <meta property="book:tag" content="Mark Thomas" />
-
                 <meta name="HandheldFriendly" content="True" />
                 <meta name="MobileOptimized" content="320" />
+                <link
+                    href="https://fonts.googleapis.com/css?family=Open+Sans:400,700,800"
+                    rel="stylesheet"
+                />
             </head>
             <body>
                 <div id="app">{React.Children.only(children)}</div>

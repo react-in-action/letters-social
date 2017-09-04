@@ -4,11 +4,34 @@
     padding: 5px;
 }
 
+.navbar {
+    padding: 3px 5% 5px;
+    color: $white;
+    background-color: $blue;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid transparent;
+    box-sizing: border-box;
+    display: inline-flex;
+    left: 0;
+    min-height: $navbar-height;
+    position: fixed;
+    right: 0;
+    top: 0;
+    z-index: 1030;
+}
+
 .social {
     font-family: 'Space Mono', monospace;
 }
 
 .user-nav-widget {
+    display: flex;
+    img {
+        height: $navbar-height - 15;
+        width: $navbar-height - 15;
+        border-radius: 50%;
+    }
     & span,
     img,
     i {

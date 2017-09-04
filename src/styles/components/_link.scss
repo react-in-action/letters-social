@@ -1,0 +1,17 @@
+// Link =======================
+.link {
+    border-top: 1px solid $gray-lighter;
+    cursor: pointer;
+    margin: $base-spacing 0;
+    padding-top: 5px;
+    .url {
+        color: $gray-light;
+        margin-bottom: 5px;
+    }
+    .title {
+        color: $gray-darker;
+    }
+    .description {
+        color: $gray-light;
+    }
+}

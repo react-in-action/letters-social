@@ -1,0 +1,17 @@
+.error {
+    display: grid;
+    grid-gap: 10px;
+    grid-template-columns: 50vw;
+    justify-content: center;
+
+    h2,
+    .message,
+    p {
+        text-align: center;
+    }
+    code {
+        background-color: darken($bg-default, 10%);
+        padding: 10px;
+        border-radius: 5px;
+    }
+}

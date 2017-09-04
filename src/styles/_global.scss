@@ -1,48 +1,35 @@
 // Globals ============================
 body {
-  background-color: $bg-default;
-  margin-top: $navbar-height;
+    font-family: 'Open Sans', sans-serif;
+    background-color: $bg-default;
+    margin-top: $navbar-height;
 }
 
 // Defaults ============================
 %element-base {
-  border: $border-base;
-  border-radius: 5px;
-  margin: 10px;
-  padding: 10px;
+    border: $border-base;
+    border-radius: 5px;
+    margin: 10px;
+    padding: 10px;
 }
 
 .element-base {
-  @extend %element-base;
+    @extend %element-base;
 }
 
 .load-more {
-  @extend %element-base;
+    @extend %element-base;
 }
 
 .welcome {
-  background-color: $white;
-  border: $border-base;
-  border-radius: 5px;
-  padding: 10px;
-  margin-top: 10px;
+    background-color: $white;
+    border: $border-base;
+    border-radius: 5px;
+    padding: 10px;
+    margin-top: 10px;
 }
 
-
-// Link =======================
-.link {
-  border-top: 1px solid $gray-lighter;
-  cursor: pointer;
-  margin: $base-spacing 0;
-  padding-top: 5px;
-  .url {
-      color: $gray-light;
-      margin-bottom: 5px;
-  }
-  .title {
-      color: $gray-darker;
-  }
-  .description {
-      color: $gray-light;
-  }
+.img-responsive {
+    max-width: 100%;
+    height: auto;
 }

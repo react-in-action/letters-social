@@ -1,0 +1,27 @@
+button {
+    display: inline-block;
+    font-weight: 400;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    user-select: none;
+    border: 1px solid transparent;
+    padding: 0.25rem 0.75rem;
+    font-size: 1rem;
+    line-height: 1.25;
+    border-radius: 0.25rem;
+    transition: all 0.15s ease-in-out;
+    color: $white;
+    background-color: $blue;
+    cursor: pointer;
+    &:active {
+        background-color: darken($blue, 10%);
+    }
+    .block {
+        width: 100%;
+    }
+    a {
+        text-decoration: none;
+        color: $white;
+    }
+}
