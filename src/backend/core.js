@@ -1,13 +1,11 @@
 import firebase from 'firebase';
 
 const config = {
-    // Normally we'd never publish these, but we will here so readers don't *have*
-    // to have a firebase account first
-    apiKey: 'AIzaSyDBosKGKi-BI9Z8vftAwkBRQlSDDNE8PvM',
-    authDomain: 'letters-social.firebaseapp.com',
-    databaseURL: 'https://letters-social.firebaseio.com',
-    storageBucket: 'letters-social.appspot.com',
-    messagingSenderId: '695497937993'
+    apiKey: process.env.FIREBASE_API_KEY,
+    authDomain: process.env.FIREBASE_AUTH_DOMAIN,
+    databaseURL: process.env.FIREBASE_DATABASE_URL,
+    storageBucket: process.env.FIREBASE_STORAGE_BUCKET,
+    messagingSenderId: process.env.FIREABSE_MESSAGING_ID
 };
 
 firebase.initializeApp(config);
