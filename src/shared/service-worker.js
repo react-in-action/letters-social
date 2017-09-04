@@ -1,3 +1,3 @@
 if ('serviceWorker' in navigator && process.env.NODE_ENV === 'production') {
-    navigator.serviceWorker.register('/service-worker.js');
+    navigator.serviceWorker.register('/static/service-worker.js');
 }

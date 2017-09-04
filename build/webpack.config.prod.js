@@ -7,7 +7,7 @@ const SWPrecacheWebpackPlugin = require('sw-precache-webpack-plugin');
 const GLOBALS = {
     'process.env': {
         NODE_ENV: JSON.stringify('production'),
-        ENDPOINT: JSON.stringify('https://learn-react-newsfeed.herokuapp.com/api')
+        ENDPOINT: JSON.stringify('https://social.react.sh/api')
     },
     __DEV__: false
 };
@@ -21,7 +21,7 @@ module.exports = {
     },
     plugins: [
         new SWPrecacheWebpackPlugin({
-            cacheId: 'letters-social',
+            cacheId: 'letters',
             dontCacheBustUrlsMatching: /\.\w{8}\./,
             filename: 'service-worker.js',
             minify: true,

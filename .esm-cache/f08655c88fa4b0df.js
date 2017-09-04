@@ -7,7 +7,7 @@ const DashboardPlugin = require('webpack-dashboard/plugin');
 const GLOBALS = {
     'process.env': {
         NODE_ENV: JSON.stringify('production'),
-        ENDPOINT: JSON.stringify('https://learn-react-newsfeed.herokuapp.com/api')
+        ENDPOINT: JSON.stringify('https://social.react.sh/api')
     },
     __DEV__: false
 };
