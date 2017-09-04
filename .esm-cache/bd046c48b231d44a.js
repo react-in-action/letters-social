@@ -43,7 +43,7 @@ app.use(hpp());
 app.use(cors());
 
 // Route handlers
-app.options(__PRODUCTION__ ? 'http://social.learnreactjs.io' : '*', cors());
+app.options(__PRODUCTION__ ? 'https://social.react.sh' : '*', cors());
 app.use(
     '/api',
     jsonAPI.router(resolve(__dirname, '..', 'db', 'seed', 'db.json'))

@@ -39,7 +39,15 @@ module.exports = {
             template: 'src/index.ejs',
             minify: {
                 removeComments: true,
-                collapseWhitespace: true
+                collapseWhitespace: true,
+                removeRedundantAttributes: true,
+                useShortDoctype: true,
+                removeEmptyAttributes: true,
+                removeStyleLinkTypeAttributes: true,
+                keepClosingSlash: true,
+                minifyJS: true,
+                minifyCSS: true,
+                minifyURLs: true
             },
             inject: true
         })

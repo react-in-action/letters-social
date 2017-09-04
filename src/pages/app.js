@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { connect } from 'react-redux';
 
-import Nav from '../components/nav/Navbar';
+import Nav from '../components/nav/navbar';
 
 /**
  * The app component serves as a root for the project and renders either children or the error state

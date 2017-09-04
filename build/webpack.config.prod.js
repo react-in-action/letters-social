@@ -2,7 +2,7 @@ const webpack = require('webpack');
 const path = require('path');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const WebpackMd5Hash = require('webpack-md5-hash');
-const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+const SWPrecacheWebpackPlugin = require('sw-precache-webpack-plugin');
 
 const GLOBALS = {
     'process.env': {
@@ -20,11 +20,28 @@ module.exports = {
         filename: 'bundle.js'
     },
     plugins: [
-        new BundleAnalyzerPlugin(),
+        new SWPrecacheWebpackPlugin({
+            cacheId: 'letters-social',
+            dontCacheBustUrlsMatching: /\.\w{8}\./,
+            filename: 'service-worker.js',
+            minify: true,
+            navigateFallback: '/index.html',
+            staticFileGlobsIgnorePatterns: [/\.map$/, /asset-manifest\.json$/]
+        }),
         new webpack.DefinePlugin(GLOBALS),
         new WebpackMd5Hash(),
         new webpack.optimize.OccurrenceOrderPlugin(),
-        new webpack.optimize.UglifyJsPlugin(),
+        new webpack.optimize.UglifyJsPlugin({
+            compress: {
+                warnings: false,
+                comparisons: false
+            },
+            output: {
+                comments: false,
+                ascii_only: true
+            },
+            sourceMap: false
+        }),
         new ExtractTextPlugin('styles.css')
     ],
     module: {

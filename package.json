@@ -7,9 +7,12 @@
         "esm": "all",
         "cjs": true
     },
+    "now": {
+        "name": "letters-social",
+        "alias": "social.react.sh"
+    },
     "scripts": {
-        "api:dev": "node -r @std/esm ./db/db.js",
-        "api:prod": "node -r @std/esm ./db/db.js",
+        "api": "node -r @std/esm ./db/db.js",
         "build:app": "webpack -p --progress --config ./build/webpack.config.prod.js",
         "server:dev": "nodemon --config nodemon.json index.js",
         "build:client": "react-scripts build",
@@ -18,7 +21,7 @@
         "client:test": "jest --coverage --silent",
         "client:test:watch": "jest --watch",
         "build": "npm-run-all build:app db:seed",
-        "dev": "npm-run-all --parallel api:dev client:dev server:dev styles:w",
+        "dev": "npm-run-all --parallel api client:dev server:dev styles:w",
         "db:seed": "node -r @std/esm db/seed.js",
         "styles:w":
             "npm run styles && node-sass src/styles/styles.scss -o static/ -w src/styles --watch --recursive",
@@ -26,7 +29,7 @@
         "start:dev": "node -r @std/esm run/dev.js",
         "rundep": "react-scripts start",
         "test": "npm run client:test && npm run coverage",
-        "start": "node ./index.js"
+        "start": "node -r @std/esm ./index.js"
     },
     "repository": {
         "type": "git",
@@ -39,7 +42,7 @@
     },
     "engines": {
         "node": "8.4.0",
-        "npm": "5.3.0"
+        "npm": "5.4.0"
     },
     "jest": {
         "testEnvironment": "jsdom"
@@ -131,6 +134,7 @@
         "sinon": "3.2.1",
         "starwars": "1.0.0",
         "style-loader": "0.18.2",
+        "sw-precache-webpack-plugin": "^0.11.4",
         "webpack": "3.5.5",
         "webpack-bundle-analyzer": "^2.9.0",
         "webpack-dashboard": "^1.0.0-5",

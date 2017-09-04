@@ -1,18 +1,18 @@
 // All this is express boilerplate
-import bodyParser from 'body-parser';
-import jsonAPI from 'json-server';
 import { __PRODUCTION__ } from 'environs';
 import { resolve } from 'path';
+import bodyParser from 'body-parser';
+import compression from 'compression';
 import cors from 'cors';
 import express from 'express';
 import helmet from 'helmet';
 import hpp from 'hpp';
+import jsonAPI from 'json-server';
 import logger from 'morgan';
 import responseTime from 'response-time';
-import compression from 'compression';
 
 // Modules explicitly related to React & SSR
-import { renderToString } from 'react-dom/server';
+import { renderToStream } from 'react-dom/server';
 import React from 'react';
 import { match, RouterContext } from 'react-router';
 import { Provider } from 'react-redux';
@@ -20,6 +20,7 @@ import { Provider } from 'react-redux';
 // Our modules
 import configureStore from '../src/store/configureStore';
 import initialReduxState from '../src/constants/initialState';
+import { HTMLPageWrapperWithState } from '../src/utils/html';
 import { routes } from '../src/routes';
 
 // Create the express app
@@ -40,48 +41,24 @@ app.use(hpp());
 app.use(cors());
 
 // Route handlers
-app.options(__PRODUCTION__ ? 'http://social.learnreactjs.io' : '*', cors());
+app.options(__PRODUCTION__ ? 'https://social.react.sh' : '*', cors());
 app.use('/api', jsonAPI.router(resolve(__dirname, '..', 'db', 'seed', 'db.json')));
 app.use('/static', express.static(resolve(__dirname, '..', 'static')));
 
 app.use('*', (req, res) => {
     // Use React Router to match
     match({ routes: routes, location: req.originalUrl }, (err, redirect, props) => {
-        // Configure the Redux store so we can use it during SSR
         const store = configureStore(initialReduxState);
-        // HTML to send down to the browser
-        const appHtml = renderToString(
-            React.createElement(
-                Provider,
-                { store },
-                React.createElement(RouterContext, props, props.children)
-            )
+        const html = (
+            <HTMLPageWrapperWithState reduxState={store.getState()}>
+                <Provider store={store}>
+                    <RouterContext {...props} />
+                </Provider>
+            </HTMLPageWrapperWithState>
         );
-        // Use am ES2015+ string literal to interpolate our app HTML into the page
-        const html = `
-            <!doctype html public="storage">
-            <html>
-                <head>
-                    <link rel="stylesheet" href="/static/styles.css" />
-                    <meta charset=utf-8/>
-                    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-                    <title>Letters Social | React In Action by Mark Thomas</title>
-                    <meta name="viewport" content="width=device-width,initial-scale=1">
-                </head>
-                <body>
-                    <div id="app">
-                        ${appHtml}
-                    </div>
-                <script id="intialState">window.__INTIIAL_STATE__ = ${JSON.stringify(
-                    store.getState()
-                )}</script>
-                <script async defer src="/static/bundle.js" type='text/javascript'></script>
-                <script async defer src="https://use.fontawesome.com/0fcbe85f9e.js"></script>
-                </body>
-            </html>
-        `.trim();
+        const renderStream = renderToStream(html);
         res.setHeader('Content-type', 'text/html');
-        res.send(html).end();
+        renderStream.pipe(res);
     });
 });
 

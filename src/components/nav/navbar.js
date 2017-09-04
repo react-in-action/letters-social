@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { logout } from '../../actions/auth';
 import Link from '../router/Link';
-import Logo from './Logo';
+import Logo from './logo';
 
 const Navigation = ({ user, handleLogout }) => (
     <nav className="navbar navbar-default navbar-fixed-top">
