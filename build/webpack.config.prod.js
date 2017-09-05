@@ -50,18 +50,10 @@ module.exports = {
         rules: [
             {
                 test: /\.scss$/,
-                use: [
-                    {
-                        loader: 'style-loader'
-                    },
-                    { loader: 'css-loader', options: { importLoaders: 1, sourceMap: false } },
-                    {
-                        loader: 'sass-loader'
-                    },
-                    {
-                        loader: 'postcss-loader'
-                    }
-                ]
+                use: ExtractTextPlugin.extract({
+                    fallback: 'style-loader',
+                    use: ['css-loader', 'sass-loader']
+                })
             },
             {
                 test: /\.jsx?$/,

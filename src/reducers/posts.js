@@ -27,9 +27,7 @@ export function posts(state = initialState.posts, action) {
             }
             return newState;
         }
-        case types.posts.UPDATE_LINKS: {
-            return Object.assign({}, state.pagination, action.links);
-        }
+
         default:
             return state;
     }

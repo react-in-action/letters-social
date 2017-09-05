@@ -46,7 +46,7 @@ class Home extends Component {
 
 Home.propTypes = {
     posts: PropTypes.object,
-    postIds: PropTypes.arrayOf(PropTypes.string)
+    postIds: PropTypes.object
 };
 
 const HomeContainer = connect(

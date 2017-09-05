@@ -74,6 +74,5 @@ firebase.auth().onAuthStateChanged(user => {
     if (user) {
         history.push('/');
         store.dispatch(loginSuccess(user));
-        console.log(store.getState());
     }
 });

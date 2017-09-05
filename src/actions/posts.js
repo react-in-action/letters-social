@@ -14,6 +14,7 @@ export function updateAvailablePosts(posts) {
 }
 
 export function updateLinks(links) {
+    console.log(links);
     return {
         type: types.posts.UPDATE_LINKS,
         error: false,
@@ -34,7 +35,6 @@ export function createNewPost(payload) {
 export function getPostsForPage(page = 'first') {
     return (dispatch, getState) => {
         const state = getState();
-        console.log(state);
         const endpoint = state.pagination[page];
         dispatch(loading());
         return fetchPosts(endpoint).then(res => {

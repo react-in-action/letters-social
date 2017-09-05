@@ -1,7 +1,6 @@
 const { join } = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const DashboardPlugin = require('webpack-dashboard/plugin');
 
 const GLOBALS = {
     'process.env': {
@@ -33,7 +32,6 @@ module.exports = {
         filename: 'bundle.js'
     },
     plugins: [
-        new DashboardPlugin(),
         new webpack.NamedModulesPlugin(),
         new webpack.DefinePlugin(GLOBALS),
         new webpack.HotModuleReplacementPlugin(),

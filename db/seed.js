@@ -2,12 +2,12 @@ import { join } from 'path';
 import fetch from 'isomorphic-fetch';
 import { name, internet, lorem, date, random } from 'faker';
 import starwars from 'starwars';
-import { promisify } from 'bluebird';
 import mkdirp from 'mkdirp';
 import _ from 'lodash';
 import uuid from 'uuid/v4';
 import { writeFile } from 'fs';
 import ora from 'ora';
+import { promisify } from 'util';
 
 const { sample, sampleSize, random: rand } = _;
 

@@ -7,9 +7,13 @@ export default initialState => {
     if (store) {
         return store;
     }
+    const hydratedState =
+        typeof window !== 'undefined' && process.env.NODE_ENV === 'production'
+            ? JSON.parse(document.getElementById('intialState').dataset.intialReduxState)
+            : initialState;
     const createdStore = createStore(
         rootReducer,
-        typeof window !== 'undefined' ? window.__INTIIAL_STATE__ : initialState,
+        hydratedState,
         compose(
             applyMiddleware(thunk),
             typeof window !== 'undefined' && window.devToolsExtension

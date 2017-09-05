@@ -12,9 +12,13 @@ import * as types from '../constants/types';
 export function pagination(state = initialState.pagination, action) {
     switch (action.type) {
         case types.posts.UPDATE_LINKS:
-            return action.links;
-        case types.app.LOADED:
-            return false;
+            const newState = Object.assign({}, state);
+            for (let k in action.links) {
+                if (action.links.hasOwnProperty(k)) {
+                    newState[k] = action.links[k].url;
+                }
+            }
+            return newState;
         default:
             return state;
     }

@@ -9,7 +9,7 @@ db/seed-compiled.js
 db/seed
 dist
 pids
-
+static
 *.pid
 *.seed
 
