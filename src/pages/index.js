@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 import { createNewPost, getPostsForPage } from '../actions/posts';
+import { showComments } from '../actions/comments';
 import Ad from '../components/ad/Ad';
 import CreatePost from '../components/post/Create';
 import Post from '../components/post/Post';
@@ -11,19 +12,25 @@ import Welcome from '../components/welcome/Welcome';
 
 class Home extends Component {
     componentDidMount() {
-        this.props.actions.getPostsForPage();
+        this.props.actions.getPostsForPage('first');
     }
     render() {
-        const posts = [];
-        for (let postId of this.props.postIds) {
-            posts.push(<Post key={postId} post={this.props.posts[postId]} />);
-        }
         return (
             <div className="home">
                 <Welcome />
                 <div>
                     <CreatePost onSubmit={this.props.actions.createNewPost} />
-                    {this.props.posts && <div className="posts">{posts}</div>}
+                    {this.props.posts && (
+                        <div className="posts">
+                            {this.props.postIds.map(postId => (
+                                <Post
+                                    key={postId}
+                                    post={this.props.posts[postId]}
+                                    openCommentsDrawer={this.props.actions.openCommentsDrawer}
+                                />
+                            ))}
+                        </div>
+                    )}
                     <button className="block" onClick={this.props.actions.getNextPageOfPosts}>
                         Load more posts
                     </button>
@@ -46,7 +53,7 @@ class Home extends Component {
 
 Home.propTypes = {
     posts: PropTypes.object,
-    postIds: PropTypes.object
+    postIds: PropTypes.arrayOf(PropTypes.string)
 };
 
 const HomeContainer = connect(
@@ -65,7 +72,10 @@ const HomeContainer = connect(
                     createNewPost,
                     getPostsForPage,
                     getNextPageOfPosts() {
-                        getPostsForPage('next');
+                        dispatch(getPostsForPage('next'));
+                    },
+                    openCommentsDrawer() {
+                        dispatch(showComments());
                     }
                 },
                 dispatch

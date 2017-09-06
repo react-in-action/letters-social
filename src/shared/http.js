@@ -43,5 +43,40 @@ export function fetchPosts(endpoint) {
  * @return {Response}     Fetch Response object
  */
 export function fetchPost(id) {
-    return fetch(`${process.env.ENDPOINT}/posts/${id}`);
+    return fetch(`${process.env.ENDPOINT}/posts/${id}?_embed=comments&_expand=user`);
+}
+
+/**
+ * Fetch a post from the API
+ * @module letters/shared/http
+ * @method fetchCommentsForPost
+ * @param  {string}  id post ID
+ * @return {Response}     Fetch Response object
+ */
+export function fetchCommentsForPost(postId) {
+    return fetch(`${process.env.ENDPOINT}/comments?postId=${postId}&_expand=user`);
+}
+
+/**
+ * Creates a post with the given payload
+ * @method createComment
+ * @module letters/shared/http
+ * @param  {object}   payload Post payload
+ * @return {Response}           Fetch Response
+ */
+export function createComment(payload) {
+    if (!payload) {
+        throw new Error('You must provide a payload when creating a comment');
+    }
+    // Create options for the request
+    const requestOptions = {
+        method: 'POST',
+        body: JSON.stringify(payload),
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    };
+
+    // Send the new post to the API
+    return fetch(`${process.env.ENDPOINT}/comments`, requestOptions);
 }

@@ -4,10 +4,10 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 import { getPostByID, getPostsForPage } from '../actions/posts';
-
 import Ad from '../components/ad/Ad';
 import Post from '../components/post/Post';
 import Link from '../components/router/Link';
+import Loader from '../components/Loader';
 
 class SinglePost extends Component {
     static propTypes = {
@@ -19,24 +19,26 @@ class SinglePost extends Component {
     componentDidMount() {
         // If there's no posts already loaded, load them
         if (!this.props.post) {
-            this.props.actions.getPostByID(this.props.router.params.post);
+            this.props.actions.getPostByID(this.props.router.params.postId);
         }
     }
 
     render() {
-        return (
+        return this.props.post ? (
             <div className="single-post">
                 <Link to="/">
                     <span>
                         <i className="fa fa-arrow-left" /> Back
                     </span>
                 </Link>
-                <Post forceOpen post={this.props.post} />
+                <Post openCommentsDrawer post={this.props.post} />
                 <Ad
                     url="https://www.manning.com/books/react-in-action"
                     imageUrl="https://drtzvj8zd0k9x.cloudfront.net/assets/ads/react+in+action+meap+ad.png"
                 />
             </div>
+        ) : (
+            <Loader />
         );
     }
 }

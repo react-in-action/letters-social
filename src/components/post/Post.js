@@ -5,37 +5,31 @@ import Comments from '../comment/Comments';
 import Content from './Content';
 import Image from './Image';
 import Link from './Link';
-import Controls from './Controls';
+import Like from './Like';
 import User from './User';
 
 import RouterLink from '../router/Link';
 
 function Post(props) {
-    const { post, forceOpen } = props;
-    return post
-        ? <div className="post">
-              <RouterLink to={`/posts/${post.id}`}>
-                  {/* we're wrapping this because RouterLink expectes a single child */}
-                  <div>
-                      <User post={post} />
-                      <Content post={post} />
-                      <Image post={post} />
-                      <Link link={post.link} />
-                  </div>
-              </RouterLink>
-
-              {post.comments
-                  ? <Comments forceOpen={forceOpen} post={post} />
-                  : null}
-
-              <Controls post={post} />
-          </div>
-        : null;
+    const { post } = props;
+    return post ? (
+        <div className="post">
+            <RouterLink to={`/posts/${post.id}`}>
+                <span>
+                    <User post={post} />
+                    <Content post={post} />
+                    <Image post={post} />
+                    <Link link={post.link} />
+                </span>
+            </RouterLink>
+            <Comments show={post.showComments} postId={post.id} />
+            <Like post={post} />
+        </div>
+    ) : null;
 }
 
 Post.propTypes = {
-    post: PropTypes.object,
-    forceOpen: PropTypes.bool
+    post: PropTypes.object
 };
 
 export default Post;

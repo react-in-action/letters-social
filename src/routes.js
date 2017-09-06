@@ -29,11 +29,7 @@ function requireUser(nextState, replace, callback) {
 export const routes = (
     <Route path="/" component={App}>
         <IndexRoute onEnter={requireUser} component={Home} />
-        <Route
-            onEnter={requireUser}
-            path="/posts/:post"
-            component={SinglePost}
-        />
+        <Route onEnter={requireUser} component={SinglePost} path="/posts/:postId" />
         <Route path="/login" component={Login} />
         <Route path="*" component={NotFound} />
     </Route>

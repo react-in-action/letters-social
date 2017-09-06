@@ -12,22 +12,31 @@ import * as types from '../constants/types';
  */
 export function posts(state = initialState.posts, action) {
     switch (action.type) {
-        case types.posts.NEXT: {
+        case types.posts.GET: {
             // TODO: update chapters with this state in mind
             const { posts } = action;
             // Make a copy of the old state
-            let newState = new Map(state.posts);
+            let newState = Object.assign({}, state);
             // For each of our incoming posts, see if we have them in our map yet or not;
             // if they are missing, add them in. JS Maps can be read out in insertion order,
             // so we should still get posts in the order that we got them back from the API in
             for (let post of posts) {
-                if (!newState.has(post)) {
-                    newState.set(post.id, post);
+                if (!newState[post.id]) {
+                    newState[post.id] = post;
                 }
             }
             return newState;
         }
-
+        case types.comments.SHOW: {
+            let newState = Object.assign({}, state);
+            newState[action.postId].showComments = true;
+            return newState;
+        }
+        case types.comments.TOGGLE: {
+            let newState = Object.assign({}, state);
+            newState[action.postId].showComments = !newState[action.postId].showComments;
+            return newState;
+        }
         default:
             return state;
     }
@@ -46,16 +55,15 @@ export function posts(state = initialState.posts, action) {
  */
 export function postIds(state = initialState.postIds, action) {
     switch (action.type) {
-        case types.posts.NEXT: {
+        case types.posts.GET: {
             const nextPostIds = action.posts.map(post => post.id);
-            // Iterate over the posts and add the IDs to our set
-            for (let postID of posts) {
-                // If we don't already have the post, add it to the set
-                if (!state.has(postID)) {
-                    state.postIds.add(postID);
+            let nextState = state;
+            for (let post of nextPostIds) {
+                if (!nextPostIds.includes(nextPostIds)) {
+                    nextState.push(post);
                 }
             }
-            return nextPostIds;
+            return nextState;
         }
         default:
             return state;

@@ -24,4 +24,16 @@ button {
         text-decoration: none;
         color: $white;
     }
+    &.open {
+        background-color: transparent;
+        color: $blue;
+        &:active {
+            background-color: darken($blue, 10%);
+            color: white;
+        }
+        &:hover {
+            border: 1px solid $blue;
+            transition: all 0.3s;
+        }
+    }
 }

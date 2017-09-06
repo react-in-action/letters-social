@@ -1,23 +1,33 @@
 jest.mock('../../src/shared/http');
+import sinon from 'sinon';
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
+
+import initialState from '../../src/constants/initialState';
 import * as types from '../../src/constants/types';
 import {
     createNewPost,
     getPostsForPage,
     getPostByID,
-    updateAvailablePosts
+    updateAvailablePosts,
+    updateLinks
 } from '../../src/actions/posts';
 
 const middlewares = [thunk];
 const mockStore = configureMockStore(middlewares);
 
-describe('async post actions', () => {
+describe('post actions', () => {
+    let sandbox;
+    beforeEach(function () {
+        sandbox = sinon.createSandbox();
+    });
+    afterEach(function () {
+        sandbox.restore();
+    });
     describe('getPostsForPage', () => {
         it('should create the right actions', () => {
-            const store = mockStore({
-                postIds: []
-            });
+            const store = mockStore(initialState);
+            const updateLinksStub = sandbox.stub()
             return store.dispatch(getPostsForPage()).then(() => {
                 const [
                     loadingAction,

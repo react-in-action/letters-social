@@ -8,11 +8,33 @@
     line-height: 18px;
     min-height: 25px;
     outline: 0;
-    padding: 23px 12px 14px;
+    padding: 20px 12px 14px;
     resize: none;
     width: 100%;
 }
 
 .date {
     padding: 0 $base-spacing;
+}
+
+.comments {
+    background-color: #f6f7f9;
+    border-radius: 5px;
+}
+
+.comment {
+    margin-top: 10px;
+    border-top: 1px solid $gray-lighter;
+    padding: 10px;
+    .user-header {
+        display: flex;
+        align-items: center;
+        & >  {
+            padding: 0 5px;
+        }
+    }
+    .content {
+        margin: 1em 0;
+        font-size: 0.8em;
+    }
 }

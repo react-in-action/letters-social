@@ -16,10 +16,10 @@ class CreateComment extends React.Component {
     }
     handleSubmit(event) {
         event.preventDefault();
-        const { threadID, handleSubmit } = this.props;
+        const { postId, handleSubmit } = this.props;
         console.log('Submitting');
         console.log(event.target);
-        handleSubmit(threadID);
+        handleSubmit(postId);
     }
     render() {
         return (
@@ -36,7 +36,7 @@ class CreateComment extends React.Component {
 }
 
 CreateComment.propTypes = {
-    threadID: PropTypes.string.isRequired,
+    postId: PropTypes.string.isRequired,
     handleSubmit: PropTypes.func.isRequired
 };
 

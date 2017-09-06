@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import { Children, cloneElement } from 'react';
-import { navigate } from '../../history/';
+import { navigate } from '../../history';
 
 function Link(props) {
     const { to, children } = props;

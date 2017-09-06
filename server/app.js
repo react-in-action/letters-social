@@ -46,6 +46,7 @@ app.use('/api', jsonAPI.router(resolve(__dirname, '..', 'db', 'seed', 'db.json')
 app.use('/static', express.static(resolve(__dirname, '..', 'static')));
 
 app.use('*', (req, res) => {
+    console.log(req.cookies);
     // Use React Router to match
     match({ routes: routes, location: req.originalUrl }, (err, redirect, props) => {
         const store = configureStore(initialReduxState);

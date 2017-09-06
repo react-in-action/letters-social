@@ -1,15 +1,25 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import moment from 'moment';
+import humanize from 'humanize-duration';
 
 const Comment = props => {
     const { comment } = props;
     return (
         <div className="comment" key={comment.id}>
-            <img src={comment.user.profilePicture} width={50} height={50} alt={comment.content} />
-            <a>{comment.user.name}</a>
-            <small className="date"> {moment(comment.date).fromNow()} </small>
-            <p> {comment.content} </p>
+            <div className="user-header">
+                <img
+                    src={comment.user.profilePicture}
+                    width={25}
+                    height={25}
+                    className="img-circle"
+                    alt={comment.user.email}
+                />
+                <a>{comment.user.name}</a>
+                <small className="date">
+                    {humanize(new Date() - new Date(comment.date), { largest: 1 })} ago
+                </small>
+            </div>
+            <p className="content"> {comment.content} </p>
         </div>
     );
 };

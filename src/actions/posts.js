@@ -4,17 +4,17 @@ import parseLinkHeader from 'parse-link-header';
 import * as types from '../constants/types';
 import { createPost, fetchPosts, fetchPost } from '../shared/http';
 import { loading, loaded } from './loading';
+import { getCommentsForPost, updateAvailableComments } from './comments';
 
 export function updateAvailablePosts(posts) {
     return {
-        type: types.posts.UPDATE,
+        type: types.posts.GET,
         error: false,
         posts
     };
 }
 
 export function updateLinks(links) {
-    console.log(links);
     return {
         type: types.posts.UPDATE_LINKS,
         error: false,
@@ -39,19 +39,24 @@ export function getPostsForPage(page = 'first') {
         dispatch(loading());
         return fetchPosts(endpoint).then(res => {
             const links = parseLinkHeader(res.headers.get('Link'));
-            const posts = res.json();
-            dispatch(updateLinks(links));
-            dispatch(updateAvailablePosts(posts));
-            dispatch(loaded());
+            return res.json().then(posts => {
+                dispatch(updateLinks(links));
+                dispatch(updateAvailablePosts(posts));
+                dispatch(loaded());
+            });
         });
     };
 }
 
-export function getPostByID(id) {
+export function loadPost(postId) {
     return dispatch => {
         dispatch(loading());
-        return fetchPost(id).then(res => {
-            const post = dispatch(updateAvailablePosts());
+        return Promise.all([
+            fetchPost(postId).then(res => res.json()),
+            getCommentsForPost(postId).then(res => res.json())
+        ]).then(([post, comments]) => {
+            dispatch(updateAvailablePosts([post]));
+            dispatch(updateAvailableComments([comments]));
             dispatch(loaded());
         });
     };

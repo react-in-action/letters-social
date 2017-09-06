@@ -15,6 +15,9 @@
 
     .user {
         border-bottom: $border-base;
+        display: flex;
+        align-items: center;
+        padding: 5px;
     }
 
     &:hover {
@@ -23,8 +26,13 @@
         transition: all 0.3s;
     }
 
-    img {
-        padding: 10px;
+    & > img {
+        border-radius: 5px;
+    }
+    .controls {
+        span {
+            margin: auto 5px;
+        }
     }
 }
 
@@ -37,9 +45,4 @@
     .control-with-counter {
         padding-right: 5px;
     }
-}
-.comment {
-    border-top: 1px solid $gray-lighter;
-    margin-top: 0;
-    padding: 0 10px;
 }

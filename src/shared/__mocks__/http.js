@@ -5,7 +5,7 @@ export function fetchPosts(n = 5) {
   for (let i = 0; i < n; i++) {
     returnPayload.push(new User());
   }
-  // imitate `.JSON()`
+  // imitate `.json()`
   const parsedReturnPayload = JSON.parse(JSON.stringify(returnPayload));
   return Promise.resolve(parsedReturnPayload);
 }

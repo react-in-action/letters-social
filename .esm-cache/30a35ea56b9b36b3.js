@@ -1,4 +1,4 @@
-let join;_5e7‍.w('path',[["join",function(v){join=v}]]);let fetch;_5e7‍.w('isomorphic-fetch',[["default",function(v){fetch=v}]]);let name,internet,lorem,date,random;_5e7‍.w('faker',[["name",function(v){name=v}],["internet",function(v){internet=v}],["lorem",function(v){lorem=v}],["date",function(v){date=v}],["random",function(v){random=v}]]);let starwars;_5e7‍.w('starwars',[["default",function(v){starwars=v}]]);let mkdirp;_5e7‍.w('mkdirp',[["default",function(v){mkdirp=v}]]);let _;_5e7‍.w('lodash',[["default",function(v){_=v}]]);let uuid;_5e7‍.w('uuid/v4',[["default",function(v){uuid=v}]]);let writeFile;_5e7‍.w('fs',[["writeFile",function(v){writeFile=v}]]);let ora;_5e7‍.w('ora',[["default",function(v){ora=v}]]);let promisify;_5e7‍.w('util',[["promisify",function(v){promisify=v}]]);
+let join;_6b9‍.w('path',[["join",function(v){join=v}]]);let fetch;_6b9‍.w('isomorphic-fetch',[["default",function(v){fetch=v}]]);let name,internet,lorem,date,random;_6b9‍.w('faker',[["name",function(v){name=v}],["internet",function(v){internet=v}],["lorem",function(v){lorem=v}],["date",function(v){date=v}],["random",function(v){random=v}]]);let starwars;_6b9‍.w('starwars',[["default",function(v){starwars=v}]]);let mkdirp;_6b9‍.w('mkdirp',[["default",function(v){mkdirp=v}]]);let _;_6b9‍.w('lodash',[["default",function(v){_=v}]]);let uuid;_6b9‍.w('uuid/v4',[["default",function(v){uuid=v}]]);let writeFile;_6b9‍.w('fs',[["writeFile",function(v){writeFile=v}]]);let ora;_6b9‍.w('ora',[["default",function(v){ora=v}]]);let promisify;_6b9‍.w('util',[["promisify",function(v){promisify=v}]]);
 
 
 
@@ -94,9 +94,9 @@ function generateComments(n, users, posts) {
     for (let i = 0; i < n; i++) {
         const userIds = users.map(u => u.id);
         const postIds = posts.map(u => u.id);
-        const randomUser = sample(userIds);
-        const randomPost = sample(postIds);
-        comments.push(new module.exports.Comment(randomUser, randomPost));
+        const randomUserId = sample(userIds);
+        const randomPostId = sample(postIds);
+        comments.push(new module.exports.Comment(randomUserId, randomPostId));
     }
     return comments;
 }
@@ -104,7 +104,7 @@ function generateComments(n, users, posts) {
 function generatePosts(n, users) {
     const posts = [];
     for (let i = 0; i < n; i++) {
-        const newPost = new module.exports.Post(sample(users));
+        const newPost = new module.exports.Post(sample(users).id);
         posts.push(newPost);
     }
     return posts;

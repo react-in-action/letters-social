@@ -94,9 +94,9 @@ function generateComments(n, users, posts) {
     for (let i = 0; i < n; i++) {
         const userIds = users.map(u => u.id);
         const postIds = posts.map(u => u.id);
-        const randomUser = sample(userIds);
-        const randomPost = sample(postIds);
-        comments.push(new module.exports.Comment(randomUser, randomPost));
+        const randomUserId = sample(userIds);
+        const randomPostId = sample(postIds);
+        comments.push(new module.exports.Comment(randomUserId, randomPostId));
     }
     return comments;
 }
@@ -104,7 +104,7 @@ function generateComments(n, users, posts) {
 function generatePosts(n, users) {
     const posts = [];
     for (let i = 0; i < n; i++) {
-        const newPost = new module.exports.Post(sample(users));
+        const newPost = new module.exports.Post(sample(users).id);
         posts.push(newPost);
     }
     return posts;
