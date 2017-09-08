@@ -57,9 +57,9 @@ export function postIds(state = initialState.postIds, action) {
     switch (action.type) {
         case types.posts.GET: {
             const nextPostIds = action.posts.map(post => post.id);
-            let nextState = state;
+            let nextState = Array.from(state);
             for (let post of nextPostIds) {
-                if (!nextPostIds.includes(nextPostIds)) {
+                if (!state.includes(post)) {
                     nextState.push(post);
                 }
             }

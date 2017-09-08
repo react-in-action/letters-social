@@ -18,8 +18,12 @@
 }
 
 .comments {
-    background-color: #f6f7f9;
+    background-color: $white;
     border-radius: 5px;
+    &:hover {
+        cursor: pointer;
+        transition: all 0.3s;
+    }
 }
 
 .comment {
@@ -35,6 +39,5 @@
     }
     .content {
         margin: 1em 0;
-        font-size: 0.8em;
     }
 }

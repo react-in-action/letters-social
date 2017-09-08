@@ -28,8 +28,10 @@ const createProfilePicture = generateProfilePicture();
 
 function generateShareablePicture() {
     const pics = [];
-    for (let i = 0; i < 50; i++) {
-        pics.push(`https://drtzvj8zd0k9x.cloudfront.net/assets/post-images/${i + 1}.jpg`);
+    for (let i = 0; i < 16; i++) {
+        pics.push(
+            `https://s3-us-west-2.amazonaws.com/react-sh/assets/images-for-posts/${i + 1}.jpg`
+        );
     }
     return function selectRandomPostImage() {
         return sample(pics);
@@ -69,6 +71,10 @@ module.exports.Post = class Post {
                   description: lorem.sentences(rand(1, 2), '. ')
               };
         this.userId = userId;
+        this.location = {
+            lat: null,
+            lng: null
+        };
     }
 };
 

@@ -7,7 +7,7 @@ import { categories } from './constants';
 export function generateProfilePicture() {
     const pics = [];
     for (let i = 0; i < 15; i++) {
-        pics.push(`https://drtzvj8zd0k9x.cloudfront.net/assets/profile-pictures/${i + 1}.png`);
+        pics.push(`https://s3-us-west-2.amazonaws.com/react-sh/assets/profile-pictures/${i + 1}.png`);
     }
     return function selectRandomProfilePicture() {
         return sample(pics);
@@ -18,7 +18,7 @@ const createProfilePicture = generateProfilePicture();
 export function generateShareablePicture() {
     const pics = [];
     for (let i = 0; i < 50; i++) {
-        pics.push(`https://drtzvj8zd0k9x.cloudfront.net/assets/post-images/${i + 1}.jpg`);
+        pics.push(`https://s3-us-west-2.amazonaws.com/react-sh/assets/post-images/${i + 1}.jpg`);
     }
     return function selectRandomPostImage() {
         return sample(pics);

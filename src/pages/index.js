@@ -38,12 +38,12 @@ class Home extends Component {
                 <div>
                     <Ad
                         url="https://ifelse.io/book"
-                        imageUrl="https://drtzvj8zd0k9x.cloudfront.net/assets/ads/react+in+action+meap+ad.png"
+                        imageUrl="https://s3-us-west-2.amazonaws.com/react-sh/assets/ads/react+in+action+meap+ad.png"
                     />
 
                     <Ad
                         url="https://ifelse.io/book"
-                        imageUrl="https://drtzvj8zd0k9x.cloudfront.net/assets/ads/Yl48tQw.jpg"
+                        imageUrl="https://s3-us-west-2.amazonaws.com/react-sh/assets/ads/Yl48tQw.jpg"
                     />
                 </div>
             </div>

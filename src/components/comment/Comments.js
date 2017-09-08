@@ -2,7 +2,6 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { getCommentsForPost, toggleComments } from '../../actions/comments';
 import Loader from '../Loader';
 import Comment from './Comment';
 import CreateComment from './Create';
@@ -15,13 +14,9 @@ const Comments = props => {
     return (
         <div className="comments">
             {show && [
-                comments.map(comment => <Comment key={comment.id} comment={comment} />),
-                <CreateComment handleSubmit={handleCommentSubmit} postId={postId} />
+                ...comments.map(comment => <Comment key={comment.id} comment={comment} />),
+                <CreateComment key={postId} handleSubmit={handleCommentSubmit} postId={postId} />
             ]}
-            <button onClick={props.loadAndShowComments} className="pull-right open">
-                <i className="fa fa-commenting-o" />{' '}
-                <i className={`fa ${show ? 'fa-angle-up' : 'fa-angle-down'}`} />
-            </button>
         </div>
     );
 };
@@ -43,10 +38,6 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     return {
         handleCommentSubmit(payload) {
             dispatch();
-        },
-        loadAndShowComments() {
-            dispatch(toggleComments(postId));
-            dispatch(getCommentsForPost(postId));
         }
     };
 };

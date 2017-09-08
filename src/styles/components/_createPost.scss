@@ -6,7 +6,6 @@
         border: 0;
         box-sizing: border-box;
         display: block;
-        font-family: helvetica, arial, sans-serif;
         font-size: 14px;
         line-height: 18px;
         min-height: 69px;
@@ -14,5 +13,32 @@
         padding: 23px 12px 14px;
         resize: none;
         width: 100%;
+    }
+    .displayMap {
+        @extend %element-base;
+        margin-top: 1em;
+        #map {
+            height: 150px;
+            width: 100%;
+        }
+        .control-bar {
+            display: flex;
+            flex-direction: row;
+            i {
+                color: $blue;
+                cursor: pointer;
+                padding-right: 10px;
+            }
+        }
+        input {
+            background-color: transparent;
+            border: none;
+            box-sizing: border-box;
+            display: block;
+            font-size: 14px;
+            outline: 0;
+            width: 100%;
+            padding: 0 0 10px;
+        }
     }
 }

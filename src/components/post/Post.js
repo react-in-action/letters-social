@@ -5,7 +5,7 @@ import Comments from '../comment/Comments';
 import Content from './Content';
 import Image from './Image';
 import Link from './Link';
-import Like from './Like';
+import PostActions from './PostActions';
 import User from './User';
 
 import RouterLink from '../router/Link';
@@ -22,14 +22,14 @@ function Post(props) {
                     <Link link={post.link} />
                 </span>
             </RouterLink>
-            <Comments show={post.showComments} postId={post.id} />
-            <Like post={post} />
+            <PostActions postId={post.id} />
+            <Comments postId={post.id} />
         </div>
     ) : null;
 }
 
 Post.propTypes = {
-    post: PropTypes.object
+    post: PropTypes.object.isRequired
 };
 
 export default Post;

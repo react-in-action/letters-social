@@ -1,6 +1,10 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import Filter from 'bad-words';
+import uuid from 'uuid/v4';
+import classnames from 'classnames';
+
+import DisplayMap from '../map/DisplayMap';
 
 const filter = new Filter();
 
@@ -15,12 +19,13 @@ class CreatePost extends React.Component {
         // Set up state
         this.state = {
             content: '',
-            valid: null
+            valid: false,
+            showLocation: false
         };
 
-        // Set up event handlers
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handlePostChange = this.handlePostChange.bind(this);
+        this.handleToggleLocation = this.handleToggleLocation.bind(this);
     }
 
     handlePostChange(event) {
@@ -38,9 +43,8 @@ class CreatePost extends React.Component {
         }
         if (this.props.onSubmit) {
             const newPost = {
+                id: uuid(),
                 date: Date.now(),
-                // Assign a temporary key to the post; the API will create a real one for us
-                id: Date.now(),
                 content: this.state.content
             };
 
@@ -52,6 +56,14 @@ class CreatePost extends React.Component {
         }
     }
 
+    handleToggleLocation() {
+        this.setState(state => {
+            return {
+                showLocation: !state.showLocation
+            };
+        });
+    }
+
     render() {
         return (
             <form className="create-post" onSubmit={this.handleSubmit}>
@@ -60,7 +72,19 @@ class CreatePost extends React.Component {
                     onChange={this.handlePostChange}
                     placeholder="What's on your mind?"
                 />
-                <button className="btn btn-default">Post</button>
+                <button>Post</button>
+                <button onClick={this.handleToggleLocation} className="open pull-right">
+                    {this.state.showLocation ? 'Cancel' : 'Add location'}{' '}
+                    <i
+                        className={classnames(`fa`, {
+                            'fa-map-o': !this.state.showLocation,
+                            'fa-times': this.state.showLocation
+                        })}
+                    />
+                </button>
+                <div className="addLocation">
+                    <DisplayMap allowInput onChange={() => {}} show={this.state.showLocation} />
+                </div>
             </form>
         );
     }

@@ -1,4 +1,4 @@
-let join;_6b9‍.w('path',[["join",function(v){join=v}]]);let fetch;_6b9‍.w('isomorphic-fetch',[["default",function(v){fetch=v}]]);let name,internet,lorem,date,random;_6b9‍.w('faker',[["name",function(v){name=v}],["internet",function(v){internet=v}],["lorem",function(v){lorem=v}],["date",function(v){date=v}],["random",function(v){random=v}]]);let starwars;_6b9‍.w('starwars',[["default",function(v){starwars=v}]]);let mkdirp;_6b9‍.w('mkdirp',[["default",function(v){mkdirp=v}]]);let _;_6b9‍.w('lodash',[["default",function(v){_=v}]]);let uuid;_6b9‍.w('uuid/v4',[["default",function(v){uuid=v}]]);let writeFile;_6b9‍.w('fs',[["writeFile",function(v){writeFile=v}]]);let ora;_6b9‍.w('ora',[["default",function(v){ora=v}]]);let promisify;_6b9‍.w('util',[["promisify",function(v){promisify=v}]]);
+let join;_eb3‍.w('path',[["join",function(v){join=v}]]);let fetch;_eb3‍.w('isomorphic-fetch',[["default",function(v){fetch=v}]]);let name,internet,lorem,date,random;_eb3‍.w('faker',[["name",function(v){name=v}],["internet",function(v){internet=v}],["lorem",function(v){lorem=v}],["date",function(v){date=v}],["random",function(v){random=v}]]);let starwars;_eb3‍.w('starwars',[["default",function(v){starwars=v}]]);let mkdirp;_eb3‍.w('mkdirp',[["default",function(v){mkdirp=v}]]);let _;_eb3‍.w('lodash',[["default",function(v){_=v}]]);let uuid;_eb3‍.w('uuid/v4',[["default",function(v){uuid=v}]]);let writeFile;_eb3‍.w('fs',[["writeFile",function(v){writeFile=v}]]);let ora;_eb3‍.w('ora',[["default",function(v){ora=v}]]);let promisify;_eb3‍.w('util',[["promisify",function(v){promisify=v}]]);
 
 
 
@@ -28,8 +28,10 @@ const createProfilePicture = generateProfilePicture();
 
 function generateShareablePicture() {
     const pics = [];
-    for (let i = 0; i < 50; i++) {
-        pics.push(`https://drtzvj8zd0k9x.cloudfront.net/assets/post-images/${i + 1}.jpg`);
+    for (let i = 0; i < 16; i++) {
+        pics.push(
+            `https://s3-us-west-2.amazonaws.com/react-sh/assets/images-for-posts/${i + 1}.jpg`
+        );
     }
     return function selectRandomPostImage() {
         return sample(pics);
@@ -69,6 +71,10 @@ module.exports.Post = class Post {
                   description: lorem.sentences(rand(1, 2), '. ')
               };
         this.userId = userId;
+        this.location = {
+            lat: null,
+            lng: null
+        };
     }
 };
 

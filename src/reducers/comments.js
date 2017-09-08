@@ -47,11 +47,11 @@ export function comments(state = initialState.comments, action) {
 export function commentIds(state = initialState.commentIds, action) {
     switch (action.type) {
         case types.comments.GET: {
-            const nextcommentIds = action.comments.map(comment => comment.id);
-            let nextState = state;
-            for (let comment of nextcommentIds) {
-                if (!nextcommentIds.includes(nextcommentIds)) {
-                    nextState.push(comment);
+            const nextCommentIds = action.comments.map(comment => comment.id);
+            let nextState = Array.from(state);
+            for (let commentId of nextCommentIds) {
+                if (!state.includes(commentId)) {
+                    nextState.push(commentId);
                 }
             }
             return nextState;

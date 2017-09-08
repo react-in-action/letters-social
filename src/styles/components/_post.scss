@@ -21,7 +21,6 @@
     }
 
     &:hover {
-        background-color: darken($white, 2.4%);
         cursor: pointer;
         transition: all 0.3s;
     }
@@ -36,13 +35,7 @@
     }
 }
 
-.control {
-    margin: 3px 0;
-    &:hover {
-        background-color: transparent;
-        color: $blue;
-    }
-    .control-with-counter {
-        padding-right: 5px;
-    }
+.post-actions {
+    padding: 10px 5px;
+    color: $blue;
 }

@@ -33,7 +33,6 @@ export function getCommentsForPost(postId) {
         return fetchCommentsForPost(postId)
             .then(res => res.json())
             .then(comments => {
-                console.log(comments);
                 dispatch(updateAvailableComments(comments));
             });
     };

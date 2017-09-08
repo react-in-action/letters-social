@@ -13,7 +13,7 @@ describe('<Ad/>', () => {
     it('should display a link', () => {
         const expectedUrl = 'https://ifelse.io/book';
         const expectedImageURL =
-            'https://drtzvj8zd0k9x.cloudfront.net/assets/ads/react+in+action+meap+ad.png';
+            'https://s3-us-west-2.amazonaws.com/react-sh/assets/ads/react+in+action+meap+ad.png';
         const component = shallow(
             <Ad url={expectedUrl} imageUrl={expectedImageURL} />
         );
@@ -22,7 +22,7 @@ describe('<Ad/>', () => {
     it('should display an image', () => {
         const expectedUrl = 'https://ifelse.io/book';
         const expectedImageURL =
-            'https://drtzvj8zd0k9x.cloudfront.net/assets/ads/react+in+action+meap+ad.png';
+            'https://s3-us-west-2.amazonaws.com/react-sh/assets/ads/react+in+action+meap+ad.png';
         const component = shallow(
             <Ad url={expectedUrl} imageUrl={expectedImageURL} />
         );

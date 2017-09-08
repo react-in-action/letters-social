@@ -12,7 +12,7 @@ import logger from 'morgan';
 import responseTime from 'response-time';
 
 // Modules explicitly related to React & SSR
-import { renderToStream } from 'react-dom/server';
+import { renderToNodeStream } from 'react-dom/server';
 import React from 'react';
 import { match, RouterContext } from 'react-router';
 import { Provider } from 'react-redux';
@@ -57,7 +57,7 @@ app.use('*', (req, res) => {
                 </Provider>
             </HTMLPageWrapperWithState>
         );
-        const renderStream = renderToStream(html);
+        const renderStream = renderToNodeStream(html);
         res.setHeader('Content-type', 'text/html');
         renderStream.pipe(res);
     });

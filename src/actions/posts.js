@@ -51,13 +51,13 @@ export function getPostsForPage(page = 'first') {
 export function loadPost(postId) {
     return dispatch => {
         dispatch(loading());
-        return Promise.all([
-            fetchPost(postId).then(res => res.json()),
-            getCommentsForPost(postId).then(res => res.json())
-        ]).then(([post, comments]) => {
-            dispatch(updateAvailablePosts([post]));
-            dispatch(updateAvailableComments([comments]));
-            dispatch(loaded());
-        });
+        return fetchPost(postId)
+            .then(res => res.json())
+            .then(post => {
+                console.log(post);
+                dispatch(updateAvailablePosts([post]));
+                dispatch(getCommentsForPost(postId));
+                dispatch(loaded());
+            });
     };
 }

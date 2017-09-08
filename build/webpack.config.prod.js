@@ -2,6 +2,7 @@ const webpack = require('webpack');
 const path = require('path');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const WebpackMd5Hash = require('webpack-md5-hash');
+const uuid = require('uuid/v4');
 const SWPrecacheWebpackPlugin = require('sw-precache-webpack-plugin');
 
 const GLOBALS = {
@@ -9,8 +10,12 @@ const GLOBALS = {
         NODE_ENV: JSON.stringify('production'),
         ENDPOINT: JSON.stringify('https://social.react.sh/api'),
         RIA_SENTRY_APP: JSON.stringify('https://23f0e00b78a24ac88450c8261b59ed7c@sentry.io/212515'),
-        FIREBASE_API_KEY: JSON.stringify('AIzaSyDBosKGKi-BI9Z8vftAwkBRQlSDDNE8PvM'),
-        FIREBASE_AUTH_DOMAIN: JSON.stringify('letters-social.firebaseapp.com')
+        GOOGLE_API_KEY: JSON.stringify('AIzaSyDBosKGKi-BI9Z8vftAwkBRQlSDDNE8PvM'),
+        FIREBASE_AUTH_DOMAIN: JSON.stringify('letters-social.firebaseapp.com'),
+        MAP_SCRIPT_ID: JSON.stringify(uuid()),
+        MAPBOX_API_TOKEN: JSON.stringify(
+            'pk.eyJ1IjoibWFya3RoZXRob21hcyIsImEiOiJHa3JyZFFjIn0.MwCj8OA5q4dqdll1s2kMiw'
+        )
     }
 };
 
