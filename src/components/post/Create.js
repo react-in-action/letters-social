@@ -11,30 +11,39 @@ class CreatePost extends React.Component {
     static propTypes = {
         onSubmit: PropTypes.func.isRequired
     };
-
     constructor(props) {
         super(props);
-
-        // Set up state
         this.state = {
             content: '',
             valid: false,
-            showLocation: false
+            showLocationPicker: false,
+            location: null
         };
-
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handlePostChange = this.handlePostChange.bind(this);
         this.handleToggleLocation = this.handleToggleLocation.bind(this);
+        this.handleSelectLocation = this.handleSelectLocation.bind(this);
+        this.renderLocationControls = this.renderLocationControls.bind(this);
+        this.handleRemoveLocation = this.handleRemoveLocation.bind(this);
     }
-
     handlePostChange(event) {
         const content = filter.clean(event.target.value);
-        this.setState({
-            content,
-            valid: content.length <= 300
+        this.setState(() => {
+            return {
+                content,
+                valid: content.length <= 300
+            };
         });
     }
-
+    handleRemoveLocation() {
+        this.setState(() => ({ location: null }));
+    }
+    handleSelectLocation(location) {
+        this.setState(() => ({
+            location,
+            showLocationPicker: false
+        }));
+    }
     handleSubmit(event) {
         event.preventDefault();
         if (!this.state.valid) {
@@ -52,15 +61,39 @@ class CreatePost extends React.Component {
             });
         }
     }
-
     handleToggleLocation() {
         this.setState(state => {
             return {
-                showLocation: !state.showLocation
+                showLocationPicker: !state.showLocationPicker
             };
         });
     }
-
+    // We can implement a "subrender" method here and not clutter the main render method with tons
+    // of conditional logic. This is a helpful pattern to explore when dealing with components that
+    // have longer render methods
+    renderLocationControls() {
+        return (
+            <div className="controls">
+                <button onClick={this.handleSubmit}>Post</button>
+                {this.state.location ? (
+                    <button onClick={this.handleRemoveLocation} className="open location-indicator">
+                        <i className="fa-location-arrow fa" />
+                        <small>{this.state.location.name}</small>
+                    </button>
+                ) : (
+                    <button onClick={this.handleToggleLocation} className="open">
+                        {this.state.showLocationPicker ? 'Cancel' : 'Add location'}{' '}
+                        <i
+                            className={classnames(`fa`, {
+                                'fa-map-o': !this.state.showLocationPicker,
+                                'fa-times': this.state.showLocationPicker
+                            })}
+                        />
+                    </button>
+                )}
+            </div>
+        );
+    }
     render() {
         return (
             <form className="create-post" onSubmit={this.handleSubmit}>
@@ -69,19 +102,12 @@ class CreatePost extends React.Component {
                     onChange={this.handlePostChange}
                     placeholder="What's on your mind?"
                 />
-                <button onClick={this.handleSubmit}>Post</button>
-                <button onClick={this.handleToggleLocation} className="open pull-right">
-                    {this.state.showLocation ? 'Cancel' : 'Add location'}{' '}
-                    <i
-                        className={classnames(`fa`, {
-                            'fa-map-o': !this.state.showLocation,
-                            'fa-times': this.state.showLocation
-                        })}
-                    />
-                </button>
-                <div className="addLocation">
-                    <DisplayMap allowInput show={this.state.showLocation} />
-                </div>
+                {this.renderLocationControls()}
+                <DisplayMap
+                    allowInput
+                    onLocationSelect={this.handleSelectLocation}
+                    show={this.state.showLocationPicker}
+                />
             </form>
         );
     }

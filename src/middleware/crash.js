@@ -7,6 +7,6 @@ export default store => next => action => {
         const { user } = store.getState();
         window.Raven.setUserContext(user);
         window.Raven.captureException(err);
-        store.dispatch(createError(err));
+        return store.dispatch(createError(err));
     }
 };

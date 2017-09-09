@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import debounce from 'lodash/debounce';
 import MapBox from 'mapbox';
 
 import Loader from '../Loader';
@@ -10,30 +9,42 @@ export default class LocationTypeAhead extends Component {
         this.state = {
             text: '',
             locations: [],
-            ready: false,
-            selectedLocation: {
-                lat: null,
-                lng: null
-            },
+            selectedLocation: null,
             error: null
         };
-        this.mapbox = new MapBox(process.env.MAPBOX_API_TOKEN);
-        this.handleSelectLocation = this.handleSelectLocation.bind(this);
-        this.handleSearchChange = debounce(this.handleSearchChange, 500);
+        this.mapbox = new MapBox(
+            'pk.eyJ1IjoibWFya3RoZXRob21hcyIsImEiOiJHa3JyZFFjIn0.MwCj8OA5q4dqdll1s2kMiw'
+        );
+        this.handleLocationUpdate = this.handleLocationUpdate.bind(this);
         this.handleSearchChange = this.handleSearchChange.bind(this);
         this.resetSearch = this.resetSearch.bind(this);
+        this.attemptGeoLocation = this.attemptGeoLocation.bind(this);
+        this.handleSelectLocation = this.handleSelectLocation.bind(this);
     }
-    componentDidMount() {
-        this.setState(() => ({ ready: true }));
+    componentDidUpdate(prevProps, prevState) {
+        if (prevState.text === '' && this.state.locations.length) {
+            this.setState(() => ({ locations: [] }));
+        }
     }
-    handleSelectLocation() {}
+    componentWillUnmount() {
+        this.resetSearch();
+    }
+    handleLocationUpdate(location) {
+        this.setState(() => {
+            return {
+                text: location.name,
+                locations: [],
+                selectedLocation: location
+            };
+        });
+        this.props.onLocationUpdate(location);
+    }
     handleSearchChange(e) {
         e.persist();
         this.setState(() => ({ text: e.target.value }));
         if (!e.target.value) return;
         this.mapbox.geocodeForward(e.target.value, {}).then(loc => {
-            console.log(loc);
-            if (!loc.entity.features) {
+            if (!loc.entity.features || !loc.entity.features.length) {
                 return;
             }
             const locations = loc.entity.features.map(feature => {
@@ -47,18 +58,29 @@ export default class LocationTypeAhead extends Component {
             this.setState(() => ({ locations }));
         });
     }
-    geoCode(query) {
-        this.mapbox
-            .geocodeForward(query)
-            .then(res => res.entity)
-            .catch(err => console.error(err));
-    }
     attemptGeoLocation() {
         if ('geolocation' in navigator) {
             navigator.geolocation.getCurrentPosition(
                 ({ coords }) => {
                     const { latitude, longitude } = coords;
-                    this.handleSelectLocation(latitude, longitude);
+                    this.mapbox.geocodeReverse({ latitude, longitude }, {}).then(loc => {
+                        if (!loc.entity.features || !loc.entity.features.length) {
+                            return;
+                        }
+                        const feature = loc.entity.features[0];
+                        const [lat, lng] = feature.center;
+                        const currentLocation = {
+                            name: feature.place_name,
+                            lat,
+                            lng
+                        };
+                        this.setState(() => ({
+                            locations: [currentLocation],
+                            selectedLocation: currentLocation,
+                            text: currentLocation.name
+                        }));
+                        this.handleLocationUpdate(currentLocation);
+                    });
                 },
                 null,
                 {
@@ -69,22 +91,21 @@ export default class LocationTypeAhead extends Component {
             );
         }
     }
-    componentDidUpdate(prevProps, prevState) {
-        if (prevState.text === '' && this.state.locations.length) {
-            this.setState(() => ({ locations: [] }));
-        }
-    }
     resetSearch() {
         this.setState(() => {
             return {
                 text: '',
-                locations: []
+                locations: [],
+                selectedLocation: null
             };
         });
     }
+    handleSelectLocation() {
+        this.props.onLocationSelect(this.state.selectedLocation);
+    }
     render() {
         return [
-            <div className="location-typeahead">
+            <div key="location-typeahead" className="location-typeahead">
                 <i className="fa fa-location-arrow" onClick={this.attemptGeoLocation} />
                 <input
                     onChange={this.handleSearchChange}
@@ -96,7 +117,7 @@ export default class LocationTypeAhead extends Component {
                     <Loader />
                 ) : (
                     <button
-                        disabled={!this.state.text && !this.state.locations.length}
+                        disabled={!this.state.selectedLocation}
                         onClick={this.handleSelectLocation}
                         className="open"
                     >
@@ -105,11 +126,17 @@ export default class LocationTypeAhead extends Component {
                 )}
             </div>,
             this.state.text.length && this.state.locations.length ? (
-                <div className="location-typeahead-results">
+                <div key="location-typeahead-results" className="location-typeahead-results">
                     {this.state.locations.map(location => {
-                        console.log(location.name);
                         return (
-                            <div key={location.name} className="result">
+                            <div
+                                onClick={e => {
+                                    e.preventDefault();
+                                    this.handleLocationUpdate(location);
+                                }}
+                                key={location.name}
+                                className="result"
+                            >
                                 {location.name}
                             </div>
                         );

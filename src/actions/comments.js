@@ -1,6 +1,3 @@
-import uuid from 'uuid/v4';
-import parseLinkHeader from 'parse-link-header';
-
 import * as types from '../constants/types';
 import { createComment, fetchCommentsForPost } from '../shared/http';
 

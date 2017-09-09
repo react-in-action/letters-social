@@ -31,7 +31,7 @@ const PostActionSection = props => {
 PostActionSection.propTypes = {
     likes: PropTypes.array.isRequired,
     showComments: PropTypes.bool.isRequired,
-    comments: PropTypes.number.isRequired
+    comments: PropTypes.array.isRequired
 };
 
 const mapStateToProps = (state, ownProps) => {

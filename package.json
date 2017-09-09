@@ -15,7 +15,7 @@
         "api": "node -r @std/esm ./db/run.js",
         "build:app": "webpack -p --progress --config ./build/webpack.config.prod.js",
         "build:client": "react-scripts build",
-        "build": "NODE_ENV=production BABEL_ENV=production npm-run-all build:app db:seed",
+        "build": "NODE_ENV=production npm-run-all build:app db:seed",
         "client:dev": "webpack-dev-server --config ./build/webpack.config.js",
         "client:test:watch": "jest --watch",
         "client:test": "jest --coverage --silent",
@@ -26,7 +26,7 @@
         "rundep": "react-scripts start",
         "server:dev": "nodemon --config nodemon.json index.js",
         "start:dev": "node -r @std/esm run/dev.js",
-        "start": "node -r @std/esm ./index.js",
+        "start": " NODE_ENV=production node -r @std/esm ./index.js",
         "styles:w":
             "npm run styles && node-sass src/styles/styles.scss -o static/ -w src/styles --watch --recursive",
         "styles": "node-sass -q src/styles/styles.scss -o static/",

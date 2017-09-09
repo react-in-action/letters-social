@@ -17,17 +17,15 @@ export const auth = {
 
 export const posts = {
     CREATE: 'letters-social/post/create',
-    ERROR: 'letters-social/post/error',
     GET: 'letters-social/post/get',
-    LIKE: 'letters-social/post/update/like',
-    UNLIKE: 'letters-social/post/update/unlike',
+    LIKE: 'letters-social/post/like',
+    UNLIKE: 'letters-social/post/unlike',
     NEXT: 'letters-social/post/paginate/next',
     UPDATE_LINKS: 'letters-social/post/paginate/update'
 };
 
 export const comments = {
     CREATE: 'letters-social/comments/create',
-    ERROR: 'letters-social/comments/error',
     SHOW: 'letters-social/comments/show',
     TOGGLE: 'letters-social/comments/toggle',
     GET: 'letters-social/comments/get'

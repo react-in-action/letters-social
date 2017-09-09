@@ -49,7 +49,6 @@ class SinglePost extends Component {
 export default connect(
     // mapStateToProps
     (state, ownProps) => {
-        console.log(ownProps);
         return {
             // try to directly read the post from our store and only fetch all posts in
             // componentDidMount if we have to

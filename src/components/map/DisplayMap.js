@@ -1,25 +1,25 @@
 import React, { Component } from 'react';
-
 import LocationTypeAhead from './LocationTypeAhead';
-import Loader from '../Loader';
 
-// TODO:
-// create a map that can receive a location and move to it; doesn't need to be navigable
-// user will input a search location in a field and hit "add location" or something. This
-// will add the map to the post and save it
-// TODO add to models as well (location: "LAT/LNG")
-
+/**
+ * The DisplayMap component is used for display locations attached to posts. It handles loading the
+ * mapbox APIs into the browser and also allowing the use to pick a location
+ * @module letters/components
+ * @type {Class}
+ */
 export default class DisplayMap extends Component {
     constructor(props) {
         super(props);
         this.state = {
             mapLoaded: false,
             apiLoaded: false,
-            lat: 34.1844509,
-            lng: -118.2020208,
-            zoom: 10
+            lat: 34.1535641,
+            lng: -118.1428115,
+            name: null
         };
         this.ensureMapExists = this.ensureMapExists.bind(this);
+        this.updateMapPosition = this.updateMapPosition.bind(this);
+        this.onLocationSelect = this.onLocationSelect.bind(this);
     }
     componentDidUpdate() {
         if (this.props.show) {
@@ -31,46 +31,48 @@ export default class DisplayMap extends Component {
         }
     }
     componentDidMount() {
-        if (!window.L) {
-            const scriptExists = document.getElementById(process.env.MAP_SCRIPT_ID);
-            if (!scriptExists) {
-                // Inject and load the styles/script outside React's context
-                const mapStyleTag = document.createElement('link');
-                mapStyleTag.rel = 'stylesheet';
-                mapStyleTag.href = 'https://api.mapbox.com/mapbox.js/v3.1.1/mapbox.css';
-
-                const mapsScriptTag = document.createElement('script');
-                mapsScriptTag.id = process.env.MAP_SCRIPT_ID;
-                mapsScriptTag.src = 'https://api.mapbox.com/mapbox.js/v3.1.1/mapbox.js';
-                mapsScriptTag.onload = () => {
-                    console.log('load');
-                    window.L.mapbox.accessToken = process.env.MAPBOX_API_TOKEN;
-                    this.mapboxAPI = window.L.mapbox;
-                    this.Leaflet = window.L;
-                    this.setState(() => ({ apiLoaded: true }));
-                };
-                document.body.appendChild(mapStyleTag);
-                return document.body.appendChild(mapsScriptTag);
-            }
+        // If we've previously loaded the API, don't do it again!
+        const scriptExists = document.getElementById('mapbox-js-api');
+        if (window.L || scriptExists) {
+            this.mapboxAPI = window.L.mapbox;
+            return;
         }
-        this.mapboxAPI = window.L.mapbox;
+
+        // Inject and load the styles/script outside React's context
+        const mapStyleTag = document.createElement('link');
+        mapStyleTag.rel = 'stylesheet';
+        mapStyleTag.href = 'https://api.mapbox.com/mapbox.js/v3.1.1/mapbox.css';
+
+        const mapsScriptTag = document.createElement('script');
+        mapsScriptTag.id = 'mapbox-js-api';
+        mapsScriptTag.src = 'https://api.mapbox.com/mapbox.js/v3.1.1/mapbox.js';
+        mapsScriptTag.onload = () => {
+            window.L.mapbox.accessToken =
+                'pk.eyJ1IjoibWFya3RoZXRob21hcyIsImEiOiJHa3JyZFFjIn0.MwCj8OA5q4dqdll1s2kMiw';
+            this.mapboxAPI = window.L.mapbox;
+            this.Leaflet = window.L;
+            this.setState(() => ({ apiLoaded: true }));
+        };
+        document.body.appendChild(mapStyleTag);
+        document.body.appendChild(mapsScriptTag);
+    }
+    onLocationSelect(location) {
+        this.props.onLocationSelect(location);
     }
     ensureMapExists() {
         if (this.state.mapLoaded) return;
         this.map = this.mapboxAPI.map(this.mapNode, 'mapbox.streets');
-        this.map.setView([this.state.lat, this.state.lng], this.state.zoom);
+        this.map.setView([this.state.lat, this.state.lng], 12);
         this.setState(() => ({ mapLoaded: true }));
     }
-    updateMapPosition(lat, lng, zoom) {
-        this.map.setView([lat, lng], zoom);
+    updateMapPosition({ lat, lng }) {
+        this.map.setView(this.Leaflet.latLng(lng, lat));
         this.addMarker(lat, lng);
     }
     addMarker(lat, lng) {
         this.Leaflet
-            .marker([lat, lng], {
+            .marker([lng, lat], {
                 icon: this.mapboxAPI.marker.icon({
-                    'marker-size': 'library',
-                    'marker-symbol': 'rocket',
                     'marker-color': '#4469af'
                 })
             })
@@ -79,7 +81,13 @@ export default class DisplayMap extends Component {
     render() {
         return (
             <div className="displayMap" style={{ display: this.props.show ? 'block' : 'none' }}>
-                {this.props.allowInput && <LocationTypeAhead />}
+                {this.props.allowInput &&
+                this.props.show && (
+                    <LocationTypeAhead
+                        onLocationSelect={this.onLocationSelect}
+                        onLocationUpdate={this.updateMapPosition}
+                    />
+                )}
                 <div
                     id="map"
                     ref={node => {

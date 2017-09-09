@@ -14,4 +14,30 @@
         resize: none;
         width: 100%;
     }
+    .controls {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .location-indicator {
+        color: $blue;
+        width: 20vw;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        &:hover {
+            color: #fff;
+        }
+        &:hover::before {
+            content: 'Remove';
+            color: $blue;
+            position: absolute;
+            opacity: 1;
+            text-align: center;
+            width: calc(20vw - 0.75rem);
+        }
+        i {
+            margin: 0 5px;
+        }
+    }
 }

@@ -10,7 +10,6 @@ const GLOBALS = {
         RIA_SENTRY_APP: JSON.stringify('https://23f0e00b78a24ac88450c8261b59ed7c@sentry.io/212515'),
         GOOGLE_API_KEY: JSON.stringify('AIzaSyDBosKGKi-BI9Z8vftAwkBRQlSDDNE8PvM'),
         FIREBASE_AUTH_DOMAIN: JSON.stringify('letters-social.firebaseapp.com'),
-        MAP_SCRIPT_ID: JSON.stringify(uuid()),
         MAPBOX_API_TOKEN: JSON.stringify(
             'pk.eyJ1IjoibWFya3RoZXRob21hcyIsImEiOiJHa3JyZFFjIn0.MwCj8OA5q4dqdll1s2kMiw'
         )
@@ -24,7 +23,7 @@ module.exports = {
         historyApiFallback: true,
         compress: true,
         port: 3000,
-        open: true,
+        // open: true,
         overlay: true
     },
     devtool: 'source-map',

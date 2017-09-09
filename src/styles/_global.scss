@@ -16,7 +16,7 @@ body {
 // Defaults ============================
 %element-base {
     border: $border-base;
-    border-radius: 5px;
+    border-radius: $border-radius;
     padding: 15px;
 }
 
@@ -31,14 +31,14 @@ body {
 .welcome {
     background-color: $white;
     border: $border-base;
-    border-radius: 5px;
+    border-radius: $border-radius;
     padding: 10px;
 }
 
 .img-responsive {
     max-width: 100%;
     height: auto;
-    border-radius: 5px;
+    border-radius: $border-radius;
 }
 
 .img-circle {

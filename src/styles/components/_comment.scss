@@ -19,7 +19,7 @@
 
 .comments {
     background-color: $white;
-    border-radius: 5px;
+    border-radius: $border-radius;
     &:hover {
         cursor: pointer;
         transition: all 0.3s;

@@ -2,7 +2,6 @@ import parseLinkHeader from 'parse-link-header';
 
 import * as types from '../constants/types';
 import { createPost, fetchPosts, fetchPost } from '../shared/http';
-import { loading, loaded } from './loading';
 import { getCommentsForPost, updateAvailableComments } from './comments';
 
 export function updateAvailablePosts(posts) {
@@ -59,14 +58,13 @@ export function createNewPost(post) {
 
 export function getPostsForPage(page = 'first') {
     return (dispatch, getState) => {
-        const state = getState();
-        const endpoint = state.pagination[page];
+        const { pagination } = getState();
+        const endpoint = pagination[page];
         return fetchPosts(endpoint).then(res => {
             const links = parseLinkHeader(res.headers.get('Link'));
             return res.json().then(posts => {
                 dispatch(updateLinks(links));
                 dispatch(updateAvailablePosts(posts));
-                dispatch(loaded());
             });
         });
     };

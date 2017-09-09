@@ -8,14 +8,11 @@ const store = configureStore();
 
 jest.mock('../../src/shared/http');
 import Post from '../../src/components/post/Post';
-import Home from '../../src/pages/index';
+import Home from '../../src/pages/home';
 
 describe('<Home/>', () => {
     describe('lifecycle methods', () => {
-        const componentDidMountStub = sinon.stub(
-            Home.prototype,
-            'componentDidMount'
-        );
+        const componentDidMountStub = sinon.stub(Home.prototype, 'componentDidMount');
         mount(
             <Provider store={store}>
                 <Home />
