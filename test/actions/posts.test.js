@@ -10,7 +10,7 @@ import {
     getPostsForPage,
     getPostByID,
     updateAvailablePosts,
-    updateLinks
+    updatePaginationLinks
 } from '../../src/actions/posts';
 
 const middlewares = [thunk];
@@ -27,7 +27,7 @@ describe('post actions', () => {
     describe('getPostsForPage', () => {
         it('should create the right actions', () => {
             const store = mockStore(initialState);
-            const updateLinksStub = sandbox.stub()
+            const updatePaginationLinksStub = sandbox.stub()
             return store.dispatch(getPostsForPage()).then(() => {
                 const [
                     loadingAction,

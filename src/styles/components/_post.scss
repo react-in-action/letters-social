@@ -5,7 +5,7 @@
 }
 
 .content {
-    margin: $base-spacing * 2 0;
+    margin: $base-spacing 0;
 }
 
 .post {
@@ -41,4 +41,7 @@
 .post-actions {
     padding: 10px 5px;
     color: $blue;
+    justify-content: space-between;
+    align-items: center;
+    display: flex;
 }

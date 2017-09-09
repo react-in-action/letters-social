@@ -11,23 +11,18 @@ const Login = ({ handleLogin }) => (
         </div>
         <div className="providers">
             {providers.map(provider => (
-                <button
-                    onClick={() => handleLogin(provider)}
-                    className="btn btn-default"
-                >
-                    <i className={`fa fa-${provider.toLowerCase()}`} /> log in
-                    with {provider}
+                <button onClick={() => handleLogin(provider)} className="btn btn-default">
+                    <i className={`fa fa-${provider.toLowerCase()}`} /> log in with {provider}
                 </button>
             ))}
         </div>
     </div>
 );
 
-export default connect(
-    state => state,
-    dispatch => ({
-        handleLogin(provider) {
-            dispatch(login(provider));
-        }
-    })
-)(Login);
+export const mapStateToProps = state => state;
+export const mapDispatchToProps = dispatch => ({
+    handleLogin(provider) {
+        dispatch(login(provider));
+    }
+});
+export default connect(mapStateToProps, mapDispatchToProps)(Login);

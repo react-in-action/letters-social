@@ -1,7 +1,7 @@
 import parseLinkHeader from 'parse-link-header';
 
 import * as types from '../constants/types';
-import { createPost, fetchPosts, fetchPost } from '../shared/http';
+import * as API from '../shared/http';
 import { getCommentsForPost, updateAvailableComments } from './comments';
 
 export function updateAvailablePosts(posts) {
@@ -12,7 +12,7 @@ export function updateAvailablePosts(posts) {
     };
 }
 
-export function updateLinks(links) {
+export function updatePaginationLinks(links) {
     return {
         type: types.posts.UPDATE_LINKS,
         error: false,
@@ -20,7 +20,7 @@ export function updateLinks(links) {
     };
 }
 
-export function create(post) {
+export function createPost(post) {
     return {
         type: types.posts.CREATE,
         error: false,
@@ -48,10 +48,10 @@ export function createNewPost(post) {
     return (dispatch, getState) => {
         const { user } = getState();
         post.userId = user.id;
-        return createPost(post)
+        return API.createPost(post)
             .then(res => res.json())
             .then(newPost => dispatch(loadPost(newPost.id)))
-            .then(post => dispatch(create(post)))
+            .then(post => dispatch(createPost(post)))
             .catch(err => console.error(err));
     };
 }
@@ -60,10 +60,10 @@ export function getPostsForPage(page = 'first') {
     return (dispatch, getState) => {
         const { pagination } = getState();
         const endpoint = pagination[page];
-        return fetchPosts(endpoint).then(res => {
+        return API.fetchPosts(endpoint).then(res => {
             const links = parseLinkHeader(res.headers.get('Link'));
             return res.json().then(posts => {
-                dispatch(updateLinks(links));
+                dispatch(updatePaginationLinks(links));
                 dispatch(updateAvailablePosts(posts));
             });
         });
@@ -72,7 +72,7 @@ export function getPostsForPage(page = 'first') {
 
 export function loadPost(postId) {
     return dispatch => {
-        return fetchPost(postId)
+        return API.fetchPost(postId)
             .then(res => res.json())
             .then(post => {
                 dispatch(updateAvailablePosts([post]));

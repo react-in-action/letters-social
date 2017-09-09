@@ -10,7 +10,7 @@ import Link from '../components/router/Link';
 import Loader from '../components/Loader';
 
 /**
- * Component for a single post
+ * Component for a single-post page
  * @module letters/components
  * @type {Object}
  */
@@ -46,18 +46,16 @@ class SinglePost extends Component {
     }
 }
 
-export default connect(
-    // mapStateToProps
-    (state, ownProps) => {
-        return {
-            // try to directly read the post from our store and only fetch all posts in
-            // componentDidMount if we have to
-            post: state.posts[ownProps.params.postId]
-        };
-    },
-    dispatch => {
-        return {
-            actions: bindActionCreators({ loadPost }, dispatch)
-        };
-    }
-)(SinglePost);
+export const mapStateToProps = (state, ownProps) => {
+    return {
+        // try to directly read the post from our store and only fetch all posts in
+        // componentDidMount only if we have to
+        post: state.posts[ownProps.params.postId]
+    };
+};
+export const mapDispatchToProps = dispatch => {
+    return {
+        actions: bindActionCreators({ loadPost }, dispatch)
+    };
+};
+export default connect(mapStateToProps, mapDispatchToProps)(SinglePost);

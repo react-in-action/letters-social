@@ -14,16 +14,13 @@ import { getCommentsForPost, toggleComments } from '../../actions/comments';
 const PostActionSection = props => {
     return (
         <div className="post-actions">
-            <button onClick={props.loadAndShowComments} className="pull-right open">
+            <span>
+                <i className={`fa fa-thumbs-o-up`} /> {props.likes.length}
+            </span>
+            <button onClick={props.loadAndShowComments} className="open">
                 <i className="fa fa-commenting-o" />{' '}
                 <i className={`fa ${props.showComments ? 'fa-angle-up' : 'fa-angle-down'}`} />
             </button>
-            <i
-                className={`fa fa-thumbs-o-up ${props.likes.length
-                    ? 'control-with-counter'
-                    : null}`}
-            />
-            <span>{props.likes.length}</span>
         </div>
     );
 };

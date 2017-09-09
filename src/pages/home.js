@@ -13,7 +13,7 @@ import Welcome from '../components/welcome/Welcome';
 
 class Home extends Component {
     componentDidMount() {
-        this.props.actions.getPostsForPage('first');
+        this.props.actions.getPostsForPage();
     }
     componentDidCatch(err) {
         this.props.actions.handleError(err);
@@ -33,7 +33,7 @@ class Home extends Component {
                                     <Post
                                         key={post.id}
                                         post={post}
-                                        openCommentsDrawer={this.props.actions.openCommentsDrawer}
+                                        openCommentsDrawer={this.props.actions.showComments}
                                     />
                                 ))}
                         </div>
@@ -62,36 +62,26 @@ Home.propTypes = {
     posts: PropTypes.object,
     postIds: PropTypes.arrayOf(PropTypes.string)
 };
+export const mapStateToProps = state => {
+    return {
+        posts: state.posts,
+        postIds: state.postIds,
+        loading: state.loading
+    };
+};
+export const mapDispatchToProps = dispatch => {
+    return {
+        actions: bindActionCreators(
+            {
+                createNewPost,
+                getPostsForPage,
+                showComments,
+                createError,
+                getNextPageOfPosts: getPostsForPage.bind(this, 'next')
+            },
+            dispatch
+        )
+    };
+};
 
-const HomeContainer = connect(
-    // mapStateToProps
-    state => {
-        return {
-            posts: state.posts,
-            postIds: state.postIds,
-            loading: state.loading
-        };
-    },
-    dispatch => {
-        return {
-            actions: bindActionCreators(
-                {
-                    createNewPost,
-                    getPostsForPage,
-                    getNextPageOfPosts() {
-                        dispatch(getPostsForPage('next'));
-                    },
-                    openCommentsDrawer() {
-                        dispatch(showComments());
-                    },
-                    handleError(err) {
-                        dispatch(createError(err));
-                    }
-                },
-                dispatch
-            )
-        };
-    }
-)(Home);
-
-export default HomeContainer;
+export default connect(mapStateToProps, mapDispatchToProps)(Home);

@@ -1,4 +1,4 @@
-_de0‍.e([["User",()=>User],["Post",()=>Post],["Like",()=>Like],["Comment",()=>Comment]]);let uuid;_de0‍.w('node-uuid',[["v4",function(v){uuid=v}]]);
+_6b9‍.e([["User",()=>User],["Post",()=>Post],["Like",()=>Like],["Comment",()=>Comment]]);let uuid;_6b9‍.w('node-uuid',[["v4",function(v){uuid=v}]]);
 
 class User {
     constructor(config) {
@@ -19,18 +19,12 @@ class Post {
         this.date = config.date || new Date();
         this.image = config.image || null;
         this.likes = config.likes || [];
-        this.link = Object.assign(
-            {
-                url: null,
-                title: null,
-                description: null
-            },
-            config.link
-        );
+        this.link = config.link || null;
         this.location = Object.assign(
             {
                 lat: null,
-                lng: null
+                lng: null,
+                name: null
             },
             config.location
         );

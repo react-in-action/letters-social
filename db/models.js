@@ -19,18 +19,12 @@ export class Post {
         this.date = config.date || new Date();
         this.image = config.image || null;
         this.likes = config.likes || [];
-        this.link = Object.assign(
-            {
-                url: null,
-                title: null,
-                description: null
-            },
-            config.link
-        );
+        this.link = config.link || null;
         this.location = Object.assign(
             {
                 lat: null,
-                lng: null
+                lng: null,
+                name: null
             },
             config.location
         );
