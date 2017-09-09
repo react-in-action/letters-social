@@ -131,3 +131,27 @@ export function unLikePost(postId, userId) {
     };
     return fetch(`${process.env.ENDPOINT}/posts/${postId}/likes?userId=${userId}`, requestOptions);
 }
+
+/**
+ * ensureUserAccount ensures that a user exists and creates the account for them if they don't have one already
+ * @method ensureUserAccount
+ * @param  {object} user User config object
+ * @return {Response}
+ */
+export async function ensureUserAccount(user) {
+    const existingUserResponse = await fetch(`${process.env.ENDPOINT}/users/${user.id}`);
+    if (existingUserResponse.status === 404) {
+        // Create options for the request
+        const requestOptions = {
+            method: 'POST',
+            body: JSON.stringify(user),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        };
+        // Send the new post to the API
+        const newUserResponse = await fetch(`${process.env.ENDPOINT}/users`, requestOptions);
+        return await newUserResponse;
+    }
+    return await existingUserResponse;
+}

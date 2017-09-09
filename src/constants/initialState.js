@@ -1,6 +1,6 @@
 export default {
     error: null,
-    loading: false,
+    loading: true,
     postIds: [],
     posts: {},
     commentIds: [],

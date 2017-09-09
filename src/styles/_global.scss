@@ -5,6 +5,14 @@ body {
     margin-top: $navbar-height;
 }
 
+.app {
+    .loading {
+        position: absolute;
+        top: 50vh;
+        left: 50vw;
+    }
+}
+
 // Defaults ============================
 %element-base {
     border: $border-base;

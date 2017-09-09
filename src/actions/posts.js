@@ -49,14 +49,10 @@ export function createNewPost(post) {
     return (dispatch, getState) => {
         const { user } = getState();
         post.userId = user.id;
-        post.date = new Date().toUTCString();
-        dispatch(loading());
         return createPost(post)
             .then(res => res.json())
-            .then(() => {
-                post.user = user;
-                dispatch(create(post));
-            })
+            .then(newPost => dispatch(loadPost(newPost.id)))
+            .then(post => dispatch(create(post)))
             .catch(err => console.error(err));
     };
 }
@@ -65,7 +61,6 @@ export function getPostsForPage(page = 'first') {
     return (dispatch, getState) => {
         const state = getState();
         const endpoint = state.pagination[page];
-        dispatch(loading());
         return fetchPosts(endpoint).then(res => {
             const links = parseLinkHeader(res.headers.get('Link'));
             return res.json().then(posts => {
@@ -79,14 +74,11 @@ export function getPostsForPage(page = 'first') {
 
 export function loadPost(postId) {
     return dispatch => {
-        dispatch(loading());
         return fetchPost(postId)
             .then(res => res.json())
             .then(post => {
-                console.log(post);
                 dispatch(updateAvailablePosts([post]));
                 dispatch(getCommentsForPost(postId));
-                dispatch(loaded());
             });
     };
 }

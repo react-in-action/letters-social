@@ -2,22 +2,17 @@ import * as types from '../constants/types';
 import { firebase, providerLogins, logUserOut } from '../backend';
 import configureStore from '../store/configureStore';
 import { history } from '../history';
+import { ensureUserAccount } from '../shared/http';
+import { loading, loaded } from './loading';
 
-function loginRequest() {
-    return {
-        type: types.auth.AUTH_LOGIN_REQUEST,
-        error: false
-    };
-}
-
-function loginFailure() {
+export function loginFailure() {
     return {
         type: types.auth.AUTH_LOGIN_FAILURE,
         error: false
     };
 }
 
-function loginSuccess(user) {
+export function loginSuccess(user) {
     return {
         type: types.auth.AUTH_LOGIN_SUCCESS,
         error: false,
@@ -27,15 +22,7 @@ function loginSuccess(user) {
 
 export function login(provider) {
     return dispatch => {
-        dispatch(loginRequest());
         return providerLogins[provider]().catch(err => dispatch(loginFailure(err)));
-    };
-}
-
-function logoutRequest() {
-    return {
-        type: types.auth.AUTH_LOGOUT_REQUEST,
-        error: false
     };
 }
 
@@ -46,7 +33,7 @@ function logoutFailure() {
     };
 }
 
-function logoutSuccess(user) {
+export function logoutSuccess(user) {
     return {
         type: types.auth.AUTH_LOGOUT_SUCCESS,
         error: false,
@@ -56,7 +43,6 @@ function logoutSuccess(user) {
 
 export function logout() {
     return dispatch => {
-        dispatch(logoutRequest());
         return logUserOut()
             .then(() => {
                 history.push('/login');
@@ -71,15 +57,22 @@ export function logout() {
 firebase.auth().onAuthStateChanged(user => {
     const store = configureStore();
     if (user) {
-        // If we get a user back, notify the store
-        store.dispatch(loginSuccess(user));
-        // If we're on the login page, we can redirect them now
-        if (window.location.pathname.indexOf('/login') !== -1) {
-            history.push('/');
-        }
+        store.dispatch(loading());
+        const { uid: id, displayName: name, email, photoURL: profilePicture } = user;
+        ensureUserAccount({ id, name, email, profilePicture }).then(user => {
+            // // If we get a user back, notify the store
+            store.dispatch(loginSuccess(user));
+            // // If we're on the login page, we can redirect them now
+            if (window.location.pathname.indexOf('/login') !== -1) {
+                history.push('/');
+            }
+            store.dispatch(loaded());
+        });
     } else {
+        store.dispatch(loading());
         // If no user (like as in a logout), move them to the login page and notify the store
         history.push('/login');
         store.dispatch(logoutSuccess());
+        store.dispatch(loaded());
     }
 });

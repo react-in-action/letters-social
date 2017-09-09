@@ -1,4 +1,4 @@
-_8be‍.e([["User",()=>User],["Post",()=>Post],["Like",()=>Like],["Comment",()=>Comment]]);let uuid;_8be‍.w('node-uuid',[["v4",function(v){uuid=v}]]);
+_de0‍.e([["User",()=>User],["Post",()=>Post],["Like",()=>Like],["Comment",()=>Comment]]);let uuid;_de0‍.w('node-uuid',[["v4",function(v){uuid=v}]]);
 
 class User {
     constructor(config) {

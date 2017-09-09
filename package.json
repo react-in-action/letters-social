@@ -12,24 +12,25 @@
         "alias": "social.react.sh"
     },
     "scripts": {
-        "deploy": "node -r @std/esm ./build/deploy",
-        "api": "node -r @std/esm ./db/db.js",
+        "api": "node -r @std/esm ./db/run.js",
         "build:app": "webpack -p --progress --config ./build/webpack.config.prod.js",
-        "server:dev": "nodemon --config nodemon.json index.js",
         "build:client": "react-scripts build",
-        "coverage": "cat ./coverage/lcov.info | coveralls",
+        "build": "NODE_ENV=production BABEL_ENV=production npm-run-all build:app db:seed",
         "client:dev": "webpack-dev-server --config ./build/webpack.config.js",
-        "client:test": "jest --coverage --silent",
         "client:test:watch": "jest --watch",
-        "build": "npm-run-all build:app db:seed",
-        "dev": "npm-run-all -p api client:dev server:dev styles:w",
+        "client:test": "jest --coverage --silent",
+        "coverage": "cat ./coverage/lcov.info | coveralls",
         "db:seed": "node -r @std/esm db/seed.js",
-        "styles:w": "npm run styles && node-sass src/styles/styles.scss -o static/ -w src/styles --watch --recursive",
-        "styles": "node-sass -q src/styles/styles.scss -o static/",
-        "start:dev": "node -r @std/esm run/dev.js",
+        "deploy": "node -r @std/esm ./build/deploy",
+        "dev": "npm-run-all -p api client:dev server:dev styles:w",
         "rundep": "react-scripts start",
-        "test": "npm run client:test && npm run coverage",
-        "start": "node -r @std/esm ./index.js"
+        "server:dev": "nodemon --config nodemon.json index.js",
+        "start:dev": "node -r @std/esm run/dev.js",
+        "start": "node -r @std/esm ./index.js",
+        "styles:w":
+            "npm run styles && node-sass src/styles/styles.scss -o static/ -w src/styles --watch --recursive",
+        "styles": "node-sass -q src/styles/styles.scss -o static/",
+        "test": "npm run client:test && npm run coverage"
     },
     "repository": {
         "type": "git",

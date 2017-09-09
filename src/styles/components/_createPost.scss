@@ -14,12 +14,4 @@
         resize: none;
         width: 100%;
     }
-    .displayMap {
-        @extend %element-base;
-        margin-top: 1em;
-        #map {
-            height: 150px;
-            width: 100%;
-        }
-    }
 }

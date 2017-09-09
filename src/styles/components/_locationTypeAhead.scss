@@ -18,8 +18,23 @@
         outline: 0;
         width: 100%;
     }
-    .location-typeahead-results {
-        @extend %element-base;
-        position: absolute;
+}
+.location-typeahead-results {
+    border-radius: 5px 5px;
+    background-color: $white;
+    // To get in front of the mapbox map
+    z-index: 8001;
+    position: absolute;
+    .result {
+        overflow: hidden;
+        white-space: nowrap;
+        width: 35vw;
+        text-overflow: ellipsis;
+        &:hover {
+            background-color: lighten($blue, 20%);
+            color: $white;
+            cursor: pointer;
+            transition: all 0.15s ease-in-out;
+        }
     }
 }

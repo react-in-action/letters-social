@@ -22,7 +22,7 @@ const PostActionSection = props => {
                 className={`fa fa-thumbs-o-up ${props.likes.length
                     ? 'control-with-counter'
                     : null}`}
-            />{' '}
+            />
             <span>{props.likes.length}</span>
         </div>
     );
@@ -39,7 +39,7 @@ const mapStateToProps = (state, ownProps) => {
     const { likes, showComments } = state.posts[postId];
     const comments = state.commentIds.filter(
         commentId => state.comments[commentId].postId === postId
-    ).length;
+    );
     return {
         likes,
         showComments: Boolean(showComments),

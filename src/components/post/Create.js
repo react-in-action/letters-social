@@ -1,7 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import Filter from 'bad-words';
-import uuid from 'uuid/v4';
 import classnames from 'classnames';
 
 import DisplayMap from '../map/DisplayMap';
@@ -70,7 +69,7 @@ class CreatePost extends React.Component {
                     onChange={this.handlePostChange}
                     placeholder="What's on your mind?"
                 />
-                <button>Post</button>
+                <button onClick={this.handleSubmit}>Post</button>
                 <button onClick={this.handleToggleLocation} className="open pull-right">
                     {this.state.showLocation ? 'Cancel' : 'Add location'}{' '}
                     <i
@@ -81,7 +80,7 @@ class CreatePost extends React.Component {
                     />
                 </button>
                 <div className="addLocation">
-                    <DisplayMap allowInput onChange={() => {}} show={this.state.showLocation} />
+                    <DisplayMap allowInput show={this.state.showLocation} />
                 </div>
             </form>
         );

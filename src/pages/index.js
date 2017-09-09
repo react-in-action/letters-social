@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
+import { createError } from '../actions/error';
 import { createNewPost, getPostsForPage } from '../actions/posts';
 import { showComments } from '../actions/comments';
 import Ad from '../components/ad/Ad';
@@ -13,6 +14,9 @@ import Welcome from '../components/welcome/Welcome';
 class Home extends Component {
     componentDidMount() {
         this.props.actions.getPostsForPage('first');
+    }
+    componentDidCatch(err) {
+        this.props.actions.handleError(err);
     }
     render() {
         return (
@@ -79,6 +83,9 @@ const HomeContainer = connect(
                     },
                     openCommentsDrawer() {
                         dispatch(showComments());
+                    },
+                    handleError(err) {
+                        dispatch(createError(err));
                     }
                 },
                 dispatch

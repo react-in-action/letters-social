@@ -19,7 +19,9 @@ export default class LocationTypeAhead extends Component {
         };
         this.mapbox = new MapBox(process.env.MAPBOX_API_TOKEN);
         this.handleSelectLocation = this.handleSelectLocation.bind(this);
+        this.handleSearchChange = debounce(this.handleSearchChange, 500);
         this.handleSearchChange = this.handleSearchChange.bind(this);
+        this.resetSearch = this.resetSearch.bind(this);
     }
     componentDidMount() {
         this.setState(() => ({ ready: true }));
@@ -72,6 +74,14 @@ export default class LocationTypeAhead extends Component {
             this.setState(() => ({ locations: [] }));
         }
     }
+    resetSearch() {
+        this.setState(() => {
+            return {
+                text: '',
+                locations: []
+            };
+        });
+    }
     render() {
         return [
             <div className="location-typeahead">
@@ -97,7 +107,12 @@ export default class LocationTypeAhead extends Component {
             this.state.text.length && this.state.locations.length ? (
                 <div className="location-typeahead-results">
                     {this.state.locations.map(location => {
-                        return <div className="result">{location.name}</div>;
+                        console.log(location.name);
+                        return (
+                            <div key={location.name} className="result">
+                                {location.name}
+                            </div>
+                        );
                     })}
                 </div>
             ) : null

@@ -1,3 +1,8 @@
 .displayMap {
-    border-radius: 5px;
+    @extend %element-base;
+    margin-top: 1em;
+    #map {
+        height: 175px;
+        width: 100%;
+    }
 }
