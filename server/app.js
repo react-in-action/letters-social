@@ -10,6 +10,8 @@ import hpp from 'hpp';
 import jsonAPI from 'json-server';
 import logger from 'morgan';
 import responseTime from 'response-time';
+import uuid from 'uuid/v4';
+import { User, Comment, Post, Like } from '../db/models';
 
 // Modules explicitly related to React & SSR
 import { renderToNodeStream } from 'react-dom/server';
@@ -25,6 +27,7 @@ import { routes } from '../src/routes';
 
 // Create the express app
 const app = express();
+const backend = jsonAPI.create();
 
 // Add some boilerplate middlware
 app.use(logger('dev'));
@@ -40,9 +43,32 @@ app.use(compression());
 app.use(hpp());
 app.use(cors());
 
-// Route handlers
+// Internal, related to our fake server
+backend.use(jsonAPI.defaults());
+backend.use((req, res, next) => {
+    if (req.method === 'POST') {
+        req.body.id = uuid();
+        req.body.date = new Date();
+    }
+    if (req.url.indexOf('/users') !== -1) {
+        req.body = new User(req.body);
+    }
+    if (req.url.indexOf('/comments') !== -1) {
+        req.body = new Comment(req.body);
+    }
+    if (req.url.indexOf('/posts') !== -1) {
+        req.body = new Post(req.body);
+    }
+    if (req.url.indexOf('/likes') !== -1) {
+        req.body = new Like(req.body);
+    }
+    next();
+});
+backend.use(jsonAPI.router(resolve(__dirname, '..', 'db', 'seed', 'db.json')));
+
+// other Route handlers
 app.options(__PRODUCTION__ ? 'https://social.react.sh' : '*', cors());
-app.use('/api', jsonAPI.router(resolve(__dirname, '..', 'db', 'seed', 'db.json')));
+app.use('/api', backend);
 app.use('/static', express.static(resolve(__dirname, '..', 'static')));
 
 app.use('*', (req, res) => {

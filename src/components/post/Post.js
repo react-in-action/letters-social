@@ -5,7 +5,7 @@ import Comments from '../comment/Comments';
 import Content from './Content';
 import Image from './Image';
 import Link from './Link';
-import PostActions from './PostActions';
+import PostActionSection from './PostActionSection';
 import User from './User';
 
 import RouterLink from '../router/Link';
@@ -22,7 +22,7 @@ function Post(props) {
                     <Link link={post.link} />
                 </span>
             </RouterLink>
-            <PostActions postId={post.id} />
+            <PostActionSection postId={post.id} />
             <Comments postId={post.id} />
         </div>
     ) : null;

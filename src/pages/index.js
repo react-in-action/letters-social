@@ -22,13 +22,16 @@ class Home extends Component {
                     <CreatePost onSubmit={this.props.actions.createNewPost} />
                     {this.props.posts && (
                         <div className="posts">
-                            {this.props.postIds.map(postId => (
-                                <Post
-                                    key={postId}
-                                    post={this.props.posts[postId]}
-                                    openCommentsDrawer={this.props.actions.openCommentsDrawer}
-                                />
-                            ))}
+                            {this.props.postIds
+                                .map(postId => this.props.posts[postId])
+                                .sort((a, b) => new Date(a.date) < new Date(b.date))
+                                .map(post => (
+                                    <Post
+                                        key={post.id}
+                                        post={post}
+                                        openCommentsDrawer={this.props.actions.openCommentsDrawer}
+                                    />
+                                ))}
                         </div>
                     )}
                     <button className="block" onClick={this.props.actions.getNextPageOfPosts}>

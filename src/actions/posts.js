@@ -1,4 +1,3 @@
-import uuid from 'uuid/v4';
 import parseLinkHeader from 'parse-link-header';
 
 import * as types from '../constants/types';
@@ -22,12 +21,42 @@ export function updateLinks(links) {
     };
 }
 
-export function createNewPost(payload) {
-    payload.id = uuid();
-    return dispatch => {
+export function create(post) {
+    return {
+        type: types.posts.CREATE,
+        error: false,
+        post
+    };
+}
+
+export function like(postId) {
+    return {
+        type: types.posts.LIKE,
+        error: false,
+        postId
+    };
+}
+
+export function unlike(postId) {
+    return {
+        type: types.posts.UNLIKE,
+        error: false,
+        postId
+    };
+}
+
+export function createNewPost(post) {
+    return (dispatch, getState) => {
+        const { user } = getState();
+        post.userId = user.id;
+        post.date = new Date().toUTCString();
         dispatch(loading());
-        return createPost(payload)
-            .then(() => dispatch(getPostsForPage()))
+        return createPost(post)
+            .then(res => res.json())
+            .then(() => {
+                post.user = user;
+                dispatch(create(post));
+            })
             .catch(err => console.error(err));
     };
 }

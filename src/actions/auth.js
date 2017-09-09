@@ -70,9 +70,16 @@ export function logout() {
 
 firebase.auth().onAuthStateChanged(user => {
     const store = configureStore();
-    // if a user is logged in or just finished logging in, we can navigate to the main page
     if (user) {
-        history.push('/');
+        // If we get a user back, notify the store
         store.dispatch(loginSuccess(user));
+        // If we're on the login page, we can redirect them now
+        if (window.location.pathname.indexOf('/login') !== -1) {
+            history.push('/');
+        }
+    } else {
+        // If no user (like as in a logout), move them to the login page and notify the store
+        history.push('/login');
+        store.dispatch(logoutSuccess());
     }
 });

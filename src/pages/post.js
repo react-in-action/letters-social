@@ -9,20 +9,23 @@ import Post from '../components/post/Post';
 import Link from '../components/router/Link';
 import Loader from '../components/Loader';
 
+/**
+ * Component for a single post
+ * @module letters/components
+ * @type {Object}
+ */
 class SinglePost extends Component {
     static propTypes = {
         params: PropTypes.shape({
             post: PropTypes.string
         })
     };
-
     componentDidMount() {
-        // If there's no posts already loaded, load them
+        // If we don't have a post yet, dispatch an action to load it
         if (!this.props.post) {
             this.props.actions.loadPost(this.props.router.params.postId);
         }
     }
-
     render() {
         return this.props.post ? (
             <div className="single-post">

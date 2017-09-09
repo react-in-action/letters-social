@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
 
+import LocationTypeAhead from './LocationTypeAhead';
 import Loader from '../Loader';
 
 // TODO:
@@ -19,7 +19,6 @@ export default class DisplayMap extends Component {
             lng: -118.2020208,
             zoom: 10
         };
-        this.attemptGeoLocation = this.attemptGeoLocation.bind(this);
         this.ensureMapExists = this.ensureMapExists.bind(this);
     }
     componentDidUpdate() {
@@ -77,38 +76,10 @@ export default class DisplayMap extends Component {
             })
             .addTo(this.map);
     }
-    attemptGeoLocation() {
-        return new Promise(resolve => {
-            if ('geolocation' in navigator) {
-                navigator.geolocation.getCurrentPosition(
-                    ({ coords }) => {
-                        const { latitude, longitude } = coords;
-                        this.updateMapPosition(latitude, longitude);
-                    },
-                    null,
-                    {
-                        enableHighAccuracy: true,
-                        timeout: 5000,
-                        maximumAge: 0
-                    }
-                );
-            } else {
-                return resolve({
-                    lat: this.props.lat,
-                    lng: this.props.lng
-                });
-            }
-        });
-    }
     render() {
         return (
             <div className="displayMap" style={{ display: this.props.show ? 'block' : 'none' }}>
-                {this.props.allowInput && (
-                    <div className="control-bar">
-                        <i className="fa fa-location-arrow" onClick={this.attemptGeoLocation} />
-                        <input type="text" placeholder="Enter a location..." />
-                    </div>
-                )}
+                {this.props.allowInput && <LocationTypeAhead />}
                 <div
                     id="map"
                     ref={node => {

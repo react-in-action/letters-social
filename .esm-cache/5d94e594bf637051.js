@@ -1,4 +1,4 @@
-let jsonServer;_749‍.w('json-server',[["default",function(v){jsonServer=v}]]);let path;_749‍.w('path',[["default",function(v){path=v}]]);
+let jsonServer;_bf6‍.w('json-server',[["default",function(v){jsonServer=v}]]);let path;_bf6‍.w('path',[["default",function(v){path=v}]]);
 
 
 const server = jsonServer.create();

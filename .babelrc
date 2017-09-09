@@ -1,17 +1,17 @@
 {
     "env": {
         "development": {
-            "presets": ["react", "env"],
+            "presets": ["react-app", "env"],
             "plugins": ["transform-class-properties"]
         },
         "production": {
             "presets": [
-                "react",
+                "react-app",
                 [
                     "env",
                     {
                         "targets": {
-                            "browsers": ["last 3 versions", "safari >= 7"],
+                            "browsers": ["last 5 versions", "safari >= 7"],
                             "node": "current"
                         }
                     }

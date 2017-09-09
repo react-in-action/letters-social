@@ -1,26 +1,27 @@
 import React from 'react';
 import { Route, IndexRoute } from 'react-router';
 
+import configureStore from './store/configureStore';
 import App from './pages/app';
 import Home from './pages/index';
 import SinglePost from './pages/post';
 import Login from './pages/login';
 import NotFound from './pages/error';
-import { firebase } from './backend';
 import { isServer } from './utils/environment';
+
+const store = configureStore();
 
 function requireUser(nextState, replace, callback) {
     if (!isServer()) {
-        firebase.auth().onAuthStateChanged(user => {
-            if (user) {
-                callback();
-            } else {
-                replace({
-                    pathname: '/login'
-                });
-                callback();
-            }
-        });
+        const { user } = store.getState();
+        if (user) {
+            callback();
+        } else {
+            replace({
+                pathname: '/login'
+            });
+            callback();
+        }
     } else {
         callback();
     }

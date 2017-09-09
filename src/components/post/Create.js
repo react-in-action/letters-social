@@ -43,8 +43,6 @@ class CreatePost extends React.Component {
         }
         if (this.props.onSubmit) {
             const newPost = {
-                id: uuid(),
-                date: Date.now(),
                 content: this.state.content
             };
 

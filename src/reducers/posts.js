@@ -27,6 +27,14 @@ export function posts(state = initialState.posts, action) {
             }
             return newState;
         }
+        case types.posts.CREATE: {
+            const { post } = action;
+            let newState = Object.assign({}, state);
+            if (!newState[post.id]) {
+                newState[post.id] = post;
+            }
+            return newState;
+        }
         case types.comments.SHOW: {
             let newState = Object.assign({}, state);
             newState[action.postId].showComments = true;
@@ -57,13 +65,21 @@ export function postIds(state = initialState.postIds, action) {
     switch (action.type) {
         case types.posts.GET: {
             const nextPostIds = action.posts.map(post => post.id);
-            let nextState = Array.from(state);
+            let newState = Array.from(state);
             for (let post of nextPostIds) {
                 if (!state.includes(post)) {
-                    nextState.push(post);
+                    newState.push(post);
                 }
             }
-            return nextState;
+            return newState;
+        }
+        case types.posts.CREATE: {
+            const { post } = action;
+            let newState = Array.from(state);
+            if (!state.includes(post.id)) {
+                newState.push(post.id);
+            }
+            return newState;
         }
         default:
             return state;

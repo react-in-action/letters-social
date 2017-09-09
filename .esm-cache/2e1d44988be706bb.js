@@ -1,6 +1,6 @@
-import { v4 as uuid } from 'node-uuid';
+_8be‍.e([["User",()=>User],["Post",()=>Post],["Like",()=>Like],["Comment",()=>Comment]]);let uuid;_8be‍.w('node-uuid',[["v4",function(v){uuid=v}]]);
 
-export class User {
+class User {
     constructor(config) {
         this.id = config.id || uuid();
         this.email = config.email;
@@ -11,7 +11,7 @@ export class User {
     }
 }
 
-export class Post {
+class Post {
     constructor(config) {
         this.id = config.id || uuid();
         this.comments = config.comments || [];
@@ -38,7 +38,7 @@ export class Post {
     }
 }
 
-export class Like {
+class Like {
     constructor(config) {
         this.id = config.id || uuid();
         this.postId = config.postId;
@@ -46,7 +46,7 @@ export class Like {
     }
 }
 
-export class Comment {
+class Comment {
     constructor(config) {
         this.id = config.id || uuid();
         this.content = config.content || null;

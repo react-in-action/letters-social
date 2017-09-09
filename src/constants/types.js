@@ -20,6 +20,7 @@ export const posts = {
     ERROR: 'letters-social/post/error',
     GET: 'letters-social/post/get',
     LIKE: 'letters-social/post/update/like',
+    UNLIKE: 'letters-social/post/update/unlike',
     NEXT: 'letters-social/post/paginate/next',
     UPDATE_LINKS: 'letters-social/post/paginate/update'
 };

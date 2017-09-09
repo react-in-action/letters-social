@@ -19,9 +19,8 @@ export function createPost(payload) {
             'Content-Type': 'application/json'
         }
     };
-
     // Send the new post to the API
-    return fetch(`${process.env.ENDPOINT}/posts`, requestOptions);
+    return fetch(`${process.env.ENDPOINT}/posts?_expand=user`, requestOptions);
 }
 
 /**
@@ -79,4 +78,56 @@ export function createComment(payload) {
 
     // Send the new post to the API
     return fetch(`${process.env.ENDPOINT}/comments`, requestOptions);
+}
+
+/**
+ * Like a post
+ * @method likePost
+ * @module letters/shared/http
+ * @param  {string} postId post's ID
+ * @param  {string} userId user's ID
+ * @return {Response}        Fetch Response
+ */
+export async function likePost(postId, userId) {
+    // NOTE: we're using the new async/await style here; you can learn more about it at
+    // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/async_function
+    // If you're unfamiliar with this style, you can easily re-write it using promise chains
+
+    // Create a new like for the user/post
+    const createLike = await fetch(`${process.env.ENDPOINT}/posts/${postId}`, {
+        method: 'POST',
+        body: JSON.stringify({ postId, userId }),
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    });
+    // Get the response in JSON format
+    const like = await createLike.json();
+
+    // Get the post to update
+    const getPost = await fetch(`${process.env.ENDPOINT}/posts/${postId}`);
+    const post = await getPost.json();
+    if (post.likes.includes(like.id)) {
+        return;
+    }
+    // Update the post locally if necessary
+    post.likes.push(like.id);
+    // Update the remote database and yield back a promise
+    return await fetch(`${process.env.ENDPOINT}/posts/${postId}`, {
+        method: 'PUT',
+        body: JSON.stringify(post),
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    });
+}
+
+export function unLikePost(postId, userId) {
+    const requestOptions = {
+        method: 'DELETE',
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    };
+    return fetch(`${process.env.ENDPOINT}/posts/${postId}/likes?userId=${userId}`, requestOptions);
 }

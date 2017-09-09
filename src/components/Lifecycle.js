@@ -20,6 +20,7 @@ class ChildComponent extends React.Component {
 
     componentDidMount() {
         console.log('ChildComponent : componentDidMount');
+        throw new Error('Should be handled by componentDidCatch');
     }
 
     componentWillReceiveProps(nextProps) {
@@ -48,6 +49,11 @@ class ChildComponent extends React.Component {
 
     componentWillUnmount() {
         console.log('ChildComponent: componentWillUnmount');
+    }
+
+    componentDidCatch(err) {
+        console.log('componentDidCatch');
+        console.error(err);
     }
 
     render() {

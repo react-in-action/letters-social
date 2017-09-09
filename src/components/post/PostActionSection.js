@@ -5,7 +5,13 @@ import { connect } from 'react-redux';
 import { getCommentsForPost, toggleComments } from '../../actions/comments';
 
 // TODO: bind to global like action for post
-const PostActions = props => {
+/**
+ * Contains the commenting and like buttons for a given post; controls showing comments or not
+ * @method PostActionSection
+ * @module letters/components
+ * @param  {Function}          props
+ */
+const PostActionSection = props => {
     return (
         <div className="post-actions">
             <button onClick={props.loadAndShowComments} className="pull-right open">
@@ -13,15 +19,17 @@ const PostActions = props => {
                 <i className={`fa ${props.showComments ? 'fa-angle-up' : 'fa-angle-down'}`} />
             </button>
             <i
-                className={`fa fa-thumbs-o-up ${props.likes ? 'control-with-counter' : null}`}
+                className={`fa fa-thumbs-o-up ${props.likes.length
+                    ? 'control-with-counter'
+                    : null}`}
             />{' '}
-            <span>{props.likes}</span>
+            <span>{props.likes.length}</span>
         </div>
     );
 };
 
-PostActions.propTypes = {
-    likes: PropTypes.number.isRequired,
+PostActionSection.propTypes = {
+    likes: PropTypes.array.isRequired,
     showComments: PropTypes.bool.isRequired,
     comments: PropTypes.number.isRequired
 };
@@ -50,4 +58,4 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(PostActions);
+export default connect(mapStateToProps, mapDispatchToProps)(PostActionSection);

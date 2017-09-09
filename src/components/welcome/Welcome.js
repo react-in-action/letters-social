@@ -7,18 +7,11 @@ const Welcome = () => {
                 <h3>Welcome!</h3>
                 <p>
                     If you're here, you're probably reading or heard about{' '}
-                    <a
-                        href="https://ifelse.io/book"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                    >
+                    <a href="https://ifelse.io/book" target="_blank" rel="noopener noreferrer">
                         React in Action
                     </a>
                     . This app, Letters Social, is built with{' '}
-                    <a
-                        rel="noopener noreferrer"
-                        href="https://facebook.github.io/react/"
-                    >
+                    <a rel="noopener noreferrer" href="https://facebook.github.io/react/">
                         React
                     </a>{' '}
                     and is what you'll be building{' '}
@@ -36,18 +29,14 @@ const Welcome = () => {
                 <ul>
                     <li>Building a simple social app</li>
                     <li>Learning about the fundamentals of React</li>
-                    <li>
-                        Building React apps with modern JavaScript (ES6 and
-                        beyond)
-                    </li>
+                    <li>Building React apps with modern JavaScript (ES6 and beyond)</li>
                     <li>Implementing a routing system from scratch</li>
                     <li>Utilizing server-side rendering</li>
                     <li>Testing React applications</li>
                     <li>Implementing Redux application architecture</li>
                 </ul>
                 <p>
-                    If you have any questions or thoughts, feel free to reach
-                    out to me{' '}
+                    If you have any questions or thoughts, feel free to reach out to me{' '}
                     <a
                         href="https://twitter.com/markthethomas"
                         target="_blank"
@@ -55,12 +44,8 @@ const Welcome = () => {
                     >
                         @markthethomas
                     </a>{' '}
-                    on the Manning Author's forum (you get access w/ the MEAP!)
-                    or on{' '}
-                    <a
-                        href="https://twitter.com/markthethomas"
-                        rel="noreferrer noopener"
-                    >
+                    on the Manning Author's forum (you get access w/ the MEAP!) or on{' '}
+                    <a href="https://twitter.com/markthethomas" rel="noreferrer noopener">
                         Twitter
                     </a>{' '}
                     .

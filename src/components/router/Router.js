@@ -38,11 +38,7 @@ export default class Router extends Component {
 
         // Set up Ccmponent to be rendered
         const render = (params, renderProps) => {
-            const finalProps = Object.assign(
-                { router: { params } },
-                this.props,
-                renderProps
-            );
+            const finalProps = Object.assign({ router: { params } }, this.props, renderProps);
 
             // Or, using the object spread operator (currently a candidate proposal for future versions of JavaScript)
             // const finalProps = {
@@ -54,11 +50,7 @@ export default class Router extends Component {
             const hasIndexRoute = index && path === finalProps.location;
 
             const children = hasIndexRoute
-                ? React.createElement(
-                      component,
-                      finalProps,
-                      React.createElement(index, finalProps)
-                  )
+                ? React.createElement(component, finalProps, React.createElement(index, finalProps))
                 : React.createElement(component, finalProps);
 
             return parent ? parent.render(params, { children }) : children;

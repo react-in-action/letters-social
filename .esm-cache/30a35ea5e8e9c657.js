@@ -1,17 +1,17 @@
-import { join } from 'path';
-import fetch from 'isomorphic-fetch';
-import { name, internet, lorem, date, random } from 'faker';
-import starwars from 'starwars';
-import mkdirp from 'mkdirp';
-import _ from 'lodash';
-import uuid from 'uuid/v4';
-import { writeFile } from 'fs';
-import ora from 'ora';
-import { promisify } from 'util';
+let join;_e8e‍.w('path',[["join",function(v){join=v}]]);let fetch;_e8e‍.w('isomorphic-fetch',[["default",function(v){fetch=v}]]);let name,internet,lorem,date,random;_e8e‍.w('faker',[["name",function(v){name=v}],["internet",function(v){internet=v}],["lorem",function(v){lorem=v}],["date",function(v){date=v}],["random",function(v){random=v}]]);let starwars;_e8e‍.w('starwars',[["default",function(v){starwars=v}]]);let mkdirp;_e8e‍.w('mkdirp',[["default",function(v){mkdirp=v}]]);let _;_e8e‍.w('lodash',[["default",function(v){_=v}]]);let uuid;_e8e‍.w('uuid/v4',[["default",function(v){uuid=v}]]);let writeFile;_e8e‍.w('fs',[["writeFile",function(v){writeFile=v}]]);let ora;_e8e‍.w('ora',[["default",function(v){ora=v}]]);let promisify;_e8e‍.w('util',[["promisify",function(v){promisify=v}]]);let User,Comment,Like,Post;_e8e‍.w('./models',[["User",function(v){User=v}],["Comment",function(v){Comment=v}],["Like",function(v){Like=v}],["Post",function(v){Post=v}]]);
+
+
+
+
+
+
+
+
+
 
 const { sample, sampleSize, random: rand } = _;
 
-import { User, Comment, Like, Post } from './models';
+
 const { swapiURL } = require('./constants');
 
 const write = promisify(writeFile);

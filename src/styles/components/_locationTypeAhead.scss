@@ -1,0 +1,25 @@
+.location-typeahead {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    align-self: center;
+    padding: 0 0 10px;
+    i {
+        color: $blue;
+        cursor: pointer;
+        padding-right: 10px;
+    }
+    input {
+        background-color: transparent;
+        border: none;
+        box-sizing: border-box;
+        display: block;
+        font-size: 14px;
+        outline: 0;
+        width: 100%;
+    }
+    .location-typeahead-results {
+        @extend %element-base;
+        position: absolute;
+    }
+}
