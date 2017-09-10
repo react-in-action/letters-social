@@ -14,8 +14,7 @@ export default {
     },
     user: {
         authenticated: false,
-        email: null,
-        avatar: null,
+        profilePicture: null,
         id: null,
         name: null
     }

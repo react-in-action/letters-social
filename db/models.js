@@ -3,11 +3,10 @@ import { v4 as uuid } from 'node-uuid';
 export class User {
     constructor(config) {
         this.id = config.id || uuid();
-        this.email = config.email;
-        this.name = config.name || this.email;
+        this.name = config.name;
         this.profilePicture =
             config.profilePicture ||
-            'https://react-sh.s3.amazonaws.com/assets/profile-pictures/1.png';
+            'https://react-sh.s3.amazonaws.com/assets/profile-pictures/1.jpeg';
     }
 }
 
@@ -20,14 +19,7 @@ export class Post {
         this.image = config.image || null;
         this.likes = config.likes || [];
         this.link = config.link || null;
-        this.location = Object.assign(
-            {
-                lat: null,
-                lng: null,
-                name: null
-            },
-            config.location
-        );
+        this.location = config.location || null;
         this.userId = config.userId;
     }
 }

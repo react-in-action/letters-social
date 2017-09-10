@@ -1,7 +1,5 @@
 .displayMap {
-    @extend %element-base;
-    margin-top: 1em;
-    #map {
+    .map {
         height: 175px;
         width: 100%;
     }

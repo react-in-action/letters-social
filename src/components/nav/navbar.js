@@ -11,7 +11,7 @@ const Navigation = ({ user, handleLogout }) => (
         {user.authenticated ? (
             <span className="user-nav-widget">
                 <span>{user.name}</span>
-                <img width={40} className="img-circle" src={user.avatar} alt={user.name} />
+                <img width={40} className="img-circle" src={user.profilePicture} alt={user.name} />
                 <span onClick={handleLogout}>
                     <i className="fa fa-sign-out" />
                 </span>

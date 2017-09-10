@@ -15,8 +15,8 @@ class Home extends Component {
     componentDidMount() {
         this.props.actions.getPostsForPage();
     }
-    componentDidCatch(err) {
-        this.props.actions.handleError(err);
+    componentDidCatch(err, info) {
+        this.props.actions.createError(err, info);
     }
     render() {
         return (
@@ -26,16 +26,13 @@ class Home extends Component {
                     <CreatePost onSubmit={this.props.actions.createNewPost} />
                     {this.props.posts && (
                         <div className="posts">
-                            {this.props.postIds
-                                .map(postId => this.props.posts[postId])
-                                .sort((a, b) => new Date(a.date) < new Date(b.date))
-                                .map(post => (
-                                    <Post
-                                        key={post.id}
-                                        post={post}
-                                        openCommentsDrawer={this.props.actions.showComments}
-                                    />
-                                ))}
+                            {this.props.posts.map(post => (
+                                <Post
+                                    key={post.id}
+                                    post={post}
+                                    openCommentsDrawer={this.props.actions.showComments}
+                                />
+                            ))}
                         </div>
                     )}
                     <button className="block" onClick={this.props.actions.getNextPageOfPosts}>
@@ -59,13 +56,14 @@ class Home extends Component {
 }
 
 Home.propTypes = {
-    posts: PropTypes.object,
-    postIds: PropTypes.arrayOf(PropTypes.string)
+    posts: PropTypes.arrayOf(PropTypes.object)
 };
 export const mapStateToProps = state => {
+    const posts = state.postIds
+        .map(postId => state.posts[postId])
+        .sort((a, b) => new Date(a.date) < new Date(b.date));
     return {
-        posts: state.posts,
-        postIds: state.postIds,
+        posts,
         loading: state.loading
     };
 };

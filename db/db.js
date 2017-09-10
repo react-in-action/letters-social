@@ -9,6 +9,14 @@ export default function() {
     server.use(jsonAPI.defaults());
     server.use(jsonAPI.bodyParser);
     server.use((req, res, next) => {
+        // NOTE: this is NOT something you'd do in production, just a simple way to restrict
+        // the most basic nonsense on the interwebz
+        if (!['https://social.react.sh', 'http://localhost:3000'].includes(req.headers.origin)) {
+            return res.status(401).end('unauthorized');
+        }
+        next();
+    });
+    server.use((req, res, next) => {
         if (req.method === 'POST') {
             req.body.id = uuid();
             req.body.date = new Date();

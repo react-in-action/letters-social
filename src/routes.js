@@ -25,8 +25,9 @@ function requireUser(nextState, replace, callback) {
     if (!isServer()) {
         store.dispatch(loading());
         getAuthState().then(user => {
+            // TODO: fix this all
             if (user) {
-                const { uid: id, displayName: name, email, photoURL: profilePicture } = user;
+                const { uid: id, displayName: name, photoURL: profilePicture } = user;
                 // ensureUserAccount({ id, name, email, profilePicture }).then(user => {
                 //     // // If we get a user back, notify the store
                 store.dispatch(loginSuccess(user));

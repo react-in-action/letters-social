@@ -4,8 +4,7 @@ import Filter from 'bad-words';
 import classnames from 'classnames';
 
 import DisplayMap from '../map/DisplayMap';
-
-const filter = new Filter();
+import LocationTypeAhead from '../map/LocationTypeAhead';
 
 class CreatePost extends React.Component {
     static propTypes = {
@@ -17,17 +16,20 @@ class CreatePost extends React.Component {
             content: '',
             valid: false,
             showLocationPicker: false,
-            location: null
+            location: null,
+            locationSelected: false
         };
+        this.filter = new Filter();
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handlePostChange = this.handlePostChange.bind(this);
         this.handleToggleLocation = this.handleToggleLocation.bind(this);
-        this.handleSelectLocation = this.handleSelectLocation.bind(this);
         this.renderLocationControls = this.renderLocationControls.bind(this);
         this.handleRemoveLocation = this.handleRemoveLocation.bind(this);
+        this.onLocationSelect = this.onLocationSelect.bind(this);
+        this.onLocationUpdate = this.onLocationUpdate.bind(this);
     }
     handlePostChange(event) {
-        const content = filter.clean(event.target.value);
+        const content = this.filter.clean(event.target.value);
         this.setState(() => {
             return {
                 content,
@@ -38,10 +40,11 @@ class CreatePost extends React.Component {
     handleRemoveLocation() {
         this.setState(() => ({ location: null }));
     }
-    handleSelectLocation(location) {
+    onLocationSelect(location) {
         this.setState(() => ({
             location,
-            showLocationPicker: false
+            showLocationPicker: false,
+            locationSelected: true
         }));
     }
     handleSubmit(event) {
@@ -49,24 +52,25 @@ class CreatePost extends React.Component {
         if (!this.state.valid) {
             return;
         }
-        if (this.props.onSubmit) {
-            const newPost = {
-                content: this.state.content
-            };
-
-            this.props.onSubmit(newPost);
-            this.setState({
-                content: '',
-                valid: null
-            });
-        }
+        const newPost = {
+            content: this.state.content
+        };
+        this.props.onSubmit(newPost);
+        this.setState({
+            content: '',
+            valid: false,
+            showLocationPicker: false,
+            location: null
+        });
+    }
+    onLocationUpdate(location) {
+        this.setState(() => ({
+            location,
+            locationSelected: false
+        }));
     }
     handleToggleLocation() {
-        this.setState(state => {
-            return {
-                showLocationPicker: !state.showLocationPicker
-            };
-        });
+        this.setState(state => ({ showLocationPicker: !state.showLocationPicker }));
     }
     // We can implement a "subrender" method here and not clutter the main render method with tons
     // of conditional logic. This is a helpful pattern to explore when dealing with components that
@@ -75,7 +79,7 @@ class CreatePost extends React.Component {
         return (
             <div className="controls">
                 <button onClick={this.handleSubmit}>Post</button>
-                {this.state.location ? (
+                {this.state.location && this.state.locationSelected ? (
                     <button onClick={this.handleRemoveLocation} className="open location-indicator">
                         <i className="fa-location-arrow fa" />
                         <small>{this.state.location.name}</small>
@@ -103,11 +107,21 @@ class CreatePost extends React.Component {
                     placeholder="What's on your mind?"
                 />
                 {this.renderLocationControls()}
-                <DisplayMap
-                    allowInput
-                    onLocationSelect={this.handleSelectLocation}
-                    show={this.state.showLocationPicker}
-                />
+                <div
+                    className="location-picker"
+                    style={{ display: this.state.showLocationPicker ? 'block' : 'none' }}
+                >
+                    <LocationTypeAhead
+                        onLocationSelect={this.onLocationSelect}
+                        onLocationUpdate={this.onLocationUpdate}
+                    />
+                    <DisplayMap
+                        show
+                        allowInput
+                        onLocationSelect={this.onLocationSelect}
+                        onLocationUpdate={this.onLocationUpdate}
+                    />
+                </div>
             </form>
         );
     }

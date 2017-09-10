@@ -52,6 +52,7 @@ export const HTMLPageWrapperWithState = ({ children, reduxState }) => {
                 <script id="intialState" data-intial-redux-state={JSON.stringify(reduxState)} />
                 <script />
                 <link rel="stylesheet" href="/static/styles.css" type="text/css" />
+                <link rel="stylesheet" href="https://api.mapbox.com/mapbox.js/v3.1.1/mapbox.css" />
                 <script
                     async
                     defer
@@ -60,6 +61,10 @@ export const HTMLPageWrapperWithState = ({ children, reduxState }) => {
                 />
                 <script async defer src="/static/bundle.js" type="text/javascript" />
                 <script async defer src="https://use.fontawesome.com/0fcbe85f9e.js" />
+                <script
+                    crossOrigin="anonymous"
+                    src="https://api.mapbox.com/mapbox.js/v3.1.1/mapbox.js"
+                />
                 <script>
                     {!isServer() &&
                         process.env.NODE_ENV ===

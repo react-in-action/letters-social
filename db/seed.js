@@ -1,25 +1,27 @@
 import { join } from 'path';
-import fetch from 'isomorphic-fetch';
-import { name, internet, lorem, date, random } from 'faker';
+import { writeFile } from 'fs';
+import { promisify } from 'util';
+import { address, lorem, date, random } from 'faker';
 import starwars from 'starwars';
+import starWarsWords from 'forcem-ipsum';
 import mkdirp from 'mkdirp';
 import _ from 'lodash';
 import uuid from 'uuid/v4';
-import { writeFile } from 'fs';
 import ora from 'ora';
-import { promisify } from 'util';
 
-const { sample, sampleSize, random: rand } = _;
+const { sample, random: rand, words } = _;
 
 import { User, Comment, Like, Post } from './models';
-const { swapiURL } = require('./constants');
-
 const write = promisify(writeFile);
+
+function generateFakeContent(type, lim) {
+    return starWarsWords(type, lim);
+}
 
 function generateProfilePicture() {
     const pics = [];
-    for (let i = 0; i < 15; i++) {
-        pics.push(`https://react-sh.s3.amazonaws.com/assets/profile-pictures/${i + 1}.png`);
+    for (let i = 0; i < 67; i++) {
+        pics.push(`https://react-sh.s3.amazonaws.com/assets/profile-pictures/${i + 1}.jpeg`);
     }
     return function selectRandomProfilePicture() {
         return sample(pics);
@@ -42,12 +44,7 @@ const createShareableImage = generateShareablePicture();
 
 async function generateUser() {
     const config = {};
-    const countRes = await fetch(`${swapiURL}/people`);
-    const { count } = await countRes.json();
-    const personRes = await fetch(`${swapiURL}/people/${rand(0, count)}`);
-    const swapiPerson = await personRes.json();
-    config.name = swapiPerson.name || name.findName();
-    config.email = internet.email();
+    config.name = generateFakeContent('characters', 1)[0];
     config.id = uuid();
     config.profilePicture = createProfilePicture();
     return new User(config);
@@ -65,14 +62,20 @@ function generatePost(userId) {
         ? null
         : {
               url: 'https://ifelse.io/book',
-              title: lorem.words(rand(1, 5)),
-              description: lorem.sentences(rand(1, 2), '. ')
+              title: generateFakeContent('planets', 1)[0],
+              description:
+                  words(generateFakeContent('e6', 1)[0])
+                      .slice(0, rand(5, 15))
+                      .join(' ') + '.'
           };
     config.userId = userId;
-    config.location = {
-        lat: null,
-        lng: null
-    };
+    config.location = random.boolean()
+        ? {
+              lat: Number.parseFloat(address.latitude(), 10),
+              lng: Number.parseFloat(address.longitude(), 10),
+              name: generateFakeContent('planets', 1)[0]
+          }
+        : null;
     return new Post(config);
 }
 

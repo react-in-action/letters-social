@@ -12,7 +12,7 @@ const Comment = props => {
                     width={25}
                     height={25}
                     className="img-circle"
-                    alt={comment.user.email}
+                    alt={comment.user.name}
                 />
                 <a>{comment.user.name}</a>
                 <small className="date">

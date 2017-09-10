@@ -1,25 +1,160 @@
-let join;_4f3‍.w('path',[["join",function(v){join=v}]]);let fetch;_4f3‍.w('isomorphic-fetch',[["default",function(v){fetch=v}]]);let name,internet,lorem,date,random;_4f3‍.w('faker',[["name",function(v){name=v}],["internet",function(v){internet=v}],["lorem",function(v){lorem=v}],["date",function(v){date=v}],["random",function(v){random=v}]]);let starwars;_4f3‍.w('starwars',[["default",function(v){starwars=v}]]);let mkdirp;_4f3‍.w('mkdirp',[["default",function(v){mkdirp=v}]]);let _;_4f3‍.w('lodash',[["default",function(v){_=v}]]);let uuid;_4f3‍.w('uuid/v4',[["default",function(v){uuid=v}]]);let writeFile;_4f3‍.w('fs',[["writeFile",function(v){writeFile=v}]]);let ora;_4f3‍.w('ora',[["default",function(v){ora=v}]]);let promisify;_4f3‍.w('util',[["promisify",function(v){promisify=v}]]);let User,Comment,Like,Post;_4f3‍.w('./models',[["User",function(v){User=v}],["Comment",function(v){Comment=v}],["Like",function(v){Like=v}],["Post",function(v){Post=v}]]);
+let join;
+_cbb‍.w('path', [
+    [
+        'join',
+        function(v) {
+            join = v;
+        }
+    ]
+]);
+let writeFile;
+_cbb‍.w('fs', [
+    [
+        'writeFile',
+        function(v) {
+            writeFile = v;
+        }
+    ]
+]);
+let promisify;
+_cbb‍.w('util', [
+    [
+        'promisify',
+        function(v) {
+            promisify = v;
+        }
+    ]
+]);
+let slugify;
+_cbb‍.w('slugify', [
+    [
+        'default',
+        function(v) {
+            slugify = v;
+        }
+    ]
+]);
+let address, lorem, date, random;
+_cbb‍.w('faker', [
+    [
+        'address',
+        function(v) {
+            address = v;
+        }
+    ],
+    [
+        'lorem',
+        function(v) {
+            lorem = v;
+        }
+    ],
+    [
+        'date',
+        function(v) {
+            date = v;
+        }
+    ],
+    [
+        'random',
+        function(v) {
+            random = v;
+        }
+    ]
+]);
+let starwars;
+_cbb‍.w('starwars', [
+    [
+        'default',
+        function(v) {
+            starwars = v;
+        }
+    ]
+]);
+let starWarsWords;
+_cbb‍.w('forcem-ipsum', [
+    [
+        'default',
+        function(v) {
+            starWarsWords = v;
+        }
+    ]
+]);
+let mkdirp;
+_cbb‍.w('mkdirp', [
+    [
+        'default',
+        function(v) {
+            mkdirp = v;
+        }
+    ]
+]);
+let _;
+_cbb‍.w('lodash', [
+    [
+        'default',
+        function(v) {
+            _ = v;
+        }
+    ]
+]);
+let uuid;
+_cbb‍.w('uuid/v4', [
+    [
+        'default',
+        function(v) {
+            uuid = v;
+        }
+    ]
+]);
+let ora;
+_cbb‍.w('ora', [
+    [
+        'default',
+        function(v) {
+            ora = v;
+        }
+    ]
+]);
+let User, Comment, Like, Post;
+_cbb‍.w('./models', [
+    [
+        'User',
+        function(v) {
+            User = v;
+        }
+    ],
+    [
+        'Comment',
+        function(v) {
+            Comment = v;
+        }
+    ],
+    [
+        'Like',
+        function(v) {
+            Like = v;
+        }
+    ],
+    [
+        'Post',
+        function(v) {
+            Post = v;
+        }
+    ]
+]);
 
-
-
-
-
-
-
-
-
-
-const { sample, sampleSize, random: rand } = _;
-
-
-const { swapiURL } = require('./constants');
+const { sample, random: rand, words } = _;
 
 const write = promisify(writeFile);
 
+function generateFakeContent(type, lim) {
+    return starWarsWords(type, lim);
+}
+
 function generateProfilePicture() {
     const pics = [];
-    for (let i = 0; i < 15; i++) {
-        pics.push(`https://react-sh.s3.amazonaws.com/assets/profile-pictures/${i + 1}.png`);
+    for (let i = 0; i < 67; i++) {
+        pics.push(`https://react-sh.s3.amazonaws.com/assets/profile-pictures/${i + 1}.jpeg`);
     }
     return function selectRandomProfilePicture() {
         return sample(pics);
@@ -42,12 +177,7 @@ const createShareableImage = generateShareablePicture();
 
 async function generateUser() {
     const config = {};
-    const countRes = await fetch(`${swapiURL}/people`);
-    const { count } = await countRes.json();
-    const personRes = await fetch(`${swapiURL}/people/${rand(0, count)}`);
-    const swapiPerson = await personRes.json();
-    config.name = swapiPerson.name || name.findName();
-    config.email = internet.email();
+    config.name = generateFakeContent('characters', 1)[0];
     config.id = uuid();
     config.profilePicture = createProfilePicture();
     return new User(config);
@@ -65,14 +195,20 @@ function generatePost(userId) {
         ? null
         : {
               url: 'https://ifelse.io/book',
-              title: lorem.words(rand(1, 5)),
-              description: lorem.sentences(rand(1, 2), '. ')
+              title: generateFakeContent('planets', 1)[0],
+              description:
+                  words(generateFakeContent('e6', 1)[0])
+                      .slice(0, rand(5, 15))
+                      .join(' ') + '.'
           };
     config.userId = userId;
-    config.location = {
-        lat: null,
-        lng: null
-    };
+    config.location = random.boolean()
+        ? {
+              lat: Number.parseFloat(address.latitude(), 10),
+              lng: Number.parseFloat(address.longitude(), 10),
+              name: generateFakeContent('planets', 1)[0]
+          }
+        : null;
     return new Post(config);
 }
 

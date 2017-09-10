@@ -15,12 +15,11 @@ export function user(state = initialState.user, action) {
             const user = action.payload;
             return Object.assign({}, state.user, {
                 authenticated: true,
-                email: user.email,
                 name: user.displayName,
                 id: user.uid,
-                avatar:
+                profilePicture:
                     user.photoURL ||
-                    'https://s3-us-west-2.amazonaws.com/react-sh/assets/profile-pictures/1.png'
+                    'https://s3-us-west-2.amazonaws.com/react-sh/assets/profile-pictures/1.jpeg'
             });
         case types.auth.AUTH_LOGOUT_SUCCESS:
             return Object.assign({}, state.user, initialState.user);

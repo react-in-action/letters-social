@@ -1,13 +1,26 @@
-_6b9‍.e([["User",()=>User],["Post",()=>Post],["Like",()=>Like],["Comment",()=>Comment]]);let uuid;_6b9‍.w('node-uuid',[["v4",function(v){uuid=v}]]);
+_b93‍.e([
+    ['User', () => User],
+    ['Post', () => Post],
+    ['Like', () => Like],
+    ['Comment', () => Comment]
+]);
+let uuid;
+_b93‍.w('node-uuid', [
+    [
+        'v4',
+        function(v) {
+            uuid = v;
+        }
+    ]
+]);
 
 class User {
     constructor(config) {
         this.id = config.id || uuid();
-        this.email = config.email;
-        this.name = config.name || this.email;
+        this.name = config.name;
         this.profilePicture =
             config.profilePicture ||
-            'https://react-sh.s3.amazonaws.com/assets/profile-pictures/1.png';
+            'https://react-sh.s3.amazonaws.com/assets/profile-pictures/1.jpeg';
     }
 }
 
@@ -20,14 +33,7 @@ class Post {
         this.image = config.image || null;
         this.likes = config.likes || [];
         this.link = config.link || null;
-        this.location = Object.assign(
-            {
-                lat: null,
-                lng: null,
-                name: null
-            },
-            config.location
-        );
+        this.location = config.location || null;
         this.userId = config.userId;
     }
 }
