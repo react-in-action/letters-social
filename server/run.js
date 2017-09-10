@@ -31,10 +31,6 @@ function normalizePort(val) {
 }
 
 function onError(error) {
-    if (error.syscall !== 'listen') {
-        throw error;
-    }
-
     var bind = typeof port === 'string' ? 'Pipe ' + port : 'Port ' + port;
 
     // handle specific listen errors with friendly messages
@@ -48,6 +44,5 @@ function onError(error) {
             process.exit(1);
             break;
         default:
-            throw error;
     }
 }

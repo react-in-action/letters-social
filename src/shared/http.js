@@ -8,9 +8,6 @@ import fetch from 'isomorphic-fetch';
  * @return {Response}           Fetch Response
  */
 export function createPost(payload) {
-    if (!payload) {
-        throw new Error('You must provide a payload when creating a new post');
-    }
     // Create options for the request
     const requestOptions = {
         method: 'POST',
@@ -67,9 +64,6 @@ export function fetchCommentsForPost(postId) {
  * @return {Response}           Fetch Response
  */
 export function createComment(payload) {
-    if (!payload) {
-        throw new Error('You must provide a payload when creating a comment');
-    }
     // Create options for the request
     const requestOptions = {
         method: 'POST',

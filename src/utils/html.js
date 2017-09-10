@@ -59,8 +59,7 @@ export const HTMLPageWrapperWithState = ({ children, reduxState }) => {
                     crossOrigin="anonymous"
                     src="https://cdn.ravenjs.com/3.17.0/raven.min.js"
                 />
-                <script async defer src="/static/bundle.js" type="text/javascript" />
-                {/* <script async defer src="https://use.fontawesome.com/0fcbe85f9e.js" /> */}
+                <script async src="/static/bundle.js" type="text/javascript" />
                 <script
                     crossOrigin="anonymous"
                     src="https://api.mapbox.com/mapbox.js/v3.1.1/mapbox.js"
