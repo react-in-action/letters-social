@@ -1,12 +1,12 @@
-import jsonAPI from 'json-server';
-import { resolve } from 'path';
-import fetch from 'isomorphic-fetch';
-import uuid from 'uuid/v4';
-import config from 'config';
+let jsonAPI;_45a‍.w('json-server',[["default",function(v){jsonAPI=v}]]);let resolve;_45a‍.w('path',[["resolve",function(v){resolve=v}]]);let fetch;_45a‍.w('isomorphic-fetch',[["default",function(v){fetch=v}]]);let uuid;_45a‍.w('uuid/v4',[["default",function(v){uuid=v}]]);let config;_45a‍.w('config',[["default",function(v){config=v}]]);let User,Comment,Post,Like;_45a‍.w('../db/models',[["User",function(v){User=v}],["Comment",function(v){Comment=v}],["Post",function(v){Post=v}],["Like",function(v){Like=v}]]);
 
-import { User, Comment, Post, Like } from '../db/models';
 
-export default function() {
+
+
+
+
+
+_45a‍.d(function() {
     const server = jsonAPI.create();
     server.use(jsonAPI.defaults());
     server.use(jsonAPI.bodyParser);
@@ -93,4 +93,4 @@ export default function() {
     });
     server.use(jsonAPI.router(resolve(__dirname, '..', 'db', 'seed', 'db.json')));
     return server;
-}
+});

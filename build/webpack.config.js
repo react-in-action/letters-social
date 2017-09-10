@@ -61,6 +61,14 @@ module.exports = {
     module: {
         loaders: [
             {
+                test: /\.(eot|svg|woff|woff2|otf|ttf)$/,
+                exclude: /node_modules/,
+                loader: 'file-loader',
+                options: {
+                    name: '[path][name].[ext]'
+                }
+            },
+            {
                 test: /\.js$/,
                 include: join(__dirname, '../', 'src'),
                 loader: 'babel-loader'

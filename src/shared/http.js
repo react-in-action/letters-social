@@ -91,78 +91,32 @@ export function createComment(payload) {
  * @param  {string} userId user's ID
  * @return {Response}        Fetch Response
  */
-export async function likePost(postId, userId) {
-    // NOTE: we're using the new async/await style here; you can learn more about it at
-    // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/async_function
-    // If you're unfamiliar with this style, you can easily re-write it using promise chains
-
-    // Get the post to update and check to see if we've liked it already
-    const getPost = await fetch(
-        `${process.env.ENDPOINT}/posts/${postId}?_embed=comments&_expand=user&_embed=likes`
-    );
-    const post = await getPost.json();
-    const alreadyLiked = post.likes.find(p => p.userId === userId);
-    if (alreadyLiked) {
-        return;
-    }
-
+export function likePost(postId, userId) {
     // Create a new like for the user/post
-    const createLike = await fetch(`${process.env.ENDPOINT}/likes`, {
+    return fetch(`${process.env.ENDPOINT}/likes`, {
         method: 'POST',
         body: JSON.stringify({ postId, userId }),
         headers: {
             'Content-Type': 'application/json'
         }
     });
-    // Get the response in JSON format
-    const like = await createLike.json();
-
-    // Update the post locally if necessary
-    post.likes.push(like.id);
-    // Update the remote database and yield back a promise
-    return await fetch(
-        `${process.env.ENDPOINT}/posts/${postId}?_embed=comments&_expand=user&_embed=likes`,
-        {
-            method: 'PUT',
-            body: JSON.stringify(post),
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        }
-    );
 }
 
-export async function unlikePost(postId, userId) {
-    // Get the post to update and check to see if we've liked it already
-    const getPost = await fetch(
-        `${process.env.ENDPOINT}/posts/${postId}?_embed=comments&_expand=user&_embed=likes`
-    );
-    const post = await getPost.json();
-    const existingLikeIndex = post.likes.map(like => like.userId).indexOf(userId);
-    if (existingLikeIndex === -1) {
-        return;
-    }
-    const postToDelete = post.likes[existingLikeIndex];
-    // Remove the item from the array
-    post.likes.splice(existingLikeIndex, 1);
-    // Delete the old like
-    await fetch(`${process.env.ENDPOINT}/likes/${postToDelete.id}`, {
+/**
+ * Unlikes a post for a given user
+ * @method unlikePost
+ * @module letters/shared/http
+ * @param  {string}   postId
+ * @param  {string}   userId
+ * @return {Response}
+ */
+export function unlikePost(postId, userId) {
+    return fetch(`${process.env.ENDPOINT}/posts/${postId}/likes/${userId}`, {
         method: 'DELETE',
         headers: {
             'Content-Type': 'application/json'
         }
     });
-    // Update the post
-    return await fetch(
-        `${process.env.ENDPOINT}/posts/${postId}?_embed=comments&_expand=user&_embed=likes`,
-        {
-            method: 'PUT',
-            body: JSON.stringify(post),
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        }
-    );
 }
 
 /**

@@ -49,13 +49,13 @@ export function unlike(postId) {
         const { user } = getState();
         return API.unlikePost(postId, user.id)
             .then(res => res.json())
-            .then(post =>
+            .then(post => {
                 dispatch({
                     type: types.posts.UNLIKE,
                     error: false,
                     post
-                })
-            );
+                });
+            });
     };
 }
 

@@ -13,12 +13,12 @@
     background-color: $white;
     margin-bottom: $base-spacing * 1.5;
 
-    .user {
+    .user-header {
         border-bottom: $border-base;
         display: flex;
         align-items: center;
         justify-content: space-between;
-        .user-header {
+        .user-info-section {
             & > * {
                 padding: 5px;
             }
@@ -30,7 +30,6 @@
         }
         .date {
             float: right;
-            color: blue;
         }
     }
 
