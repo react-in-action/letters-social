@@ -9,7 +9,6 @@ db/seed-compiled.js
 db/seed
 dist
 pids
-static
 *.pid
 *.seed
 
@@ -45,3 +44,7 @@ public/styles
 dist
 .next
 .expo/
+
+static/bundle.js
+static/service-worker.js
+static/styles.css

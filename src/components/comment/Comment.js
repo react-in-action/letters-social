@@ -1,24 +1,17 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import humanize from 'humanize-duration';
+
+import UserHeader from '../post/UserHeader';
 
 const Comment = props => {
     const { comment } = props;
     return (
         <div className="comment" key={comment.id}>
-            <div className="user-header">
-                <img
-                    src={comment.user.profilePicture}
-                    width={25}
-                    height={25}
-                    className="img-circle"
-                    alt={comment.user.name}
-                />
-                <a>{comment.user.name}</a>
-                <small className="date">
-                    {humanize(new Date() - new Date(comment.date), { largest: 1 })} ago
-                </small>
-            </div>
+            <UserHeader
+                user={comment.user}
+                profilePicture={comment.user.profilePicture}
+                date={comment.date}
+            />
             <p className="content"> {comment.content} </p>
         </div>
     );

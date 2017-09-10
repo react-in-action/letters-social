@@ -116,8 +116,7 @@ class CreatePost extends React.Component {
                         onLocationUpdate={this.onLocationUpdate}
                     />
                     <DisplayMap
-                        show
-                        allowInput
+                        displayOnly={false}
                         onLocationSelect={this.onLocationSelect}
                         onLocationUpdate={this.onLocationUpdate}
                     />

@@ -40,15 +40,8 @@ class Home extends Component {
                     </button>
                 </div>
                 <div>
-                    <Ad
-                        url="https://ifelse.io/book"
-                        imageUrl="https://s3-us-west-2.amazonaws.com/react-sh/assets/ads/react+in+action+meap+ad.png"
-                    />
-
-                    <Ad
-                        url="https://ifelse.io/book"
-                        imageUrl="https://s3-us-west-2.amazonaws.com/react-sh/assets/ads/Yl48tQw.jpg"
-                    />
+                    <Ad url="https://ifelse.io/book" imageUrl="/static/assets/ads/ria.png" />
+                    <Ad url="https://ifelse.io/book" imageUrl="/static/assets/ads/orly.jpg" />
                 </div>
             </div>
         );

@@ -37,7 +37,7 @@ class SinglePost extends Component {
                 <Post post={this.props.post} />
                 <Ad
                     url="https://www.manning.com/books/react-in-action"
-                    imageUrl="https://s3-us-west-2.amazonaws.com/react-sh/assets/ads/react+in+action+meap+ad.png"
+                    imageUrl="/static/assets/ads/ria.png"
                 />
             </div>
         ) : (

@@ -12,20 +12,14 @@ describe('<Ad/>', () => {
     });
     it('should display a link', () => {
         const expectedUrl = 'https://ifelse.io/book';
-        const expectedImageURL =
-            'https://s3-us-west-2.amazonaws.com/react-sh/assets/ads/react+in+action+meap+ad.png';
-        const component = shallow(
-            <Ad url={expectedUrl} imageUrl={expectedImageURL} />
-        );
+        const expectedImageURL = '/static/assets/ads/orly.jpg';
+        const component = shallow(<Ad url={expectedUrl} imageUrl={expectedImageURL} />);
         expect(component.find('a').props().href).toBe(expectedUrl);
     });
     it('should display an image', () => {
         const expectedUrl = 'https://ifelse.io/book';
-        const expectedImageURL =
-            'https://s3-us-west-2.amazonaws.com/react-sh/assets/ads/react+in+action+meap+ad.png';
-        const component = shallow(
-            <Ad url={expectedUrl} imageUrl={expectedImageURL} />
-        );
+        const expectedImageURL = '/static/assets/ads/ria.png';
+        const component = shallow(<Ad url={expectedUrl} imageUrl={expectedImageURL} />);
         expect(component.find('img').props().src).toBe(expectedImageURL);
     });
 });

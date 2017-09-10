@@ -17,9 +17,20 @@
         border-bottom: $border-base;
         display: flex;
         align-items: center;
-        padding: 5px;
+        justify-content: space-between;
+        .user-header {
+            & > * {
+                padding: 5px;
+            }
+            align-items: center;
+            display: flex;
+        }
         & > * {
             padding: 0 5px;
+        }
+        .date {
+            float: right;
+            color: blue;
         }
     }
 

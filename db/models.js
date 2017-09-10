@@ -4,9 +4,7 @@ export class User {
     constructor(config) {
         this.id = config.id || uuid();
         this.name = config.name;
-        this.profilePicture =
-            config.profilePicture ||
-            'https://react-sh.s3.amazonaws.com/assets/profile-pictures/1.jpeg';
+        this.profilePicture = config.profilePicture || '/static/assets/users/1.jpeg';
     }
 }
 

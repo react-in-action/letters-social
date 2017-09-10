@@ -45,3 +45,13 @@
         }
     }
 }
+.location-description {
+    display: flex;
+    align-items: flex-end;
+    flex-direction: row-reverse;
+    .location-icon,
+    .location-name {
+        color: $blue;
+        padding: 0 5px;
+    }
+}

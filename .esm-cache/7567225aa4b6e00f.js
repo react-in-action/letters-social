@@ -1,8 +1,57 @@
-let jsonAPI;_a4b‍.w('json-server',[["default",function(v){jsonAPI=v}]]);let resolve;_a4b‍.w('path',[["resolve",function(v){resolve=v}]]);let uuid;_a4b‍.w('uuid/v4',[["default",function(v){uuid=v}]]);let User,Comment,Post,Like;_a4b‍.w('../db/models',[["User",function(v){User=v}],["Comment",function(v){Comment=v}],["Post",function(v){Post=v}],["Like",function(v){Like=v}]]);
-
-
-
-
+let jsonAPI;
+_a4b‍.w('json-server', [
+    [
+        'default',
+        function(v) {
+            jsonAPI = v;
+        }
+    ]
+]);
+let resolve;
+_a4b‍.w('path', [
+    [
+        'resolve',
+        function(v) {
+            resolve = v;
+        }
+    ]
+]);
+let uuid;
+_a4b‍.w('uuid/v4', [
+    [
+        'default',
+        function(v) {
+            uuid = v;
+        }
+    ]
+]);
+let User, Comment, Post, Like;
+_a4b‍.w('../db/models', [
+    [
+        'User',
+        function(v) {
+            User = v;
+        }
+    ],
+    [
+        'Comment',
+        function(v) {
+            Comment = v;
+        }
+    ],
+    [
+        'Post',
+        function(v) {
+            Post = v;
+        }
+    ],
+    [
+        'Like',
+        function(v) {
+            Like = v;
+        }
+    ]
+]);
 
 _a4b‍.d(function() {
     const server = jsonAPI.create();

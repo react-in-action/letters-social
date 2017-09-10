@@ -17,7 +17,7 @@ button {
     &:active {
         background-color: darken($blue, 10%);
     }
-    .block {
+    &.block {
         width: 100%;
     }
     a {

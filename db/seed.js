@@ -21,7 +21,7 @@ function generateFakeContent(type, lim) {
 function generateProfilePicture() {
     const pics = [];
     for (let i = 0; i < 67; i++) {
-        pics.push(`https://react-sh.s3.amazonaws.com/assets/profile-pictures/${i + 1}.jpeg`);
+        pics.push(`/static/assets/users/${i + 1}.jpeg`);
     }
     return function selectRandomProfilePicture() {
         return sample(pics);
@@ -32,9 +32,7 @@ const createProfilePicture = generateProfilePicture();
 function generateShareablePicture() {
     const pics = [];
     for (let i = 0; i < 16; i++) {
-        pics.push(
-            `https://s3-us-west-2.amazonaws.com/react-sh/assets/images-for-posts/${i + 1}.jpg`
-        );
+        pics.push(`/static/assets/images/${i + 1}.jpg`);
     }
     return function selectRandomPostImage() {
         return sample(pics);
@@ -69,20 +67,24 @@ function generatePost(userId) {
                       .join(' ') + '.'
           };
     config.userId = userId;
-    config.location = random.boolean()
-        ? {
-              lat: Number.parseFloat(address.latitude(), 10),
-              lng: Number.parseFloat(address.longitude(), 10),
-              name: generateFakeContent('planets', 1)[0]
-          }
-        : null;
+    config.location =
+        random.boolean() && !config.link && !config.image
+            ? {
+                  lat: Number.parseFloat(address.latitude(), 10),
+                  lng: Number.parseFloat(address.longitude(), 10),
+                  name: generateFakeContent('planets', 1)[0]
+              }
+            : null;
     return new Post(config);
 }
 
 function generateComment(userId, postId) {
     const config = {};
     config.id = uuid();
-    config.content = lorem.paragraph(sample([1, 2, 3]));
+    config.content =
+        words(generateFakeContent(`e${rand(4, 6)}`, 1)[0])
+            .slice(0, rand(5, 75))
+            .join(' ') + '.';
     config.date = date.recent(sample([1, 2, 3, 4, 5, 10, 15]));
     config.postId = postId;
     config.userId = userId;

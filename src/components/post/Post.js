@@ -5,9 +5,9 @@ import Content from './Content';
 import Image from './Image';
 import Link from './Link';
 import PostActionSection from './PostActionSection';
-import User from './User';
 import Comments from '../comment/Comments';
 import DisplayMap from '../map/DisplayMap';
+import UserHeader from '../post/UserHeader';
 
 import RouterLink from '../router/Link';
 
@@ -17,7 +17,7 @@ function Post(props) {
         <div className="post">
             <RouterLink to={`/posts/${post.id}`}>
                 <span>
-                    <User post={post} />
+                    <UserHeader date={post.date} user={post.user} />
                     <Content post={post} />
                     <Image post={post} />
                     <Link link={post.link} />

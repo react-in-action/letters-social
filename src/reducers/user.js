@@ -17,9 +17,7 @@ export function user(state = initialState.user, action) {
                 authenticated: true,
                 name: user.displayName,
                 id: user.uid,
-                profilePicture:
-                    user.photoURL ||
-                    'https://s3-us-west-2.amazonaws.com/react-sh/assets/profile-pictures/1.jpeg'
+                profilePicture: user.photoURL || '/static/assets/users/4.jpeg'
             });
         case types.auth.AUTH_LOGOUT_SUCCESS:
             return Object.assign({}, state.user, initialState.user);

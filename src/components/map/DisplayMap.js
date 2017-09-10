@@ -14,7 +14,6 @@ export default class DisplayMap extends Component {
         super(props);
         this.state = {
             mapLoaded: false,
-            showMap: props.show,
             location: {
                 lat: props.location.lat,
                 lng: props.location.lng,
@@ -26,8 +25,6 @@ export default class DisplayMap extends Component {
         this.generateStaticMapImage = this.generateStaticMapImage.bind(this);
     }
     static propTypes = {
-        show: PropTypes.bool,
-        allowInput: PropTypes.bool,
         location: PropTypes.shape({
             lat: PropTypes.number,
             lng: PropTypes.number,
@@ -35,9 +32,7 @@ export default class DisplayMap extends Component {
         })
     };
     static defaultProps = {
-        show: true,
-        allowInput: false,
-        showTypeAhead: false,
+        displayOnly: true,
         location: {
             lat: -118.1428115,
             lng: 34.1535641,
@@ -45,7 +40,7 @@ export default class DisplayMap extends Component {
         }
     };
     componentDidUpdate() {
-        if (this.map) {
+        if (this.map && !this.props.displayOnly) {
             // See https://www.mapbox.com/mapbox.js/api/v3.1.1/l-map-class/
             this.map.invalidateSize(false);
         }
@@ -54,7 +49,7 @@ export default class DisplayMap extends Component {
         const locationsAreEqual = Object.keys(nextProps.location).filter(
             k => nextProps.location[k] === this.props.location[k]
         );
-        if (locationsAreEqual) {
+        if (!locationsAreEqual) {
             this.updateMapPosition(nextProps.location);
         }
     }
@@ -65,7 +60,8 @@ export default class DisplayMap extends Component {
     ensureMapExists() {
         if (this.state.mapLoaded) return;
         this.map = this.L.mapbox.map(this.mapNode, 'mapbox.streets', { zoomControl: false });
-        this.map.setView([this.state.location.lat, this.state.location.lng], 12);
+        this.map.setView(this.L.latLng(this.state.location.lng, this.state.location.lat), 12);
+        this.addMarker(this.state.location.lat, this.state.location.lng);
         this.setState(() => ({ mapLoaded: true }));
     }
     updateMapPosition(location) {
@@ -75,13 +71,17 @@ export default class DisplayMap extends Component {
         this.setState(() => ({ location }));
     }
     addMarker(lat, lng) {
-        this.L
-            .marker([lng, lat], {
-                icon: this.L.mapbox.marker.icon({
-                    'marker-color': '#4469af'
-                })
+        // IF we have already saved the marker, just update it
+        if (this.marker) {
+            this.marker.setLatLng(this.L.latLng(lng, lat));
+        }
+        // Create a marker and put it on the map
+        this.marker = this.L.marker([lng, lat], {
+            icon: this.L.mapbox.marker.icon({
+                'marker-color': '#4469af'
             })
-            .addTo(this.map);
+        });
+        this.marker.addTo(this.map);
     }
     generateStaticMapImage(lat, lng) {
         return `https://api.mapbox.com/styles/v1/mapbox/streets-v10/static/${lng},${lat},12,0,0/600x175?access_token=pk.eyJ1IjoibWFya3RoZXRob21hcyIsImEiOiJHa3JyZFFjIn0.MwCj8OA5q4dqdll1s2kMiw`;
@@ -101,15 +101,21 @@ export default class DisplayMap extends Component {
                 </div>
             );
         }
-        return (
-            <div className="displayMap">
+        return [
+            <div key="displayMap" className="displayMap">
                 <div
                     className="map"
                     ref={node => {
                         this.mapNode = node;
                     }}
                 />
-            </div>
-        );
+            </div>,
+            this.props.displayOnly && (
+                <div key="location-description" className="location-description">
+                    <small className="location-name">{this.state.location.name}</small>
+                    <i className="location-icon fa fa-location-arrow" />
+                </div>
+            )
+        ];
     }
 }
