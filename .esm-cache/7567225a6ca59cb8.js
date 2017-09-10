@@ -1,66 +1,20 @@
-let jsonAPI;
-_a4b‍.w('json-server', [
-    [
-        'default',
-        function(v) {
-            jsonAPI = v;
-        }
-    ]
-]);
-let resolve;
-_a4b‍.w('path', [
-    [
-        'resolve',
-        function(v) {
-            resolve = v;
-        }
-    ]
-]);
-let uuid;
-_a4b‍.w('uuid/v4', [
-    [
-        'default',
-        function(v) {
-            uuid = v;
-        }
-    ]
-]);
-let User, Comment, Post, Like;
-_a4b‍.w('../db/models', [
-    [
-        'User',
-        function(v) {
-            User = v;
-        }
-    ],
-    [
-        'Comment',
-        function(v) {
-            Comment = v;
-        }
-    ],
-    [
-        'Post',
-        function(v) {
-            Post = v;
-        }
-    ],
-    [
-        'Like',
-        function(v) {
-            Like = v;
-        }
-    ]
-]);
+let jsonAPI;_6ca‍.w('json-server',[["default",function(v){jsonAPI=v}]]);let resolve;_6ca‍.w('path',[["resolve",function(v){resolve=v}]]);let uuid;_6ca‍.w('uuid/v4',[["default",function(v){uuid=v}]]);let User,Comment,Post,Like;_6ca‍.w('../db/models',[["User",function(v){User=v}],["Comment",function(v){Comment=v}],["Post",function(v){Post=v}],["Like",function(v){Like=v}]]);
 
-_a4b‍.d(function() {
+
+
+
+
+_6ca‍.d(function() {
     const server = jsonAPI.create();
     server.use(jsonAPI.defaults());
     server.use(jsonAPI.bodyParser);
     server.use((req, res, next) => {
         // NOTE: this is NOT something you'd do in production, just a simple way to restrict
         // the most basic nonsense on the interwebz
-        if (!['https://social.react.sh', 'http://localhost:3000'].includes(req.headers.origin)) {
+        if (
+            process.env.NODE_ENV === 'production' &&
+            !['https://social.react.sh', 'http://localhost:3000'].includes(req.headers.origin)
+        ) {
             return res.status(401).end('unauthorized');
         }
         next();

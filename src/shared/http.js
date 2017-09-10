@@ -20,7 +20,10 @@ export function createPost(payload) {
         }
     };
     // Send the new post to the API
-    return fetch(`${process.env.ENDPOINT}/posts?_expand=user`, requestOptions);
+    return fetch(
+        `${process.env.ENDPOINT}/posts?_embed=comments&_expand=user&_embed=likes`,
+        requestOptions
+    );
 }
 
 /**
@@ -42,14 +45,14 @@ export function fetchPosts(endpoint) {
  * @return {Response}     Fetch Response object
  */
 export function fetchPost(id) {
-    return fetch(`${process.env.ENDPOINT}/posts/${id}?_embed=comments&_expand=user`);
+    return fetch(`${process.env.ENDPOINT}/posts/${id}?_embed=comments&_expand=user&_embed=likes`);
 }
 
 /**
  * Fetch a post from the API
  * @module letters/shared/http
  * @method fetchCommentsForPost
- * @param  {string}  id post ID
+ * @param  {string}  id post ID/
  * @return {Response}     Fetch Response object
  */
 export function fetchCommentsForPost(postId) {
@@ -93,8 +96,18 @@ export async function likePost(postId, userId) {
     // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/async_function
     // If you're unfamiliar with this style, you can easily re-write it using promise chains
 
+    // Get the post to update and check to see if we've liked it already
+    const getPost = await fetch(
+        `${process.env.ENDPOINT}/posts/${postId}?_embed=comments&_expand=user&_embed=likes`
+    );
+    const post = await getPost.json();
+    const alreadyLiked = post.likes.find(p => p.userId === userId);
+    if (alreadyLiked) {
+        return;
+    }
+
     // Create a new like for the user/post
-    const createLike = await fetch(`${process.env.ENDPOINT}/posts/${postId}`, {
+    const createLike = await fetch(`${process.env.ENDPOINT}/likes`, {
         method: 'POST',
         body: JSON.stringify({ postId, userId }),
         headers: {
@@ -104,32 +117,52 @@ export async function likePost(postId, userId) {
     // Get the response in JSON format
     const like = await createLike.json();
 
-    // Get the post to update
-    const getPost = await fetch(`${process.env.ENDPOINT}/posts/${postId}`);
-    const post = await getPost.json();
-    if (post.likes.includes(like.id)) {
-        return;
-    }
     // Update the post locally if necessary
     post.likes.push(like.id);
     // Update the remote database and yield back a promise
-    return await fetch(`${process.env.ENDPOINT}/posts/${postId}`, {
-        method: 'PUT',
-        body: JSON.stringify(post),
-        headers: {
-            'Content-Type': 'application/json'
+    return await fetch(
+        `${process.env.ENDPOINT}/posts/${postId}?_embed=comments&_expand=user&_embed=likes`,
+        {
+            method: 'PUT',
+            body: JSON.stringify(post),
+            headers: {
+                'Content-Type': 'application/json'
+            }
         }
-    });
+    );
 }
 
-export function unLikePost(postId, userId) {
-    const requestOptions = {
+export async function unlikePost(postId, userId) {
+    // Get the post to update and check to see if we've liked it already
+    const getPost = await fetch(
+        `${process.env.ENDPOINT}/posts/${postId}?_embed=comments&_expand=user&_embed=likes`
+    );
+    const post = await getPost.json();
+    const existingLikeIndex = post.likes.map(like => like.userId).indexOf(userId);
+    if (existingLikeIndex === -1) {
+        return;
+    }
+    const postToDelete = post.likes[existingLikeIndex];
+    // Remove the item from the array
+    post.likes.splice(existingLikeIndex, 1);
+    // Delete the old like
+    await fetch(`${process.env.ENDPOINT}/likes/${postToDelete.id}`, {
         method: 'DELETE',
         headers: {
             'Content-Type': 'application/json'
         }
-    };
-    return fetch(`${process.env.ENDPOINT}/posts/${postId}/likes?userId=${userId}`, requestOptions);
+    });
+    // Update the post
+    return await fetch(
+        `${process.env.ENDPOINT}/posts/${postId}?_embed=comments&_expand=user&_embed=likes`,
+        {
+            method: 'PUT',
+            body: JSON.stringify(post),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }
+    );
 }
 
 /**
