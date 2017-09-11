@@ -6,6 +6,7 @@ import Home from './pages/home';
 import SinglePost from './pages/post';
 import Login from './pages/login';
 import NotFound from './pages/error';
+import { loadUser } from './shared/http';
 import { isServer } from './utils/environment';
 import { loginSuccess } from './actions/auth';
 import { getFirebaseUser } from './actions/auth';
@@ -20,24 +21,31 @@ function requireUser(nextState, replace, callback) {
     if (user.authenticated) {
         return callback();
     }
-    getFirebaseUser().then(user => {
-        const onLoginPage = nextState.location.pathname === '/login';
-        if (user) {
-            store.dispatch(loginSuccess(user));
-        }
-        if (user && onLoginPage) {
-            console.log('on login page!');
-            replace({
-                pathname: '/'
-            });
-        }
-        if (!onLoginPage && !user) {
-            replace({
-                pathname: '/login'
-            });
-        }
-        return callback();
-    });
+    getFirebaseUser()
+        .then(user => loadUser(user.uid))
+        .then(res => res.json())
+        .then(user => {
+            {
+                const onLoginPage = nextState.location.pathname === '/login';
+                if (user) {
+                    console.log(user);
+                    console.log('THIS PATH');
+                    store.dispatch(loginSuccess(user));
+                }
+                if (user && onLoginPage) {
+                    console.log('on login page!');
+                    replace({
+                        pathname: '/'
+                    });
+                }
+                if (!onLoginPage && !user) {
+                    replace({
+                        pathname: '/login'
+                    });
+                }
+                return callback();
+            }
+        });
 }
 
 export const routes = (

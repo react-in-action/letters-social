@@ -104,3 +104,14 @@ export function unlikePost(postId, userId) {
         }
     });
 }
+
+/**
+ * Fetch a user from the API
+ * @module letters/shared/http
+ * @method loadUser
+ * @param  {string}  id post ID
+ * @return {Response}     Fetch Response object
+ */
+export function loadUser(id) {
+    return fetch(`${process.env.ENDPOINT}/users/${id}`);
+}

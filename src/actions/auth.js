@@ -1,5 +1,5 @@
 import * as types from '../constants/types';
-import { firebase, providerLogins, logUserOut } from '../backend';
+import { firebase, loginWithGithub, logUserOut } from '../backend';
 import { history } from '../history';
 import { createError } from './error';
 import { loading, loaded } from './loading';
@@ -48,9 +48,9 @@ export function getFirebaseUser() {
     });
 }
 
-export function login(provider) {
+export function login() {
     return dispatch => {
-        return providerLogins[provider]().then(async () => {
+        return loginWithGithub().then(async () => {
             dispatch(loading());
             const user = await getFirebaseUser();
             const res = await fetch(`${process.env.ENDPOINT}/users/${user.uid}`);
@@ -73,8 +73,6 @@ export function login(provider) {
                 return newUser;
             }
             const existingUser = await res.json();
-            console.log('existingUser');
-            console.log(existingUser);
             dispatch(loginSuccess(existingUser));
             dispatch(loaded());
             history.push('/');
