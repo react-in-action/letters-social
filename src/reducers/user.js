@@ -15,9 +15,9 @@ export function user(state = initialState.user, action) {
             const user = action.payload;
             return Object.assign({}, state.user, {
                 authenticated: true,
-                name: user.displayName,
-                id: user.uid,
-                profilePicture: user.photoURL || '/static/assets/users/4.jpeg'
+                name: user.name,
+                id: user.id,
+                profilePicture: user.profilePicture || '/static/assets/users/4.jpeg'
             });
         case types.auth.AUTH_LOGOUT_SUCCESS:
             return Object.assign({}, state.user, initialState.user);

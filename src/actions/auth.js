@@ -40,9 +40,11 @@ export function logout() {
     };
 }
 
-export function checkIfUserExists() {
+export function getFirebaseUser() {
     return new Promise(resolve => {
-        firebase.auth().onAuthStateChanged(user => resolve(user));
+        firebase.auth().onAuthStateChanged(user => {
+            resolve(user);
+        });
     });
 }
 
@@ -50,12 +52,17 @@ export function login(provider) {
     return dispatch => {
         return providerLogins[provider]().then(async () => {
             dispatch(loading());
-            const user = await checkIfUserExists();
+            const user = await getFirebaseUser();
             const res = await fetch(`${process.env.ENDPOINT}/users/${user.uid}`);
             if (res.status === 404) {
+                const userPayload = {
+                    name: user.displayName,
+                    profilePicture: user.photoURL,
+                    id: user.uid
+                };
                 const newUser = await fetch(`${process.env.ENDPOINT}/users`, {
                     method: 'POST',
-                    body: JSON.stringify(user),
+                    body: JSON.stringify(userPayload),
                     headers: {
                         'Content-Type': 'application/json'
                     }
@@ -66,9 +73,11 @@ export function login(provider) {
                 return newUser;
             }
             const existingUser = await res.json();
+            console.log('existingUser');
+            console.log(existingUser);
             dispatch(loginSuccess(existingUser));
             dispatch(loaded());
-            history.push('/login');
+            history.push('/');
             return existingUser;
         });
     };

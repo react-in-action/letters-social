@@ -21,14 +21,6 @@ export function updatePaginationLinks(links) {
     };
 }
 
-export function createPost(post) {
-    return {
-        type: types.posts.CREATE,
-        error: null,
-        post
-    };
-}
-
 export function like(postId) {
     return (dispatch, getState) => {
         const { user } = getState();
@@ -65,8 +57,13 @@ export function createNewPost(post) {
         post.userId = user.id;
         return API.createPost(post)
             .then(res => res.json())
-            .then(newPost => dispatch(loadPost(newPost.id)))
-            .then(post => dispatch(createPost(post)))
+            .then(newPost => {
+                dispatch({
+                    type: types.posts.CREATE,
+                    error: null,
+                    post: newPost
+                });
+            })
             .catch(err => dispatch(createError(err)));
     };
 }

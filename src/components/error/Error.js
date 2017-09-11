@@ -1,13 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 export function renderErrorMessage(err) {
-    console.log(err);
-    console.log(Object.keys(err));
-    return (
-        err.stack ||
-        err.stacktrace ||
-        (console.trace ? console.trace() : 'no error stack available')
-    );
+    return err.stack || err.stacktrace || 'no error stack available';
 }
 const ErrorMessage = ({ error }) => {
     return (

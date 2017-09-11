@@ -1,9 +1,9 @@
-_19d‍.e([["User",()=>User],["Post",()=>Post],["Like",()=>Like],["Comment",()=>Comment]]);let uuid;_19d‍.w('node-uuid',[["v4",function(v){uuid=v}]]);
+_7f5‍.e([["User",()=>User],["Post",()=>Post],["Like",()=>Like],["Comment",()=>Comment]]);let uuid;_7f5‍.w('node-uuid',[["v4",function(v){uuid=v}]]);
 
 class User {
     constructor(config) {
-        this.id = config.uid || uuid();
-        this.name = config.displayName;
+        this.id = config.id || config.uid || uuid();
+        this.name = config.displayName || config.name;
         this.profilePicture =
             config.profilePicture || config.photoURL || '/static/assets/users/1.jpeg';
     }

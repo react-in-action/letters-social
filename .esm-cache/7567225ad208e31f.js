@@ -1,4 +1,4 @@
-let jsonAPI;_8ac‍.w('json-server',[["default",function(v){jsonAPI=v}]]);let resolve;_8ac‍.w('path',[["resolve",function(v){resolve=v}]]);let fetch;_8ac‍.w('isomorphic-fetch',[["default",function(v){fetch=v}]]);let uuid;_8ac‍.w('uuid/v4',[["default",function(v){uuid=v}]]);let config;_8ac‍.w('config',[["default",function(v){config=v}]]);let User,Comment,Post,Like;_8ac‍.w('../db/models',[["User",function(v){User=v}],["Comment",function(v){Comment=v}],["Post",function(v){Post=v}],["Like",function(v){Like=v}]]);
+let jsonAPI;_d20‍.w('json-server',[["default",function(v){jsonAPI=v}]]);let resolve;_d20‍.w('path',[["resolve",function(v){resolve=v}]]);let fetch;_d20‍.w('isomorphic-fetch',[["default",function(v){fetch=v}]]);let uuid;_d20‍.w('uuid/v4',[["default",function(v){uuid=v}]]);let config;_d20‍.w('config',[["default",function(v){config=v}]]);let User,Comment,Post,Like;_d20‍.w('../db/models',[["User",function(v){User=v}],["Comment",function(v){Comment=v}],["Post",function(v){Post=v}],["Like",function(v){Like=v}]]);
 
 
 
@@ -6,7 +6,7 @@ let jsonAPI;_8ac‍.w('json-server',[["default",function(v){jsonAPI=v}]]);let re
 
 
 
-_8ac‍.d(function() {
+_d20‍.d(function() {
     const server = jsonAPI.create();
     server.use(jsonAPI.defaults());
     server.use(jsonAPI.bodyParser);

@@ -53,7 +53,8 @@ class CreatePost extends React.Component {
             return;
         }
         const newPost = {
-            content: this.state.content
+            content: this.state.content,
+            location: this.state.location
         };
         this.props.onSubmit(newPost);
         this.setState({
@@ -69,7 +70,8 @@ class CreatePost extends React.Component {
             locationSelected: false
         }));
     }
-    handleToggleLocation() {
+    handleToggleLocation(event) {
+        event.preventDefault();
         this.setState(state => ({ showLocationPicker: !state.showLocationPicker }));
     }
     // We can implement a "subrender" method here and not clutter the main render method with tons
@@ -100,7 +102,7 @@ class CreatePost extends React.Component {
     }
     render() {
         return (
-            <form className="create-post" onSubmit={this.handleSubmit}>
+            <div className="create-post">
                 <textarea
                     value={this.state.content}
                     onChange={this.handlePostChange}
@@ -121,7 +123,7 @@ class CreatePost extends React.Component {
                         onLocationUpdate={this.onLocationUpdate}
                     />
                 </div>
-            </form>
+            </div>
         );
     }
 }

@@ -2,8 +2,8 @@ import { v4 as uuid } from 'node-uuid';
 
 export class User {
     constructor(config) {
-        this.id = config.uid || uuid();
-        this.name = config.displayName;
+        this.id = config.id || config.uid || uuid();
+        this.name = config.displayName || config.name;
         this.profilePicture =
             config.profilePicture || config.photoURL || '/static/assets/users/1.jpeg';
     }

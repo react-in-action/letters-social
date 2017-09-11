@@ -8,7 +8,7 @@ import Login from './pages/login';
 import NotFound from './pages/error';
 import { isServer } from './utils/environment';
 import { loginSuccess } from './actions/auth';
-import { checkIfUserExists } from './actions/auth';
+import { getFirebaseUser } from './actions/auth';
 import configureStore from './store/configureStore';
 
 const store = configureStore();
@@ -20,12 +20,13 @@ function requireUser(nextState, replace, callback) {
     if (user.authenticated) {
         return callback();
     }
-    checkIfUserExists().then(user => {
+    getFirebaseUser().then(user => {
         const onLoginPage = nextState.location.pathname === '/login';
         if (user) {
             store.dispatch(loginSuccess(user));
         }
         if (user && onLoginPage) {
+            console.log('on login page!');
             replace({
                 pathname: '/'
             });
