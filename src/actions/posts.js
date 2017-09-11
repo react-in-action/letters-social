@@ -3,12 +3,12 @@ import parseLinkHeader from 'parse-link-header';
 import * as types from '../constants/types';
 import * as API from '../shared/http';
 import { createError } from './error';
-import { getCommentsForPost, updateAvailableComments } from './comments';
+import { getCommentsForPost } from './comments';
 
 export function updateAvailablePosts(posts) {
     return {
         type: types.posts.GET,
-        error: false,
+        error: null,
         posts
     };
 }
@@ -16,7 +16,7 @@ export function updateAvailablePosts(posts) {
 export function updatePaginationLinks(links) {
     return {
         type: types.posts.UPDATE_LINKS,
-        error: false,
+        error: null,
         links
     };
 }
@@ -24,7 +24,7 @@ export function updatePaginationLinks(links) {
 export function createPost(post) {
     return {
         type: types.posts.CREATE,
-        error: false,
+        error: null,
         post
     };
 }
@@ -34,13 +34,13 @@ export function like(postId) {
         const { user } = getState();
         return API.likePost(postId, user.id)
             .then(res => res.json())
-            .then(post =>
+            .then(post => {
                 dispatch({
                     type: types.posts.LIKE,
-                    error: false,
+                    error: null,
                     post
-                })
-            );
+                });
+            });
     };
 }
 
@@ -52,7 +52,7 @@ export function unlike(postId) {
             .then(post => {
                 dispatch({
                     type: types.posts.UNLIKE,
-                    error: false,
+                    error: null,
                     post
                 });
             });

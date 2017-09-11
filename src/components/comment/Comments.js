@@ -2,12 +2,13 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { connect } from 'react-redux';
 
+import { createComment } from '../../actions/comments';
 import Loader from '../Loader';
 import Comment from './Comment';
 import CreateComment from './Create';
 
 const Comments = props => {
-    const { comments, show, postId, handleCommentSubmit } = props;
+    const { comments, show, post, handleSubmit, user } = props;
     if (show && !comments) {
         return <Loader />;
     }
@@ -15,7 +16,7 @@ const Comments = props => {
         <div className="comments">
             {show && [
                 ...comments.map(comment => <Comment key={comment.id} comment={comment} />),
-                <CreateComment key={postId} handleSubmit={handleCommentSubmit} postId={postId} />
+                <CreateComment key={post.id} handleSubmit={handleSubmit} post={post} user={user} />
             ]}
         </div>
     );
@@ -27,17 +28,18 @@ Comments.propTypes = {
 
 const mapStateToProps = (state, ownProps) => {
     const { postId } = ownProps;
+    const post = state.posts[postId];
+    const user = state.user;
     const comments = state.commentIds
         .filter(commentId => state.comments[commentId].postId === postId)
         .map(commentId => state.comments[commentId]);
-    const show = state.posts[postId].showComments;
-    return { comments, show };
+    const show = post.showComments;
+    return { comments, show, post, user };
 };
-const mapDispatchToProps = (dispatch, ownProps) => {
-    const { postId } = ownProps;
+const mapDispatchToProps = dispatch => {
     return {
-        handleCommentSubmit(payload) {
-            dispatch();
+        handleSubmit(comment) {
+            dispatch(createComment(comment));
         }
     };
 };

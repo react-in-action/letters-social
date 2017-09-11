@@ -1,7 +1,7 @@
 import { join } from 'path';
 import { writeFile } from 'fs';
 import { promisify } from 'util';
-import { address, lorem, date, random } from 'faker';
+import { address, date, random } from 'faker';
 import starwars from 'starwars';
 import starWarsWords from 'forcem-ipsum';
 import mkdirp from 'mkdirp';
@@ -43,8 +43,8 @@ const createShareableImage = generateShareablePicture();
 async function generateUser() {
     const config = {};
     config.name = generateFakeContent('characters', 1)[0];
-    config.id = uuid();
-    config.profilePicture = createProfilePicture();
+    config.uid = uuid();
+    config.photoURL = createProfilePicture();
     return new User(config);
 }
 

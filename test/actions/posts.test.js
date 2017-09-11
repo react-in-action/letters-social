@@ -94,7 +94,7 @@ describe('post actions', () => {
             const expectedActions = [
                 {
                     type: types.posts.UPDATE,
-                    error: false,
+                    error: null,
                     posts: [samplePost]
                 }
             ];

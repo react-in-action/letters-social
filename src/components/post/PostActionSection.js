@@ -27,17 +27,16 @@ const PostActionSection = props => {
 };
 
 PostActionSection.propTypes = {
+    liked: PropTypes.bool.isRequired,
     likes: PropTypes.array.isRequired,
-    showComments: PropTypes.bool.isRequired,
-    comments: PropTypes.array.isRequired,
-    liked: PropTypes.bool
+    showComments: PropTypes.bool.isRequired
 };
 
 const mapStateToProps = (state, ownProps) => {
     const { postId } = ownProps;
     const { likes, showComments } = state.posts[postId];
-    const comments = state.commentIds.filter(commentId => state.comments[commentId].id === postId);
-    const liked = likes.find(like => like.postId === postId && state.user.id === like.userId);
+    const comments = state.commentIds.find(commentId => state.comments[commentId].id === postId);
+    const liked = likes.find(like => state.user.id === like.userId);
     return {
         likes,
         liked: Boolean(liked),

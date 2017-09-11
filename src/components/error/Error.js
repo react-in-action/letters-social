@@ -1,6 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 export function renderErrorMessage(err) {
+    console.log(err);
+    console.log(Object.keys(err));
     return (
         err.stack ||
         err.stacktrace ||

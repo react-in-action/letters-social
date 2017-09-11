@@ -2,24 +2,32 @@ import PropTypes from 'prop-types';
 import React from 'react';
 
 class CreateComment extends React.Component {
+    static propTypes = {
+        post: PropTypes.object.isRequired,
+        handleSubmit: PropTypes.func.isRequired
+    };
     constructor(props) {
         super(props);
         this.state = {
-            comment: ''
+            content: ''
         };
         this.handleCommentUpdate = this.handleCommentUpdate.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
     }
     handleCommentUpdate(event) {
         this.setState({
-            comment: event.target.value
+            content: event.target.value
         });
     }
     handleSubmit(event) {
+        const { post, user } = this.props;
         event.preventDefault();
-        const { postId, handleSubmit } = this.props;
-        console.log('Submitting');
-        console.log(event.target);
-        handleSubmit(postId);
+        this.props.handleSubmit({
+            userId: user.id,
+            postId: post.id,
+            content: this.state.content.trim()
+        });
+        this.setState(() => ({ content: '' }));
     }
     render() {
         return (
@@ -29,15 +37,11 @@ class CreateComment extends React.Component {
                     placeholder="Write a comment..."
                     onChange={this.handleCommentUpdate}
                     className="create-comment"
+                    value={this.state.content}
                 />
             </form>
         );
     }
 }
-
-CreateComment.propTypes = {
-    postId: PropTypes.string.isRequired,
-    handleSubmit: PropTypes.func.isRequired
-};
 
 export default CreateComment;

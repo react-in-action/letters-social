@@ -25,4 +25,10 @@ User.propTypes = {
     })
 };
 
+User.defaultProps = {
+    user: {
+        profilePicture: '/static/assets/users/4.jpeg'
+    }
+};
+
 export default User;

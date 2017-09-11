@@ -1,10 +1,10 @@
 import * as types from '../constants/types';
-import { createComment, fetchCommentsForPost } from '../shared/http';
+import * as API from '../shared/http';
 
 export function showComments(postId) {
     return {
         type: types.comments.SHOW,
-        error: false,
+        error: null,
         postId
     };
 }
@@ -12,7 +12,7 @@ export function showComments(postId) {
 export function toggleComments(postId) {
     return {
         type: types.comments.TOGGLE,
-        error: false,
+        error: null,
         postId
     };
 }
@@ -20,14 +20,28 @@ export function toggleComments(postId) {
 export function updateAvailableComments(comments) {
     return {
         type: types.comments.GET,
-        error: false,
+        error: null,
         comments
+    };
+}
+
+export function createComment(payload) {
+    return dispatch => {
+        return API.createComment(payload)
+            .then(res => res.json())
+            .then(comment => {
+                dispatch({
+                    type: types.comments.CREATE,
+                    error: null,
+                    comment
+                });
+            });
     };
 }
 
 export function getCommentsForPost(postId) {
     return dispatch => {
-        return fetchCommentsForPost(postId)
+        return API.fetchCommentsForPost(postId)
             .then(res => res.json())
             .then(comments => {
                 dispatch(updateAvailableComments(comments));

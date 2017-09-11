@@ -8,19 +8,14 @@ import fetch from 'isomorphic-fetch';
  * @return {Response}           Fetch Response
  */
 export function createPost(payload) {
-    // Create options for the request
-    const requestOptions = {
+    // Send the new post to the API
+    return fetch(`${process.env.ENDPOINT}/posts`, {
         method: 'POST',
         body: JSON.stringify(payload),
         headers: {
             'Content-Type': 'application/json'
         }
-    };
-    // Send the new post to the API
-    return fetch(
-        `${process.env.ENDPOINT}/posts?_embed=comments&_expand=user&_embed=likes`,
-        requestOptions
-    );
+    });
 }
 
 /**
@@ -64,17 +59,14 @@ export function fetchCommentsForPost(postId) {
  * @return {Response}           Fetch Response
  */
 export function createComment(payload) {
-    // Create options for the request
-    const requestOptions = {
+    // Send the new post to the API
+    return fetch(`${process.env.ENDPOINT}/comments`, {
         method: 'POST',
         body: JSON.stringify(payload),
         headers: {
             'Content-Type': 'application/json'
         }
-    };
-
-    // Send the new post to the API
-    return fetch(`${process.env.ENDPOINT}/comments`, requestOptions);
+    });
 }
 
 /**
@@ -87,8 +79,8 @@ export function createComment(payload) {
  */
 export function likePost(postId, userId) {
     // Create a new like for the user/post
-    return fetch(`${process.env.ENDPOINT}/likes`, {
-        method: 'POST',
+    return fetch(`${process.env.ENDPOINT}/posts/${postId}/likes/${userId}`, {
+        method: 'PUT',
         body: JSON.stringify({ postId, userId }),
         headers: {
             'Content-Type': 'application/json'
@@ -111,28 +103,4 @@ export function unlikePost(postId, userId) {
             'Content-Type': 'application/json'
         }
     });
-}
-
-/**
- * ensureUserAccount ensures that a user exists and creates the account for them if they don't have one already
- * @method ensureUserAccount
- * @param  {object} user User config object
- * @return {Response}
- */
-export async function ensureUserAccount(user) {
-    const existingUserResponse = await fetch(`${process.env.ENDPOINT}/users/${user.id}`);
-    if (existingUserResponse.status === 404) {
-        // Create options for the request
-        const requestOptions = {
-            method: 'POST',
-            body: JSON.stringify(user),
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        };
-        // Send the new post to the API
-        const newUserResponse = await fetch(`${process.env.ENDPOINT}/users`, requestOptions);
-        return await newUserResponse;
-    }
-    return await existingUserResponse;
 }

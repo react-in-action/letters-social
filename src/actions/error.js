@@ -1,11 +1,8 @@
 import * as types from '../constants/types';
 
-export function createError(err) {
+export function createError(error) {
     return {
-        type: types.auth.ERROR,
-        error: {
-            message: err.message,
-            name: err.name
-        }
+        type: types.app.ERROR,
+        error
     };
 }

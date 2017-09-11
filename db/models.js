@@ -2,9 +2,10 @@ import { v4 as uuid } from 'node-uuid';
 
 export class User {
     constructor(config) {
-        this.id = config.id || uuid();
-        this.name = config.name;
-        this.profilePicture = config.profilePicture || '/static/assets/users/1.jpeg';
+        this.id = config.uid || uuid();
+        this.name = config.displayName;
+        this.profilePicture =
+            config.profilePicture || config.photoURL || '/static/assets/users/1.jpeg';
     }
 }
 
@@ -35,7 +36,6 @@ export class Comment {
         this.id = config.id || uuid();
         this.content = config.content || null;
         this.date = config.date || new Date();
-        this.likes = config.likes || 0;
         this.userId = config.userId;
         this.postId = config.postId;
     }

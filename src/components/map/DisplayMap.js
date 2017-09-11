@@ -112,7 +112,7 @@ export default class DisplayMap extends Component {
             </div>,
             this.props.displayOnly && (
                 <div key="location-description" className="location-description">
-                    <small className="location-name">{this.state.location.name}</small>
+                    <span className="location-name">{this.state.location.name}</span>
                     <i className="location-icon fa fa-location-arrow" />
                 </div>
             )

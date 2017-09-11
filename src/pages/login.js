@@ -11,7 +11,11 @@ const Login = ({ handleLogin }) => (
         </div>
         <div className="providers">
             {providers.map(provider => (
-                <button onClick={() => handleLogin(provider)} className="btn btn-default">
+                <button
+                    key={provider}
+                    onClick={() => handleLogin(provider)}
+                    className="btn btn-default"
+                >
                     <i className={`fa fa-${provider.toLowerCase()}`} /> log in with {provider}
                 </button>
             ))}

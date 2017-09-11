@@ -14,19 +14,24 @@ import * as types from '../constants/types';
 export function comments(state = initialState.comments, action) {
     switch (action.type) {
         case types.comments.GET: {
-            // TODO: update chapters with this state in mind
             const { comments } = action;
             // Make a copy of the old state
-            let newState = Object.assign({}, state);
+            let nextState = Object.assign({}, state);
             // For each of our incoming comments, see if we have them in our map yet or not;
             // if they are missing, add them in. JS Maps can be read out in insertion order,
             // so we should still get comments in the order that we got them back from the API in
             for (let comment of comments) {
-                if (!newState[comment.id]) {
-                    newState[comment.id] = comment;
+                if (!nextState[comment.id]) {
+                    nextState[comment.id] = comment;
                 }
             }
-            return newState;
+            return nextState;
+        }
+        case types.comments.CREATE: {
+            const { comment } = action;
+            let nextState = Object.assign({}, state);
+            nextState[comment.id] = comment;
+            return nextState;
         }
         default:
             return state;
@@ -54,6 +59,12 @@ export function commentIds(state = initialState.commentIds, action) {
                     nextState.push(commentId);
                 }
             }
+            return nextState;
+        }
+        case types.comments.CREATE: {
+            const { comment } = action;
+            let nextState = Array.from(state);
+            nextState.push(comment.id);
             return nextState;
         }
         default:

@@ -1,6 +1,5 @@
 const { join } = require('path');
 const webpack = require('webpack');
-const uuid = require('uuid/v4');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const GLOBALS = {
