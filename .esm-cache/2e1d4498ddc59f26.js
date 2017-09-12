@@ -1,4 +1,4 @@
-_7f5‍.e([["User",()=>User],["Post",()=>Post],["Like",()=>Like],["Comment",()=>Comment]]);let uuid;_7f5‍.w('node-uuid',[["v4",function(v){uuid=v}]]);
+_ddc‍.e([["User",()=>User],["Post",()=>Post],["Like",()=>Like],["Comment",()=>Comment]]);let uuid;_ddc‍.w('uuid/v4',[["default",function(v){uuid=v}]]);
 
 class User {
     constructor(config) {
@@ -14,7 +14,7 @@ class Post {
         this.id = config.id || uuid();
         this.comments = config.comments || [];
         this.content = config.content || null;
-        this.date = config.date || new Date();
+        this.date = config.date || new Date().getTime();
         this.image = config.image || null;
         this.likes = config.likes || [];
         this.link = config.link || null;
@@ -35,7 +35,7 @@ class Comment {
     constructor(config) {
         this.id = config.id || uuid();
         this.content = config.content || null;
-        this.date = config.date || new Date();
+        this.date = config.date || new Date().getTime();
         this.userId = config.userId;
         this.postId = config.postId;
     }

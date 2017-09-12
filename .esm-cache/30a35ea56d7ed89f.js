@@ -1,4 +1,4 @@
-let join;_9bf‍.w('path',[["join",function(v){join=v}]]);let writeFile;_9bf‍.w('fs',[["writeFile",function(v){writeFile=v}]]);let promisify;_9bf‍.w('util',[["promisify",function(v){promisify=v}]]);let address,date,random;_9bf‍.w('faker',[["address",function(v){address=v}],["date",function(v){date=v}],["random",function(v){random=v}]]);let starwars;_9bf‍.w('starwars',[["default",function(v){starwars=v}]]);let starWarsWords;_9bf‍.w('forcem-ipsum',[["default",function(v){starWarsWords=v}]]);let mkdirp;_9bf‍.w('mkdirp',[["default",function(v){mkdirp=v}]]);let _;_9bf‍.w('lodash',[["default",function(v){_=v}]]);let uuid;_9bf‍.w('uuid/v4',[["default",function(v){uuid=v}]]);let ora;_9bf‍.w('ora',[["default",function(v){ora=v}]]);let User,Comment,Like,Post;_9bf‍.w('./models',[["User",function(v){User=v}],["Comment",function(v){Comment=v}],["Like",function(v){Like=v}],["Post",function(v){Post=v}]]);
+let join;_6d7‍.w('path',[["join",function(v){join=v}]]);let writeFile;_6d7‍.w('fs',[["writeFile",function(v){writeFile=v}]]);let promisify;_6d7‍.w('util',[["promisify",function(v){promisify=v}]]);let address,date,random;_6d7‍.w('faker',[["address",function(v){address=v}],["date",function(v){date=v}],["random",function(v){random=v}]]);let starwars;_6d7‍.w('starwars',[["default",function(v){starwars=v}]]);let starWarsWords;_6d7‍.w('forcem-ipsum',[["default",function(v){starWarsWords=v}]]);let mkdirp;_6d7‍.w('mkdirp',[["default",function(v){mkdirp=v}]]);let _;_6d7‍.w('lodash',[["default",function(v){_=v}]]);let uuid;_6d7‍.w('uuid/v4',[["default",function(v){uuid=v}]]);let ora;_6d7‍.w('ora',[["default",function(v){ora=v}]]);let User,Comment,Like,Post;_6d7‍.w('./models',[["User",function(v){User=v}],["Comment",function(v){Comment=v}],["Like",function(v){Like=v}],["Post",function(v){Post=v}]]);
 
 
 
@@ -53,7 +53,7 @@ function generatePost(userId) {
     const config = {};
     config.id = uuid();
     config.content = starwars();
-    config.date = new Date(date.recent(sample([1, 2, 3, 4, 5, 10, 15])));
+    config.date = new Date(date.recent(sample([1, 2, 3, 4, 5, 10, 15]))).getTime();
     config.image = Math.random() * 10 > 3 ? null : createShareableImage();
     config.likes = [];
     config.link = random.boolean()

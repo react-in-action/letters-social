@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import humanize from 'humanize-duration';
 
-const User = props => {
+const UserHeader = props => {
     const { date, user } = props;
     return (
         <div className="user-header">
@@ -11,24 +11,29 @@ const User = props => {
                 <a>{user.name}</a>
             </div>
             <small className="date">
-                {humanize(new Date() - new Date(date), { largest: 1 })} ago
+                {humanize(new Date() - new Date(date), {
+                    largest: 1,
+                    round: true,
+                    units: ['d', 'h', 'm']
+                })}{' '}
+                ago
             </small>
         </div>
     );
 };
 
-User.propTypes = {
-    date: PropTypes.string,
+UserHeader.propTypes = {
+    date: PropTypes.number,
     user: PropTypes.shape({
         profilePicture: PropTypes.string.isRequired,
         name: PropTypes.string
     })
 };
 
-User.defaultProps = {
+UserHeader.defaultProps = {
     user: {
         profilePicture: '/static/assets/users/4.jpeg'
     }
 };
 
-export default User;
+export default UserHeader;

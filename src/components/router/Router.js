@@ -6,6 +6,11 @@ import React, { Component } from 'react';
 import enroute from 'enroute';
 import invariant from 'invariant';
 
+/**
+ * The custom router we build. It handles the basics of client-side routing for our react application
+ * @module letters/components
+ * @type {Object}
+ */
 export default class Router extends Component {
     static propTypes = {
         children: PropTypes.arrayOf(PropTypes.element),

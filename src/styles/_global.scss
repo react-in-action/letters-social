@@ -30,8 +30,9 @@ body {
 
 .welcome {
     background-color: $white;
-    border: $border-base;
     border-radius: $border-radius;
+    border: $border-base;
+    margin: auto;
     padding: 10px;
 }
 

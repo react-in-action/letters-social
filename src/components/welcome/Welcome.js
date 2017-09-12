@@ -4,37 +4,26 @@ const Welcome = () => {
     return (
         <div>
             <div className="welcome">
-                <h3>Welcome!</h3>
+                <h1>Welcome!</h1>
                 <p>
-                    If you're here, you're probably reading or heard about{' '}
+                    If you're here, you're probably reading{' '}
                     <a href="https://ifelse.io/book" target="_blank" rel="noopener noreferrer">
                         React in Action
-                    </a>
-                    . This app, Letters Social, is built with{' '}
-                    <a rel="noopener noreferrer" href="https://facebook.github.io/react/">
-                        React
                     </a>{' '}
-                    and is what you'll be building{' '}
-                    <a href="https://ifelse.io/book" rel="noopener noreferrer">
-                        in the book (React in Action)
-                    </a>
-                    .
+                    from Manning Publications. This app is the example application that you'll build
+                    as you go through the book. In React in Action, you'll learn:
+                    <ul>
+                        <li>Building a simple social app</li>
+                        <li>Learning about the fundamentals of React</li>
+                        <li>Building React apps with modern JavaScript (ES2015 and beyond)</li>
+                        <li>How React works (React in action covers through Reacy 16 (fiber))</li>
+                        <li>Implementing a routing system from scratch</li>
+                        <li>Utilizing server-side rendering</li>
+                        <li>Testing React applications</li>
+                        <li>Implementing a Redux application architecture</li>
+                    </ul>
                 </p>
-                <p>
-                    <a href="https://ifelse.io/book" rel="noopener noreferrer">
-                        React in Action
-                    </a>{' '}
-                    explores
-                </p>
-                <ul>
-                    <li>Building a simple social app</li>
-                    <li>Learning about the fundamentals of React</li>
-                    <li>Building React apps with modern JavaScript (ES6 and beyond)</li>
-                    <li>Implementing a routing system from scratch</li>
-                    <li>Utilizing server-side rendering</li>
-                    <li>Testing React applications</li>
-                    <li>Implementing Redux application architecture</li>
-                </ul>
+
                 <p>
                     If you have any questions or thoughts, feel free to reach out to me{' '}
                     <a
@@ -44,7 +33,7 @@ const Welcome = () => {
                     >
                         @markthethomas
                     </a>{' '}
-                    on the Manning Author's forum (you get access w/ the MEAP!) or on{' '}
+                    on the Manning Author's forum (you get access w/ the MEAP!) or on {' '}
                     <a href="https://twitter.com/markthethomas" rel="noreferrer noopener">
                         Twitter
                     </a>{' '}
@@ -53,7 +42,7 @@ const Welcome = () => {
                     <br />
                     -{' '}
                     <a href="https://ifelse.io" rel="noreferrer noopener">
-                        Mark
+                        Mark Thomas
                     </a>
                 </p>
             </div>

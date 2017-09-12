@@ -48,12 +48,14 @@ export function posts(state = initialState.posts, action) {
         // get back from the server
         case types.posts.LIKE: {
             let nextState = Object.assign({}, state);
-            nextState[action.post.id] = action.post;
+            const oldPost = nextState[action.post.id];
+            nextState[action.post.id] = Object.assign({}, oldPost, action.post);
             return nextState;
         }
         case types.posts.UNLIKE: {
             let nextState = Object.assign({}, state);
-            nextState[action.post.id] = action.post;
+            const oldPost = nextState[action.post.id];
+            nextState[action.post.id] = Object.assign({}, oldPost, action.post);
             return nextState;
         }
         case types.comments.CREATE: {

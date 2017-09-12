@@ -23,7 +23,7 @@ export default function() {
     });
     server.post((req, res, next) => {
         req.body.id = uuid();
-        req.body.date = new Date();
+        req.body.date = new Date().getTime();
         return next();
     });
     server.post('/users', (req, res, next) => {

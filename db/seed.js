@@ -53,7 +53,7 @@ function generatePost(userId) {
     const config = {};
     config.id = uuid();
     config.content = starwars();
-    config.date = new Date(date.recent(sample([1, 2, 3, 4, 5, 10, 15])));
+    config.date = new Date(date.recent(sample([1, 2, 3, 4, 5, 10, 15]))).getTime();
     config.image = Math.random() * 10 > 3 ? null : createShareableImage();
     config.likes = [];
     config.link = random.boolean()

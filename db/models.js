@@ -1,4 +1,4 @@
-import { v4 as uuid } from 'node-uuid';
+import uuid from 'uuid/v4';
 
 export class User {
     constructor(config) {
@@ -14,7 +14,7 @@ export class Post {
         this.id = config.id || uuid();
         this.comments = config.comments || [];
         this.content = config.content || null;
-        this.date = config.date || new Date();
+        this.date = config.date || new Date().getTime();
         this.image = config.image || null;
         this.likes = config.likes || [];
         this.link = config.link || null;
@@ -35,7 +35,7 @@ export class Comment {
     constructor(config) {
         this.id = config.id || uuid();
         this.content = config.content || null;
-        this.date = config.date || new Date();
+        this.date = config.date || new Date().getTime();
         this.userId = config.userId;
         this.postId = config.postId;
     }

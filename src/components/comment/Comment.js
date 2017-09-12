@@ -21,7 +21,7 @@ Comment.propTypes = {
     comment: PropTypes.shape({
         content: PropTypes.string,
         user: PropTypes.object,
-        date: PropTypes.string,
+        date: PropTypes.number,
         likes: PropTypes.number
     })
 };

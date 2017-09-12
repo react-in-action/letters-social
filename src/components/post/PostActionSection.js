@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 
 import { getCommentsForPost, toggleComments } from '../../actions/comments';
 import { like, unlike } from '../../actions/posts';
-// TODO: bind to global like action for post
+
 /**
  * Contains the commenting and like buttons for a given post; controls showing comments or not
  * @method PostActionSection
@@ -16,7 +16,8 @@ const PostActionSection = props => {
     return (
         <div className="post-actions">
             <span onClick={liked ? unlikePost : likePost}>
-                <i className={liked ? 'fa fa-thumbs-up' : 'fa fa-thumbs-o-up'} /> {likes.length}
+                <i className={liked ? 'fa fa-thumbs-up' : 'fa fa-thumbs-o-up'} />{' '}
+                {likes.length > 0 ? likes.length : null}
             </span>
             <button onClick={loadAndShowComments} className="open">
                 <i className="fa fa-commenting-o" />{' '}

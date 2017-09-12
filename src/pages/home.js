@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import orderBy from 'lodash/orderBy';
 
 import { createError } from '../actions/error';
 import { createNewPost, getPostsForPage } from '../actions/posts';
@@ -52,9 +53,7 @@ Home.propTypes = {
     posts: PropTypes.arrayOf(PropTypes.object)
 };
 export const mapStateToProps = state => {
-    const posts = state.postIds
-        .map(postId => state.posts[postId])
-        .sort((a, b) => new Date(a.date) < new Date(b.date));
+    const posts = orderBy(state.postIds.map(postId => state.posts[postId]), 'date', 'desc');
     return {
         posts,
         loading: state.loading

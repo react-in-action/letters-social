@@ -46,12 +46,16 @@
     }
 }
 .location-description {
+    font-size: 0.75em;
     display: flex;
-    align-items: flex-end;
-    flex-direction: row-reverse;
+    align-items: center;
+    max-width: 35vw;
     .location-icon,
     .location-name {
         color: $blue;
         padding: 0 5px;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
     }
 }

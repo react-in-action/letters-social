@@ -1,8 +1,6 @@
 import initialState from '../constants/initialState';
 import * as types from '../constants/types';
 
-// TODO: ADD THIS TO CHAPTER 8
-
 /**
  * The comments reducer is responsible for controlling comments
  * @method comments

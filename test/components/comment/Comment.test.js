@@ -20,7 +20,7 @@ describe('<Comment/>', () => {
                 name: 'mark',
                 profilePicture: 'profilePicture'
             },
-            date: new Date().toISOString(),
+            date: new Date().getTime(),
             likes: 10
         };
         const component = renderer.create(<Comment comment={mockComment} />);

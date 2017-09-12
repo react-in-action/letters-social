@@ -113,5 +113,5 @@ export function unlikePost(postId, userId) {
  * @return {Response}     Fetch Response object
  */
 export function loadUser(id) {
-    return fetch(`${process.env.ENDPOINT}/users/${id}`);
+    return fetch(`${process.env.ENDPOINT}/users/${id}`).then(res => res.json());
 }
