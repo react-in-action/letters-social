@@ -42,6 +42,7 @@ export const HTMLPageWrapperWithState = ({ children, reduxState }) => {
                 <meta property="book:tag" content="Mark Thomas" />
                 <meta name="HandheldFriendly" content="True" />
                 <meta name="MobileOptimized" content="320" />
+                <meta name="theme-color" content="#4469af" />
                 <link
                     href="https://fonts.googleapis.com/css?family=Open+Sans:400,700,800"
                     rel="stylesheet"
@@ -53,17 +54,9 @@ export const HTMLPageWrapperWithState = ({ children, reduxState }) => {
                 <script />
                 <link rel="stylesheet" href="/static/styles.css" type="text/css" />
                 <link rel="stylesheet" href="https://api.mapbox.com/mapbox.js/v3.1.1/mapbox.css" />
-                <script
-                    async
-                    defer
-                    crossOrigin="anonymous"
-                    src="https://cdn.ravenjs.com/3.17.0/raven.min.js"
-                />
-                <script async src="/static/bundle.js" type="text/javascript" />
-                <script
-                    crossOrigin="anonymous"
-                    src="https://api.mapbox.com/mapbox.js/v3.1.1/mapbox.js"
-                />
+                <script src="https://cdn.ravenjs.com/3.17.0/raven.min.js" />
+                <script src="https://api.mapbox.com/mapbox.js/v3.1.1/mapbox.js" />
+                <script src="/static/bundle.js" type="text/javascript" />
                 <script>
                     {!isServer() &&
                         process.env.NODE_ENV ===

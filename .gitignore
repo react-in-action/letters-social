@@ -48,3 +48,4 @@ dist
 static/bundle.js
 static/service-worker.js
 static/styles.css
+static/manifest.json

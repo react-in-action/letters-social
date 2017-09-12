@@ -1,0 +1,13 @@
+{
+  "fontawesome-webfont.svg?v=4.7.0": "fontawesome-webfont.svg",
+  "fontawesome-webfont.ttf?v=4.7.0": "fontawesome-webfont.ttf",
+  "fontawesome-webfont.woff2?v=4.7.0": "fontawesome-webfont.woff2",
+  "fontawesome-webfont.woff?v=4.7.0": "fontawesome-webfont.woff",
+  "main.css": "styles.css",
+  "main.js": "bundle.js",
+  "static/assets/fonts/fontawesome-webfont.eot": "static/assets/fonts/fontawesome-webfont.eot",
+  "static/assets/fonts/fontawesome-webfont.svg?v=4.7.0": "static/assets/fonts/fontawesome-webfont.svg",
+  "static/assets/fonts/fontawesome-webfont.ttf?v=4.7.0": "static/assets/fonts/fontawesome-webfont.ttf",
+  "static/assets/fonts/fontawesome-webfont.woff2?v=4.7.0": "static/assets/fonts/fontawesome-webfont.woff2",
+  "static/assets/fonts/fontawesome-webfont.woff?v=4.7.0": "static/assets/fonts/fontawesome-webfont.woff"
+}

@@ -1,8 +1,10 @@
 const webpack = require('webpack');
 const path = require('path');
+const uuid = require('uuid/v4');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const WebpackMd5Hash = require('webpack-md5-hash');
 const SWPrecacheWebpackPlugin = require('sw-precache-webpack-plugin');
+const ManifestPlugin = require('webpack-manifest-plugin');
 
 const GLOBALS = {
     'process.env': {
@@ -34,7 +36,11 @@ module.exports = {
             staticFileGlobsIgnorePatterns: [/\.map$/, /asset-manifest\.json$/]
         }),
         new webpack.DefinePlugin(GLOBALS),
-        new WebpackMd5Hash(),
+        new WebpackMd5Hash({
+            seed: {
+                revision: uuid()
+            }
+        }),
         new webpack.optimize.OccurrenceOrderPlugin(),
         new webpack.optimize.UglifyJsPlugin({
             compress: {
@@ -47,7 +53,8 @@ module.exports = {
             },
             sourceMap: false
         }),
-        new ExtractTextPlugin('styles.css')
+        new ExtractTextPlugin('styles.css'),
+        new ManifestPlugin()
     ],
     module: {
         rules: [
