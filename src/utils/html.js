@@ -21,6 +21,7 @@ export const HTMLPageWrapperWithState = ({ children, reduxState }) => {
                 <title>
                     Letters Social | React in Action by Mark Thomas from Manning Publications
                 </title>
+                <link rel="manifest" href="/static/manifest.json" />
                 <meta name="viewport" content="width=device-width,initial-scale=1" />
                 <meta name="ROBOTS" content="INDEX, FOLLOW" />
                 <meta property="og:title" content={ogProps.title} />

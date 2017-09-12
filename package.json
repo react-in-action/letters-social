@@ -81,7 +81,7 @@
         "react": "^16.0.0-rc.2",
         "react-dom": "^16.0.0-rc.2",
         "react-redux": "5.0.6",
-        "react-router": "3.0.5",
+        "react-router": "3.1.0-rc.1",
         "redux": "3.7.2",
         "redux-thunk": "2.2.0",
         "response-time": "2.3.2",
