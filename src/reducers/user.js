@@ -12,7 +12,7 @@ import * as types from '../constants/types';
 export function user(state = initialState.user, action) {
     switch (action.type) {
         case types.auth.AUTH_LOGIN_SUCCESS:
-            const user = action.payload;
+            const user = action.user;
             return Object.assign({}, state.user, {
                 authenticated: true,
                 name: user.name,

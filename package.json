@@ -43,7 +43,8 @@
         "npm": "5.4.0"
     },
     "jest": {
-        "testEnvironment": "jsdom"
+        "testEnvironment": "jsdom",
+        "setupFiles": ["raf/polyfill"]
     },
     "homepage": "https://github.com/react-in-action/letters-social#readme",
     "dependencies": {

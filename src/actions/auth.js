@@ -4,18 +4,11 @@ import { history } from '../history';
 import { createError } from './error';
 import { loading, loaded } from './loading';
 
-export function loginFailure() {
-    return {
-        type: types.auth.AUTH_LOGIN_FAILURE,
-        error: false
-    };
-}
-
 export function loginSuccess(user) {
     return {
         type: types.auth.AUTH_LOGIN_SUCCESS,
         error: null,
-        payload: user
+        user
     };
 }
 

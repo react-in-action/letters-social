@@ -18,22 +18,18 @@ const mockStore = configureMockStore(middlewares);
 
 describe('post actions', () => {
     let sandbox;
-    beforeEach(function () {
+    beforeEach(function() {
         sandbox = sinon.createSandbox();
     });
-    afterEach(function () {
+    afterEach(function() {
         sandbox.restore();
     });
     describe('getPostsForPage', () => {
         it('should create the right actions', () => {
             const store = mockStore(initialState);
-            const updatePaginationLinksStub = sandbox.stub()
+            const updatePaginationLinksStub = sandbox.stub();
             return store.dispatch(getPostsForPage()).then(() => {
-                const [
-                    loadingAction,
-                    updateAction,
-                    loadedAction
-                ] = store.getActions();
+                const [loadingAction, updateAction, loadedAction] = store.getActions();
                 expect(loadingAction).toEqual({
                     type: types.app.LOADING
                 });
@@ -55,11 +51,7 @@ describe('post actions', () => {
                 content: 'a post!'
             };
             return store.dispatch(createNewPost(newPost)).then(() => {
-                const [
-                    loadingAction,
-                    secondLoadingAction,
-                    updatePostsAction
-                ] = store.getActions();
+                const [loadingAction, secondLoadingAction, updatePostsAction] = store.getActions();
                 expect(loadingAction).toEqual({ type: types.app.LOADING });
                 expect(secondLoadingAction).toEqual({
                     type: types.app.LOADING
@@ -73,11 +65,7 @@ describe('post actions', () => {
         it(' should create the right actions', () => {
             const store = mockStore();
             return store.dispatch(getPostByID('id')).then(() => {
-                const [
-                    loadingAction,
-                    updateAction,
-                    loadedAction
-                ] = store.getActions();
+                const [loadingAction, updateAction, loadedAction] = store.getActions();
                 expect(loadingAction).toEqual({ type: types.app.LOADING });
                 expect(loadedAction).toEqual({ type: types.app.LOADED });
                 expect(updateAction.type).toEqual(types.posts.UPDATE);
