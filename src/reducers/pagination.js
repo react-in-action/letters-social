@@ -15,7 +15,16 @@ export function pagination(state = initialState.pagination, action) {
             const nextState = Object.assign({}, state);
             for (let k in action.links) {
                 if (action.links.hasOwnProperty(k)) {
-                    nextState[k] = action.links[k].url;
+                    // NOTE: this is due to how json-server works w/ the current deploy setup we have
+                    // Because the frontend of the system terminates SSL, the links that come back
+                    // from the server have the http protocol set and not https. We only serve http2
+                    // so https is required. This is *not* specific to React, just how the app is currently
+                    // deployed 
+                    if (process.env.NODE_ENV === 'production') {
+                        nextState[k] = action.links[k].url.replace(/http:\/\//, 'https://');
+                    } else {
+                        nextState[k] = action.links[k].url;
+                    }
                 }
             }
             return nextState;

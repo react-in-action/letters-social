@@ -10,6 +10,12 @@ export default function() {
     const server = jsonAPI.create();
     server.use(jsonAPI.defaults());
     server.use(jsonAPI.bodyParser);
+    server.use(function (req, res, next) {
+        console.log(req.protocol);
+        console.log(req.get('host'));
+        console.log(req.originalUrl);
+        return next();
+    })
     server.post((req, res, next) => {
         req.body.id = uuid();
         req.body.date = new Date().getTime();
