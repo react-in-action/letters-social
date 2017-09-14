@@ -41,10 +41,10 @@ public/styles.*
 public/styles
 
 dist
-.next
-.expo/
-
+db/db.json
 static/bundle.js
 static/service-worker.js
 static/styles.css
 static/manifest.json
+firebase-admin-key.json
+.esm-cache

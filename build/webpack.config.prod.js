@@ -5,6 +5,7 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const WebpackMd5Hash = require('webpack-md5-hash');
 const SWPrecacheWebpackPlugin = require('sw-precache-webpack-plugin');
 const ManifestPlugin = require('webpack-manifest-plugin');
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 const GLOBALS = {
     'process.env': {
@@ -13,9 +14,7 @@ const GLOBALS = {
         RIA_SENTRY_APP: JSON.stringify('https://23f0e00b78a24ac88450c8261b59ed7c@sentry.io/212515'),
         GOOGLE_API_KEY: JSON.stringify('AIzaSyDBosKGKi-BI9Z8vftAwkBRQlSDDNE8PvM'),
         FIREBASE_AUTH_DOMAIN: JSON.stringify('letters-social.firebaseapp.com'),
-        MAPBOX_API_TOKEN: JSON.stringify(
-            'pk.eyJ1IjoibWFya3RoZXRob21hcyIsImEiOiJHa3JyZFFjIn0.MwCj8OA5q4dqdll1s2kMiw'
-        )
+        MAPBOX_API_TOKEN: JSON.stringify('pk.eyJ1IjoibWFya3RoZXRob21hcyIsImEiOiJHa3JyZFFjIn0.MwCj8OA5q4dqdll1s2kMiw')
     }
 };
 
@@ -27,14 +26,6 @@ module.exports = {
         filename: 'bundle.js'
     },
     plugins: [
-        new SWPrecacheWebpackPlugin({
-            cacheId: 'letters',
-            dontCacheBustUrlsMatching: /\.\w{8}\./,
-            filename: 'service-worker.js',
-            minify: true,
-            navigateFallback: '/index.html',
-            staticFileGlobsIgnorePatterns: [/\.map$/, /asset-manifest\.json$/]
-        }),
         new webpack.DefinePlugin(GLOBALS),
         new WebpackMd5Hash({
             seed: {
@@ -54,7 +45,16 @@ module.exports = {
             sourceMap: false
         }),
         new ExtractTextPlugin('styles.css'),
-        new ManifestPlugin()
+        new ManifestPlugin(),
+        new SWPrecacheWebpackPlugin({
+            cacheId: 'letters',
+            dontCacheBustUrlsMatching: /\.\w{8}\./,
+            filename: 'service-worker.js',
+            minify: true,
+            navigateFallback: '/index.html',
+            staticFileGlobsIgnorePatterns: [/\.map$/, /asset-manifest\.json$/]
+        }),
+        process.env.ANALYZE ? new BundleAnalyzerPlugin() : function() {}
     ],
     module: {
         rules: [

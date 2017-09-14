@@ -9,7 +9,7 @@ import NotFound from './pages/error';
 import { loadUser } from './shared/http';
 import { createError } from './actions/error';
 import { loginSuccess } from './actions/auth';
-import { getFirebaseUser } from './actions/auth';
+import { getFirebaseUser, getFirebaseToken } from './backend/auth';
 import configureStore from './store/configureStore';
 
 const store = configureStore();
@@ -35,6 +35,7 @@ async function requireUser(nextState, replace, callback) {
         }
         // Otherwise, check firebase to see if there's a user logged in
         const firebaseUser = await getFirebaseUser();
+        const fireBaseToken = await getFirebaseToken();
         if (!firebaseUser && !isOnLoginPage) {
             replace({
                 pathname: '/login'
@@ -47,7 +48,7 @@ async function requireUser(nextState, replace, callback) {
         }
         // We need to load the actual user, so do so here
         const user = await loadUser(firebaseUser.uid);
-        store.dispatch(loginSuccess(user));
+        store.dispatch(loginSuccess(user, fireBaseToken));
         return callback();
     } catch (err) {
         store.dispatch(createError(err));

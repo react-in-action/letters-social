@@ -2,7 +2,7 @@
     "extends": ["prettier"],
     "plugins": ["react"],
     "rules": {
-        "max-len": ["error", 100],
+        "max-len": ["error", 120],
         "no-process-env": "off"
     }
 }

@@ -149,7 +149,7 @@ function generateLikes(n, posts, users) {
     try {
         await Promise.all([
             write(
-                join(__dirname, 'seed', 'db.json'),
+                join(__dirname, 'db.json'),
                 JSON.stringify({
                     users,
                     posts,

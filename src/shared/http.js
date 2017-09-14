@@ -1,4 +1,30 @@
 import fetch from 'isomorphic-fetch';
+import Cookies from 'js-cookie';
+
+/**
+ * Generates a Fetch confiugration object so we can share headers
+ * @method generateFetchConfig
+ * @module letters/shared/http
+ * @param  {string}            method      HTTP verb
+ * @param  {object}            [body=null] payload for post/put
+ * @return {object}                        config
+ */
+function generateFetchConfig(method, body = null) {
+    const upCasedMethod = method.toUpperCase();
+    const token = Cookies.get('letters-token');
+    const config = {
+        method: upCasedMethod,
+        headers: {
+            'Content-Type': 'application/json',
+            'Letters-Token': token
+        },
+        credentials: 'same-origin'
+    };
+    if (['POST', 'PUT'].includes(upCasedMethod)) {
+        config.body = JSON.stringify(body);
+    }
+    return config;
+}
 
 /**
  * Creates a post with the given payload
@@ -9,13 +35,7 @@ import fetch from 'isomorphic-fetch';
  */
 export function createPost(payload) {
     // Send the new post to the API
-    return fetch(`${process.env.ENDPOINT}/posts`, {
-        method: 'POST',
-        body: JSON.stringify(payload),
-        headers: {
-            'Content-Type': 'application/json'
-        }
-    });
+    return fetch(`${process.env.ENDPOINT}/posts`, generateFetchConfig('POST', payload));
 }
 
 /**
@@ -37,7 +57,10 @@ export function fetchPosts(endpoint) {
  * @return {Response}     Fetch Response object
  */
 export function fetchPost(id) {
-    return fetch(`${process.env.ENDPOINT}/posts/${id}?_embed=comments&_expand=user&_embed=likes`);
+    return fetch(
+        `${process.env.ENDPOINT}/posts/${id}?_embed=comments&_expand=user&_embed=likes`,
+        generateFetchConfig('GET')
+    );
 }
 
 /**
@@ -48,7 +71,7 @@ export function fetchPost(id) {
  * @return {Response}     Fetch Response object
  */
 export function fetchCommentsForPost(postId) {
-    return fetch(`${process.env.ENDPOINT}/comments?postId=${postId}&_expand=user`);
+    return fetch(`${process.env.ENDPOINT}/comments?postId=${postId}&_expand=user`, generateFetchConfig('GET'));
 }
 
 /**
@@ -60,13 +83,7 @@ export function fetchCommentsForPost(postId) {
  */
 export function createComment(payload) {
     // Send the new post to the API
-    return fetch(`${process.env.ENDPOINT}/comments`, {
-        method: 'POST',
-        body: JSON.stringify(payload),
-        headers: {
-            'Content-Type': 'application/json'
-        }
-    });
+    return fetch(`${process.env.ENDPOINT}/comments`, generateFetchConfig('POST', payload));
 }
 
 /**
@@ -79,13 +96,10 @@ export function createComment(payload) {
  */
 export function likePost(postId, userId) {
     // Create a new like for the user/post
-    return fetch(`${process.env.ENDPOINT}/posts/${postId}/likes/${userId}`, {
-        method: 'PUT',
-        body: JSON.stringify({ postId, userId }),
-        headers: {
-            'Content-Type': 'application/json'
-        }
-    });
+    return fetch(
+        `${process.env.ENDPOINT}/posts/${postId}/likes/${userId}`,
+        generateFetchConfig('PUT', { postId, userId })
+    );
 }
 
 /**
@@ -97,12 +111,7 @@ export function likePost(postId, userId) {
  * @return {Response}
  */
 export function unlikePost(postId, userId) {
-    return fetch(`${process.env.ENDPOINT}/posts/${postId}/likes/${userId}`, {
-        method: 'DELETE',
-        headers: {
-            'Content-Type': 'application/json'
-        }
-    });
+    return fetch(`${process.env.ENDPOINT}/posts/${postId}/likes/${userId}`, generateFetchConfig('DELETE'));
 }
 
 /**
@@ -113,5 +122,5 @@ export function unlikePost(postId, userId) {
  * @return {Response}     Fetch Response object
  */
 export function loadUser(id) {
-    return fetch(`${process.env.ENDPOINT}/users/${id}`).then(res => res.json());
+    return fetch(`${process.env.ENDPOINT}/users/${id}`, generateFetchConfig('GET')).then(res => res.json());
 }

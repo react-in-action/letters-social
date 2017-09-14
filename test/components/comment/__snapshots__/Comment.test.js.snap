@@ -4,25 +4,33 @@ exports[`<Comment/> should render correctly 1`] = `
 <div
   className="comment"
 >
-  <img
-    alt="content"
-    height={50}
-    src="profilePicture"
-    width={50}
-  />
-  <a>
-    mark
-     
-    thomas
-  </a>
-  <small
-    className="date"
+  <div
+    className="user-header"
   >
-     
-    a few seconds ago
-     
-  </small>
-  <p>
+    <div
+      className="user-info-section"
+    >
+      <img
+        className="img-circle"
+        height={25}
+        src="profilePicture"
+        width={25}
+      />
+      <a>
+        mark
+      </a>
+    </div>
+    <small
+      className="date"
+    >
+      0 minutes
+       
+      ago
+    </small>
+  </div>
+  <p
+    className="content"
+  >
      
     content
      

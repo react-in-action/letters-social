@@ -10,12 +10,6 @@ export default function() {
     const server = jsonAPI.create();
     server.use(jsonAPI.defaults());
     server.use(jsonAPI.bodyParser);
-    server.use(function (req, res, next) {
-        console.log(req.protocol);
-        console.log(req.get('host'));
-        console.log(req.originalUrl);
-        return next();
-    })
     server.post((req, res, next) => {
         req.body.id = uuid();
         req.body.date = new Date().getTime();
@@ -27,16 +21,12 @@ export default function() {
     });
     server.post('/comments', async (req, res, next) => {
         req.body = new Comment(req.body);
-        req.body.user = await fetch(
-            `${config.get('ENDPOINT')}/users/${req.body.userId}`
-        ).then(res => res.json());
+        req.body.user = await fetch(`${config.get('ENDPOINT')}/users/${req.body.userId}`).then(res => res.json());
         return next();
     });
     server.post('/posts', async (req, res, next) => {
         req.body = new Post(req.body);
-        req.body.user = await fetch(
-            `${config.get('ENDPOINT')}/users/${req.body.userId}`
-        ).then(res => res.json());
+        req.body.user = await fetch(`${config.get('ENDPOINT')}/users/${req.body.userId}`).then(res => res.json());
         return next();
     });
     server.put('/posts/:postId/likes/:userId', async (req, res) => {
@@ -112,6 +102,6 @@ export default function() {
         }).then(res => res.json());
         return res.json(updatedPost);
     });
-    server.use(jsonAPI.router(resolve(__dirname, '..', 'db', 'seed', 'db.json')));
+    server.use(jsonAPI.router(resolve(__dirname, '..', 'db', 'db.json')));
     return server;
 }

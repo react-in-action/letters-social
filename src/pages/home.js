@@ -28,11 +28,7 @@ class Home extends Component {
                     {this.props.posts && (
                         <div className="posts">
                             {this.props.posts.map(post => (
-                                <Post
-                                    key={post.id}
-                                    post={post}
-                                    openCommentsDrawer={this.props.actions.showComments}
-                                />
+                                <Post key={post.id} post={post} openCommentsDrawer={this.props.actions.showComments} />
                             ))}
                         </div>
                     )}
