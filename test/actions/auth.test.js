@@ -1,6 +1,8 @@
 jest.mock('../../src/backend/auth');
 jest.mock('../../src/history');
+jest.mock('js-cookie');
 
+import Cookies from 'js-cookie';
 import configureStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 
@@ -28,6 +30,7 @@ describe('login actions', () => {
         const actual = loginSuccess(mockUser);
         expect(actual).toEqual(expected);
     });
+
     it('logoutSuccess', () => {
         const mockUser = {
             id: 'id',

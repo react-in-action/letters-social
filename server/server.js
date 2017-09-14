@@ -94,10 +94,10 @@ app.use('*', (req, res, next) => {
             res.setHeader('Content-type', 'text/html');
             renderStream.pipe(res);
         } catch (e) {
-            if (e.errorInfo.code === 'auth/argument-error') {
+            if (e.errorInfo.code === 'auth/argument-error' && req.url !== '/login') {
                 return res.redirect(config.get('CLIENT') + '/login');
             }
-            next(e);
+            return next(e);
         }
     });
 });

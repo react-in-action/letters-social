@@ -9,7 +9,9 @@
     },
     "now": {
         "name": "letters-social",
-        "alias": "social.react.sh"
+        "alias": "social.react.sh",
+        "dotenv": true,
+        "dotenv": ".env.production"
     },
     "scripts": {
         "analyze": "ANALYZE=true npm run build",
@@ -77,7 +79,7 @@
         "mapbox": "1.0.0-beta9",
         "morgan": "1.8.2",
         "parse-link-header": "1.0.1",
-        "pm2": "2.6.1",
+        "pm2": "^2.6.1",
         "react": "16.0.0-rc.2",
         "react-dom": "16.0.0-rc.2",
         "react-redux": "5.0.6",

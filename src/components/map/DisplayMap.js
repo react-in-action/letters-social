@@ -9,6 +9,7 @@ import { isServer } from '../../utils/environment';
  * @module letters/components
  * @type {Class}
  */
+
 export default class DisplayMap extends Component {
     constructor(props) {
         super(props);
@@ -97,6 +98,7 @@ export default class DisplayMap extends Component {
                         src={this.generateStaticMapImage(this.state.location.lat, this.state.location.lng)}
                         alt={this.state.location.name}
                     />
+                    {true && <div className="name">{name}</div>}
                 </div>
             );
         }
