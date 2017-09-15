@@ -4,5 +4,8 @@
     "rules": {
         "max-len": ["error", 120],
         "no-process-env": "off"
+    },
+    "env": {
+        "jest": true
     }
 }

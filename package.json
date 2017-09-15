@@ -44,7 +44,15 @@
     },
     "jest": {
         "testEnvironment": "jsdom",
-        "setupFiles": ["raf/polyfill"]
+        "setupFiles": ["raf/polyfill", "./test/setup.js"],
+        "globals": {
+            "__DEV__": true,
+            "NODE_ENV": "test",
+            "ENDPOINT": "http://localhost:3500",
+            "GOOGLE_API_KEY": "key",
+            "FIREBASE_AUTH_DOMAIN": "url",
+            "MAPBOX_API_TOKEN": "token"
+        }
     },
     "homepage": "https://github.com/react-in-action/letters-social#readme",
     "dependencies": {

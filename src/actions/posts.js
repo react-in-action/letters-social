@@ -5,22 +5,41 @@ import * as API from '../shared/http';
 import { createError } from './error';
 import { getCommentsForPost } from './comments';
 
+/**
+ * Updates available posts
+ * @method updateAvailablePosts
+ * @module letters/actions
+ * @param  {Array<Post>}             posts array of incoming posts
+ * @return {object}
+ */
 export function updateAvailablePosts(posts) {
     return {
         type: types.posts.GET,
-        error: null,
         posts
     };
 }
 
+/**
+ * Updates links used for pagination
+ * @method updatePaginationLinks
+ * @module letters/actions
+ * @param  {object}              links parsed link headers
+ * @return {object}
+ */
 export function updatePaginationLinks(links) {
     return {
         type: types.posts.UPDATE_LINKS,
-        error: null,
         links
     };
 }
 
+/**
+ * Likes a post
+ * @method like
+ * @module letters/actions
+ * @param  {string} postId post id to like
+ * @return {object}
+ */
 export function like(postId) {
     return (dispatch, getState) => {
         const { user } = getState();
@@ -29,13 +48,19 @@ export function like(postId) {
             .then(post => {
                 dispatch({
                     type: types.posts.LIKE,
-                    error: null,
                     post
                 });
             });
     };
 }
 
+/**
+ * Unlike a post
+ * @method unlike
+ * @module letters/actions
+ * @param  {string} postId post id to unlike
+ * @return {object}
+ */
 export function unlike(postId) {
     return (dispatch, getState) => {
         const { user } = getState();
@@ -44,13 +69,19 @@ export function unlike(postId) {
             .then(post => {
                 dispatch({
                     type: types.posts.UNLIKE,
-                    error: null,
                     post
                 });
             });
     };
 }
 
+/**
+ * Create a new post
+ * @method createNewPost
+ * @module letters/actions
+ * @param  {object}      post post payload
+ * @return {object}
+ */
 export function createNewPost(post) {
     return (dispatch, getState) => {
         const { user } = getState();
@@ -60,7 +91,6 @@ export function createNewPost(post) {
             .then(newPost => {
                 dispatch({
                     type: types.posts.CREATE,
-                    error: null,
                     post: newPost
                 });
             })
@@ -68,6 +98,13 @@ export function createNewPost(post) {
     };
 }
 
+/**
+ * Get posts for a given page ['first', 'prev', 'next']
+ * @method getPostsForPage
+ * @module letters/actions
+ * @param  {string}        [page='first'] page type to get
+ * @return {object}
+ */
 export function getPostsForPage(page = 'first') {
     return (dispatch, getState) => {
         const { pagination } = getState();
@@ -84,6 +121,13 @@ export function getPostsForPage(page = 'first') {
     };
 }
 
+/**
+ * Load a given post
+ * @method loadPost
+ * @module letters/actions
+ * @param  {string} postId post id to load
+ * @return {object}
+ */
 export function loadPost(postId) {
     return dispatch => {
         return API.fetchPost(postId)

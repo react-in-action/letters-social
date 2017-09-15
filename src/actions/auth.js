@@ -1,4 +1,5 @@
 import Cookies from 'js-cookie';
+import fetch from 'isomorphic-fetch';
 
 import * as types from '../constants/types';
 import { history } from '../history';
@@ -6,24 +7,40 @@ import { createError } from './error';
 import { loading, loaded } from './loading';
 import { getFirebaseUser, loginWithGithub, logUserOut, getFirebaseToken } from '../backend/auth';
 
+/**
+ * Handles the user logging in
+ * @method loginSuccess
+ * @module letters/actions
+ * @param  {object}     user  user object from Firebase
+ * @param  {string}     token firebase token, used for SSR
+ * @return {object}
+ */
 export function loginSuccess(user, token) {
     return {
         type: types.auth.AUTH_LOGIN_SUCCESS,
-        error: null,
         user,
         token
     };
 }
 
-export function logoutSuccess(user, token) {
+/**
+ * Handles logout
+ * @method logoutSuccess
+ * @module letters/actions
+ * @return {object}
+ */
+export function logoutSuccess() {
     return {
-        type: types.auth.AUTH_LOGOUT_SUCCESS,
-        error: null,
-        user,
-        token
+        type: types.auth.AUTH_LOGOUT_SUCCESS
     };
 }
 
+/**
+ * Logs a user out
+ * @method logout
+ * @module letters/actions
+ * @return {object}
+ */
 export function logout() {
     return dispatch => {
         return logUserOut()
@@ -42,6 +59,12 @@ export function logout() {
     };
 }
 
+/**
+ * Logs a user in
+ * @method login
+ * @module letters/actions
+ * @return {object}
+ */
 export function login() {
     return dispatch => {
         return loginWithGithub().then(async () => {
