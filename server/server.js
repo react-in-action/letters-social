@@ -29,7 +29,7 @@ import { Provider } from 'react-redux';
 // Our modules
 import configureStore from '../src/store/configureStore';
 import initialReduxState from '../src/constants/initialState';
-import { HTMLPageWrapperWithState } from '../src/utils/html';
+import { HTML } from '../src/components/HTML';
 import { routes } from '../src/routes';
 import { loginSuccess } from '../src/actions/auth';
 import { getPostsForPage } from '../src/actions/posts';
@@ -73,7 +73,9 @@ app.use('*', (req, res, next) => {
                 const firebaseUser = await firebase.auth().verifyIdToken(token);
                 // Normally we'd do something like query the database or send a request to
                 // another service/microservice, not the same server, but for our purposes this works
-                const userResponse = await fetch(`${config.get('ENDPOINT')}/users/${firebaseUser.uid}`);
+                const userResponse = await fetch(
+                    `${config.get('ENDPOINT')}/users/${firebaseUser.uid}`
+                );
                 // If a user can be found, load data for them
                 if (userResponse.status !== 404) {
                     const user = await userResponse.json();
@@ -84,19 +86,19 @@ app.use('*', (req, res, next) => {
                 }
             }
             const html = (
-                <HTMLPageWrapperWithState reduxState={store.getState()}>
+                <HTML reduxState={store.getState()}>
                     <Provider store={store}>
                         <RouterContext {...props} />
                     </Provider>
-                </HTMLPageWrapperWithState>
+                </HTML>
             );
             const renderStream = renderToNodeStream(html);
-            res.setHeader('Content-type', 'text/html');
+            res.setHeader('Content-type', 'text/html; charset=UTF-8');
             renderStream.pipe(res);
         } catch (e) {
-            if (e.errorInfo.code === 'auth/argument-error' && req.url !== '/login') {
-                return res.redirect(config.get('CLIENT') + '/login');
-            }
+            // if (e.errorInfo.code === 'auth/argument-error' && req.url !== '/login') {
+            //     return res.redirect(config.get('CLIENT') + '/login');
+            // }
             return next(e);
         }
     });

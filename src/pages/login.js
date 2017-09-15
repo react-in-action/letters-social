@@ -4,7 +4,7 @@ import { login } from '../actions/auth';
 import { providers } from '../constants/types';
 import Welcome from '../components/welcome/Welcome';
 
-const Login = ({ handleLogin }) => (
+export const Login = ({ handleLogin }) => (
     <div className="login">
         <div className="welcome-container">
             <Welcome />

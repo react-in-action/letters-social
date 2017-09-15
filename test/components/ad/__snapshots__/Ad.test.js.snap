@@ -1,5 +1,47 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`<Ad/> should display a link 1`] = `
+<div
+  className="ad"
+>
+  <a
+    href="https://ifelse.io/book"
+    rel="noreferrer noopener"
+    target="_blank"
+  >
+    <img
+      alt="React in Action by Mark Thomas | Manning Publications"
+      className="img-responsive"
+      src="/static/assets/ads/orly.jpg"
+    />
+  </a>
+  <small>
+    ads by Letters
+  </small>
+</div>
+`;
+
+exports[`<Ad/> should display an image 1`] = `
+<div
+  className="ad"
+>
+  <a
+    href="https://ifelse.io/book"
+    rel="noreferrer noopener"
+    target="_blank"
+  >
+    <img
+      alt="React in Action by Mark Thomas | Manning Publications"
+      className="img-responsive"
+      src="/static/assets/ads/ria.png"
+    />
+  </a>
+  <small>
+    ads by Letters
+  </small>
+</div>
+`;
+
 exports[`<Ad/> should render correctly 1`] = `
 <div
   className="ad"

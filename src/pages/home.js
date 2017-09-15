@@ -12,7 +12,7 @@ import CreatePost from '../components/post/Create';
 import Post from '../components/post/Post';
 import Welcome from '../components/welcome/Welcome';
 
-class Home extends Component {
+export class Home extends Component {
     componentDidMount() {
         this.props.actions.getPostsForPage();
     }
@@ -28,7 +28,11 @@ class Home extends Component {
                     {this.props.posts && (
                         <div className="posts">
                             {this.props.posts.map(post => (
-                                <Post key={post.id} post={post} openCommentsDrawer={this.props.actions.showComments} />
+                                <Post
+                                    key={post.id}
+                                    post={post}
+                                    openCommentsDrawer={this.props.actions.showComments}
+                                />
                             ))}
                         </div>
                     )}

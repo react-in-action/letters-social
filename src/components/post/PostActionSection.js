@@ -17,7 +17,7 @@ const PostActionSection = props => {
         <div className="post-actions">
             <span onClick={liked ? unlikePost : likePost}>
                 <i className={liked ? 'fa fa-thumbs-up' : 'fa fa-thumbs-o-up'} />{' '}
-                {likes.length > 0 ? likes.length : null}
+                {likes.length > 1 ? likes.length : null}
             </span>
             <button onClick={loadAndShowComments} className="open">
                 <i className="fa fa-commenting-o" />{' '}

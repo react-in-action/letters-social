@@ -2,10 +2,10 @@ import initialState from '../constants/initialState';
 import * as types from '../constants/types';
 
 /**
- * The loading reducer controls the global loading state
- * @method loading
+ * The pagination reducer controls the global pagination state
+ * @method pagination
  * @module letters/reducers
- * @param  {boolean} [state=initialState.loading] prev/initial state
+ * @param  {boolean} [state=initialState.pagination] prev/initial state
  * @param  {object} action                       Redux action
  * @return {object}                              next state
  */
@@ -19,7 +19,7 @@ export function pagination(state = initialState.pagination, action) {
                     // Because the frontend of the system terminates SSL, the links that come back
                     // from the server have the http protocol set and not https. We only serve http2
                     // so https is required. This is *not* specific to React, just how the app is currently
-                    // deployed 
+                    // deployed
                     if (process.env.NODE_ENV === 'production') {
                         nextState[k] = action.links[k].url.replace(/http:\/\//, 'https://');
                     } else {

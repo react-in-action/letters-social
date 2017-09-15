@@ -48,3 +48,5 @@ static/styles.css
 static/manifest.json
 firebase-admin-key.json
 .esm-cache
+#Using flow personally but don't want to clutter the project with this if you're unfamiliar
+flow-typed

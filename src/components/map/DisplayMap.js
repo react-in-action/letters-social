@@ -62,7 +62,10 @@ export default class DisplayMap extends Component {
     }
     ensureMapExists() {
         if (this.state.mapLoaded) return;
-        this.map = this.L.mapbox.map(this.mapNode, 'mapbox.streets', { zoomControl: false, scrollWheelZoom: false });
+        this.map = this.L.mapbox.map(this.mapNode, 'mapbox.streets', {
+            zoomControl: false,
+            scrollWheelZoom: false
+        });
         this.map.setView(this.L.latLng(this.state.location.lng, this.state.location.lat), 12);
         this.addMarker(this.state.location.lat, this.state.location.lng);
         this.setState(() => ({ mapLoaded: true }));
@@ -95,10 +98,12 @@ export default class DisplayMap extends Component {
                 <div className="displayMap">
                     <img
                         className="map"
-                        src={this.generateStaticMapImage(this.state.location.lat, this.state.location.lng)}
+                        src={this.generateStaticMapImage(
+                            this.state.location.lat,
+                            this.state.location.lng
+                        )}
                         alt={this.state.location.name}
                     />
-                    {true && <div className="name">{name}</div>}
                 </div>
             );
         }

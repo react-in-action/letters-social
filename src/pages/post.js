@@ -14,7 +14,7 @@ import Loader from '../components/Loader';
  * @module letters/components
  * @type {Object}
  */
-class SinglePost extends Component {
+export class SinglePost extends Component {
     static propTypes = {
         params: PropTypes.shape({
             post: PropTypes.string

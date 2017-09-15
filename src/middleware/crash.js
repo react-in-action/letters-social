@@ -5,6 +5,10 @@ export default store => next => action => {
         return next(action);
     }
     try {
+        if (action.error) {
+            console.error(action.error);
+            console.error(action.info);
+        }
         return next(action);
     } catch (err) {
         const { user } = store.getState();

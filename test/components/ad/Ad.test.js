@@ -1,25 +1,26 @@
 import React from 'react';
 import Ad from '../../../src/components/ad/Ad';
 import renderer from 'react-test-renderer';
-import { shallow } from 'enzyme';
 
-jest.dontMock('../../../src/components/ad/Ad');
 describe('<Ad/>', () => {
     it('should render correctly', () => {
         const component = renderer.create(<Ad />);
+        console.log(component);
         const tree = component.toJSON();
         expect(tree).toMatchSnapshot();
     });
     it('should display a link', () => {
         const expectedUrl = 'https://ifelse.io/book';
         const expectedImageURL = '/static/assets/ads/orly.jpg';
-        const component = shallow(<Ad url={expectedUrl} imageUrl={expectedImageURL} />);
-        expect(component.find('a').props().href).toBe(expectedUrl);
+        const component = renderer.create(<Ad url={expectedUrl} imageUrl={expectedImageURL} />);
+        let tree = component.toJSON();
+        expect(tree).toMatchSnapshot();
     });
     it('should display an image', () => {
         const expectedUrl = 'https://ifelse.io/book';
         const expectedImageURL = '/static/assets/ads/ria.png';
-        const component = shallow(<Ad url={expectedUrl} imageUrl={expectedImageURL} />);
-        expect(component.find('img').props().src).toBe(expectedImageURL);
+        const component = renderer.create(<Ad url={expectedUrl} imageUrl={expectedImageURL} />);
+        let tree = component.toJSON();
+        expect(tree).toMatchSnapshot();
     });
 });

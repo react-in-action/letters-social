@@ -1,7 +1,7 @@
 import React from 'react';
 import Link from '../components/router/Link';
 
-const NotFound = () => {
+export const NotFound = () => {
     return (
         <div className="not-found">
             <img src="/static/assets/system/404.gif" alt="Not Found | React in Action" />

@@ -1,4 +1,3 @@
-import Cookies from 'js-cookie';
 import fetch from 'isomorphic-fetch';
 
 import * as types from '../constants/types';
@@ -45,7 +44,6 @@ export function logout() {
     return dispatch => {
         return logUserOut()
             .then(() => {
-                Cookies.remove('letters-token');
                 history.push('/login');
                 dispatch(logoutSuccess());
                 window.Raven.setUserContext();
