@@ -17,11 +17,9 @@ const Navigation = ({ user, handleLogout }) => (
                 </span>
             </span>
         ) : (
-            <div>
-                <Link to="/login">
-                    <button type="button">Log in or sign up</button>
-                </Link>
-            </div>
+            <Link to="/login">
+                <button type="button">Log in or sign up</button>
+            </Link>
         )}
     </nav>
 );

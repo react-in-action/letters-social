@@ -1,0 +1,25 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`LocationTypeAhead snapshot 1`] = `
+<div
+  className="location-typeahead"
+>
+  <i
+    className="fa fa-location-arrow"
+    onClick={[Function]}
+  />
+  <input
+    onChange={[Function]}
+    placeholder="Enter a location..."
+    type="text"
+    value=""
+  />
+  <button
+    className="open"
+    disabled={true}
+    onClick={[Function]}
+  >
+    Select
+  </button>
+</div>
+`;

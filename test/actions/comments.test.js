@@ -20,7 +20,7 @@ describe('login actions', () => {
     beforeEach(() => {
         store = mockStore(initialState);
     });
-    it('showComments', () => {
+    test('showComments', () => {
         const postId = 'id';
         const actual = showComments(postId);
         const expected = {
@@ -30,7 +30,7 @@ describe('login actions', () => {
         };
         expect(actual).toEqual(expected);
     });
-    it('toggleComments', () => {
+    test('toggleComments', () => {
         const postId = 'id';
         const actual = toggleComments(postId);
         const expected = {
@@ -40,7 +40,7 @@ describe('login actions', () => {
         };
         expect(actual).toEqual(expected);
     });
-    it('updateAvailableComments', () => {
+    test('updateAvailableComments', () => {
         const comments = ['comments'];
         const actual = updateAvailableComments(comments);
         const expected = {
@@ -50,7 +50,7 @@ describe('login actions', () => {
         };
         expect(actual).toEqual(expected);
     });
-    it('createComment', async () => {
+    test('createComment', async () => {
         const mockComment = { content: 'great post!' };
         API.createComment = jest.fn(() => {
             return Promise.resolve({
@@ -68,7 +68,7 @@ describe('login actions', () => {
         ];
         expect(actions).toEqual(expectedActions);
     });
-    it('getCommentsForPost', async () => {
+    test('getCommentsForPost', async () => {
         const postId = 'id';
         const comments = [{ cotent: 'great stuff' }];
         API.fetchCommentsForPost = jest.fn(() => {

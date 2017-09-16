@@ -8,7 +8,7 @@ jest.mock('../../../src/history');
 describe('<Link/>', () => {
     const ChildStub = () => <div>inner child</div>;
     describe('render methods', () => {
-        it('should return an element with an onClick method attached', () => {
+        test('should return an element with an onClick method attached', () => {
             const wrapper = shallow(
                 <Link to="/">
                     <ChildStub />
@@ -17,7 +17,7 @@ describe('<Link/>', () => {
             expect(wrapper.find(ChildStub).length).toBe(1);
             expect(wrapper.props().onClick).toBeDefined();
         });
-        it('should render correctly', () => {
+        test('should render correctly', () => {
             const component = renderer.create(
                 <Link to="/">
                     <ChildStub />

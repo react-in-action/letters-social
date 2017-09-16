@@ -2,7 +2,7 @@ import * as types from '../../src/constants/types';
 import { createError } from '../../src/actions/error';
 
 describe('error actions', () => {
-    it('createError', () => {
+    test('createError', () => {
         const actual = createError('error', 'info');
         const expected = {
             type: types.app.ERROR,

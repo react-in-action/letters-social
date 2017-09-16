@@ -3,10 +3,10 @@ import initialState from '../../src/constants/initialState';
 import * as types from '../../src/constants/types';
 
 describe('pagination', () => {
-    it('should return the initial state', () => {
+    test('should return the initial state', () => {
         expect(pagination(initialState.pagination, {})).toEqual(initialState.pagination);
     });
-    it(`${types.posts.UPDATE_LINKS}`, () => {
+    test(`${types.posts.UPDATE_LINKS}`, () => {
         const existingState = initialState.pagination;
         const mockLinks = {
             first: { url: 'first' },

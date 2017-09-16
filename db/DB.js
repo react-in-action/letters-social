@@ -6,7 +6,7 @@ import config from 'config';
 
 import { User, Comment, Post, Like } from '../db/models';
 
-export default function() {
+export default () => {
     const server = jsonAPI.create();
     server.use(jsonAPI.defaults());
     server.use(jsonAPI.bodyParser);
@@ -21,12 +21,16 @@ export default function() {
     });
     server.post('/comments', async (req, res, next) => {
         req.body = new Comment(req.body);
-        req.body.user = await fetch(`${config.get('ENDPOINT')}/users/${req.body.userId}`).then(res => res.json());
+        req.body.user = await fetch(
+            `${config.get('ENDPOINT')}/users/${req.body.userId}`
+        ).then(res => res.json());
         return next();
     });
     server.post('/posts', async (req, res, next) => {
         req.body = new Post(req.body);
-        req.body.user = await fetch(`${config.get('ENDPOINT')}/users/${req.body.userId}`).then(res => res.json());
+        req.body.user = await fetch(
+            `${config.get('ENDPOINT')}/users/${req.body.userId}`
+        ).then(res => res.json());
         return next();
     });
     server.put('/posts/:postId/likes/:userId', async (req, res) => {
@@ -104,4 +108,4 @@ export default function() {
     });
     server.use(jsonAPI.router(resolve(__dirname, '..', 'db', 'db.json')));
     return server;
-}
+};

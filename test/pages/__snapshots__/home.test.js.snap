@@ -1,0 +1,327 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Single post page should render posts 1`] = `
+<div
+  className="home"
+>
+  <div>
+    <div
+      className="welcome"
+    >
+      <h1>
+        Welcome!
+      </h1>
+      <p>
+        If you're here, you're probably reading
+         
+        <a
+          href="https://ifelse.io/book"
+          rel="noopener noreferrer"
+          target="_blank"
+        >
+          React in Action
+        </a>
+         
+        from Manning Publications. This app is the example application that you'll build as you go through the book. In React in Action, you'll learn:
+      </p>
+      <ul>
+        <li>
+          Building a simple social app
+        </li>
+        <li>
+          Learning about the fundamentals of React
+        </li>
+        <li>
+          Building React apps with modern JavaScript (ES2015 and beyond)
+        </li>
+        <li>
+          How React works (React in action covers through Reacy 16 (fiber))
+        </li>
+        <li>
+          Implementing a routing system from scratch
+        </li>
+        <li>
+          Utilizing server-side rendering
+        </li>
+        <li>
+          Testing React applications
+        </li>
+        <li>
+          Implementing a Redux application architecture
+        </li>
+      </ul>
+      <p>
+        If you have any questions or thoughts, feel free to reach out to me
+         
+        <a
+          href="https://twitter.com/markthethomas"
+          rel="noopener noreferrer"
+          target="_blank"
+        >
+          @markthethomas
+        </a>
+         
+        on the Manning Author's forum (you get access w/ the MEAP!) or on 
+         
+        <a
+          href="https://twitter.com/markthethomas"
+          rel="noreferrer noopener"
+        >
+          Twitter
+        </a>
+         
+        .
+        <br />
+        <br />
+        -
+         
+        <a
+          href="https://ifelse.io"
+          rel="noreferrer noopener"
+        >
+          Mark Thomas
+        </a>
+      </p>
+    </div>
+  </div>
+  <div>
+    <div
+      className="create-post"
+    >
+      <textarea
+        onChange={[Function]}
+        placeholder="What's on your mind?"
+        value=""
+      />
+      <div
+        className="controls"
+      >
+        <button
+          onClick={[Function]}
+        >
+          Post
+        </button>
+        <button
+          className="open"
+          onClick={[Function]}
+        >
+          Add location
+           
+          <i
+            className="fa fa-map-o"
+          />
+        </button>
+      </div>
+      <div
+        className="location-picker"
+        style={
+          Object {
+            "display": "none",
+          }
+        }
+      >
+        <div
+          className="location-typeahead"
+        >
+          <i
+            className="fa fa-location-arrow"
+            onClick={[Function]}
+          />
+          <input
+            onChange={[Function]}
+            placeholder="Enter a location..."
+            type="text"
+            value=""
+          />
+          <button
+            className="open"
+            disabled={true}
+            onClick={[Function]}
+          >
+            Select
+          </button>
+        </div>
+        <div
+          className="displayMap"
+        >
+          <div
+            className="map"
+          />
+        </div>
+      </div>
+    </div>
+    <div
+      className="posts"
+    >
+      <div
+        className="post"
+      >
+        <span
+          onClick={[Function]}
+        >
+          <div
+            className="user-header"
+          >
+            <div
+              className="user-info-section"
+            >
+              <img
+                className="img-circle"
+                height={25}
+                src="/static/assets/users/4.jpeg"
+                width={25}
+              />
+              <a />
+            </div>
+            <small
+              className="date"
+            >
+              17426 days
+               
+              ago
+            </small>
+          </div>
+          <p
+            className="content"
+          >
+            stuff
+          </p>
+        </span>
+        <div
+          className="post-actions"
+        >
+          <span
+            onClick={[Function]}
+          >
+            <i
+              className="fa fa-thumbs-o-up"
+            />
+             
+          </span>
+          <button
+            className="open"
+            onClick={[Function]}
+          >
+            <i
+              className="fa fa-commenting-o"
+            />
+             
+            <i
+              className="fa fa-angle-down"
+            />
+          </button>
+        </div>
+        <div
+          className="comments"
+        />
+      </div>
+      <div
+        className="post"
+      >
+        <span
+          onClick={[Function]}
+        >
+          <div
+            className="user-header"
+          >
+            <div
+              className="user-info-section"
+            >
+              <img
+                className="img-circle"
+                height={25}
+                src="/static/assets/users/4.jpeg"
+                width={25}
+              />
+              <a />
+            </div>
+            <small
+              className="date"
+            >
+              17426 days
+               
+              ago
+            </small>
+          </div>
+          <p
+            className="content"
+          >
+            stuff
+          </p>
+        </span>
+        <div
+          className="post-actions"
+        >
+          <span
+            onClick={[Function]}
+          >
+            <i
+              className="fa fa-thumbs-o-up"
+            />
+             
+          </span>
+          <button
+            className="open"
+            onClick={[Function]}
+          >
+            <i
+              className="fa fa-commenting-o"
+            />
+             
+            <i
+              className="fa fa-angle-down"
+            />
+          </button>
+        </div>
+        <div
+          className="comments"
+        />
+      </div>
+    </div>
+    <button
+      className="block"
+      onClick={undefined}
+    >
+      Load more posts
+    </button>
+  </div>
+  <div>
+    <div
+      className="ad"
+    >
+      <a
+        href="https://ifelse.io/book"
+        rel="noreferrer noopener"
+        target="_blank"
+      >
+        <img
+          alt="React in Action by Mark Thomas | Manning Publications"
+          className="img-responsive"
+          src="/static/assets/ads/ria.png"
+        />
+      </a>
+      <small>
+        ads by Letters
+      </small>
+    </div>
+    <div
+      className="ad"
+    >
+      <a
+        href="https://ifelse.io/book"
+        rel="noreferrer noopener"
+        target="_blank"
+      >
+        <img
+          alt="React in Action by Mark Thomas | Manning Publications"
+          className="img-responsive"
+          src="/static/assets/ads/orly.jpg"
+        />
+      </a>
+      <small>
+        ads by Letters
+      </small>
+    </div>
+  </div>
+</div>
+`;

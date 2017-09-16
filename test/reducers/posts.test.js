@@ -3,10 +3,10 @@ import initialState from '../../src/constants/initialState';
 import * as types from '../../src/constants/types';
 
 describe('posts', () => {
-    it('should return the initial state', () => {
+    test('should return the initial state', () => {
         expect(posts(initialState.posts, {})).toEqual(initialState.posts);
     });
-    it(`${types.posts.GET}`, () => {
+    test(`${types.posts.GET}`, () => {
         const existingState = { 1: { id: 1, content: 'content' } };
         const mockposts = [
             { id: 1, content: 'content' },
@@ -25,7 +25,7 @@ describe('posts', () => {
             })
         ).toEqual(expectedState);
     });
-    it(`${types.posts.CREATE}`, () => {
+    test(`${types.posts.CREATE}`, () => {
         const existingState = { 1: { id: 1, content: 'content' } };
         const mockpost = { id: 2, content: 'content' };
         const expectedState = {
@@ -39,7 +39,7 @@ describe('posts', () => {
             })
         ).toEqual(expectedState);
     });
-    it(`${types.comments.SHOW}`, function() {
+    test(`${types.comments.SHOW}`, function() {
         const existingState = {
             1: { id: 1, content: 'content' },
             2: { id: 2, content: 'content', showComments: false }
@@ -55,7 +55,7 @@ describe('posts', () => {
             })
         ).toEqual(expectedState);
     });
-    it(`${types.comments.TOGGLE}`, function() {
+    test(`${types.comments.TOGGLE}`, function() {
         const existingState = {
             1: { id: 1, content: 'content' },
             2: { id: 2, content: 'content', showComments: false }
@@ -71,7 +71,7 @@ describe('posts', () => {
             })
         ).toEqual(expectedState);
     });
-    it(`${types.posts.LIKE}`, function() {
+    test(`${types.posts.LIKE}`, function() {
         const postUpdatedWithLike = { id: 1, content: 'content', likes: [1, 2, 3] };
         const existingState = {
             1: { id: 1, content: 'content', likes: [1] },
@@ -88,7 +88,7 @@ describe('posts', () => {
             })
         ).toEqual(expectedState);
     });
-    it(`${types.posts.UNLIKE}`, function() {
+    test(`${types.posts.UNLIKE}`, function() {
         const postUpdatedWithUnlike = { id: 1, content: 'content', likes: [1, 2] };
         const existingState = {
             1: { id: 1, content: 'content', likes: [1, 2, 3] },
@@ -105,7 +105,7 @@ describe('posts', () => {
             })
         ).toEqual(expectedState);
     });
-    it(`${types.comments.CREATE}`, function() {
+    test(`${types.comments.CREATE}`, function() {
         const comment = { id: 2, postId: 1, content: 'comment' };
         const existingState = {
             1: { id: 1, content: 'content', comments: [{ id: 1, content: 'comment' }] },
@@ -129,10 +129,10 @@ describe('posts', () => {
 });
 
 describe('postIds', () => {
-    it('should return the initial state', () => {
+    test('should return the initial state', () => {
         expect(postIds(initialState.postIds, {})).toEqual(initialState.postIds);
     });
-    it(`${types.posts.GET}`, () => {
+    test(`${types.posts.GET}`, () => {
         const existingState = [1, 2, 3];
         const mockposts = [{ id: 1 }, { id: 2 }, { id: 5 }];
         const expectedState = [1, 2, 3, 5];
@@ -143,7 +143,7 @@ describe('postIds', () => {
             })
         ).toEqual(expectedState);
     });
-    it(`${types.posts.CREATE}`, () => {
+    test(`${types.posts.CREATE}`, () => {
         const existingState = [1, 2, 3];
         const expectedState = [1, 2, 3, 4];
         expect(
@@ -156,7 +156,7 @@ describe('postIds', () => {
             })
         ).toEqual(expectedState);
     });
-    it(`${types.posts.CREATE}, prevent duplicate`, () => {
+    test(`${types.posts.CREATE}, prevent duplicate`, () => {
         const existingState = [1, 2, 3, 4];
         const expectedState = [1, 2, 3, 4];
         expect(

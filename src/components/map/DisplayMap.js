@@ -30,7 +30,8 @@ export default class DisplayMap extends Component {
             lat: PropTypes.number,
             lng: PropTypes.number,
             name: PropTypes.string
-        })
+        }),
+        displayOnly: PropTypes.bool
     };
     static defaultProps = {
         displayOnly: true,

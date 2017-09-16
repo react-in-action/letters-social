@@ -12,7 +12,7 @@ describe('<Comment/>', () => {
     afterEach(() => {
         sandbox.restore();
     });
-    it('should render correctly', () => {
+    test('should render correctly', () => {
         const mockComment = {
             id: 'id',
             content: 'content',

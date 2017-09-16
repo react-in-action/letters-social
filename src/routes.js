@@ -5,7 +5,7 @@ import App from './app';
 import Home from './pages/home';
 import SinglePost from './pages/post';
 import Login from './pages/login';
-import NotFound from './pages/error';
+import NotFound from './pages/404';
 import { loadUser } from './shared/http';
 import { createError } from './actions/error';
 import { loginSuccess } from './actions/auth';

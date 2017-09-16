@@ -23,12 +23,12 @@
         "deploy": "now -e LETTERS_FIREBASE_ADMIN_KEY=${LETTERS_FIREBASE_ADMIN_KEY} -d",
         "dev": "npm-run-all -p api client:dev server:dev styles:w",
         "server:dev": "nodemon --config nodemon.json index.js",
-        "start": "NODE_ENV=production pm2 start -i max ./index.js --no-daemon",
+        "start": "NODE_ENV=production pm2 start ./index.js --no-daemon",
         "styles:w":
             "npm run styles && node-sass src/styles/styles.scss -o static/ -w src/styles --watch --recursive",
         "styles": "node-sass -q src/styles/styles.scss -o static/",
         "test:w": "jest --watch --coverage",
-        "test": "jest"
+        "test": "jest --coverage"
     },
     "repository": {
         "type": "git",
@@ -71,7 +71,6 @@
         "debug": "2.6.3",
         "enroute": "1.0.1",
         "environs": "0.4.5",
-        "enzyme": "2.9.1",
         "express": "4.15.4",
         "firebase": "4.3.1",
         "firebase-admin": "5.2.1",
@@ -110,6 +109,7 @@
         "coveralls": "2.13.1",
         "css-loader": "0.28.7",
         "cssnano": "3.10.0",
+        "enzyme": "^2.9.1",
         "eslint": "4.6.1",
         "eslint-config-prettier": "2.4.0",
         "eslint-plugin-react": "7.3.0",
@@ -127,7 +127,6 @@
         "node-sass": "4.5.3",
         "nodemon": "1.12.0",
         "npm-run-all": "4.1.1",
-        "nyc": "11.2.1",
         "ora": "1.3.0",
         "postcss-cssnext": "3.0.2",
         "postcss-import": "10.0.0",

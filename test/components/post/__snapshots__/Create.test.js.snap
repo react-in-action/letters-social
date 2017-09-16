@@ -1,0 +1,137 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CreatePost renderLocationControls 1`] = `
+<div
+  className="create-post"
+>
+  <textarea
+    onChange={[Function]}
+    placeholder="What's on your mind?"
+    value=""
+  />
+  <div
+    className="controls"
+  >
+    <button
+      onClick={[Function]}
+    >
+      Post
+    </button>
+    <button
+      className="open"
+      onClick={[Function]}
+    >
+      Add location
+       
+      <i
+        className="fa fa-map-o"
+      />
+    </button>
+  </div>
+  <div
+    className="location-picker"
+    style={
+      Object {
+        "display": "none",
+      }
+    }
+  >
+    <div
+      className="location-typeahead"
+    >
+      <i
+        className="fa fa-location-arrow"
+        onClick={[Function]}
+      />
+      <input
+        onChange={[Function]}
+        placeholder="Enter a location..."
+        type="text"
+        value=""
+      />
+      <button
+        className="open"
+        disabled={true}
+        onClick={[Function]}
+      >
+        Select
+      </button>
+    </div>
+    <div
+      className="displayMap"
+    >
+      <div
+        className="map"
+      />
+    </div>
+  </div>
+</div>
+`;
+
+exports[`CreatePost snapshot 1`] = `
+<div
+  className="create-post"
+>
+  <textarea
+    onChange={[Function]}
+    placeholder="What's on your mind?"
+    value=""
+  />
+  <div
+    className="controls"
+  >
+    <button
+      onClick={[Function]}
+    >
+      Post
+    </button>
+    <button
+      className="open"
+      onClick={[Function]}
+    >
+      Add location
+       
+      <i
+        className="fa fa-map-o"
+      />
+    </button>
+  </div>
+  <div
+    className="location-picker"
+    style={
+      Object {
+        "display": "none",
+      }
+    }
+  >
+    <div
+      className="location-typeahead"
+    >
+      <i
+        className="fa fa-location-arrow"
+        onClick={[Function]}
+      />
+      <input
+        onChange={[Function]}
+        placeholder="Enter a location..."
+        type="text"
+        value=""
+      />
+      <button
+        className="open"
+        disabled={true}
+        onClick={[Function]}
+      >
+        Select
+      </button>
+    </div>
+    <div
+      className="displayMap"
+    >
+      <div
+        className="map"
+      />
+    </div>
+  </div>
+</div>
+`;

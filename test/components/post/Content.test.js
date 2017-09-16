@@ -5,7 +5,7 @@ import Content from '../../../src/components/post/Content';
 
 describe('<Content/>', () => {
     describe('render methods', () => {
-        it('should render correctly', () => {
+        test('should render correctly', () => {
             const mockPost = {
                 content: 'I am learning to test React components'
             };

@@ -50,7 +50,6 @@ export const HTML = ({ children, reduxState }) => {
             <body>
                 <div id="app">{React.Children.only(children)}</div>
                 <script id="initialState" data-intial-redux-state={JSON.stringify(reduxState)} />
-                <script />
                 <link rel="stylesheet" href="/static/styles.css" type="text/css" />
                 <link rel="stylesheet" href="https://api.mapbox.com/mapbox.js/v3.1.1/mapbox.css" />
                 <script src="https://cdn.ravenjs.com/3.17.0/raven.min.js" />

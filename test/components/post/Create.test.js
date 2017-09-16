@@ -1,55 +1,80 @@
+jest.mock('mapbox');
 import React from 'react';
-import sinon from 'sinon';
-import { shallow } from 'enzyme';
+import renderer from 'react-test-renderer';
 
 import CreatePost from '../../../src/components/post/Create';
 
-describe('<Create/>', () => {
-    let sandbox;
-    beforeEach(() => {
-        sandbox = sinon.sandbox.create();
+describe('CreatePost', () => {
+    test('snapshot', () => {
+        const props = { onSubmit: jest.fn() };
+        const component = renderer.create(<CreatePost {...props} />);
+        const tree = component.toJSON();
+        expect(tree).toMatchSnapshot();
     });
-    afterEach(() => {
-        sandbox.restore();
+    test('handlePostChange', () => {
+        const props = { onSubmit: jest.fn() };
+        const mockEvent = { target: { value: 'value' } };
+        CreatePost.prototype.setState = jest.fn();
+        const component = new CreatePost(props);
+        component.handlePostChange(mockEvent);
+        expect(component.setState).toHaveBeenCalled();
     });
-    describe('constructor', () => {
-        it('should be constructed properly', () => {
-            const onSubmitStub = sandbox.stub();
-            const component = shallow(<CreatePost onSubmit={onSubmitStub} />);
-            expect(component.instance().handleSubmit).toBeDefined();
-            expect(component.instance().handlePostChange).toBeDefined();
+    test('handleRemoveLocation', () => {
+        const props = { onSubmit: jest.fn() };
+        CreatePost.prototype.setState = jest.fn();
+        const component = new CreatePost(props);
+        component.handleRemoveLocation();
+        expect(component.setState).toHaveBeenCalled();
+    });
+    test('handleSubmit', () => {
+        const props = { onSubmit: jest.fn() };
+        const mockEvent = {
+            target: { value: 'value' },
+            preventDefault: jest.fn()
+        };
+        CreatePost.prototype.setState = jest.fn();
+        const component = new CreatePost(props);
+        component.state = {
+            valid: true,
+            content: 'content',
+            location: 'place'
+        };
+        component.handleSubmit(mockEvent);
+        expect(component.setState).toHaveBeenCalled();
+        expect(props.onSubmit).toHaveBeenCalledWith({
+            content: 'content',
+            location: 'place'
         });
     });
-    describe('event methods', () => {
-        it('should handle a post submission', () => {
-            const onSubmitStub = sandbox.stub();
-            const preventDefaultStub = sandbox.stub();
-            const wrapper = shallow(<CreatePost onSubmit={onSubmitStub} />);
-            const mockNewValue = 'new value';
-            wrapper.find('textarea').simulate('change', {
-                target: {
-                    value: mockNewValue
-                }
-            });
-            wrapper.find('form').simulate('submit', {
-                preventDefault: preventDefaultStub
-            });
-
-            expect(onSubmitStub.calledOnce).toBe(true);
-            expect(preventDefaultStub.calledOnce).toBe(true);
-            const calledWithArgs = onSubmitStub.args[0][0];
-            expect(calledWithArgs.id).toBeDefined();
-            expect(calledWithArgs.date).toBeDefined();
-            expect(calledWithArgs.content).toBe(mockNewValue);
-        });
+    test('onLocationUpdate', () => {
+        const props = { onSubmit: jest.fn() };
+        CreatePost.prototype.setState = jest.fn();
+        const component = new CreatePost(props);
+        component.onLocationUpdate({});
+        expect(component.setState).toHaveBeenCalled();
     });
-    describe('render methods', () => {
-        it('should render correctly', () => {
-            const onSubmitStub = sandbox.stub();
-            const wrapper = shallow(<CreatePost onSubmit={onSubmitStub} />);
-            expect(wrapper.find('form').length).toBe(1);
-            expect(wrapper.find('textarea').length).toBe(1);
-            expect(wrapper.find('button').length).toBe(1);
-        });
+    test('handleToggleLocation', () => {
+        const props = { onSubmit: jest.fn() };
+        const mockEvent = {
+            preventDefault: jest.fn()
+        };
+        CreatePost.prototype.setState = jest.fn();
+        const component = new CreatePost(props);
+        component.handleToggleLocation(mockEvent);
+        expect(component.setState).toHaveBeenCalled();
+        expect(mockEvent.preventDefault).toHaveBeenCalled();
+    });
+    test('onLocationSelect', () => {
+        const props = { onSubmit: jest.fn() };
+        CreatePost.prototype.setState = jest.fn();
+        const component = new CreatePost(props);
+        component.onLocationSelect('location');
+        expect(component.setState).toHaveBeenCalled();
+    });
+    test('renderLocationControls', () => {
+        const props = { onSubmit: jest.fn() };
+        const component = renderer.create(<CreatePost {...props} />);
+        let tree = component.toJSON();
+        expect(tree).toMatchSnapshot();
     });
 });

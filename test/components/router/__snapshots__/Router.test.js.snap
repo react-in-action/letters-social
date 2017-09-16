@@ -1,0 +1,25 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Route/> should render a NotFound route 1`] = `
+<div
+  className="not-found"
+/>
+`;
+
+exports[`<Route/> should render components that match a route 1`] = `
+<div
+  className="found"
+>
+  found
+</div>
+`;
+
+exports[`<Route/> should render the right component when using a root component (index) 1`] = `
+<div>
+  <div
+    className="found"
+  >
+    found
+  </div>
+</div>
+`;

@@ -20,13 +20,13 @@ class CreatePost extends React.Component {
             locationSelected: false
         };
         this.filter = new Filter();
-        this.handleSubmit = this.handleSubmit.bind(this);
         this.handlePostChange = this.handlePostChange.bind(this);
-        this.handleToggleLocation = this.handleToggleLocation.bind(this);
-        this.renderLocationControls = this.renderLocationControls.bind(this);
         this.handleRemoveLocation = this.handleRemoveLocation.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleToggleLocation = this.handleToggleLocation.bind(this);
         this.onLocationSelect = this.onLocationSelect.bind(this);
         this.onLocationUpdate = this.onLocationUpdate.bind(this);
+        this.renderLocationControls = this.renderLocationControls.bind(this);
     }
     handlePostChange(event) {
         const content = this.filter.clean(event.target.value);
@@ -40,13 +40,6 @@ class CreatePost extends React.Component {
     handleRemoveLocation() {
         this.setState(() => ({ location: null }));
     }
-    onLocationSelect(location) {
-        this.setState(() => ({
-            location,
-            showLocationPicker: false,
-            locationSelected: true
-        }));
-    }
     handleSubmit(event) {
         event.preventDefault();
         if (!this.state.valid) {
@@ -57,17 +50,24 @@ class CreatePost extends React.Component {
             location: this.state.location
         };
         this.props.onSubmit(newPost);
-        this.setState({
+        this.setState(() => ({
             content: '',
             valid: false,
             showLocationPicker: false,
             location: null
-        });
+        }));
     }
     onLocationUpdate(location) {
         this.setState(() => ({
             location,
             locationSelected: false
+        }));
+    }
+    onLocationSelect(location) {
+        this.setState(() => ({
+            location,
+            showLocationPicker: false,
+            locationSelected: true
         }));
     }
     handleToggleLocation(event) {

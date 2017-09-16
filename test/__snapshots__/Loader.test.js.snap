@@ -1,19 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Link changes the class when hovered 1`] = `
-<div
-  className="loader"
->
-  <div
-    className="ball-pulse-sync"
-  >
-    <div />
-    <div />
-    <div />
-  </div>
-</div>
-`;
-
 exports[`Loader 1`] = `
 <div
   className="loader"

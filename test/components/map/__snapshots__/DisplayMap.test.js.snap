@@ -1,0 +1,23 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`DisplayMap snapshot 1`] = `
+Array [
+  <div
+    className="displayMap"
+  >
+    <div
+      className="map"
+    />
+  </div>,
+  <div
+    className="location-description"
+  >
+    <i
+      className="location-icon fa fa-location-arrow"
+    />
+    <span
+      className="location-name"
+    />
+  </div>,
+]
+`;

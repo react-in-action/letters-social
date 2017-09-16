@@ -1,9 +1,14 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import MapBox from 'mapbox';
 
 import Loader from '../Loader';
 
 export default class LocationTypeAhead extends Component {
+    static propTypes = {
+        onLocationUpdate: PropTypes.func.isRequired,
+        onLocationSelect: PropTypes.func.isRequired
+    };
     constructor(props) {
         super(props);
         this.state = {
@@ -15,11 +20,11 @@ export default class LocationTypeAhead extends Component {
         this.mapbox = new MapBox(
             'pk.eyJ1IjoibWFya3RoZXRob21hcyIsImEiOiJHa3JyZFFjIn0.MwCj8OA5q4dqdll1s2kMiw'
         );
+        this.attemptGeoLocation = this.attemptGeoLocation.bind(this);
         this.handleLocationUpdate = this.handleLocationUpdate.bind(this);
         this.handleSearchChange = this.handleSearchChange.bind(this);
-        this.resetSearch = this.resetSearch.bind(this);
-        this.attemptGeoLocation = this.attemptGeoLocation.bind(this);
         this.handleSelectLocation = this.handleSelectLocation.bind(this);
+        this.resetSearch = this.resetSearch.bind(this);
     }
     componentDidUpdate(prevProps, prevState) {
         if (prevState.text === '' && this.state.locations.length) {
@@ -40,10 +45,10 @@ export default class LocationTypeAhead extends Component {
         this.props.onLocationUpdate(location);
     }
     handleSearchChange(e) {
-        e.persist();
-        this.setState(() => ({ text: e.target.value }));
-        if (!e.target.value) return;
-        this.mapbox.geocodeForward(e.target.value, {}).then(loc => {
+        const text = e.target.value;
+        this.setState(() => ({ text }));
+        if (!text) return;
+        this.mapbox.geocodeForward(text, {}).then(loc => {
             if (!loc.entity.features || !loc.entity.features.length) {
                 return;
             }
@@ -104,6 +109,8 @@ export default class LocationTypeAhead extends Component {
         this.props.onLocationSelect(this.state.selectedLocation);
     }
     render() {
+        // As of React 16, you can return arrays from Render and no longer need to return
+        // a wrapping element (like a div) around everything
         return [
             <div key="location-typeahead" className="location-typeahead">
                 <i className="fa fa-location-arrow" onClick={this.attemptGeoLocation} />

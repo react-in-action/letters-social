@@ -47,11 +47,6 @@ export function logout() {
                 history.push('/login');
                 dispatch(logoutSuccess());
                 window.Raven.setUserContext();
-                // Remove the initial state that was embedded with the intial HTML sent by the server
-                const embeddedState = document.getElementById('initialState');
-                if (embeddedState) {
-                    embeddedState.remove();
-                }
             })
             .catch(err => dispatch(createError(err)));
     };
@@ -66,6 +61,11 @@ export function logout() {
 export function login() {
     return dispatch => {
         return loginWithGithub().then(async () => {
+            // Remove the initial state that was embedded with the intial HTML sent by the server
+            const embeddedState = document.getElementById('initialState');
+            if (embeddedState) {
+                embeddedState.remove();
+            }
             dispatch(loading());
             const user = await getFirebaseUser();
             const token = await getFirebaseToken();

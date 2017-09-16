@@ -1,18 +1,38 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
+import { Provider } from 'react-redux';
 
-import Navigation from '../../../src/components/nav/Navbar';
+import initialState from '../../../src/constants/initialState';
+import configureStore from '../../../src/store/configureStore';
+import Navigation from '../../../src/components/nav/navbar';
 
-describe('<Navigation/>', () => {
-    it('should render correctly', () => {
-        const component = renderer.create(<Navigation />);
+describe('Navigation', () => {
+    test('should render with a user', () => {
+        const state = Object.assign({}, initialState, {
+            user: {
+                name: 'name',
+                authenticated: true,
+                profilePicture: 'pic',
+                id: 1
+            }
+        });
+        const store = configureStore(state);
+        const component = renderer.create(
+            <Provider store={store}>
+                <Navigation />
+            </Provider>
+        );
         const tree = component.toJSON();
         expect(tree).toMatchSnapshot();
     });
-    it('should show a login option with user state', () => {
-        const component = renderer.create(<Navigation />);
+    test('should render without user', () => {
+        const store = configureStore();
+        const component = renderer.create(
+            <Provider store={store}>
+                <Navigation />
+            </Provider>
+        );
         const tree = component.toJSON();
-
         expect(tree.type).toBe('nav');
         expect(tree).toMatchSnapshot();
     });

@@ -1,8 +1,9 @@
 import initialState from '../../src/constants/initialState';
 
-describe('initialState', function() {
-    it('should match', function() {
+describe('initialState', () => {
+    test('should match', () => {
         const expected = {
+            error: null,
             loading: false,
             postIds: [],
             posts: {},
@@ -23,7 +24,6 @@ describe('initialState', function() {
                 token: null
             }
         };
-
         expect(initialState).toEqual(expected);
     });
 });

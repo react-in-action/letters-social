@@ -26,7 +26,7 @@ describe('login actions', () => {
     beforeEach(() => {
         store = mockStore(initialState);
     });
-    it('updateAvailablePosts', () => {
+    test('updateAvailablePosts', () => {
         const posts = ['post'];
         const actual = updateAvailablePosts(posts);
         const expected = {
@@ -35,7 +35,7 @@ describe('login actions', () => {
         };
         expect(actual).toEqual(expected);
     });
-    it('updatePaginationLinks', () => {
+    test('updatePaginationLinks', () => {
         const links = ['link'];
         const actual = updatePaginationLinks(links);
         const expected = {
@@ -44,7 +44,7 @@ describe('login actions', () => {
         };
         expect(actual).toEqual(expected);
     });
-    it('like', async () => {
+    test('like', async () => {
         const mockPost = {
             id: 'id'
         };
@@ -64,7 +64,7 @@ describe('login actions', () => {
         ];
         expect(actions).toEqual(expectedActions);
     });
-    it('unlike', async () => {
+    test('unlike', async () => {
         const mockPost = {
             id: 'id'
         };
@@ -83,7 +83,7 @@ describe('login actions', () => {
         ];
         expect(actions).toEqual(expectedActions);
     });
-    it('createNewPost, success', async () => {
+    test('createNewPost, success', async () => {
         const modifiedStoreState = Object.assign(initialState, {
             user: {
                 id: '1'
@@ -108,7 +108,7 @@ describe('login actions', () => {
         ];
         expect(actions).toEqual(expectedActions);
     });
-    it('createNewPost, error', async () => {
+    test('createNewPost, error', async () => {
         const modifiedStoreState = Object.assign(initialState, {
             user: {
                 id: '1'
@@ -130,7 +130,7 @@ describe('login actions', () => {
         ];
         expect(actions).toEqual(expectedActions);
     });
-    it('getPostsForPage, success', async () => {
+    test('getPostsForPage, success', async () => {
         const mockPosts = [{ content: 'post' }];
         const mockLinks = {
             first: 'url'
@@ -157,7 +157,7 @@ describe('login actions', () => {
         ];
         expect(actions).toEqual(expectedActions);
     });
-    it('getPostsForPage, error', async () => {
+    test('getPostsForPage, error', async () => {
         const mockError = 'error';
         API.fetchPosts = jest.fn(() => Promise.reject(mockError));
         await store.dispatch(getPostsForPage());
@@ -170,7 +170,7 @@ describe('login actions', () => {
         ];
         expect(actions).toEqual(expectedActions);
     });
-    it('loadPost, success', async () => {
+    test('loadPost, success', async () => {
         const mockPost = {
             id: 'id',
             content: 'content'
@@ -192,7 +192,7 @@ describe('login actions', () => {
 
         expect(actions).toEqual(expectedActions);
     });
-    it('loadPost, error', async () => {
+    test('loadPost, error', async () => {
         const mockPost = {
             id: 'id',
             content: 'content'

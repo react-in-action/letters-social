@@ -7,10 +7,10 @@ import initialState from '../../src/constants/initialState';
 import * as types from '../../src/constants/types';
 
 describe('user', () => {
-    it('should return the initial state', () => {
+    test('should return the initial state', () => {
         expect(user(initialState.user, {})).toEqual(initialState.user);
     });
-    it(`${types.auth.AUTH_LOGIN_SUCCESS}`, () => {
+    test(`${types.auth.AUTH_LOGIN_SUCCESS}`, () => {
         const mockUser = {
             name: 'name',
             id: 'id',
@@ -33,7 +33,7 @@ describe('user', () => {
         ).toEqual(expectedState);
         expect(Cookies).toHaveBeenCalled();
     });
-    it(`${types.auth.AUTH_LOGOUT_SUCCESS}, browser`, () => {
+    test(`${types.auth.AUTH_LOGOUT_SUCCESS}, browser`, () => {
         expect(
             user(initialState.user, {
                 type: types.auth.AUTH_LOGOUT_SUCCESS

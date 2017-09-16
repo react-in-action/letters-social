@@ -4,10 +4,10 @@ import initialState from '../../src/constants/initialState';
 
 describe('Loading reducer', () => {
     const state = initialState.error;
-    it('should return the initial state', () => {
+    test('should return the initial state', () => {
         expect(error(state, {})).toEqual(state);
     });
-    it('should handle error actions', () => {
+    test('should handle error actions', () => {
         const mockError = 'error';
         const mockErrorInfo = 'info';
         const expectedState = mockError;

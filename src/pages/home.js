@@ -50,13 +50,19 @@ export class Home extends Component {
 }
 
 Home.propTypes = {
-    posts: PropTypes.arrayOf(PropTypes.object)
+    posts: PropTypes.arrayOf(PropTypes.object),
+    actions: PropTypes.shape({
+        createNewPost: PropTypes.func,
+        getPostsForPage: PropTypes.func,
+        showComments: PropTypes.func,
+        createError: PropTypes.func,
+        getNextPageOfPosts: PropTypes.func
+    })
 };
 export const mapStateToProps = state => {
     const posts = orderBy(state.postIds.map(postId => state.posts[postId]), 'date', 'desc');
     return {
-        posts,
-        loading: state.loading
+        posts
     };
 };
 export const mapDispatchToProps = dispatch => {

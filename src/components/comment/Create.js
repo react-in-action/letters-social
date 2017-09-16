@@ -15,9 +15,8 @@ class CreateComment extends React.Component {
         this.handleSubmit = this.handleSubmit.bind(this);
     }
     handleCommentUpdate(event) {
-        this.setState({
-            content: event.target.value
-        });
+        const content = event.target.value;
+        this.setState(() => ({ content }));
     }
     handleSubmit(event) {
         const { post, user } = this.props;

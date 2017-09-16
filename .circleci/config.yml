@@ -1,0 +1,25 @@
+version: 2
+jobs:
+  build:
+    working_directory: ~/letters-social
+    docker:
+      - image: circleci/node:8.5.0
+        environment:
+          NODE_ENV: development
+    steps:
+      - checkout
+      - restore_cache:
+          key: dependency-cache-{{ checksum "package.json" }}
+      - run:
+          name: install
+          command: npm install
+      - save_cache:
+          key: dependency-cache-{{ checksum "package.json" }}
+          paths:
+            - ./node_modules
+      - run:
+          name: test
+          command: npm test
+      - store_artifacts:
+          path: coverage
+          prefix: coverage

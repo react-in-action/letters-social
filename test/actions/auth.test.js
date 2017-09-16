@@ -17,7 +17,7 @@ describe('login actions', () => {
     beforeEach(() => {
         store = mockStore(initialState);
     });
-    it('loginSuccess', () => {
+    test('loginSuccess', () => {
         const mockUser = {
             id: 'id',
             name: 'React',
@@ -28,25 +28,21 @@ describe('login actions', () => {
         expect(actual).toEqual(expected);
     });
 
-    it('logoutSuccess', () => {
+    test('logoutSuccess', () => {
         const expected = { type: types.auth.AUTH_LOGOUT_SUCCESS };
         const actual = logoutSuccess();
         expect(actual).toEqual(expected);
     });
-    it('logout (success)', async () => {
+    test('logout (success)', async () => {
         AUTH.logUserOut = jest.fn(() => Promise.resolve());
-        const mockRemove = jest.fn();
-        global.document.getElementById = jest.fn(() => ({ remove: mockRemove }));
         return store.dispatch(logout()).then(() => {
             const expectedActions = [{ type: types.auth.AUTH_LOGOUT_SUCCESS }];
             const actions = store.getActions();
             expect(actions).toEqual(expectedActions);
             expect(window.Raven.setUserContext).toHaveBeenCalled();
-            expect(global.document.getElementById).toHaveBeenCalled();
-            expect(mockRemove).toHaveBeenCalled();
         });
     });
-    it('logout with error', async () => {
+    test('logout with error', async () => {
         const mockError = new Error('oops');
         AUTH.logUserOut = jest.fn(() => Promise.reject(mockError));
         await store.dispatch(logout());
@@ -54,13 +50,15 @@ describe('login actions', () => {
         const expectedActions = [{ type: types.app.ERROR, error: mockError, info: undefined }];
         expect(actions).toEqual(expectedActions);
     });
-    it('login, existing user', async () => {
+    test('login, existing user', async () => {
         const mockToken = 'token';
         const mockUser = {
             id: 'id',
             name: 'name',
             profilePicture: 'pic'
         };
+        const mockRemove = jest.fn();
+        global.document.getElementById = jest.fn(() => ({ remove: mockRemove }));
         AUTH.loginWithGithub = jest.fn(() => Promise.resolve());
         AUTH.getFirebaseUser = jest.fn(() => Promise.resolve(mockUser));
         AUTH.getFirebaseToken = jest.fn(() => Promise.resolve(mockToken));
@@ -82,8 +80,10 @@ describe('login actions', () => {
             { type: 'letters-social/app/loaded' }
         ];
         expect(actions).toEqual(expectedActions);
+        expect(mockRemove).toHaveBeenCalled();
+        expect(global.document.getElementById).toHaveBeenCalled();
     });
-    it('login, preexisting user', async () => {
+    test('login, preexisting user', async () => {
         const mockToken = 'token';
         const mockFirebaseUser = {
             id: 'id',

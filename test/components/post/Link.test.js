@@ -12,11 +12,11 @@ describe('<Link/>', () => {
         }
     };
     describe('render methods', () => {
-        it('should render nothing without a link', () => {
+        test('should render nothing without a link', () => {
             const wrapper = shallow(<Link />);
             expect(wrapper.html()).toBeFalsy();
         });
-        it('should render properly ', () => {
+        test('should render properly ', () => {
             const wrapper = shallow(<Link link={baseProps.link} />);
             expect(wrapper.find('.url').text()).toBe('https://ifelse.io');
         });

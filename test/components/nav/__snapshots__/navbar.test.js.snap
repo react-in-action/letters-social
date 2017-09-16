@@ -1,221 +1,77 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<Navigation/> should render correctly 1`] = `
+exports[`Navigation should render with a user 1`] = `
 <nav
-  className="navbar navbar-default navbar-fixed-top"
+  className="navbar"
 >
   <div
-    className="container"
+    className="logo"
+    onClick={[Function]}
+    style={
+      Object {
+        "fontSize": "1.75em",
+      }
+    }
   >
-    <div
-      className="row middle-xs center-xs around-xs"
-    >
-      <div
-        className="col-sm-4 col-sm-offset-4 col-xs-8"
-      >
-        <div
-          className="logo"
-          onClick={[Function]}
-          style={
-            Object {
-              "fontSize": "2.3em",
-            }
-          }
-        >
-          <span
-            style={
-              Object {
-                "color": "#4F93E0",
-              }
-            }
-          >
-            L
-          </span>
-          <span
-            style={
-              Object {
-                "color": "#D0021B",
-              }
-            }
-          >
-            e
-          </span>
-          <span
-            style={
-              Object {
-                "color": "#F8E71C",
-              }
-            }
-          >
-            t
-          </span>
-          <span
-            style={
-              Object {
-                "color": "#4F93E0",
-              }
-            }
-          >
-            t
-          </span>
-          <span
-            style={
-              Object {
-                "color": "#417505",
-              }
-            }
-          >
-            e
-          </span>
-          <span
-            style={
-              Object {
-                "color": "#D0021B",
-              }
-            }
-          >
-            r
-          </span>
-          <span
-            style={
-              Object {
-                "color": "#F8E71C",
-              }
-            }
-          >
-            s
-          </span>
-          <small
-            className="social"
-          >
-            .social
-          </small>
-        </div>
-      </div>
-      <div
-        className="col-sm-4 col-xs-4"
-      >
-        <div>
-          <button
-            className="btn btn-default"
-            onClick={[Function]}
-            type="button"
-          >
-            Log in or sign up
-          </button>
-        </div>
-      </div>
-    </div>
+    L
   </div>
+  <span
+    className="user-nav-widget"
+  >
+    <span>
+      name
+    </span>
+    <img
+      alt="name"
+      className="img-circle"
+      src="pic"
+      width={40}
+    />
+    <span
+      onClick={[Function]}
+    >
+      <i
+        className="fa fa-sign-out"
+      />
+    </span>
+  </span>
 </nav>
 `;
 
-exports[`<Navigation/> should show a login option with user state 1`] = `
+exports[`Navigation should render without user 1`] = `
 <nav
-  className="navbar navbar-default navbar-fixed-top"
+  className="navbar"
 >
   <div
-    className="container"
+    className="logo"
+    onClick={[Function]}
+    style={
+      Object {
+        "fontSize": "1.75em",
+      }
+    }
   >
-    <div
-      className="row middle-xs center-xs around-xs"
-    >
-      <div
-        className="col-sm-4 col-sm-offset-4 col-xs-8"
-      >
-        <div
-          className="logo"
-          onClick={[Function]}
-          style={
-            Object {
-              "fontSize": "2.3em",
-            }
-          }
-        >
-          <span
-            style={
-              Object {
-                "color": "#4F93E0",
-              }
-            }
-          >
-            L
-          </span>
-          <span
-            style={
-              Object {
-                "color": "#D0021B",
-              }
-            }
-          >
-            e
-          </span>
-          <span
-            style={
-              Object {
-                "color": "#F8E71C",
-              }
-            }
-          >
-            t
-          </span>
-          <span
-            style={
-              Object {
-                "color": "#4F93E0",
-              }
-            }
-          >
-            t
-          </span>
-          <span
-            style={
-              Object {
-                "color": "#417505",
-              }
-            }
-          >
-            e
-          </span>
-          <span
-            style={
-              Object {
-                "color": "#D0021B",
-              }
-            }
-          >
-            r
-          </span>
-          <span
-            style={
-              Object {
-                "color": "#F8E71C",
-              }
-            }
-          >
-            s
-          </span>
-          <small
-            className="social"
-          >
-            .social
-          </small>
-        </div>
-      </div>
-      <div
-        className="col-sm-4 col-xs-4"
-      >
-        <div>
-          <button
-            className="btn btn-default"
-            onClick={[Function]}
-            type="button"
-          >
-            Log in or sign up
-          </button>
-        </div>
-      </div>
-    </div>
+    L
   </div>
+  <span
+    className="user-nav-widget"
+  >
+    <span>
+      name
+    </span>
+    <img
+      alt="name"
+      className="img-circle"
+      src="pic"
+      width={40}
+    />
+    <span
+      onClick={[Function]}
+    >
+      <i
+        className="fa fa-sign-out"
+      />
+    </span>
+  </span>
 </nav>
 `;

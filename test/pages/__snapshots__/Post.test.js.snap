@@ -1,0 +1,109 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Single post page should load a component if one is not already loaded 1`] = `
+<div
+  className="loader"
+>
+  <div
+    className="ball-pulse-sync"
+  >
+    <div />
+    <div />
+    <div />
+  </div>
+</div>
+`;
+
+exports[`Single post page should reuse an already loaded post 1`] = `
+<div
+  className="single-post"
+>
+  <div
+    className="back"
+    onClick={[Function]}
+  >
+    <i
+      className="fa fa-arrow-left"
+    />
+     Back
+  </div>
+  <div
+    className="post"
+  >
+    <span
+      onClick={[Function]}
+    >
+      <div
+        className="user-header"
+      >
+        <div
+          className="user-info-section"
+        >
+          <img
+            className="img-circle"
+            height={25}
+            src="/static/assets/users/4.jpeg"
+            width={25}
+          />
+          <a />
+        </div>
+        <small
+          className="date"
+        >
+          0 minutes
+           
+          ago
+        </small>
+      </div>
+      <p
+        className="content"
+      />
+    </span>
+    <div
+      className="post-actions"
+    >
+      <span
+        onClick={[Function]}
+      >
+        <i
+          className="fa fa-thumbs-o-up"
+        />
+         
+      </span>
+      <button
+        className="open"
+        onClick={[Function]}
+      >
+        <i
+          className="fa fa-commenting-o"
+        />
+         
+        <i
+          className="fa fa-angle-down"
+        />
+      </button>
+    </div>
+    <div
+      className="comments"
+    />
+  </div>
+  <div
+    className="ad"
+  >
+    <a
+      href="https://www.manning.com/books/react-in-action"
+      rel="noreferrer noopener"
+      target="_blank"
+    >
+      <img
+        alt="React in Action by Mark Thomas | Manning Publications"
+        className="img-responsive"
+        src="/static/assets/ads/ria.png"
+      />
+    </a>
+    <small>
+      ads by Letters
+    </small>
+  </div>
+</div>
+`;
