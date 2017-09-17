@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import { isServer } from '../../utils/environment';
-
 /**
  * The DisplayMap component is used for display locations attached to posts. It handles loading the
  * mapbox APIs into the browser and also allowing the use to pick a location
@@ -34,8 +32,8 @@ export default class DisplayMap extends Component {
     static defaultProps = {
         displayOnly: true,
         location: {
-            lat: -118.1428115,
-            lng: 34.1535641,
+            lat: 34.1535641,
+            lng: -118.1428115,
             name: null
         }
     };
@@ -46,16 +44,18 @@ export default class DisplayMap extends Component {
         }
     }
     componentWillReceiveProps(nextProps) {
-        const locationsAreEqual = Object.keys(nextProps.location).filter(
-            k => nextProps.location[k] === this.props.location[k]
-        );
-        if (!locationsAreEqual) {
-            this.updateMapPosition(nextProps.location);
+        if (nextProps.location) {
+            const locationsAreEqual = Object.keys(nextProps.location).every(
+                k => nextProps.location[k] === this.props.location[k]
+            );
+            if (!locationsAreEqual) {
+                this.updateMapPosition(nextProps.location);
+            }
         }
     }
     componentDidMount() {
         this.L = window.L;
-        if (!isServer()) {
+        if (this.state.location.lng && this.state.location.lat) {
             this.ensureMapExists();
         }
     }
@@ -65,23 +65,23 @@ export default class DisplayMap extends Component {
             zoomControl: false,
             scrollWheelZoom: false
         });
-        this.map.setView(this.L.latLng(this.state.location.lng, this.state.location.lat), 12);
+        this.map.setView(this.L.latLng(this.state.location.lat, this.state.location.lng), 12);
         this.addMarker(this.state.location.lat, this.state.location.lng);
         this.setState(() => ({ mapLoaded: true }));
     }
     updateMapPosition(location) {
         const { lat, lng } = location;
-        this.map.setView(this.L.latLng(lng, lat));
+        this.map.setView(this.L.latLng(lat, lng));
         this.addMarker(lat, lng);
         this.setState(() => ({ location }));
     }
     addMarker(lat, lng) {
         // IF we have already saved the marker, just update it
         if (this.marker) {
-            this.marker.setLatLng(this.L.latLng(lng, lat));
+            this.marker.setLatLng(this.L.latLng(lat, lng));
         }
         // Create a marker and put it on the map
-        this.marker = this.L.marker([lng, lat], {
+        this.marker = this.L.marker([lat, lng], {
             icon: this.L.mapbox.marker.icon({
                 'marker-color': '#4469af'
             })
@@ -89,23 +89,10 @@ export default class DisplayMap extends Component {
         this.marker.addTo(this.map);
     }
     generateStaticMapImage(lat, lng) {
-        return `https://api.mapbox.com/styles/v1/mapbox/streets-v10/static/${lng},${lat},12,0,0/600x175?access_token=pk.eyJ1IjoibWFya3RoZXRob21hcyIsImEiOiJHa3JyZFFjIn0.MwCj8OA5q4dqdll1s2kMiw`;
+        return `https://api.mapbox.com/styles/v1/mapbox/streets-v10/static/${lat},${lng},12,0,0/600x175?access_token=${process
+            .env.MAPBOX_API_TOKEN}`;
     }
     render() {
-        if (isServer()) {
-            return (
-                <div className="displayMap">
-                    <img
-                        className="map"
-                        src={this.generateStaticMapImage(
-                            this.state.location.lat,
-                            this.state.location.lng
-                        )}
-                        alt={this.state.location.name}
-                    />
-                </div>
-            );
-        }
         return [
             <div key="displayMap" className="displayMap">
                 <div
@@ -113,7 +100,18 @@ export default class DisplayMap extends Component {
                     ref={node => {
                         this.mapNode = node;
                     }}
-                />
+                >
+                    {!this.state.mapLoaded && (
+                        <img
+                            className="map"
+                            src={this.generateStaticMapImage(
+                                this.state.location.lat,
+                                this.state.location.lng
+                            )}
+                            alt={this.state.location.name}
+                        />
+                    )}
+                </div>
             </div>,
             this.props.displayOnly && (
                 <div key="location-description" className="location-description">

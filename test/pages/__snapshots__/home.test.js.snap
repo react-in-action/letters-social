@@ -35,7 +35,7 @@ exports[`Single post page should render posts 1`] = `
           Building React apps with modern JavaScript (ES2015 and beyond)
         </li>
         <li>
-          How React works (React in action covers through Reacy 16 (fiber))
+          How React works (React in action covers through React 16 (fiber))
         </li>
         <li>
           Implementing a routing system from scratch
@@ -89,6 +89,7 @@ exports[`Single post page should render posts 1`] = `
       className="create-post"
     >
       <textarea
+        maxlength="280"
         onChange={[Function]}
         placeholder="What's on your mind?"
         value=""
@@ -176,7 +177,7 @@ exports[`Single post page should render posts 1`] = `
             <small
               className="date"
             >
-              17426 days
+              0 minutes
                
               ago
             </small>
@@ -238,7 +239,7 @@ exports[`Single post page should render posts 1`] = `
             <small
               className="date"
             >
-              17426 days
+              0 minutes
                
               ago
             </small>

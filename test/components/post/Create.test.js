@@ -37,7 +37,8 @@ describe('CreatePost', () => {
         component.state = {
             valid: true,
             content: 'content',
-            location: 'place'
+            location: 'place',
+            locationSelected: true
         };
         component.handleSubmit(mockEvent);
         expect(component.setState).toHaveBeenCalled();

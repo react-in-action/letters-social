@@ -5,6 +5,7 @@ exports[`CreatePost renderLocationControls 1`] = `
   className="create-post"
 >
   <textarea
+    maxlength="280"
     onChange={[Function]}
     placeholder="What's on your mind?"
     value=""
@@ -73,6 +74,7 @@ exports[`CreatePost snapshot 1`] = `
   className="create-post"
 >
   <textarea
+    maxlength="280"
     onChange={[Function]}
     placeholder="What's on your mind?"
     value=""

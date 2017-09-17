@@ -14,7 +14,7 @@ import { isServer } from '../utils/environment';
  */
 export function user(state = initialState.user, action) {
     switch (action.type) {
-        case types.auth.AUTH_LOGIN_SUCCESS:
+        case types.auth.LOGIN_SUCCESS:
             const { user, token } = action;
             if (!isServer()) {
                 Cookies.set('letters-token', token);
@@ -26,9 +26,9 @@ export function user(state = initialState.user, action) {
                 profilePicture: user.profilePicture || '/static/assets/users/4.jpeg',
                 token
             });
-        case types.auth.AUTH_LOGOUT_SUCCESS:
+        case types.auth.LOGOUT_SUCCESS:
             Cookies.remove('letters-token');
-            return Object.assign({}, state.user, initialState.user);
+            return initialState.user;
         default:
             return state;
     }

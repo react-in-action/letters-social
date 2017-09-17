@@ -13,7 +13,7 @@ import invariant from 'invariant';
  */
 export default class Router extends Component {
     static propTypes = {
-        children: PropTypes.arrayOf(PropTypes.object),
+        children: PropTypes.array,
         location: PropTypes.string.isRequired
     };
 

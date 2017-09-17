@@ -7,12 +7,8 @@ export const app = {
 };
 
 export const auth = {
-    AUTH_LOGIN_FAILURE: 'letters-social/auth/login/FAILURE',
-    AUTH_LOGIN_REQUEST: 'letters-social/auth/login/request',
-    AUTH_LOGIN_SUCCESS: 'letters-social/auth/login/success',
-    AUTH_LOGOUT_FAILURE: 'letters-social/auth/logout/FAILURE',
-    AUTH_LOGOUT_REQUEST: 'letters-social/auth/logout/request',
-    AUTH_LOGOUT_SUCCESS: 'letters-social/auth/logout/success'
+    LOGIN_SUCCESS: 'letters-social/auth/login/success',
+    LOGOUT_SUCCESS: 'letters-social/auth/logout/success'
 };
 
 export const posts = {

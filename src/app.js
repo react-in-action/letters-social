@@ -1,5 +1,5 @@
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import React from 'react';
 import { connect } from 'react-redux';
 
 import ErrorMessage from './components/error/Error';
@@ -12,22 +12,36 @@ import Loader from './components/Loader';
  * @method App
  * @module letters/components
  */
-const App = props => {
-    return (
-        <div className="app">
-            <Nav />
-            {props.error ? (
-                <ErrorMessage error={props.error} />
-            ) : props.loading ? (
-                <div className="loading">
-                    <Loader />
+class App extends Component {
+    componentDidMount() {
+        // Remove the initial state that was embedded with the intial HTML sent by the server
+        const embeddedState = document.getElementById('initialState');
+        if (embeddedState) {
+            embeddedState.remove();
+        }
+    }
+    render() {
+        if (this.props.error) {
+            return (
+                <div className="app">
+                    <ErrorMessage error={this.props.error} />
                 </div>
-            ) : (
-                props.children
-            )}
-        </div>
-    );
-};
+            );
+        }
+        return (
+            <div className="app">
+                <Nav />
+                {this.props.loading ? (
+                    <div className="loading">
+                        <Loader />
+                    </div>
+                ) : (
+                    this.props.children
+                )}
+            </div>
+        );
+    }
+}
 
 App.propTypes = {
     children: PropTypes.node

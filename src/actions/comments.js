@@ -1,10 +1,11 @@
 import * as types from '../constants/types';
 import * as API from '../shared/http';
+import { createError } from './error';
 
 /**
  * Show comments for a post
  * @method showComments
- 
+
  * @param  {string}     postId post id
  * @return {object}
  */
@@ -18,7 +19,7 @@ export function showComments(postId) {
 /**
  * Toggle comments for a post open or closed
  * @method toggleComments
- 
+
  * @param  {string}       postId post id to toggle comments for
  * @return {object}
  */
@@ -32,7 +33,7 @@ export function toggleComments(postId) {
 /**
  * Update what comments are available to the app
  * @method updateAvailableComments
- 
+
  * @param  {Array<object>}                comments incoming comments
  * @return {object}
  */
@@ -46,7 +47,7 @@ export function updateAvailableComments(comments) {
 /**
  * Create a comment
  * @method createComment
- 
+
  * @param  {object}      payload comment payload
  * @return {object}
  */
@@ -59,14 +60,15 @@ export function createComment(payload) {
                     type: types.comments.CREATE,
                     comment
                 });
-            });
+            })
+            .catch(err => dispatch(createError(err)));
     };
 }
 
 /**
  * Load the comments for a particular post
  * @method getCommentsForPost
- 
+
  * @param  {string}           postId post id to load for
  * @return {object}
  */
@@ -74,6 +76,7 @@ export function getCommentsForPost(postId) {
     return dispatch => {
         return API.fetchCommentsForPost(postId)
             .then(res => res.json())
-            .then(comments => dispatch(updateAvailableComments(comments)));
+            .then(comments => dispatch(updateAvailableComments(comments)))
+            .catch(err => dispatch(createError(err)));
     };
 }
