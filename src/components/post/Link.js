@@ -1,6 +1,11 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 
+/**
+ * Displays link content for a given post
+ * @method Link
+ * @param  {object} props
+ */
 const Link = props => {
     const { link } = props;
     return link ? (

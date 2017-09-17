@@ -1,6 +1,12 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
+/**
+ * Renders an error message, if any
+ * @method ErrorMessage
+ * @param  {Object}     props
+ * @param  {Object}     props.error
+ */
 const ErrorMessage = ({ error }) => {
     return (
         <div className="error">

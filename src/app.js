@@ -33,9 +33,10 @@ App.propTypes = {
     children: PropTypes.node
 };
 
-export default connect(state => {
+export const mapStateToProps = state => {
     return {
         error: state.error,
         loading: state.loading
     };
-})(App);
+};
+export default connect(mapStateToProps)(App);

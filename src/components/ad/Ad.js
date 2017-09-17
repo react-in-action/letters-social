@@ -1,6 +1,11 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 
+/**
+ * Dummy ad component
+ * @method Ad
+ * @param  {object} props 
+ */
 const Ad = props => {
     return (
         <div className="ad">

@@ -11,6 +11,12 @@ import UserHeader from '../post/UserHeader';
 
 import RouterLink from '../router/Link';
 
+/**
+ * Displays a post
+ * @method      Post
+ * @param       {props} props
+ * @constructor
+ */
 function Post(props) {
     const { post } = props;
     return post ? (

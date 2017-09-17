@@ -5,7 +5,14 @@ import { logout } from '../../actions/auth';
 import Link from '../router/Link';
 import Logo from './logo';
 
-const Navigation = ({ user, handleLogout }) => (
+/**
+ * App navigation
+ * @method Navigation
+ * @param  {Object}   props
+ * @param  {Object}   props.user         user object
+ * @param  {Function} props.handleLogout logout action
+ */
+export const Navigation = ({ user, handleLogout }) => (
     <nav className="navbar">
         <Logo logoOnly={false} />
         {user.authenticated ? (
@@ -23,12 +30,10 @@ const Navigation = ({ user, handleLogout }) => (
         )}
     </nav>
 );
-
-export default connect(
-    state => ({ user: state.user }),
-    dispatch => ({
-        handleLogout() {
-            dispatch(logout());
-        }
-    })
-)(Navigation);
+export const mapStateToProps = state => ({ user: state.user });
+export const mapDispatchToProps = dispatch => ({
+    handleLogout() {
+        dispatch(logout());
+    }
+});
+export default connect(mapStateToProps, mapDispatchToProps)(Navigation);

@@ -6,10 +6,8 @@ import { isServer } from '../../utils/environment';
 /**
  * The DisplayMap component is used for display locations attached to posts. It handles loading the
  * mapbox APIs into the browser and also allowing the use to pick a location
- * @module letters/components
  * @type {Class}
  */
-
 export default class DisplayMap extends Component {
     constructor(props) {
         super(props);

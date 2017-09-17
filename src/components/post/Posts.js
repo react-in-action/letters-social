@@ -3,22 +3,17 @@ import React from 'react';
 import { connect } from 'react-redux';
 import Post from './Post';
 
-function Posts(props) {
+export function Posts(props) {
     return (
-        <div className="posts">
-            {props.posts.map(post => <Post key={post.id} post={post} />)}
-        </div>
+        <div className="posts">{props.posts.map(post => <Post key={post.id} post={post} />)}</div>
     );
 }
-
 Posts.propTypes = {
     posts: PropTypes.array
 };
-
-const PostContainer = connect(state => {
+export function mapStateToProps(state) {
     return {
         posts: state.posts
     };
-})(Posts);
-
-export default PostContainer;
+}
+export default connect(mapStateToProps)(Posts);

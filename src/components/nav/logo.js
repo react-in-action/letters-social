@@ -3,6 +3,11 @@ import React from 'react';
 
 import Link from '../../components/router/Link';
 
+/**
+ * Letters logo
+ * @method Logo
+ * @param  {Object} props
+ */
 const Logo = props => {
     return (
         <Link to="/">
@@ -14,13 +19,11 @@ const Logo = props => {
 };
 
 Logo.propTypes = {
-    size: PropTypes.number,
-    logoOnly: PropTypes.bool
+    size: PropTypes.number
 };
 
 Logo.defaultProps = {
-    size: 1.75,
-    logoOnly: true
+    size: 1.75
 };
 
 export default Logo;

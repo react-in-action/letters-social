@@ -10,6 +10,14 @@ const ogProps = {
     description:
         'Letters Social is a sample application for the React.js book React in Action by Mark Thomas from Manning Publications. Get it today at https://ifelse.io/book'
 };
+/**
+ * HTML frame component
+ * @method HTML
+ * @param  {object}  props
+ * @param  {Array} props.children
+ * @param  {object} props.reduxState redux state to embed
+ * @return {object}
+ */
 export const HTML = ({ children, reduxState }) => {
     return (
         <html lang="en-us">

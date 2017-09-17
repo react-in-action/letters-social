@@ -1,0 +1,34 @@
+{
+    "source": "src",
+    "destination": "./dist/docs",
+    "plugins": [
+        {
+            "name": "esdoc-standard-plugin",
+            "option": {
+                "brand": {
+                    "title": "Letters Social",
+                    "description":
+                        "Sample application for React in Action (https://ifelse.io/book)",
+                    "repository": "https://github.com/react-in-action/letters-social",
+                    "site": "https://ifelse.io",
+                    "author": "https://twitter.com/markthethomas"
+                }
+            }
+        },
+        {
+            "name": "esdoc-ecmascript-proposal-plugin",
+            "option": {
+                "classProperties": true,
+                "objectRestSpread": true,
+                "doExpressions": true,
+                "functionBind": true,
+                "functionSent": true,
+                "asyncGenerators": true,
+                "decorators": true,
+                "exportExtensions": true,
+                "dynamicImport": true
+            }
+        },
+        { "name": "esdoc-jsx-plugin" }
+    ]
+}

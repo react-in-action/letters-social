@@ -1,5 +1,9 @@
 import React from 'react';
 
+/**
+ * Welcome component renders a welcome message, nothing else!
+ * @method Welcome
+ */
 const Welcome = () => {
     return (
         <div>
@@ -10,8 +14,8 @@ const Welcome = () => {
                     <a href="https://ifelse.io/book" target="_blank" rel="noopener noreferrer">
                         React in Action
                     </a>{' '}
-                    from Manning Publications. This app is the example application that you'll build as you go through
-                    the book. In React in Action, you'll learn:
+                    from Manning Publications. This app is the example application that you'll build
+                    as you go through the book. In React in Action, you'll learn:
                 </p>
                 <ul>
                     <li>Building a simple social app</li>
@@ -25,7 +29,11 @@ const Welcome = () => {
                 </ul>
                 <p>
                     If you have any questions or thoughts, feel free to reach out to me{' '}
-                    <a href="https://twitter.com/markthethomas" target="_blank" rel="noopener noreferrer">
+                    <a
+                        href="https://twitter.com/markthethomas"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
                         @markthethomas
                     </a>{' '}
                     on the Manning Author's forum (you get access w/ the MEAP!) or on {' '}

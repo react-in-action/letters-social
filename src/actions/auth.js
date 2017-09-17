@@ -9,7 +9,6 @@ import { getFirebaseUser, loginWithGithub, logUserOut, getFirebaseToken } from '
 /**
  * Handles the user logging in
  * @method loginSuccess
- * @module letters/actions
  * @param  {object}     user  user object from Firebase
  * @param  {string}     token firebase token, used for SSR
  * @return {object}
@@ -25,7 +24,6 @@ export function loginSuccess(user, token) {
 /**
  * Handles logout
  * @method logoutSuccess
- * @module letters/actions
  * @return {object}
  */
 export function logoutSuccess() {
@@ -37,7 +35,6 @@ export function logoutSuccess() {
 /**
  * Logs a user out
  * @method logout
- * @module letters/actions
  * @return {object}
  */
 export function logout() {
@@ -55,7 +52,6 @@ export function logout() {
 /**
  * Logs a user in
  * @method login
- * @module letters/actions
  * @return {object}
  */
 export function login() {

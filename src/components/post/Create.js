@@ -6,6 +6,10 @@ import classnames from 'classnames';
 import DisplayMap from '../map/DisplayMap';
 import LocationTypeAhead from '../map/LocationTypeAhead';
 
+/**
+ * Component that allows users to create posts
+ * @type {Object}
+ */
 class CreatePost extends React.Component {
     static propTypes = {
         onSubmit: PropTypes.func.isRequired

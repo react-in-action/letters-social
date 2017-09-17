@@ -4,6 +4,10 @@ import MapBox from 'mapbox';
 
 import Loader from '../Loader';
 
+/**
+ * Presents the user with a typeahead so they can pick a location
+ * @type {Object}
+ */
 export default class LocationTypeAhead extends Component {
     static propTypes = {
         onLocationUpdate: PropTypes.func.isRequired,

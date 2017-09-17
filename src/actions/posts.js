@@ -8,7 +8,7 @@ import { getCommentsForPost } from './comments';
 /**
  * Updates available posts
  * @method updateAvailablePosts
- * @module letters/actions
+ 
  * @param  {Array<Post>}             posts array of incoming posts
  * @return {object}
  */
@@ -22,7 +22,7 @@ export function updateAvailablePosts(posts) {
 /**
  * Updates links used for pagination
  * @method updatePaginationLinks
- * @module letters/actions
+ 
  * @param  {object}              links parsed link headers
  * @return {object}
  */
@@ -36,7 +36,7 @@ export function updatePaginationLinks(links) {
 /**
  * Likes a post
  * @method like
- * @module letters/actions
+ 
  * @param  {string} postId post id to like
  * @return {object}
  */
@@ -57,7 +57,7 @@ export function like(postId) {
 /**
  * Unlike a post
  * @method unlike
- * @module letters/actions
+ 
  * @param  {string} postId post id to unlike
  * @return {object}
  */
@@ -78,7 +78,7 @@ export function unlike(postId) {
 /**
  * Create a new post
  * @method createNewPost
- * @module letters/actions
+ 
  * @param  {object}      post post payload
  * @return {object}
  */
@@ -101,7 +101,7 @@ export function createNewPost(post) {
 /**
  * Get posts for a given page ['first', 'prev', 'next']
  * @method getPostsForPage
- * @module letters/actions
+ 
  * @param  {string}        [page='first'] page type to get
  * @return {object}
  */
@@ -124,7 +124,7 @@ export function getPostsForPage(page = 'first') {
 /**
  * Load a given post
  * @method loadPost
- * @module letters/actions
+ 
  * @param  {string} postId post id to load
  * @return {object}
  */
