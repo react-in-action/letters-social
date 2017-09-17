@@ -57,11 +57,6 @@ export function logout() {
 export function login() {
     return dispatch => {
         return loginWithGithub().then(async () => {
-            // Remove the initial state that was embedded with the intial HTML sent by the server
-            const embeddedState = document.getElementById('initialState');
-            if (embeddedState) {
-                embeddedState.remove();
-            }
             dispatch(loading());
             const user = await getFirebaseUser();
             const token = await getFirebaseToken();

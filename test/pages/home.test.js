@@ -7,11 +7,12 @@ import { Home, mapStateToProps, mapDispatchToProps } from '../../src/pages/home'
 import configureStore from '../../src/store/configureStore';
 import initialState from '../../src/constants/initialState';
 
+const now = new Date().getTime();
 describe('Single post page', () => {
     const state = Object.assign({}, initialState, {
         posts: {
-            2: { content: 'stuff', likes: [], date: 2 },
-            1: { content: 'stuff', likes: [], date: 1 }
+            2: { content: 'stuff', likes: [], date: now },
+            1: { content: 'stuff', likes: [], date: now }
         },
         postIds: [1, 2]
     });
@@ -19,8 +20,8 @@ describe('Single post page', () => {
     test('mapStateToProps', () => {
         expect(mapStateToProps(state)).toEqual({
             posts: [
-                { content: 'stuff', likes: [], date: 2 },
-                { content: 'stuff', likes: [], date: 1 }
+                { content: 'stuff', likes: [], date: now },
+                { content: 'stuff', likes: [], date: now }
             ]
         });
     });
@@ -36,8 +37,8 @@ describe('Single post page', () => {
     test('should render posts', function() {
         const props = {
             posts: [
-                { id: 1, content: 'stuff', likes: [], date: 1 },
-                { id: 2, content: 'stuff', likes: [], date: 2 }
+                { id: 1, content: 'stuff', likes: [], date: now },
+                { id: 2, content: 'stuff', likes: [], date: now }
             ],
             actions: {
                 getPostsForPage: jest.fn(),

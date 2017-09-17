@@ -28,7 +28,7 @@ export function user(state = initialState.user, action) {
             });
         case types.auth.AUTH_LOGOUT_SUCCESS:
             Cookies.remove('letters-token');
-            return Object.assign({}, state.user, initialState.user);
+            return initialState.user;
         default:
             return state;
     }

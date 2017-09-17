@@ -1,4 +1,3 @@
-// All this is express boilerplate
 import { __PRODUCTION__ } from 'environs';
 import { resolve } from 'path';
 import bodyParser from 'body-parser';
@@ -6,6 +5,7 @@ import compression from 'compression';
 import cors from 'cors';
 import express from 'express';
 import helmet from 'helmet';
+import favicon from 'serve-favicon';
 import hpp from 'hpp';
 import logger from 'morgan';
 import cookieParser from 'cookie-parser';
@@ -13,11 +13,13 @@ import responseTime from 'response-time';
 import * as firebase from 'firebase-admin';
 import config from 'config';
 
+// Initialize Firebase
 firebase.initializeApp({
     credential: firebase.credential.cert(JSON.parse(process.env.LETTERS_FIREBASE_ADMIN_KEY)),
     databaseURL: 'https://letters-social.firebaseio.com'
 });
 
+// Our dummy database backend
 import DB from '../db/DB';
 
 // Modules explicitly related to React & SSR
@@ -26,7 +28,7 @@ import React from 'react';
 import { match, RouterContext } from 'react-router';
 import { Provider } from 'react-redux';
 
-// Our modules
+// Modules from the client-side of things
 import configureStore from '../src/store/configureStore';
 import initialReduxState from '../src/constants/initialState';
 import { HTML } from '../src/components/HTML';
@@ -35,36 +37,32 @@ import { loginSuccess } from '../src/actions/auth';
 import { getPostsForPage } from '../src/actions/posts';
 import { createError } from '../src/actions/error';
 
-// Create the express app
+// Create the express app and database
 const app = express();
 const backend = DB();
 
 // Add some boilerplate middlware
 app.use(logger(__PRODUCTION__ ? 'combined' : 'dev'));
-
 app.use(helmet.xssFilter({ setOnOldIE: true }));
 app.use(responseTime());
 app.use(helmet.frameguard());
 app.use(helmet.ieNoOpen());
 app.use(helmet.noSniff());
 app.use(helmet.hidePoweredBy({ setTo: 'react' }));
+app.use(compression());
 app.use(cookieParser());
 app.use(bodyParser.json());
-app.use(compression());
 app.use(hpp());
-app.use(
-    cors({
-        origin: config.get('ORIGINS')
-    })
-);
+app.use(cors({ origin: config.get('ORIGINS') }));
 
 // other Route handlers
 app.use('/api', backend);
 app.use('/static', express.static(resolve(__dirname, '..', 'static')));
-
-app.use('*', (req, res, next) => {
+app.use(favicon(resolve(__dirname, '..', 'static', 'assets', 'meta', 'favicon.ico')));
+app.use('*', (req, res) => {
     // Use React Router to match the incoming URL to a path
-    match({ routes: routes, location: req.originalUrl }, async (err, redirect, props) => {
+    match({ routes: routes, location: req.originalUrl }, async (err, redirectLocation, props) => {
+        // Create the store server-side using initial state constant
         const store = configureStore(initialReduxState);
         try {
             // We've stored the user id in a cookie named letters-token,
@@ -106,13 +104,13 @@ app.use('*', (req, res, next) => {
         );
         const renderStream = renderToNodeStream(html);
         res.setHeader('Content-type', 'text/html; charset=UTF-8');
-        renderStream.pipe(res);
+        return renderStream.pipe(res);
     });
 });
 
 // Error handling routes
 app.use((req, res, next) => {
-    const err = new Error('Not Found');
+    const err = new Error('Not found');
     err.status = 404;
     next(err);
 });
