@@ -6,15 +6,16 @@ const WebpackMd5Hash = require('webpack-md5-hash');
 const SWPrecacheWebpackPlugin = require('sw-precache-webpack-plugin');
 const ManifestPlugin = require('webpack-manifest-plugin');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+const config = require('config');
 
 const GLOBALS = {
     'process.env': {
-        NODE_ENV: JSON.stringify('production'),
-        ENDPOINT: JSON.stringify('https://social.react.sh/api'),
-        RIA_SENTRY_APP: JSON.stringify('https://23f0e00b78a24ac88450c8261b59ed7c@sentry.io/212515'),
-        GOOGLE_API_KEY: JSON.stringify('AIzaSyDBosKGKi-BI9Z8vftAwkBRQlSDDNE8PvM'),
-        FIREBASE_AUTH_DOMAIN: JSON.stringify('letters-social.firebaseapp.com'),
-        MAPBOX_API_TOKEN: JSON.stringify('pk.eyJ1IjoibWFya3RoZXRob21hcyIsImEiOiJHa3JyZFFjIn0.MwCj8OA5q4dqdll1s2kMiw')
+        NODE_ENV: JSON.stringify(config.get('NODE_ENV')),
+        ENDPOINT: JSON.stringify(config.get('ENDPOINT')),
+        RIA_SENTRY_APP: JSON.stringify(config.get('RIA_SENTRY_APP')),
+        GOOGLE_API_KEY: JSON.stringify(config.get('GOOGLE_API_KEY')),
+        FIREBASE_AUTH_DOMAIN: JSON.stringify(config.get('FIREBASE_AUTH_DOMAIN')),
+        MAPBOX_API_TOKEN: JSON.stringify(config.get('MAPBOX_API_TOKEN'))
     }
 };
 

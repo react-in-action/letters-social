@@ -119,7 +119,15 @@ export function unlikePost(postId, userId) {
  * @return {Response}     Fetch Response object
  */
 export function loadUser(id) {
-    return fetch(`${process.env.ENDPOINT}/users/${id}`, generateFetchConfig('GET')).then(res =>
-        res.json()
-    );
+    return fetch(`${process.env.ENDPOINT}/users/${id}`, generateFetchConfig('GET'));
+}
+
+/**
+ * Fetch a user from the API
+ * @method createUser
+ * @param  {object}  payload new user payload
+ * @return {Response}     Fetch Response object
+ */
+export function createUser(payload) {
+    return fetch(`${process.env.ENDPOINT}/users`, generateFetchConfig('POST', payload));
 }

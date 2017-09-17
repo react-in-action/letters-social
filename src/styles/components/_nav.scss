@@ -27,6 +27,7 @@
 
 .user-nav-widget {
     display: flex;
+    align-items: center;
     img {
         height: $navbar-height - 15;
         width: $navbar-height - 15;

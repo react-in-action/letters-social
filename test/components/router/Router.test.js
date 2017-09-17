@@ -18,13 +18,12 @@ describe('<Route/>', () => {
         const tree = component.toJSON();
         expect(tree).toMatchSnapshot();
     });
-    test('should render the right component when using a root component (index)', () => {
+    test('should render the right component when using a root component', () => {
         const component = renderer.create(
             <Router location={'/a'}>
-                <Route index path="/" component={RootComponentStub}>
-                    <Route component={FoundComponentStub} path="a" />
-                    <Route component={FoundComponentStub} path="b" />
-                </Route>
+                <Route path="/" component={RootComponentStub} />
+                <Route component={FoundComponentStub} path="a" />
+                <Route component={FoundComponentStub} path="b" />
             </Router>
         );
         const tree = component.toJSON();

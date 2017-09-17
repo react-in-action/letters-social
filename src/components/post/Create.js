@@ -16,13 +16,18 @@ class CreatePost extends React.Component {
     };
     constructor(props) {
         super(props);
-        this.state = {
+        this.initialState = {
             content: '',
             valid: false,
             showLocationPicker: false,
-            location: null,
+            location: {
+                lat: 34.1535641,
+                lng: -118.1428115,
+                name: null
+            },
             locationSelected: false
         };
+        this.state = this.initialState;
         this.filter = new Filter();
         this.handlePostChange = this.handlePostChange.bind(this);
         this.handleRemoveLocation = this.handleRemoveLocation.bind(this);
@@ -42,7 +47,10 @@ class CreatePost extends React.Component {
         });
     }
     handleRemoveLocation() {
-        this.setState(() => ({ location: null }));
+        this.setState(() => ({
+            locationSelected: false,
+            location: this.initialState.location
+        }));
     }
     handleSubmit(event) {
         event.preventDefault();
@@ -50,22 +58,22 @@ class CreatePost extends React.Component {
             return;
         }
         const newPost = {
-            content: this.state.content,
-            location: this.state.location
+            content: this.state.content
         };
+        if (this.state.locationSelected) {
+            newPost.location = this.state.location;
+        }
         this.props.onSubmit(newPost);
         this.setState(() => ({
             content: '',
             valid: false,
             showLocationPicker: false,
-            location: null
+            location: this.defaultLocation,
+            locationSelected: false
         }));
     }
     onLocationUpdate(location) {
-        this.setState(() => ({
-            location,
-            locationSelected: false
-        }));
+        this.setState(() => ({ location }));
     }
     onLocationSelect(location) {
         this.setState(() => ({
@@ -111,18 +119,22 @@ class CreatePost extends React.Component {
                     value={this.state.content}
                     onChange={this.handlePostChange}
                     placeholder="What's on your mind?"
+                    maxlength="280"
                 />
                 {this.renderLocationControls()}
                 <div
                     className="location-picker"
                     style={{ display: this.state.showLocationPicker ? 'block' : 'none' }}
                 >
-                    <LocationTypeAhead
-                        onLocationSelect={this.onLocationSelect}
-                        onLocationUpdate={this.onLocationUpdate}
-                    />
+                    {!this.state.locationSelected && (
+                        <LocationTypeAhead
+                            onLocationSelect={this.onLocationSelect}
+                            onLocationUpdate={this.onLocationUpdate}
+                        />
+                    )}
                     <DisplayMap
                         displayOnly={false}
+                        location={this.state.location}
                         onLocationSelect={this.onLocationSelect}
                         onLocationUpdate={this.onLocationUpdate}
                     />

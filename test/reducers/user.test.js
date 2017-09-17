@@ -10,7 +10,7 @@ describe('user', () => {
     test('should return the initial state', () => {
         expect(user(initialState.user, {})).toEqual(initialState.user);
     });
-    test(`${types.auth.AUTH_LOGIN_SUCCESS}`, () => {
+    test(`${types.auth.LOGIN_SUCCESS}`, () => {
         const mockUser = {
             name: 'name',
             id: 'id',
@@ -26,17 +26,17 @@ describe('user', () => {
         };
         expect(
             user(initialState.user, {
-                type: types.auth.AUTH_LOGIN_SUCCESS,
+                type: types.auth.LOGIN_SUCCESS,
                 user: mockUser,
                 token: mockToken
             })
         ).toEqual(expectedState);
         expect(Cookies).toHaveBeenCalled();
     });
-    test(`${types.auth.AUTH_LOGOUT_SUCCESS}, browser`, () => {
+    test(`${types.auth.LOGOUT_SUCCESS}, browser`, () => {
         expect(
             user(initialState.user, {
-                type: types.auth.AUTH_LOGOUT_SUCCESS
+                type: types.auth.LOGOUT_SUCCESS
             })
         ).toEqual(initialState.user);
         expect(Cookies).toHaveBeenCalled();

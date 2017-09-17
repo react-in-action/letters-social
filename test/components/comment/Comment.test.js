@@ -1,17 +1,9 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import sinon from 'sinon';
 
 import Comment from '../../../src/components/comment/Comment';
 
 describe('<Comment/>', () => {
-    let sandbox;
-    beforeEach(() => {
-        sandbox = sinon.sandbox.create();
-    });
-    afterEach(() => {
-        sandbox.restore();
-    });
     test('should render correctly', () => {
         const mockComment = {
             id: 'id',

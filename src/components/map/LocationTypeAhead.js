@@ -21,9 +21,7 @@ export default class LocationTypeAhead extends Component {
             selectedLocation: null,
             error: null
         };
-        this.mapbox = new MapBox(
-            'pk.eyJ1IjoibWFya3RoZXRob21hcyIsImEiOiJHa3JyZFFjIn0.MwCj8OA5q4dqdll1s2kMiw'
-        );
+        this.mapbox = new MapBox(process.env.MAPBOX_API_TOKEN);
         this.attemptGeoLocation = this.attemptGeoLocation.bind(this);
         this.handleLocationUpdate = this.handleLocationUpdate.bind(this);
         this.handleSearchChange = this.handleSearchChange.bind(this);
@@ -57,7 +55,7 @@ export default class LocationTypeAhead extends Component {
                 return;
             }
             const locations = loc.entity.features.map(feature => {
-                const [lat, lng] = feature.center;
+                const [lng, lat] = feature.center;
                 return {
                     name: feature.place_name,
                     lat,
@@ -77,7 +75,7 @@ export default class LocationTypeAhead extends Component {
                             return;
                         }
                         const feature = loc.entity.features[0];
-                        const [lat, lng] = feature.center;
+                        const [lng, lat] = feature.center;
                         const currentLocation = {
                             name: feature.place_name,
                             lat,
