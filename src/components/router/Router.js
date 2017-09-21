@@ -13,7 +13,7 @@ import invariant from 'invariant';
  */
 export default class Router extends Component {
     static propTypes = {
-        children: PropTypes.arrayOf(PropTypes.object),
+        children: PropTypes.object,
         location: PropTypes.string.isRequired
     };
 
@@ -43,7 +43,7 @@ export default class Router extends Component {
 
         // Set up Ccmponent to be rendered
         const render = (params, renderProps) => {
-            const finalProps = Object.assign({ router: { params } }, this.props, renderProps);
+            const finalProps = Object.assign({ params }, this.props, renderProps);
 
             // Or, using the object spread operator (currently a candidate proposal for future versions of JavaScript)
             // const finalProps = {

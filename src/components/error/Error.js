@@ -26,9 +26,5 @@ const ErrorMessage = ({ error }) => {
         </div>
     );
 };
-
-export default connect(state => {
-    return {
-        error: state.error
-    };
-})(ErrorMessage);
+export const mapStateToProps = state => ({ error: state.erro });
+export default connect(mapStateToProps)(ErrorMessage);

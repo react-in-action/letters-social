@@ -6,7 +6,6 @@ import Welcome from '../components/welcome/Welcome';
 
 export class Login extends Component {
     render() {
-        const { handleLogin } = this.props;
         return (
             <div className="login">
                 <div className="welcome-container">
