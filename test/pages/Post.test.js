@@ -45,7 +45,12 @@ describe('Single post page', () => {
         expect(component.find('Ad').length).toEqual(1);
     });
     test('should render a loader when no post loaded', () => {
-        const component = shallow(<SinglePost />);
+        const props = {
+            post: null,
+            actions: { loadPost: jest.fn() },
+            router: { params: { postId: 1 } }
+        };
+        const component = shallow(<SinglePost {...props} />);
         expect(component.find('Loader').length).toEqual(1);
     });
     test('should load a component if one is not already loaded', function() {

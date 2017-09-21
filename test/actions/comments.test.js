@@ -1,8 +1,6 @@
 jest.mock('../../src/shared/http');
-
 import configureStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
-
 import initialState from '../../src/constants/initialState';
 import * as types from '../../src/constants/types';
 import {
@@ -23,31 +21,19 @@ describe('login actions', () => {
     test('showComments', () => {
         const postId = 'id';
         const actual = showComments(postId);
-        const expected = {
-            type: types.comments.SHOW,
-
-            postId
-        };
+        const expected = { type: types.comments.SHOW, postId };
         expect(actual).toEqual(expected);
     });
     test('toggleComments', () => {
         const postId = 'id';
         const actual = toggleComments(postId);
-        const expected = {
-            type: types.comments.TOGGLE,
-
-            postId
-        };
+        const expected = { type: types.comments.TOGGLE, postId };
         expect(actual).toEqual(expected);
     });
     test('updateAvailableComments', () => {
         const comments = ['comments'];
         const actual = updateAvailableComments(comments);
-        const expected = {
-            type: types.comments.GET,
-
-            comments
-        };
+        const expected = { type: types.comments.GET, comments };
         expect(actual).toEqual(expected);
     });
     test('createComment', async () => {
@@ -59,13 +45,7 @@ describe('login actions', () => {
         });
         await store.dispatch(createComment(mockComment));
         const actions = store.getActions();
-        const expectedActions = [
-            {
-                type: types.comments.CREATE,
-
-                comment: [mockComment]
-            }
-        ];
+        const expectedActions = [{ type: types.comments.CREATE, comment: [mockComment] }];
         expect(actions).toEqual(expectedActions);
     });
     test('getCommentsForPost', async () => {
@@ -78,13 +58,7 @@ describe('login actions', () => {
         });
         await store.dispatch(getCommentsForPost(postId));
         const actions = store.getActions();
-        const expectedActions = [
-            {
-                type: types.comments.GET,
-
-                comments
-            }
-        ];
+        const expectedActions = [{ type: types.comments.GET, comments }];
         expect(actions).toEqual(expectedActions);
     });
 });

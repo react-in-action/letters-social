@@ -8,7 +8,7 @@ import { getCommentsForPost } from './comments';
 /**
  * Updates available posts
  * @method updateAvailablePosts
- 
+
  * @param  {Array<Post>}             posts array of incoming posts
  * @return {object}
  */
@@ -22,7 +22,7 @@ export function updateAvailablePosts(posts) {
 /**
  * Updates links used for pagination
  * @method updatePaginationLinks
- 
+
  * @param  {object}              links parsed link headers
  * @return {object}
  */
@@ -36,7 +36,7 @@ export function updatePaginationLinks(links) {
 /**
  * Likes a post
  * @method like
- 
+
  * @param  {string} postId post id to like
  * @return {object}
  */
@@ -50,14 +50,15 @@ export function like(postId) {
                     type: types.posts.LIKE,
                     post
                 });
-            });
+            })
+            .catch(err => dispatch(createError(err)));
     };
 }
 
 /**
  * Unlike a post
  * @method unlike
- 
+
  * @param  {string} postId post id to unlike
  * @return {object}
  */
@@ -71,14 +72,15 @@ export function unlike(postId) {
                     type: types.posts.UNLIKE,
                     post
                 });
-            });
+            })
+            .catch(err => dispatch(createError(err)));
     };
 }
 
 /**
  * Create a new post
  * @method createNewPost
- 
+
  * @param  {object}      post post payload
  * @return {object}
  */
@@ -101,7 +103,7 @@ export function createNewPost(post) {
 /**
  * Get posts for a given page ['first', 'prev', 'next']
  * @method getPostsForPage
- 
+
  * @param  {string}        [page='first'] page type to get
  * @return {object}
  */
@@ -124,7 +126,7 @@ export function getPostsForPage(page = 'first') {
 /**
  * Load a given post
  * @method loadPost
- 
+
  * @param  {string} postId post id to load
  * @return {object}
  */

@@ -1,14 +1,11 @@
 import thunk from 'redux-thunk';
 import { createStore, compose, applyMiddleware } from 'redux';
 
-import { isServer } from '../utils/environment';
 import rootReducer from '../reducers/root';
 
 let store;
 export default initialState => {
-    // On the client, we want to make sure the store is a singleton, but we want to
-    // reset it every time on the server
-    if (store && !isServer()) {
+    if (store) {
         return store;
     }
     const createdStore = createStore(
