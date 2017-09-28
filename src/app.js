@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
 
+import { logUserOut } from './backend/auth';
 import ErrorMessage from './components/error/Error';
 import Nav from './components/nav/navbar';
 import Loader from './components/Loader';
@@ -13,25 +13,35 @@ import Loader from './components/Loader';
  * @module letters/components
  */
 class App extends Component {
-    componentDidMount() {
-        // Remove the initial state that was embedded with the intial HTML sent by the server
-        const embeddedState = document.getElementById('initialState');
-        if (embeddedState) {
-            embeddedState.remove();
-        }
+    constructor(props) {
+        super(props);
+        this.state = {
+            error: null,
+            loading: false
+        };
+    }
+    static propTypes = {
+        children: PropTypes.node
+    };
+    componentDidCatch(err, info) {
+        console.error(err);
+        console.error(info);
+        this.setState(() => ({
+            error: err
+        }));
     }
     render() {
-        if (this.props.error) {
+        if (this.state.error) {
             return (
                 <div className="app">
-                    <ErrorMessage error={this.props.error} />
+                    <ErrorMessage error={this.state.error} />
                 </div>
             );
         }
         return (
             <div className="app">
-                <Nav />
-                {this.props.loading ? (
+                <Nav handleLogout={() => logUserOut()} user={this.props.user} />
+                {this.state.loading ? (
                     <div className="loading">
                         <Loader />
                     </div>
@@ -43,14 +53,4 @@ class App extends Component {
     }
 }
 
-App.propTypes = {
-    children: PropTypes.node
-};
-
-export const mapStateToProps = state => {
-    return {
-        error: state.error,
-        loading: state.loading
-    };
-};
-export default connect(mapStateToProps)(App);
+export default App;

@@ -14,12 +14,4 @@ exports[`<Route/> should render components that match a route 1`] = `
 </div>
 `;
 
-exports[`<Route/> should render the right component when using a root component (index) 1`] = `
-<div>
-  <div
-    className="found"
-  >
-    found
-  </div>
-</div>
-`;
+exports[`<Route/> should render the right component when using a root component 1`] = `null`;

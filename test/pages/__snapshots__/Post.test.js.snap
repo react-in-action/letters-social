@@ -1,20 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Single post page should load a component if one is not already loaded 1`] = `
-<div
-  className="loader"
->
-  <div
-    className="ball-pulse-sync"
-  >
-    <div />
-    <div />
-    <div />
-  </div>
-</div>
-`;
-
-exports[`Single post page should reuse an already loaded post 1`] = `
+exports[`Single post page snapshot 1`] = `
 <div
   className="single-post"
 >
@@ -26,66 +12,6 @@ exports[`Single post page should reuse an already loaded post 1`] = `
       className="fa fa-arrow-left"
     />
      Back
-  </div>
-  <div
-    className="post"
-  >
-    <span
-      onClick={[Function]}
-    >
-      <div
-        className="user-header"
-      >
-        <div
-          className="user-info-section"
-        >
-          <img
-            className="img-circle"
-            height={25}
-            src="/static/assets/users/4.jpeg"
-            width={25}
-          />
-          <a />
-        </div>
-        <small
-          className="date"
-        >
-          0 minutes
-           
-          ago
-        </small>
-      </div>
-      <p
-        className="content"
-      />
-    </span>
-    <div
-      className="post-actions"
-    >
-      <span
-        onClick={[Function]}
-      >
-        <i
-          className="fa fa-thumbs-o-up"
-        />
-         
-      </span>
-      <button
-        className="open"
-        onClick={[Function]}
-      >
-        <i
-          className="fa fa-commenting-o"
-        />
-         
-        <i
-          className="fa fa-angle-down"
-        />
-      </button>
-    </div>
-    <div
-      className="comments"
-    />
   </div>
   <div
     className="ad"

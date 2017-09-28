@@ -1,5 +1,4 @@
 import React from 'react';
-import { connect } from 'react-redux';
 
 /**
  * Renders an error message, if any
@@ -26,5 +25,4 @@ const ErrorMessage = ({ error }) => {
         </div>
     );
 };
-export const mapStateToProps = state => ({ error: state.erro });
-export default connect(mapStateToProps)(ErrorMessage);
+export default ErrorMessage;

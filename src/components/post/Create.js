@@ -68,7 +68,7 @@ class CreatePost extends React.Component {
             content: '',
             valid: false,
             showLocationPicker: false,
-            location: this.defaultLocation,
+            location: this.initialState.location,
             locationSelected: false
         }));
     }

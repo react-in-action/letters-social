@@ -6,10 +6,7 @@ import React from 'react';
  * @method Content
  * @param  {object} props
  */
-const Content = props => {
-    const { post } = props;
-    return <p className="content">{post.content}</p>;
-};
+const Content = ({ post }) => <p className="content">{post.content}</p>;
 
 Content.propTypes = {
     post: PropTypes.object

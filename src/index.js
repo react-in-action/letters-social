@@ -1,12 +1,9 @@
 import React from 'react';
 import { render } from 'react-dom';
-import { Provider } from 'react-redux';
-import Firebase from 'firebase';
+import firebase from 'firebase';
 
 import * as API from './shared/http';
 import { history } from './history';
-import configureStore from './store/configureStore';
-import initialReduxState from './constants/initialState';
 import Route from './components/router/Route';
 import Router from './components/router/Router';
 import App from './app';
@@ -14,10 +11,7 @@ import Home from './pages/home';
 import SinglePost from './pages/post';
 import Login from './pages/login';
 import NotFound from './pages/404';
-import { createError } from './actions/error';
-import { loginSuccess } from './actions/auth';
-import { loaded, loading } from './actions/loading';
-import { getFirebaseUser, getFirebaseToken } from './backend/auth';
+import { getFirebaseToken } from './backend/auth';
 
 import './shared/crash';
 import './shared/service-worker';
@@ -25,62 +19,77 @@ import './shared/vendor';
 // NOTE: this isn't ES*-compliant/possible, but works because we use Webpack as a build tool
 import './styles/styles.scss';
 
-// Create the Redux store
-const store = configureStore(initialReduxState);
-
-const renderApp = state => {
+export const renderApp = (state, callback = () => {}) => {
     render(
-        <Provider store={store}>
-            <Router {...state}>
-                <Route path="" component={App}>
-                    <Route path="/" component={Home} />
-                    <Route path="/posts/:postId" component={SinglePost} />
-                    <Route path="/login" component={Login} />
-                    <Route path="*" component={NotFound} />
-                </Route>
-            </Router>
-        </Provider>,
-        document.getElementById('app')
+        <Router {...state}>
+            <Route path="" component={App}>
+                <Route path="/" component={Home} />
+                <Route path="/posts/:postId" component={SinglePost} />
+                <Route path="/login" component={Login} />
+                <Route path="*" component={NotFound} />
+            </Route>
+        </Router>,
+        document.getElementById('app'),
+        callback
     );
 };
 
-const initialState = {
-    location: window.location.pathname
+let state = {
+    location: window.location.pathname,
+    user: {
+        authenticated: false,
+        profilePicture: null,
+        id: null,
+        name: null,
+        token: null
+    }
 };
 
 // Render the app initially
-renderApp(initialState);
+renderApp(state);
 
 history.listen(location => {
-    const user = Firebase.auth().currentUser;
-    const newState = Object.assign(initialState, { location: user ? location.pathname : '/login' });
-    renderApp(newState);
+    const user = firebase.auth().currentUser;
+    state = Object.assign({}, state, {
+        location: user ? location.pathname : '/login'
+    });
+    renderApp(state);
 });
 
-getFirebaseUser()
-    .then(async user => {
-        if (!user) {
-            return history.push('/login');
-        }
-        store.dispatch(loading());
-        const token = await getFirebaseToken();
-        const res = await API.loadUser(user.uid);
-        if (res.status === 404) {
-            const userPayload = {
-                name: user.displayName,
-                profilePicture: user.photoURL,
-                id: user.uid
-            };
-            const newUser = await API.createUser(userPayload).then(res => res.json());
-            store.dispatch(loginSuccess(newUser, token));
-            store.dispatch(loaded());
-            history.push('/');
-            return newUser;
-        }
-        const existingUser = await res.json();
-        store.dispatch(loginSuccess(existingUser, token));
-        store.dispatch(loaded());
-        history.push('/');
-        return existingUser;
-    })
-    .catch(err => createError(err));
+firebase.auth().onAuthStateChanged(async user => {
+    if (!user) {
+        state = {
+            location: state.location,
+            user: {
+                authenticated: false
+            }
+        };
+        return renderApp(state, () => {
+            history.push('/login');
+        });
+    }
+    const token = await getFirebaseToken();
+    const res = await API.loadUser(user.uid);
+    let renderUser;
+    if (res.status === 404) {
+        const userPayload = {
+            name: user.displayName,
+            profilePicture: user.photoURL,
+            id: user.uid
+        };
+        renderUser = await API.createUser(userPayload).then(res => res.json());
+    } else {
+        renderUser = await res.json();
+    }
+    history.push('/');
+    state = Object.assign({}, state, {
+        user: {
+            name: renderUser.name,
+            id: renderUser.id,
+            profilePicture: renderUser.profilePicture,
+            authenticated: true
+        },
+        token
+    });
+    renderApp(state);
+});
