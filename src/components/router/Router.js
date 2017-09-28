@@ -13,7 +13,7 @@ import invariant from 'invariant';
  */
 export default class Router extends Component {
     static propTypes = {
-        children: PropTypes.object,
+        children: PropTypes.array,
         location: PropTypes.string.isRequired
     };
 
@@ -34,8 +34,8 @@ export default class Router extends Component {
     }
 
     addRoute(element, parent) {
-        // Get the component, path, index, and children props from a given child
-        const { component, path, children, index } = element.props;
+        // Get the component, path, and children props from a given child
+        const { component, path, children } = element.props;
 
         // Ensure that it has the right input, since PropTypes can't really help here
         invariant(component, `Route ${path} is missing the "path" property`);
@@ -52,11 +52,7 @@ export default class Router extends Component {
             //   params,
             // };
 
-            const hasIndexRoute = index && path === finalProps.location;
-
-            const children = hasIndexRoute
-                ? React.createElement(component, finalProps, React.createElement(index, finalProps))
-                : React.createElement(component, finalProps);
+            const children = React.createElement(component, finalProps);
 
             return parent ? parent.render(params, { children }) : children;
         };

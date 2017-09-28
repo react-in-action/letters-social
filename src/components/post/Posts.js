@@ -1,6 +1,5 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import { connect } from 'react-redux';
 import Post from './Post';
 
 export function Posts(props) {
@@ -11,9 +10,4 @@ export function Posts(props) {
 Posts.propTypes = {
     posts: PropTypes.array
 };
-export function mapStateToProps(state) {
-    return {
-        posts: state.posts
-    };
-}
-export default connect(mapStateToProps)(Posts);
+export default Posts;

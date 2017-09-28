@@ -1,42 +1,74 @@
-import PropTypes from 'prop-types';
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
+import parseLinkHeader from 'parse-link-header';
 import orderBy from 'lodash/orderBy';
 
-import { createError } from '../actions/error';
-import { createNewPost, getPostsForPage } from '../actions/posts';
-import { showComments } from '../actions/comments';
+import * as API from '../shared/http';
 import Ad from '../components/ad/Ad';
 import CreatePost from '../components/post/Create';
 import Post from '../components/post/Post';
 import Welcome from '../components/welcome/Welcome';
 
 export class Home extends Component {
-    componentDidMount() {
-        this.props.actions.getPostsForPage();
+    constructor(props) {
+        super(props);
+        this.state = {
+            posts: [],
+            error: null,
+            endpoint: `${process.env
+                .ENDPOINT}/posts?_page=1&_sort=date&_order=DESC&_embed=comments&_expand=user&_embed=likes`
+        };
+        this.getPosts = this.getPosts.bind(this);
+        this.createNewPost = this.createNewPost.bind(this);
     }
-    componentDidCatch(err, info) {
-        this.props.actions.createError(err, info);
+    componentDidMount() {
+        this.setState(() => ({ loading: true }));
+        this.getPosts();
+    }
+    getPosts() {
+        API.fetchPosts(this.state.endpoint)
+            .then(res => {
+                return res.json().then(posts => {
+                    const links = parseLinkHeader(res.headers.get('Link'));
+                    this.setState(() => ({
+                        posts: orderBy(this.state.posts.concat(posts), 'date', 'desc'),
+                        endpoint: links.next.url,
+                        loading: false
+                    }));
+                });
+            })
+            .catch(err => {
+                this.setState(() => ({ error: err }));
+            });
+    }
+    createNewPost(post) {
+        post.userId = this.props.user.id;
+        return API.createPost(post)
+            .then(res => res.json())
+            .then(newPost => {
+                this.setState(prevState => {
+                    return {
+                        posts: orderBy(prevState.posts.concat(newPost), 'date', 'desc')
+                    };
+                });
+            })
+            .catch(err => {
+                this.setState(() => ({ error: err }));
+            });
     }
     render() {
         return (
             <div className="home">
                 <Welcome />
                 <div>
-                    <CreatePost onSubmit={this.props.actions.createNewPost} />
-                    {this.props.posts && (
+                    <CreatePost onSubmit={this.createNewPost} />
+                    {this.state.posts.length && (
                         <div className="posts">
-                            {this.props.posts.map(post => (
-                                <Post
-                                    key={post.id}
-                                    post={post}
-                                    openCommentsDrawer={this.props.actions.showComments}
-                                />
-                            ))}
+                            {this.state.posts.map(({ id }) => {
+                                return <Post id={id} key={id} user={this.props.user} />;
+                            })}
                         </div>
                     )}
-                    <button className="block" onClick={this.props.actions.getNextPageOfPosts}>
+                    <button className="block" onClick={this.getPosts}>
                         Load more posts
                     </button>
                 </div>
@@ -49,35 +81,4 @@ export class Home extends Component {
     }
 }
 
-Home.propTypes = {
-    posts: PropTypes.arrayOf(PropTypes.object),
-    actions: PropTypes.shape({
-        createNewPost: PropTypes.func,
-        getPostsForPage: PropTypes.func,
-        showComments: PropTypes.func,
-        createError: PropTypes.func,
-        getNextPageOfPosts: PropTypes.func
-    })
-};
-export const mapStateToProps = state => {
-    const posts = orderBy(state.postIds.map(postId => state.posts[postId]), 'date', 'desc');
-    return {
-        posts
-    };
-};
-export const mapDispatchToProps = dispatch => {
-    return {
-        actions: bindActionCreators(
-            {
-                createNewPost,
-                getPostsForPage,
-                showComments,
-                createError,
-                getNextPageOfPosts: getPostsForPage.bind(this, 'next')
-            },
-            dispatch
-        )
-    };
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(Home);
+export default Home;
