@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import { logUserOut } from './backend/auth';
 import ErrorMessage from './components/error/Error';
 import Nav from './components/nav/navbar';
 import Loader from './components/Loader';
@@ -40,7 +39,7 @@ class App extends Component {
         }
         return (
             <div className="app">
-                <Nav handleLogout={() => logUserOut()} user={this.props.user} />
+                <Nav user={this.props.user} />
                 {this.state.loading ? (
                     <div className="loading">
                         <Loader />

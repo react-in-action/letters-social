@@ -8,8 +8,7 @@ import { navigate } from '../../history';
  * @param       {object} props
  * @constructor
  */
-function Link(props) {
-    const { to, children } = props;
+function Link({ to, children }) {
     return cloneElement(Children.only(children), {
         onClick: () => navigate(to)
     });

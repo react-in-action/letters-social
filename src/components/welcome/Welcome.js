@@ -21,7 +21,7 @@ const Welcome = () => {
                     <li>Building a simple social app</li>
                     <li>Learning about the fundamentals of React</li>
                     <li>Building React apps with modern JavaScript (ES2015 and beyond)</li>
-                    <li>How React works (React in action covers through Reacy 16 (fiber))</li>
+                    <li>How React works (React in action covers through React 16 (fiber))</li>
                     <li>Implementing a routing system from scratch</li>
                     <li>Utilizing server-side rendering</li>
                     <li>Testing React applications</li>

@@ -1,8 +1,8 @@
 import firebase from 'firebase';
 
 const config = {
-    apiKey: 'AIzaSyDBosKGKi-BI9Z8vftAwkBRQlSDDNE8PvM',
-    authDomain: 'letters-social.firebaseapp.com'
+    apiKey: process.env.GOOGLE_API_KEY,
+    authDomain: process.env.FIREBASE_AUTH_DOMAIN
 };
 
 try {

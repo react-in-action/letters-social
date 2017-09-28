@@ -1,7 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+
 import Link from '../router/Link';
 import Logo from './logo';
+import { logUserOut } from '../../backend/auth';
 
 /**
  * App navigation
@@ -10,14 +12,14 @@ import Logo from './logo';
  * @param  {Object}   props.user         user object
  * @param  {Function} props.handleLogout logout action
  */
-export const Navigation = ({ user, handleLogout }) => (
+export const Navigation = ({ user }) => (
     <nav className="navbar">
-        <Logo logoOnly={false} />
+        <Logo />
         {user.authenticated ? (
             <span className="user-nav-widget">
                 <span>{user.name}</span>
                 <img width={40} className="img-circle" src={user.profilePicture} alt={user.name} />
-                <span onClick={handleLogout}>
+                <span onClick={() => logUserOut()}>
                     <i className="fa fa-sign-out" />
                 </span>
             </span>
@@ -30,12 +32,11 @@ export const Navigation = ({ user, handleLogout }) => (
 );
 
 Navigation.propTypes = {
-    handleLogout: PropTypes.func.isRequired,
     user: PropTypes.shape({
         name: PropTypes.string,
         authenticated: PropTypes.bool,
         profilePicture: PropTypes.string
-    })
+    }).isRequired
 };
 
 export default Navigation;
