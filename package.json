@@ -25,9 +25,7 @@
         "server:dev": "nodemon --config nodemon.json index.js",
         "start": "NODE_ENV=production pm2 start ./index.js --no-daemon",
         "styles:w": "npm run styles && node-sass src/styles/styles.scss -o static/ -w src/styles --watch --recursive",
-        "styles": "node-sass -q src/styles/styles.scss -o static/",
-        "test:w": "jest --watch --coverage",
-        "test": "jest --coverage"
+        "styles": "node-sass -q src/styles/styles.scss -o static/"
     },
     "repository": {
         "type": "git",
@@ -41,13 +39,6 @@
     "engines": {
         "node": "8.5.0",
         "npm": "5.4.0"
-    },
-    "jest": {
-        "testEnvironment": "jsdom",
-        "setupFiles": [
-            "raf/polyfill",
-            "./test/setup.js"
-        ]
     },
     "homepage": "https://github.com/react-in-action/letters-social#readme",
     "dependencies": {
@@ -116,7 +107,6 @@
         "extract-text-webpack-plugin": "3.0.0",
         "faker": "4.1.0",
         "file-loader": "0.11.2",
-        "flow-bin": "^0.55.0",
         "forcem-ipsum": "1.7.3",
         "html-webpack-plugin": "2.30.1",
         "jest": "^21.2.1",

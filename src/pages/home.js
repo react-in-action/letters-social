@@ -21,7 +21,6 @@ export class Home extends Component {
         this.createNewPost = this.createNewPost.bind(this);
     }
     componentDidMount() {
-        this.setState(() => ({ loading: true }));
         this.getPosts();
     }
     getPosts() {
@@ -31,8 +30,7 @@ export class Home extends Component {
                     const links = parseLinkHeader(res.headers.get('Link'));
                     this.setState(() => ({
                         posts: orderBy(this.state.posts.concat(posts), 'date', 'desc'),
-                        endpoint: links.next.url,
-                        loading: false
+                        endpoint: links.next.url
                     }));
                 });
             })

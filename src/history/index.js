@@ -1,4 +1,4 @@
-import { browserHistory } from 'react-router';
-const history = typeof window !== 'undefined' ? browserHistory : { push: () => {} };
+import createHistory from 'history/createBrowserHistory';
+const history = createHistory();
 const navigate = to => history.push(to);
 export { history, navigate };

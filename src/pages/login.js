@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 
 import { history } from '../history';
 import { loginWithGithub } from '../backend/auth';
-import { providers } from '../constants/types';
 import Welcome from '../components/welcome/Welcome';
 
 export class Login extends Component {
@@ -22,12 +21,9 @@ export class Login extends Component {
                     <Welcome />
                 </div>
                 <div className="providers">
-                    {providers.map(provider => (
-                        <button key={provider} onClick={this.login}>
-                            <i className={`fa fa-${provider.toLowerCase()}`} /> log in with{' '}
-                            {provider}
-                        </button>
-                    ))}
+                    <button onClick={this.login}>
+                        <i className={`fa fa-github`} /> log in with Github
+                    </button>
                 </div>
             </div>
         );
