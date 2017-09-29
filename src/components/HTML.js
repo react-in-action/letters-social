@@ -63,7 +63,9 @@ export const start = () => {
 
 export const end = reduxState => {
     return `</div>
-        <script id="initialState" data-intial-redux-state='${JSON.stringify(reduxState)}'></script>
+        <script id="initialState">
+            window.__INITIAL_STATE__ = ${JSON.stringify(reduxState)};
+        </script>
         <script src="https://cdn.ravenjs.com/3.17.0/raven.min.js" type="text/javascript"></script>
         <script src="https://api.mapbox.com/mapbox.js/v3.1.1/mapbox.js" type="text/javascript"></script>
         <script src="/static/bundle.js" type="text/javascript"></script>

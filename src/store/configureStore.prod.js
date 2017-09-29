@@ -15,7 +15,7 @@ export default function configureStore(initialState) {
     const hydratedState =
         // We embed the initial state as a data property on an HTML element
         !isServer() && process.env.NODE_ENV === 'production'
-            ? JSON.parse(document.getElementById('initialState').dataset.intialReduxState)
+            ? window.__INITIAL_STATE__
             : initialState;
     store = createStore(
         rootReducer,
