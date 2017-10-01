@@ -9,9 +9,6 @@ const ogProps = {
 /**
  * HTML frame component
  * @method start
- * @param  {object}  props
- * @param  {Array} props.children
- * @param  {object} props.reduxState redux state to embed
  * @return {string}
  */
 export const start = () => {

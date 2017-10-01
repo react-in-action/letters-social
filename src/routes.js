@@ -18,8 +18,8 @@ const store = configureStore();
  * This React Router onenter hook helps determine if there's a currently-authenticated user or not
  * @method requireUser
  * @module letters/components
- * @param  {nextState}    nextState next react router Location descriptor
- * @param  {function}    replace   replace function
+ * @param  {object}    nextState next react router Location descriptor
+ * @param  {Function}  replace   replace function
  * @param  {Function}  callback  callback to invoke when ready to transition
  * @return {void}
  */
