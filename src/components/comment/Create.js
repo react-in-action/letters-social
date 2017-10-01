@@ -1,10 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 
-/**
- * Component that allows the creation of comments
- * @type {Object}
- */
 class CreateComment extends React.Component {
     static propTypes = {
         post: PropTypes.object.isRequired,

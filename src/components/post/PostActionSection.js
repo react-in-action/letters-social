@@ -1,12 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 
-/**
- * Contains the commenting and like buttons for a given post; controls showing comments or not
- * @method PostActionSection
- * @module letters/components
- * @param  {Function}          props
- */
 const PostActionSection = props => {
     const { showComments } = props;
     return (

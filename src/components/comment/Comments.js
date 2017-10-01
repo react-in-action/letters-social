@@ -5,11 +5,6 @@ import Loader from '../Loader';
 import Comment from './Comment';
 import CreateComment from './Create';
 
-/**
- * Displays a number of comments
- * @method Comments
- * @param  {object} props
- */
 const Comments = props => {
     const { comments, show, post, handleSubmit, user } = props;
     if (show && !comments) {

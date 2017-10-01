@@ -2,12 +2,6 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import MapBox from 'mapbox';
 
-import Loader from '../Loader';
-
-/**
- * Presents the user with a typeahead so they can pick a location
- * @type {Object}
- */
 export default class LocationTypeAhead extends Component {
     static propTypes = {
         onLocationUpdate: PropTypes.func.isRequired,
@@ -18,8 +12,7 @@ export default class LocationTypeAhead extends Component {
         this.state = {
             text: '',
             locations: [],
-            selectedLocation: null,
-            error: null
+            selectedLocation: null
         };
         this.mapbox = new MapBox(process.env.MAPBOX_API_TOKEN);
         this.attemptGeoLocation = this.attemptGeoLocation.bind(this);
@@ -29,7 +22,7 @@ export default class LocationTypeAhead extends Component {
         this.resetSearch = this.resetSearch.bind(this);
     }
     componentDidUpdate(prevProps, prevState) {
-        if (prevState.text === '' && this.state.locations.length) {
+        if (prevState.text === '' && prevState.locations.length) {
             this.setState(() => ({ locations: [] }));
         }
     }
@@ -122,17 +115,13 @@ export default class LocationTypeAhead extends Component {
                     placeholder="Enter a location..."
                     value={this.state.text}
                 />
-                {this.state.searching ? (
-                    <Loader />
-                ) : (
-                    <button
-                        disabled={!this.state.selectedLocation}
-                        onClick={this.handleSelectLocation}
-                        className="open"
-                    >
-                        Select
-                    </button>
-                )}
+                <button
+                    disabled={!this.state.selectedLocation}
+                    onClick={this.handleSelectLocation}
+                    className="open"
+                >
+                    Select
+                </button>
             </div>,
             this.state.text.length && this.state.locations.length ? (
                 <div key="location-typeahead-results" className="location-typeahead-results">
