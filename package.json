@@ -124,7 +124,6 @@
         "extract-text-webpack-plugin": "3.0.0",
         "faker": "4.1.0",
         "file-loader": "0.11.2",
-        "flow-bin": "^0.55.0",
         "forcem-ipsum": "1.7.3",
         "html-webpack-plugin": "2.30.1",
         "jest": "^21.2.1",
