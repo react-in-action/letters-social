@@ -28,9 +28,16 @@ export default () => {
     });
     server.post('/posts', async (req, res, next) => {
         req.body = new Post(req.body);
-        req.body.user = await fetch(
-            `${config.get('ENDPOINT')}/users/${req.body.userId}`
-        ).then(res => res.json());
+        // NOTE: we'll add the ability for a user to log in in chapter 6, but for now it's just going to
+        // pluck the first user it finds and use that as the user for a post
+        if (!req.body.userId) {
+            const users = await fetch(`${config.get('ENDPOINT')}/users`).then(res => res.json());
+            req.body.userId = users[0].id;
+        } else {
+            req.body.user = await fetch(
+                `${config.get('ENDPOINT')}/users/${req.body.userId}`
+            ).then(res => res.json());
+        }
         return next();
     });
     server.put('/posts/:postId/likes/:userId', async (req, res) => {

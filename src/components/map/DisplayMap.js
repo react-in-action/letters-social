@@ -1,11 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-/**
- * The DisplayMap component is used for display locations attached to posts. It handles loading the
- * mapbox APIs into the browser and also allowing the use to pick a location
- * @type {Class}
- */
 export default class DisplayMap extends Component {
     constructor(props) {
         super(props);
@@ -78,7 +73,7 @@ export default class DisplayMap extends Component {
     addMarker(lat, lng) {
         // IF we have already saved the marker, just update it
         if (this.marker) {
-            this.marker.setLatLng(this.L.latLng(lat, lng));
+            return this.marker.setLatLng(this.L.latLng(lat, lng));
         }
         // Create a marker and put it on the map
         this.marker = this.L.marker([lat, lng], {
