@@ -4,7 +4,7 @@ import React from 'react';
 /**
  * Dummy ad component
  * @method Ad
- * @param  {object} props 
+ * @param  {object} props
  */
 const Ad = props => {
     return (
@@ -23,7 +23,7 @@ const Ad = props => {
 
 Ad.propTypes = {
     imageUrl: PropTypes.string,
-    url: PropTypes.string
+    url: PropTypes.string,
 };
 
 export default Ad;
