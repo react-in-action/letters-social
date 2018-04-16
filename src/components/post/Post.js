@@ -13,7 +13,17 @@ import Loader from '../Loader';
 
 export class Post extends Component {
     static propTypes = {
-        post: PropTypes.object
+        post: PropTypes.shape({
+            comments: PropTypes.array,
+            content: PropTypes.string,
+            date: PropTypes.number,
+            id: PropTypes.string.isRequired,
+            image: PropTypes.string,
+            likes: PropTypes.array,
+            location: PropTypes.object,
+            user: PropTypes.object,
+            userId: PropTypes.string,
+        }),
     };
     constructor(props) {
         super(props);
@@ -21,7 +31,7 @@ export class Post extends Component {
             post: null,
             comments: [],
             showComments: false,
-            user: this.props.user
+            user: this.props.user,
         };
         this.loadPost = this.loadPost.bind(this);
     }
@@ -45,15 +55,11 @@ export class Post extends Component {
                 <Content post={this.state.post} />
                 <Image post={this.state.post} />
                 <Link link={this.state.post.link} />
-                {this.state.post.location && (
-                    <DisplayMap displayOnly location={this.state.post.location} />
-                )}
                 <PostActionSection showComments={this.state.showComments} />
                 <Comments
                     comments={this.state.comments}
                     show={this.state.showComments}
                     post={this.state.post}
-                    handleSubmit={this.createComment}
                     user={this.props.user}
                 />
             </div>

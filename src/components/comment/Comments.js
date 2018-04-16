@@ -3,7 +3,6 @@ import React from 'react';
 
 import Loader from '../Loader';
 import Comment from './Comment';
-import CreateComment from './Create';
 
 const Comments = props => {
     const { comments, show, post, handleSubmit, user } = props;
@@ -12,14 +11,11 @@ const Comments = props => {
     }
     return (
         <div className="comments">
-            {show && [
-                ...comments.map(comment => <Comment key={comment.id} comment={comment} />),
-                <CreateComment key={post.id} handleSubmit={handleSubmit} post={post} user={user} />
-            ]}
+            {show && comments.map(comment => <Comment key={comment.id} comment={comment} />)}
         </div>
     );
 };
 Comments.propTypes = {
-    comments: PropTypes.array
+    comments: PropTypes.array,
 };
 export default Comments;
