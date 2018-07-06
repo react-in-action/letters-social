@@ -14,7 +14,7 @@
     },
     "scripts": {
         "analyze": "ANALYZE=true npm run build",
-        "api": "nodemon -x 'node -r @std/esm ./db/run.js'",
+        "api": "nodemon -x node -r @std/esm ./db/run.js",
         "build:app":
             "NODE_ENV=production webpack -p --progress --config ./build/webpack.config.prod.js",
         "build": "NODE_ENV=production npm-run-all build:app db:seed",
