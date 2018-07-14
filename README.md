@@ -11,7 +11,7 @@ Links
 - [**Buy**](https://ifelse.io/book): Buy _React in Action_ and get started today!
 - [**App**](https://social.react.sh): Example application that you'll build in _React in Action_.
 - [**Docs**](https://docs.react.sh): Documentation for the application source code generated using ESDoc. It's not perfect, but you can use it to get a quick overview of the sample application.
-- [**Guide to the React Ecosystem**](/react-ecosystem): As part of _React in Action_, I've put together a guide to the React ecosystem. The goal of the guide is to help you get your feet when navigating the many different communities, online and otherwise, that comprise the React ecosystem.
+- [**Guide to the React Ecosystem**](https://ifelse.io/2018/07/04/a-guide-to-the-react-ecosystem/): As part of _React in Action_, I've put together a guide to the React ecosystem. The goal of the guide is to help you get your feet when navigating the many different communities, online and otherwise, that comprise the React ecosystem.
 - [**Forum**](https://forums.manning.com/forums/react-in-action): The book forum is a great place to ask questions about the book
 - [**Site**](https://ifelse.io): I try to write often at my personal blog, <a href="https://ifelse.io" target="_blank" rel="noopener noreferrer">If Else</a>. Check it out if you're interested in React, JavaScript, UI engineering, Golang, or random programming tidbits!
 - [**Twitter**](https://twitter.com/markthethomas): Have a question about the book? Feel free to tweet at me or DM me and I'll get back to you!
