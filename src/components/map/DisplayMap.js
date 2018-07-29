@@ -89,7 +89,7 @@ export default class DisplayMap extends Component {
         this.marker.addTo(this.map);
     }
     generateStaticMapImage(lat, lng) {
-        return `https://api.mapbox.com/styles/v1/mapbox/streets-v10/static/${lat},${lng},12,0,0/600x175?access_token=${process
+        return `https://api.mapbox.com/styles/v1/mapbox/streets-v10/static/${lng},${lat},12,0,0/600x175?access_token=${process
             .env.MAPBOX_API_TOKEN}`;
     }
     render() {
