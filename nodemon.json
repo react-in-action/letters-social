@@ -2,7 +2,8 @@
     "verbose": false,
     "env": {
         "PORT": 3100,
-        "ENDPOINT": "http://localhost:3500"
+        "ENDPOINT": "http://localhost:3500",
+        "NODE_ENV": "development"
     },
     "ignore": ["db/**/*.json"]
 }
