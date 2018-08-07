@@ -1,15 +1,14 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+import React, { Component } from "react";
+import PropTypes from "prop-types";
 
-import * as API from '../../shared/http';
-import Content from './Content';
-import Image from './Image';
-import Link from './Link';
-import PostActionSection from './PostActionSection';
-import Comments from '../comment/Comments';
-import DisplayMap from '../map/DisplayMap';
-import UserHeader from '../post/UserHeader';
-import Loader from '../Loader';
+import * as API from "../../shared/http";
+import Content from "./Content";
+import Image from "./Image";
+import Link from "./Link";
+import PostActionSection from "./PostActionSection";
+import Comments from "../comment/Comments";
+import UserHeader from "../post/UserHeader";
+import Loader from "../Loader";
 
 export class Post extends Component {
     static propTypes = {
@@ -22,8 +21,8 @@ export class Post extends Component {
             likes: PropTypes.array,
             location: PropTypes.object,
             user: PropTypes.object,
-            userId: PropTypes.string,
-        }),
+            userId: PropTypes.string
+        })
     };
     constructor(props) {
         super(props);
@@ -31,7 +30,7 @@ export class Post extends Component {
             post: null,
             comments: [],
             showComments: false,
-            user: this.props.user,
+            user: this.props.user
         };
         this.loadPost = this.loadPost.bind(this);
     }
