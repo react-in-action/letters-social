@@ -84,7 +84,7 @@
         "isomorphic-fetch": "2.2.1",
         "js-cookie": "^2.2.0",
         "json-server": "^0.12.1",
-        "lodash": "4.17.4",
+        "lodash": "^4.17.4",
         "mapbox": "1.0.0-beta9",
         "morgan": "^1.9.0",
         "parse-link-header": "1.0.1",
