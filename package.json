@@ -13,20 +13,18 @@
         "dotenv": ".env.production"
     },
     "scripts": {
-        "analyze": "ANALYZE=true npm run build",
+        "analyze": "cross-env ANALYZE=true npm run build",
         "api": "nodemon -x node -r @std/esm ./db/run.js",
-        "build:app":
-            "NODE_ENV=production webpack -p --progress --config ./build/webpack.config.prod.js",
-        "build": "NODE_ENV=production npm-run-all build:app db:seed",
+        "build:app": "cross-env NODE_ENV=production webpack -p --progress --config ./build/webpack.config.prod.js",
+        "build": "cross-env NODE_ENV=production npm-run-all build:app db:seed",
         "client:dev": "webpack-dev-server --config ./build/webpack.config.js",
         "doc": "esdoc -c esdoc.json",
         "db:seed": "node -r @std/esm db/seed.js",
         "deploy": "now -e LETTERS_FIREBASE_ADMIN_KEY=${LETTERS_FIREBASE_ADMIN_KEY} -d",
-        "dev": "NODE_ENV=development npm-run-all -p api client:dev server:dev styles:w",
+        "dev": "cross-env NODE_ENV=development npm-run-all -p api client:dev server:dev styles:w",
         "server:dev": "nodemon --config nodemon.json index.js",
-        "start": "NODE_ENV=production pm2 start ./index.js --no-daemon",
-        "styles:w":
-            "npm run styles && node-sass src/styles/styles.scss -o static/ -w src/styles --watch --recursive",
+        "start": "cross-env NODE_ENV=production pm2 start ./index.js --no-daemon",
+        "styles:w": "npm run styles && node-sass src/styles/styles.scss -o static/ -w src/styles --watch --recursive",
         "styles": "node-sass -q src/styles/styles.scss -o static/",
         "test:w": "jest --watch --coverage",
         "test": "jest --coverage"
@@ -46,7 +44,10 @@
     },
     "jest": {
         "testEnvironment": "jsdom",
-        "setupFiles": ["raf/polyfill", "./test/setup.js"],
+        "setupFiles": [
+            "raf/polyfill",
+            "./test/setup.js"
+        ],
         "globals": {
             "__DEV__": true,
             "NODE_ENV": "test",
@@ -109,6 +110,7 @@
         "babel-preset-es2015": "^6.24.1",
         "babel-preset-react-app": "^3.1.0",
         "coveralls": "2.13.1",
+        "cross-env": "^5.2.0",
         "css-loader": "0.28.7",
         "cssnano": "3.10.0",
         "enzyme": "^3.2.0",
