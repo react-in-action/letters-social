@@ -1,10 +1,10 @@
-import PropTypes from 'prop-types';
-import React from 'react';
-import Filter from 'bad-words';
-import classnames from 'classnames';
+import PropTypes from "prop-types";
+import React from "react";
+import Filter from "bad-words";
+import classnames from "classnames";
 
-import DisplayMap from '../map/DisplayMap';
-import LocationTypeAhead from '../map/LocationTypeAhead';
+import DisplayMap from "../map/DisplayMap";
+import LocationTypeAhead from "../map/LocationTypeAhead";
 
 /**
  * Component that allows users to create posts
@@ -17,7 +17,7 @@ class CreatePost extends React.Component {
     constructor(props) {
         super(props);
         this.initialState = {
-            content: '',
+            content: "",
             valid: false,
             showLocationPicker: false,
             location: {
@@ -65,7 +65,7 @@ class CreatePost extends React.Component {
         }
         this.props.onSubmit(newPost);
         this.setState(() => ({
-            content: '',
+            content: "",
             valid: false,
             showLocationPicker: false,
             location: this.defaultLocation,
@@ -100,11 +100,11 @@ class CreatePost extends React.Component {
                     </button>
                 ) : (
                     <button onClick={this.handleToggleLocation} className="open">
-                        {this.state.showLocationPicker ? 'Cancel' : 'Add location'}{' '}
+                        {this.state.showLocationPicker ? "Cancel" : "Add location"}{" "}
                         <i
                             className={classnames(`fa`, {
-                                'fa-map-o': !this.state.showLocationPicker,
-                                'fa-times': this.state.showLocationPicker
+                                "fa-map-o": !this.state.showLocationPicker,
+                                "fa-times": this.state.showLocationPicker
                             })}
                         />
                     </button>
@@ -123,7 +123,7 @@ class CreatePost extends React.Component {
                 {this.renderLocationControls()}
                 <div
                     className="location-picker"
-                    style={{ display: this.state.showLocationPicker ? 'block' : 'none' }}
+                    style={{ display: this.state.showLocationPicker ? "block" : "none" }}
                 >
                     {!this.state.locationSelected && (
                         <LocationTypeAhead
