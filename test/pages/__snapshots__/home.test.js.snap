@@ -89,7 +89,7 @@ exports[`Single post page should render posts 1`] = `
       className="create-post"
     >
       <textarea
-        maxlength="280"
+        maxLength="280"
         onChange={[Function]}
         placeholder="What's on your mind?"
         value=""
