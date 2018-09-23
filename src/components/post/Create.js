@@ -119,7 +119,7 @@ class CreatePost extends React.Component {
                     value={this.state.content}
                     onChange={this.handlePostChange}
                     placeholder="What's on your mind?"
-                    maxlength="280"
+                    maxLength="280"
                 />
                 {this.renderLocationControls()}
                 <div
