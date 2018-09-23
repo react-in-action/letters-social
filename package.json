@@ -70,7 +70,6 @@
         "cookie-parser": "1.4.3",
         "cookies": "0.7.1",
         "cors": "2.8.4",
-        "debug": "2.6.3",
         "enroute": "1.0.1",
         "environs": "0.4.5",
         "express": "^4.16.2",
