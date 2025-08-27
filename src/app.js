@@ -33,9 +33,21 @@ class App extends Component {
     static propTypes = {
         children: PropTypes.node,
     };
-    componentDidMount() {
-        this.getPosts();
+   
+
+    // componentWillMount is deprecated, use componentDidMount instead
+    // eslint-disable-next-line react/no-deprecated
+    componentWillMount() {
+        console.log('App component will mount >>> ');
     }
+    
+
+    componentDidMount() {
+        console.log('App component Did mount >>> ');
+        // this.getPosts();
+    }
+
+    //생성자, render, 생명주기 메서드내에 수집되지 않는 에러들
     componentDidCatch(err, info) {
         console.error(err);
         console.error(info);
@@ -43,22 +55,50 @@ class App extends Component {
             error: err,
         }));
     }
+    componentWillRecceiveProps(nextProps) {
+        console.log('App component will receive props >>> ', nextProps);   
+    }
+    shouldComponentUpdate(nextProps, nextState) {
+        console.log('App should component update >>> ', nextProps, nextState);
+        return true; // or some condition based on nextProps or nextState
+    }
+    componentDidUpdate(prevProps, prevState) {
+        console.log('App component did update >>> ', prevProps, prevState);
+    }
+    
+    componentWillUnmount() {
+        console.log('App component will Unmount >>> '); 
+    }
+
     getPosts() {
+         console.log('this.state.endpoint >>', this.state.endpoint )
         API.fetchPosts(this.state.endpoint)
             .then(res => {
-                return res.json().then(posts => {
+                // console.log('res.json() >>', res.json())
+                res.json().then(posts => {
+                    console.log('posts > ', posts)
                     const links = parseLinkHeader(res.headers.get('Link'));
+                    console.log('links > ', links);
                     this.setState(() => ({
                         posts: orderBy(this.state.posts.concat(posts), 'date', 'desc'),
                         endpoint: links.next.url,
-                    }));
+                        }));
                 });
+                // return res.json().then(posts => {
+                //     const links = parseLinkHeader(res.headers.get('Link'));
+                //     this.setState(() => ({
+                //         posts: orderBy(this.state.posts.concat(posts), 'date', 'desc'),
+                //         endpoint: links.next.url,
+                //     }));
+                // });
             })
             .catch(err => {
                 this.setState(() => ({ error: err }));
             });
     }
+
     render() {
+        console.log('App render >>> ');
         if (this.state.error) {
             return (
                 <div className="app">
